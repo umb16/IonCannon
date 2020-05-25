@@ -1,0 +1,1948 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1194233882536701}
+  m_IsPrefabParent: 1
+--- !u!1 &1194233882536701
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4473457966284491}
+  - component: {fileID: 114073486084116760}
+  - component: {fileID: 54811902628168219}
+  - component: {fileID: 135027663906021558}
+  m_Layer: 0
+  m_Name: White
+  m_TagString: Mob
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4473457966284491
+Transform:
+  m_GameObject: {fileID: 1194233882536701}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.05, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_Children:
+  - {fileID: 4540726276303994}
+  - {fileID: 4237252987674547}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114073486084116760
+MonoBehaviour:
+  m_GameObject: {fileID: 1194233882536701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba53dea44d2ddc429c879c3bfb382f1, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  MobTransform: {fileID: 4237252987674547}
+  ParticlePrefab: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 2}
+  ParticlePrefab2: {fileID: 1216214031404768, guid: a252bd4842bc4f3448cd4642c9fe5058, type: 2}
+  ParticlePrefab3: {fileID: 0}
+  Speed: 1.5
+  DmgAgrSpeed: 0
+  Hp: 9
+  Radiation: 0
+  ScoreCost: 35
+  Bloody: 1
+  Stalker: 0
+  HunterSpeed: 0
+  Child: {fileID: 0}
+--- !u!54 &54811902628168219
+Rigidbody:
+  m_GameObject: {fileID: 1194233882536701}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
+--- !u!135 &135027663906021558
+SphereCollider:
+  m_GameObject: {fileID: 1194233882536701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1826336399093496
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4540726276303994}
+  - component: {fileID: 135353944113461023}
+  - component: {fileID: 23125532850481556}
+  - component: {fileID: 33752734346835303}
+  m_Layer: 0
+  m_Name: Buff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4540726276303994
+Transform:
+  m_GameObject: {fileID: 1826336399093496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_Children: []
+  m_Father: {fileID: 4473457966284491}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &135353944113461023
+SphereCollider:
+  m_GameObject: {fileID: 1826336399093496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &23125532850481556
+MeshRenderer:
+  m_GameObject: {fileID: 1826336399093496}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 212aa467de6fc8449b227430476c0ce9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33752734346835303
+MeshFilter:
+  m_GameObject: {fileID: 1826336399093496}
+  m_Mesh: {fileID: 4300000, guid: 19e8e495d36c6fe42997aa3c3466e2a8, type: 2}
+--- !u!1 &1550371060797525
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4237252987674547}
+  - component: {fileID: 95031225968563414}
+  m_Layer: 0
+  m_Name: Alien_anim_run
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4237252987674547
+Transform:
+  m_GameObject: {fileID: 1550371060797525}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_Children:
+  - {fileID: 4644735822101989}
+  - {fileID: 4101132720346916}
+  - {fileID: 4853350635691552}
+  - {fileID: 4275665336315971}
+  - {fileID: 4537983722679312}
+  m_Father: {fileID: 4473457966284491}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!95 &95031225968563414
+Animator:
+  serializedVersion: 3
+  m_GameObject: {fileID: 1550371060797525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1ef6a36dffae921469601113713f54bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: e9c17071717072a4d8af7737fd9351a4, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage:
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1859239559420310
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4644735822101989}
+  m_Layer: 0
+  m_Name: Alien
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4644735822101989
+Transform:
+  m_GameObject: {fileID: 1859239559420310}
+  m_LocalRotation: {x: 0.5000001, y: -0.5000001, z: -0.4999999, w: 0.4999999}
+  m_LocalPosition: {x: 0.08455142, y: 0, z: 0.4701263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4237252987674547}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90.00002, y: 0, z: 90}
+--- !u!1 &1401177311183692
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4101132720346916}
+  m_Layer: 0
+  m_Name: AlienLLegPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4101132720346916
+Transform:
+  m_GameObject: {fileID: 1401177311183692}
+  m_LocalRotation: {x: 0.6531609, y: -0.493378, z: -0.4583524, w: 0.3462255}
+  m_LocalPosition: {x: -1.226075, y: 0.2014324, z: -1.368662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4237252987674547}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 110.6044, y: -14.89898, z: 84.47861}
+--- !u!1 &1030991387214278
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4853350635691552}
+  m_Layer: 0
+  m_Name: AlienPelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4853350635691552
+Transform:
+  m_GameObject: {fileID: 1030991387214278}
+  m_LocalRotation: {x: 0.5525542, y: -0.5305721, z: -0.4636491, w: 0.445204}
+  m_LocalPosition: {x: 0.08455155, y: 2.684189, z: 0.470126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4830582078188076}
+  - {fileID: 4568864211516770}
+  - {fileID: 4794368466228250}
+  m_Father: {fileID: 4237252987674547}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 100.0079, y: -2.28997, z: 89.59599}
+--- !u!1 &1589194051246769
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4830582078188076}
+  m_Layer: 0
+  m_Name: AlienLLeg1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4830582078188076
+Transform:
+  m_GameObject: {fileID: 1589194051246769}
+  m_LocalRotation: {x: 0.3560125, y: 0.9280233, z: 0.08753563, w: 0.06607108}
+  m_LocalPosition: {x: 5.813599E-07, y: -2.422333E-08, z: 0.7586871}
+  m_LocalScale: {x: 0.9999996, y: 1.000001, z: 1}
+  m_Children:
+  - {fileID: 4575391685471157}
+  m_Father: {fileID: 4853350635691552}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 167.8837, y: -3.45723, z: -137.6569}
+--- !u!1 &1398525988543563
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4575391685471157}
+  m_Layer: 0
+  m_Name: AlienLLeg2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4575391685471157
+Transform:
+  m_GameObject: {fileID: 1398525988543563}
+  m_LocalRotation: {x: -0.1236595, y: 0.002338493, z: -0.1513113, w: 0.980718}
+  m_LocalPosition: {x: -1.336572, y: -1.74408E-06, z: -1.840973E-06}
+  m_LocalScale: {x: 1.000005, y: 1.000002, z: 0.9999938}
+  m_Children:
+  - {fileID: 4938389867079126}
+  m_Father: {fileID: 4830582078188076}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -14.08666, y: 1.881665, z: 17.30908}
+--- !u!1 &1192210046217986
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4938389867079126}
+  m_Layer: 0
+  m_Name: AlienLLegPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4938389867079126
+Transform:
+  m_GameObject: {fileID: 1192210046217986}
+  m_LocalRotation: {x: -0.07980034, y: 0.06684298, z: -0.6397929, w: 0.7614651}
+  m_LocalPosition: {x: -1.281825, y: 0, z: -9.689331E-08}
+  m_LocalScale: {x: 1.000003, y: 0.9999982, z: 0.9999992}
+  m_Children:
+  - {fileID: 4258377566317476}
+  - {fileID: 4106910322764546}
+  m_Father: {fileID: 4575391685471157}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -11.95021, y: 0.01800185, z: 80.07295}
+--- !u!1 &1593476284460861
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4258377566317476}
+  m_Layer: 0
+  m_Name: AlienLLegDigit01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4258377566317476
+Transform:
+  m_GameObject: {fileID: 1593476284460861}
+  m_LocalRotation: {x: 0.08866128, y: 0.306677, z: -0.0425674, w: 0.9467188}
+  m_LocalPosition: {x: -1.154672, y: 0.0510206, z: 0.1160594}
+  m_LocalScale: {x: 1.000004, y: 1, z: 0.999996}
+  m_Children:
+  - {fileID: 4399024779387958}
+  m_Father: {fileID: 4938389867079126}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 10.09616, y: -36.03094, z: 1.857849}
+--- !u!1 &1237717984463360
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4399024779387958}
+  m_Layer: 0
+  m_Name: AlienLLegDigit02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4399024779387958
+Transform:
+  m_GameObject: {fileID: 1237717984463360}
+  m_LocalRotation: {x: -0.06003549, y: -0.1300739, z: -0.09604121, w: 0.985014}
+  m_LocalPosition: {x: -0.2885568, y: 1.211166E-08, z: 9.689331E-08}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999998}
+  m_Children: []
+  m_Father: {fileID: 4258377566317476}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -5.556234, y: 15.53226, z: 10.3794}
+--- !u!1 &1839692449950333
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4106910322764546}
+  m_Layer: 0
+  m_Name: AlienLLegDigit11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4106910322764546
+Transform:
+  m_GameObject: {fileID: 1839692449950333}
+  m_LocalRotation: {x: -0.06253538, y: 0.09155146, z: -0.06051137, w: 0.991991}
+  m_LocalPosition: {x: -1.132594, y: 0.02795519, z: -0.04715236}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4901659485739920}
+  m_Father: {fileID: 4938389867079126}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -7.888404, y: -10.02444, z: 7.674353}
+--- !u!1 &1410089167195388
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4901659485739920}
+  m_Layer: 0
+  m_Name: AlienLLegDigit12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4901659485739920
+Transform:
+  m_GameObject: {fileID: 1410089167195388}
+  m_LocalRotation: {x: 0.06192649, y: 0.06921385, z: -0.04442928, w: 0.9946862}
+  m_LocalPosition: {x: -0.3337371, y: 2.422333E-08, z: 0}
+  m_LocalScale: {x: 0.9999996, y: 1, z: 1.000001}
+  m_Children: []
+  m_Father: {fileID: 4106910322764546}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 6.791887, y: -8.232759, z: 4.625649}
+--- !u!1 &1329248031777800
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4568864211516770}
+  m_Layer: 0
+  m_Name: AlienRLeg1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4568864211516770
+Transform:
+  m_GameObject: {fileID: 1329248031777800}
+  m_LocalRotation: {x: -0.2376085, y: 0.9528475, z: -0.1868018, w: -0.02699796}
+  m_LocalPosition: {x: 3.875732E-07, y: -7.266998E-08, z: -0.7586873}
+  m_LocalScale: {x: 1.000001, y: 0.9999997, z: 1}
+  m_Children:
+  - {fileID: 4217223503561800}
+  m_Father: {fileID: 4853350635691552}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -159.7216, y: 8.060649, z: 153.4396}
+--- !u!1 &1482527059631068
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4217223503561800}
+  m_Layer: 0
+  m_Name: AlienRLeg2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4217223503561800
+Transform:
+  m_GameObject: {fileID: 1482527059631068}
+  m_LocalRotation: {x: 0.1411195, y: -0.003071635, z: 0.01358984, w: 0.9898946}
+  m_LocalPosition: {x: -1.336572, y: 3.875732E-07, z: 0}
+  m_LocalScale: {x: 1.000002, y: 1.000003, z: 0.9999947}
+  m_Children:
+  - {fileID: 4335939945024837}
+  m_Father: {fileID: 4568864211516770}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 16.21945, y: 0.5681984, z: -1.492114}
+--- !u!1 &1940039806785152
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4335939945024837}
+  m_Layer: 0
+  m_Name: AlienRLegPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4335939945024837
+Transform:
+  m_GameObject: {fileID: 1940039806785152}
+  m_LocalRotation: {x: -0.09177714, y: -0.00132367, z: -0.4888439, w: 0.8675292}
+  m_LocalPosition: {x: -1.324952, y: 0, z: 8.478165E-08}
+  m_LocalScale: {x: 0.9999988, y: 1.000002, z: 0.9999993}
+  m_Children:
+  - {fileID: 4679871337285782}
+  - {fileID: 4457643579326369}
+  m_Father: {fileID: 4217223503561800}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -9.126667, y: 5.280174, z: 58.37991}
+--- !u!1 &1379608187351596
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4679871337285782}
+  m_Layer: 0
+  m_Name: AlienRLegDigit01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4679871337285782
+Transform:
+  m_GameObject: {fileID: 1379608187351596}
+  m_LocalRotation: {x: -0.07620279, y: -0.1636386, z: 0.02617655, w: 0.9832245}
+  m_LocalPosition: {x: -1.154675, y: 0.05102063, z: -0.1160594}
+  m_LocalScale: {x: 1.000001, y: 1.000001, z: 0.9999988}
+  m_Children:
+  - {fileID: 4467361426010236}
+  m_Father: {fileID: 4335939945024837}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -9.617935, y: 18.52978, z: -4.622612}
+--- !u!1 &1397400478591049
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4467361426010236}
+  m_Layer: 0
+  m_Name: AlienRLegDigit02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4467361426010236
+Transform:
+  m_GameObject: {fileID: 1397400478591049}
+  m_LocalRotation: {x: 0.06003534, y: 0.1300739, z: -0.09604061, w: 0.9850141}
+  m_LocalPosition: {x: -0.2885568, y: 4.844665E-08, z: -9.689331E-08}
+  m_LocalScale: {x: 0.9999998, y: 1.000001, z: 0.9999995}
+  m_Children: []
+  m_Father: {fileID: 4679871337285782}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5.556227, y: -15.53226, z: 10.37933}
+--- !u!1 &1192157114746289
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4457643579326369}
+  m_Layer: 0
+  m_Name: AlienRLegDigit11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4457643579326369
+Transform:
+  m_GameObject: {fileID: 1192157114746289}
+  m_LocalRotation: {x: 0.05782016, y: 0.06424331, z: -0.01191283, w: 0.9961866}
+  m_LocalPosition: {x: -1.132597, y: 0.02795517, z: 0.04715238}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4214629146637218}
+  m_Father: {fileID: 4335939945024837}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 6.582404, y: -7.433434, z: 0.9422074}
+--- !u!1 &1602750890303879
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4214629146637218}
+  m_Layer: 0
+  m_Name: AlienRLegDigit12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4214629146637218
+Transform:
+  m_GameObject: {fileID: 1602750890303879}
+  m_LocalRotation: {x: -0.06192612, y: -0.06921404, z: -0.04442919, w: 0.9946862}
+  m_LocalPosition: {x: -0.3337366, y: 4.844665E-08, z: -1.574516E-07}
+  m_LocalScale: {x: 1, y: 0.9999998, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4457643579326369}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.791844, y: 8.232779, z: 4.62564}
+--- !u!1 &1687349371646854
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4794368466228250}
+  m_Layer: 0
+  m_Name: AlienSpine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4794368466228250
+Transform:
+  m_GameObject: {fileID: 1687349371646854}
+  m_LocalRotation: {x: -0.006715229, y: 0.01785116, z: 0.00763855, w: 0.9997889}
+  m_LocalPosition: {x: 0.007016045, y: -0.1727816, z: 2.422333E-08}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1}
+  m_Children:
+  - {fileID: 4861704240213684}
+  m_Father: {fileID: 4853350635691552}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -0.754226, y: -2.051476, z: -0.861977}
+--- !u!1 &1517096490856121
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4861704240213684}
+  m_Layer: 0
+  m_Name: AlienSpine2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4861704240213684
+Transform:
+  m_GameObject: {fileID: 1517096490856121}
+  m_LocalRotation: {x: -0.03016099, y: -0.001069966, z: 0.1578143, w: 0.9870075}
+  m_LocalPosition: {x: -0.8980161, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4042154378791788}
+  m_Father: {fileID: 4794368466228250}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.432787, y: -0.4244247, z: -18.15573}
+--- !u!1 &1660789506116963
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4042154378791788}
+  m_Layer: 0
+  m_Name: AlienSpine3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4042154378791788
+Transform:
+  m_GameObject: {fileID: 1660789506116963}
+  m_LocalRotation: {x: -0.0418951, y: -0.02214658, z: -0.1275374, w: 0.990701}
+  m_LocalPosition: {x: -0.8171443, y: 9.689331E-08, z: 0}
+  m_LocalScale: {x: 0.9999996, y: 0.9999997, z: 0.9999998}
+  m_Children:
+  - {fileID: 4370098385921219}
+  m_Father: {fileID: 4861704240213684}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.443583, y: 3.12805, z: 14.54981}
+--- !u!1 &1654815422305821
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4370098385921219}
+  m_Layer: 0
+  m_Name: AlienSpine4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4370098385921219
+Transform:
+  m_GameObject: {fileID: 1654815422305821}
+  m_LocalRotation: {x: -0.04701269, y: -0.02417344, z: -0.09395014, w: 0.9941725}
+  m_LocalPosition: {x: -0.8326406, y: 0, z: 6.055832E-09}
+  m_LocalScale: {x: 1.000001, y: 1.000001, z: 1}
+  m_Children:
+  - {fileID: 4472410054994122}
+  m_Father: {fileID: 4042154378791788}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -5.110657, y: 3.261824, z: 10.65133}
+--- !u!1 &1870058497713024
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4472410054994122}
+  m_Layer: 0
+  m_Name: AlienSpine5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4472410054994122
+Transform:
+  m_GameObject: {fileID: 1870058497713024}
+  m_LocalRotation: {x: -0.04771797, y: -0.002433294, z: -0.2537161, w: 0.966098}
+  m_LocalPosition: {x: -1.073265, y: 0, z: -2.422333E-08}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4227158699170962}
+  m_Father: {fileID: 4370098385921219}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -5.221357, y: 1.656952, z: 29.35386}
+--- !u!1 &1337005265480616
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4227158699170962}
+  m_Layer: 0
+  m_Name: AlienRibcage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4227158699170962
+Transform:
+  m_GameObject: {fileID: 1337005265480616}
+  m_LocalRotation: {x: -0.02001947, y: 0.008104807, z: -0.1419111, w: 0.9896438}
+  m_LocalPosition: {x: -1.04993, y: -3.875732E-07, z: 0}
+  m_LocalScale: {x: 0.9999995, y: 0.9999993, z: 1}
+  m_Children:
+  - {fileID: 4982493707159250}
+  - {fileID: 4176806051515339}
+  - {fileID: 4464760859595252}
+  m_Father: {fileID: 4472410054994122}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.402937, y: -0.5935817, z: 16.33319}
+--- !u!1 &1682184206722649
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4982493707159250}
+  m_Layer: 0
+  m_Name: AlienLArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4982493707159250
+Transform:
+  m_GameObject: {fileID: 1682184206722649}
+  m_LocalRotation: {x: -0.08437508, y: 0.7779849, z: -0.06181351, w: 0.6195155}
+  m_LocalPosition: {x: 7.751465E-07, y: 0.1637679, z: 0.0873769}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4612702075960113}
+  m_Father: {fileID: 4227158699170962}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -138.2333, y: -72.46182, z: 136.3834}
+--- !u!1 &1019278109811748
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4612702075960113}
+  m_Layer: 0
+  m_Name: AlienLArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4612702075960113
+Transform:
+  m_GameObject: {fileID: 1019278109811748}
+  m_LocalRotation: {x: -0.3728209, y: 0.3375603, z: -0.1145115, w: 0.8567058}
+  m_LocalPosition: {x: -2.255748, y: -3.875732E-07, z: 0}
+  m_LocalScale: {x: 1.000001, y: 1, z: 0.9999991}
+  m_Children:
+  - {fileID: 4034122153428965}
+  m_Father: {fileID: 4982493707159250}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -55.39415, y: -29.53763, z: 30.985}
+--- !u!1 &1942211449844068
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4034122153428965}
+  m_Layer: 0
+  m_Name: AlienLArm2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4034122153428965
+Transform:
+  m_GameObject: {fileID: 1942211449844068}
+  m_LocalRotation: {x: -0.02999168, y: 0.07477407, z: -0.3687943, w: 0.926013}
+  m_LocalPosition: {x: -1.882428, y: -4.844665E-08, z: -3.875732E-07}
+  m_LocalScale: {x: 0.9999948, y: 0.9999986, z: 1.000006}
+  m_Children:
+  - {fileID: 4105246028958906}
+  m_Father: {fileID: 4612702075960113}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.399197, y: -6.68219, z: 43.80483}
+--- !u!1 &1713008759337826
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4105246028958906}
+  m_Layer: 0
+  m_Name: AlienLArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4105246028958906
+Transform:
+  m_GameObject: {fileID: 1713008759337826}
+  m_LocalRotation: {x: -0.6045504, y: -0.2403356, z: 0.3071154, w: 0.6945774}
+  m_LocalPosition: {x: -2.656007, y: 1.937866E-07, z: 0}
+  m_LocalScale: {x: 0.9999816, y: 1.000012, z: 1.000006}
+  m_Children:
+  - {fileID: 4568836457845323}
+  - {fileID: 4671412578348139}
+  - {fileID: 4887394272902407}
+  - {fileID: 4487240394253355}
+  m_Father: {fileID: 4034122153428965}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -81.16305, y: -2.147383, z: -45.86696}
+--- !u!1 &1653740589639184
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4568836457845323}
+  m_Layer: 0
+  m_Name: AlienLArmDigit01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4568836457845323
+Transform:
+  m_GameObject: {fileID: 1653740589639184}
+  m_LocalRotation: {x: 0.2575557, y: 0.3419635, z: 0.01602796, w: 0.9035868}
+  m_LocalPosition: {x: -0.06882341, y: 0.02833858, z: 0.1306036}
+  m_LocalScale: {x: 0.9999864, y: 0.9999876, z: 1.000025}
+  m_Children:
+  - {fileID: 4555484194069332}
+  m_Father: {fileID: 4105246028958906}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 36.94628, y: -37.57007, z: -14.99794}
+--- !u!1 &1897625980577862
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4555484194069332}
+  m_Layer: 0
+  m_Name: AlienLArmDigit02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4555484194069332
+Transform:
+  m_GameObject: {fileID: 1897625980577862}
+  m_LocalRotation: {x: -1.163968E-08, y: 1.349789E-08, z: 0.1304987, w: 0.9914485}
+  m_LocalPosition: {x: -0.3119996, y: 3.875732E-07, z: 2.906799E-07}
+  m_LocalScale: {x: 0.9999824, y: 1.00002, z: 0.9999971}
+  m_Children:
+  - {fileID: 4463732986783997}
+  m_Father: {fileID: 4568836457845323}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.120555E-06, y: -1.707577E-06, z: -14.99683}
+--- !u!1 &1309707141884838
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4463732986783997}
+  m_Layer: 0
+  m_Name: AlienLArmDigit03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4463732986783997
+Transform:
+  m_GameObject: {fileID: 1309707141884838}
+  m_LocalRotation: {x: -4.624431E-08, y: 2.523828E-08, z: -0.3501014, w: 0.9367118}
+  m_LocalPosition: {x: -0.3119996, y: 3.875732E-07, z: -1.4534E-07}
+  m_LocalScale: {x: 0.9999713, y: 1.00001, z: 1.000019}
+  m_Children: []
+  m_Father: {fileID: 4555484194069332}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -5.976355E-06, y: -8.537981E-07, z: 40.98703}
+--- !u!1 &1677548863318103
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4671412578348139}
+  m_Layer: 0
+  m_Name: AlienLArmDigit11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4671412578348139
+Transform:
+  m_GameObject: {fileID: 1677548863318103}
+  m_LocalRotation: {x: 0.2730832, y: 0.1641096, z: 0.1290684, w: 0.9390607}
+  m_LocalPosition: {x: -0.6067854, y: 0.01436889, z: 0.1930102}
+  m_LocalScale: {x: 0.9999774, y: 1.000024, z: 0.9999978}
+  m_Children:
+  - {fileID: 4074299618060692}
+  m_Father: {fileID: 4105246028958906}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 34.86421, y: -13.7523, z: -19.98883}
+--- !u!1 &1148961687518719
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4074299618060692}
+  m_Layer: 0
+  m_Name: AlienLArmDigit12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4074299618060692
+Transform:
+  m_GameObject: {fileID: 1148961687518719}
+  m_LocalRotation: {x: -2.909735E-08, y: -1.950983E-09, z: 0.1304925, w: 0.9914493}
+  m_LocalPosition: {x: -0.3119994, y: 0, z: 1.937866E-07}
+  m_LocalScale: {x: 0.9999783, y: 1.000024, z: 0.9999977}
+  m_Children:
+  - {fileID: 4445924280027824}
+  m_Father: {fileID: 4671412578348139}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.334974E-06, y: -2.13448E-07, z: -14.99611}
+--- !u!1 &1978806311588222
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4445924280027824}
+  m_Layer: 0
+  m_Name: AlienLArmDigit13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445924280027824
+Transform:
+  m_GameObject: {fileID: 1978806311588222}
+  m_LocalRotation: {x: 2.393481E-08, y: -2.127365E-08, z: 0.130488, w: 0.9914499}
+  m_LocalPosition: {x: -0.3119996, y: 3.875732E-07, z: -1.937866E-07}
+  m_LocalScale: {x: 0.999976, y: 1.000026, z: 0.9999979}
+  m_Children: []
+  m_Father: {fileID: 4074299618060692}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.401176E-06, y: 2.774831E-06, z: -14.99559}
+--- !u!1 &1166951781357106
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4887394272902407}
+  m_Layer: 0
+  m_Name: AlienLArmDigit21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4887394272902407
+Transform:
+  m_GameObject: {fileID: 1166951781357106}
+  m_LocalRotation: {x: 4.616693E-09, y: 6.076608E-10, z: 0.130497, w: 0.9914487}
+  m_LocalPosition: {x: -0.63935, y: 0.04913421, z: 9.689331E-08}
+  m_LocalScale: {x: 0.9999804, y: 1.000022, z: 0.9999974}
+  m_Children:
+  - {fileID: 4882182182985900}
+  m_Father: {fileID: 4105246028958906}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 5.33597E-07, y: 6.311868E-15, z: -14.99662}
+--- !u!1 &1499113366066771
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4882182182985900}
+  m_Layer: 0
+  m_Name: AlienLArmDigit22
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4882182182985900
+Transform:
+  m_GameObject: {fileID: 1499113366066771}
+  m_LocalRotation: {x: -4.567754E-09, y: -8.116199E-09, z: 0.1304924, w: 0.9914493}
+  m_LocalPosition: {x: -0.3119996, y: -3.875732E-07, z: 9.689331E-08}
+  m_LocalScale: {x: 0.9999782, y: 1.000024, z: 0.9999974}
+  m_Children:
+  - {fileID: 4644129779318798}
+  m_Father: {fileID: 4887394272902407}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.403146E-07, y: 8.537922E-07, z: -14.99609}
+--- !u!1 &1984573430065335
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4644129779318798}
+  m_Layer: 0
+  m_Name: AlienLArmDigit23
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4644129779318798
+Transform:
+  m_GameObject: {fileID: 1984573430065335}
+  m_LocalRotation: {x: 3.69334E-09, y: 4.860923E-10, z: 0.1304879, w: 0.99145}
+  m_LocalPosition: {x: -0.3119996, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999756, y: 1.000027, z: 0.9999974}
+  m_Children: []
+  m_Father: {fileID: 4882182182985900}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 4.268754E-07, y: 1.608074E-15, z: -14.99557}
+--- !u!1 &1459107933647198
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4487240394253355}
+  m_Layer: 0
+  m_Name: AlienLArmDigit31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4487240394253355
+Transform:
+  m_GameObject: {fileID: 1459107933647198}
+  m_LocalRotation: {x: -0.1822116, y: -0.1630096, z: 0.1105558, w: 0.9633298}
+  m_LocalPosition: {x: -0.5822145, y: 0.03691364, z: -0.1682187}
+  m_LocalScale: {x: 0.9999782, y: 1.000022, z: 0.999999}
+  m_Children:
+  - {fileID: 4715320935465968}
+  m_Father: {fileID: 4105246028958906}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -23.73332, y: 15.88902, z: -16.45302}
+--- !u!1 &1187617646033884
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4715320935465968}
+  m_Layer: 0
+  m_Name: AlienLArmDigit32
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4715320935465968
+Transform:
+  m_GameObject: {fileID: 1187617646033884}
+  m_LocalRotation: {x: 8.22973E-09, y: 3.114319E-08, z: 0.1304924, w: 0.9914493}
+  m_LocalPosition: {x: -0.3119992, y: 0, z: 0}
+  m_LocalScale: {x: 0.999978, y: 1.000025, z: 0.9999976}
+  m_Children:
+  - {fileID: 4661122511824552}
+  m_Father: {fileID: 4487240394253355}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.400688E-06, y: -3.41517E-06, z: -14.99609}
+--- !u!1 &1094239799500077
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4661122511824552}
+  m_Layer: 0
+  m_Name: AlienLArmDigit33
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4661122511824552
+Transform:
+  m_GameObject: {fileID: 1094239799500077}
+  m_LocalRotation: {x: 1.652223E-08, y: 1.720458E-08, z: 0.1304878, w: 0.99145}
+  m_LocalPosition: {x: -0.270229, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999753, y: 1.000027, z: 0.9999974}
+  m_Children: []
+  m_Father: {fileID: 4715320935465968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.134377E-06, y: -1.70759E-06, z: -14.99556}
+--- !u!1 &1315723245026660
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4176806051515339}
+  m_Layer: 0
+  m_Name: AlienRArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4176806051515339
+Transform:
+  m_GameObject: {fileID: 1315723245026660}
+  m_LocalRotation: {x: -0.1284298, y: 0.8683531, z: 0.1315949, w: -0.4605991}
+  m_LocalPosition: {x: 0.09435005, y: 0.2985147, z: -0.6249547}
+  m_LocalScale: {x: 0.9999999, y: 0.9999998, z: 1}
+  m_Children:
+  - {fileID: 4211623429027587}
+  m_Father: {fileID: 4227158699170962}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 147.3379, y: 50.00708, z: 147.6108}
+--- !u!1 &1434478962417313
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4211623429027587}
+  m_Layer: 0
+  m_Name: AlienRArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4211623429027587
+Transform:
+  m_GameObject: {fileID: 1434478962417313}
+  m_LocalRotation: {x: 0.1931587, y: -0.2172477, z: -0.2681505, w: 0.9184707}
+  m_LocalPosition: {x: -2.067804, y: 3.875732E-07, z: 0}
+  m_LocalScale: {x: 0.9999974, y: 1.000002, z: 1}
+  m_Children:
+  - {fileID: 4445332360678659}
+  m_Father: {fileID: 4176806051515339}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 29.5617, y: 17.18632, z: 37.11724}
+--- !u!1 &1248953315533331
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4445332360678659}
+  m_Layer: 0
+  m_Name: AlienRArm2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445332360678659
+Transform:
+  m_GameObject: {fileID: 1248953315533331}
+  m_LocalRotation: {x: -0.01576993, y: -0.08252928, z: -0.02693771, w: 0.9960997}
+  m_LocalPosition: {x: -1.854175, y: 9.689331E-08, z: 0}
+  m_LocalScale: {x: 1.000014, y: 0.9999853, z: 1}
+  m_Children:
+  - {fileID: 4969237258645181}
+  m_Father: {fileID: 4211623429027587}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.567039, y: 9.512593, z: 2.967774}
+--- !u!1 &1679957655827798
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4969237258645181}
+  m_Layer: 0
+  m_Name: AlienRArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4969237258645181
+Transform:
+  m_GameObject: {fileID: 1679957655827798}
+  m_LocalRotation: {x: 0.7236847, y: -0.01322995, z: 0.04601892, w: 0.6884677}
+  m_LocalPosition: {x: -2.286766, y: 9.689331E-08, z: -3.875732E-07}
+  m_LocalScale: {x: 0.9999565, y: 0.9999868, z: 1.000057}
+  m_Children:
+  - {fileID: 4764046737550081}
+  - {fileID: 4218125648977677}
+  - {fileID: 4114800670027027}
+  - {fileID: 4146122551612802}
+  m_Father: {fileID: 4445332360678659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 92.74907, y: 4.865856, z: -2.543415}
+--- !u!1 &1673938544741912
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4764046737550081}
+  m_Layer: 0
+  m_Name: AlienRArmDigit01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4764046737550081
+Transform:
+  m_GameObject: {fileID: 1673938544741912}
+  m_LocalRotation: {x: -0.2575752, y: -0.34192, z: 0.01606377, w: 0.9035971}
+  m_LocalPosition: {x: -0.06882244, y: 0.02834091, z: -0.1305957}
+  m_LocalScale: {x: 1.000012, y: 0.9999867, z: 1.000001}
+  m_Children:
+  - {fileID: 4348029546724677}
+  m_Father: {fileID: 4969237258645181}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -36.94824, y: 37.56351, z: -15.00078}
+--- !u!1 &1732093044408454
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4348029546724677}
+  m_Layer: 0
+  m_Name: AlienRArmDigit02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4348029546724677
+Transform:
+  m_GameObject: {fileID: 1732093044408454}
+  m_LocalRotation: {x: 4.276978E-08, y: -3.945585E-08, z: 0.1305452, w: 0.9914424}
+  m_LocalPosition: {x: -0.3119994, y: -1.937866E-07, z: 0}
+  m_LocalScale: {x: 1.000042, y: 0.9999974, z: 0.9999599}
+  m_Children:
+  - {fileID: 4970883047475205}
+  m_Father: {fileID: 4764046737550081}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 4.268879E-06, y: 5.122424E-06, z: -15.0022}
+--- !u!1 &1546678333328154
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4970883047475205}
+  m_Layer: 0
+  m_Name: AlienRArmDigit03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4970883047475205
+Transform:
+  m_GameObject: {fileID: 1546678333328154}
+  m_LocalRotation: {x: 8.742134E-09, y: -1.917412E-08, z: -0.3500923, w: 0.9367152}
+  m_LocalPosition: {x: -0.3119994, y: 0, z: 0}
+  m_LocalScale: {x: 1.000069, y: 0.9999706, z: 0.9999598}
+  m_Children: []
+  m_Father: {fileID: 4348029546724677}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.707598E-06, y: 1.707429E-06, z: 40.98592}
+--- !u!1 &1283752518314781
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4218125648977677}
+  m_Layer: 0
+  m_Name: AlienRArmDigit11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4218125648977677
+Transform:
+  m_GameObject: {fileID: 1283752518314781}
+  m_LocalRotation: {x: -0.2731013, y: -0.1640597, z: 0.1291007, w: 0.9390597}
+  m_LocalPosition: {x: -0.6067759, y: 0.01436967, z: -0.192999}
+  m_LocalScale: {x: 0.9999533, y: 0.9999818, z: 1.000065}
+  m_Children:
+  - {fileID: 4306836690173859}
+  m_Father: {fileID: 4969237258645181}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -34.86528, y: 13.74543, z: -19.99067}
+--- !u!1 &1584490321392702
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4306836690173859}
+  m_Layer: 0
+  m_Name: AlienRArmDigit12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4306836690173859
+Transform:
+  m_GameObject: {fileID: 1584490321392702}
+  m_LocalRotation: {x: -2.917819E-09, y: 2.216147E-08, z: 0.1305352, w: 0.9914437}
+  m_LocalPosition: {x: -0.3119994, y: 0, z: -9.689331E-08}
+  m_LocalScale: {x: 0.9999559, y: 1.000003, z: 1.000041}
+  m_Children:
+  - {fileID: 4964315442122441}
+  m_Father: {fileID: 4218125648977677}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.071705E-14, y: -2.561434E-06, z: -15.00105}
+--- !u!1 &1154757263017410
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4964315442122441}
+  m_Layer: 0
+  m_Name: AlienRArmDigit13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4964315442122441
+Transform:
+  m_GameObject: {fileID: 1154757263017410}
+  m_LocalRotation: {x: -2.662947E-08, y: -2.605164E-08, z: 0.1305306, w: 0.9914443}
+  m_LocalPosition: {x: -0.3119994, y: 9.689331E-08, z: -1.937866E-07}
+  m_LocalScale: {x: 0.9999533, y: 1.000005, z: 1.000041}
+  m_Children: []
+  m_Father: {fileID: 4306836690173859}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.415078E-06, y: 2.56144E-06, z: -15.00051}
+--- !u!1 &1392608948150951
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4114800670027027}
+  m_Layer: 0
+  m_Name: AlienRArmDigit21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4114800670027027
+Transform:
+  m_GameObject: {fileID: 1392608948150951}
+  m_LocalRotation: {x: 4.17973E-09, y: -3.207268E-09, z: 0.1305401, w: 0.991443}
+  m_LocalPosition: {x: -0.63934, y: 0.04913789, z: 9.689331E-08}
+  m_LocalScale: {x: 0.9999582, y: 1.000001, z: 1.000041}
+  m_Children:
+  - {fileID: 4647729405195276}
+  m_Father: {fileID: 4969237258645181}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 4.268865E-07, y: 4.269047E-07, z: -15.0016}
+--- !u!1 &1483802313154906
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4647729405195276}
+  m_Layer: 0
+  m_Name: AlienRArmDigit22
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4647729405195276
+Transform:
+  m_GameObject: {fileID: 1483802313154906}
+  m_LocalRotation: {x: -1.477361E-08, y: -1.945122E-09, z: 0.1305353, w: 0.9914437}
+  m_LocalPosition: {x: -0.3119994, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999555, y: 1.000003, z: 1.000041}
+  m_Children:
+  - {fileID: 4822642862908099}
+  m_Father: {fileID: 4114800670027027}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.707542E-06, y: 1.107356E-14, z: -15.00106}
+--- !u!1 &1525636999670699
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4822642862908099}
+  m_Layer: 0
+  m_Name: AlienRArmDigit23
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4822642862908099
+Transform:
+  m_GameObject: {fileID: 1525636999670699}
+  m_LocalRotation: {x: -5.152258E-09, y: 1.059451E-08, z: 0.1305306, w: 0.9914443}
+  m_LocalPosition: {x: -0.3119994, y: 1.937866E-07, z: 0}
+  m_LocalScale: {x: 0.9999529, y: 1.000006, z: 1.000041}
+  m_Children: []
+  m_Father: {fileID: 4647729405195276}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.268844E-07, y: -1.280721E-06, z: -15.0005}
+--- !u!1 &1250709612702565
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4146122551612802}
+  m_Layer: 0
+  m_Name: AlienRArmDigit31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4146122551612802
+Transform:
+  m_GameObject: {fileID: 1250709612702565}
+  m_LocalRotation: {x: 0.1822245, y: 0.1629653, z: 0.1105932, w: 0.9633305}
+  m_LocalPosition: {x: -0.5822054, y: 0.03691635, z: 0.1682091}
+  m_LocalScale: {x: 0.9999525, y: 0.9999914, z: 1.000056}
+  m_Children:
+  - {fileID: 4299615442758044}
+  m_Father: {fileID: 4969237258645181}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 23.73436, y: -15.88296, z: -16.45625}
+--- !u!1 &1362621655197900
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4299615442758044}
+  m_Layer: 0
+  m_Name: AlienRArmDigit32
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4299615442758044
+Transform:
+  m_GameObject: {fileID: 1362621655197900}
+  m_LocalRotation: {x: -9.332024E-09, y: 1.380176E-08, z: 0.1305354, w: 0.9914437}
+  m_LocalPosition: {x: -0.3119994, y: -1.937866E-07, z: -2.422333E-08}
+  m_LocalScale: {x: 0.9999557, y: 1.000003, z: 1.000041}
+  m_Children:
+  - {fileID: 4113174021055812}
+  m_Father: {fileID: 4146122551612802}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -8.53771E-07, y: -1.707623E-06, z: -15.00106}
+--- !u!1 &1323102403138387
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4113174021055812}
+  m_Layer: 0
+  m_Name: AlienRArmDigit33
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4113174021055812
+Transform:
+  m_GameObject: {fileID: 1323102403138387}
+  m_LocalRotation: {x: 3.890297E-09, y: -2.954872E-08, z: 0.1305306, w: 0.9914443}
+  m_LocalPosition: {x: -0.2702289, y: -1.937866E-07, z: -2.422333E-08}
+  m_LocalScale: {x: 0.9999533, y: 1.000006, z: 1.000041}
+  m_Children: []
+  m_Father: {fileID: 4299615442758044}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 4.086482E-14, y: 3.415254E-06, z: -15.00051}
+--- !u!1 &1999885574171001
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4464760859595252}
+  m_Layer: 0
+  m_Name: AlienSpine1 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4464760859595252
+Transform:
+  m_GameObject: {fileID: 1999885574171001}
+  m_LocalRotation: {x: 0.004818467, y: 0.007348562, z: -0.09877761, w: 0.9950708}
+  m_LocalPosition: {x: -0.2187735, y: 0.2797178, z: -4.844665E-08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4436028769365314}
+  m_Father: {fileID: 4227158699170962}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.4663166, y: -0.892509, z: 11.33438}
+--- !u!1 &1810262745192924
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4436028769365314}
+  m_Layer: 0
+  m_Name: AlienSpine2 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4436028769365314
+Transform:
+  m_GameObject: {fileID: 1810262745192924}
+  m_LocalRotation: {x: 0.03373463, y: 0.01696762, z: -0.06593233, w: 0.9971094}
+  m_LocalPosition: {x: -0.1307498, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4841510360939967}
+  m_Father: {fileID: 4464760859595252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.731706, y: -2.194137, z: 7.494691}
+--- !u!1 &1696550875084995
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4841510360939967}
+  m_Layer: 0
+  m_Name: AlienSpine3 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4841510360939967
+Transform:
+  m_GameObject: {fileID: 1696550875084995}
+  m_LocalRotation: {x: 0.04848954, y: 0.01978862, z: 0.08320942, w: 0.995155}
+  m_LocalPosition: {x: -0.1307498, y: -3.875732E-07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4375792863745355}
+  m_Father: {fileID: 4436028769365314}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5.730613, y: -1.794563, z: -9.64911}
+--- !u!1 &1803689474385301
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4375792863745355}
+  m_Layer: 0
+  m_Name: AlienSpine4 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4375792863745355
+Transform:
+  m_GameObject: {fileID: 1803689474385301}
+  m_LocalRotation: {x: 0.04179544, y: 0.03309302, z: 0.184383, w: 0.9814076}
+  m_LocalPosition: {x: -0.1307498, y: -3.875732E-07, z: 4.844665E-08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4050808908006356}
+  m_Father: {fileID: 4841510360939967}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5.414265, y: -2.839753, z: -21.41524}
+--- !u!1 &1703173476515710
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4050808908006356}
+  m_Layer: 0
+  m_Name: AlienSpine5 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4050808908006356
+Transform:
+  m_GameObject: {fileID: 1703173476515710}
+  m_LocalRotation: {x: 0.02114861, y: 0.0575079, z: 0.2361243, w: 0.9697891}
+  m_LocalPosition: {x: -0.1307494, y: 0, z: 4.844665E-08}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4444566407402553}
+  m_Father: {fileID: 4375792863745355}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.929658, y: -5.828644, z: -27.56836}
+--- !u!1 &1371932321608397
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4444566407402553}
+  m_Layer: 0
+  m_Name: AlienHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4444566407402553
+Transform:
+  m_GameObject: {fileID: 1371932321608397}
+  m_LocalRotation: {x: -0.0002609155, y: 0.0371189, z: 0.1197161, w: 0.992114}
+  m_LocalPosition: {x: -0.1307502, y: -9.689331E-08, z: 0}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1}
+  m_Children:
+  - {fileID: 4773675675661639}
+  - {fileID: 4793873901809880}
+  m_Father: {fileID: 4050808908006356}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.4808648, y: -4.227383, z: -13.77871}
+--- !u!1 &1699280526707238
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4773675675661639}
+  m_Layer: 0
+  m_Name: AlienLAntenae1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4773675675661639
+Transform:
+  m_GameObject: {fileID: 1699280526707238}
+  m_LocalRotation: {x: -0.03171098, y: 0.1905752, z: -0.034588, w: 0.9805505}
+  m_LocalPosition: {x: -0.6570103, y: 0, z: 0.2694591}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4316170482956894}
+  m_Father: {fileID: 4444566407402553}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.656574, y: -21.81084, z: 4.938082}
+--- !u!1 &1046277187546856
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4316170482956894}
+  m_Layer: 0
+  m_Name: AlienLAntenae2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4316170482956894
+Transform:
+  m_GameObject: {fileID: 1046277187546856}
+  m_LocalRotation: {x: -0.03189643, y: 0.1089417, z: -0.04913762, w: 0.9923204}
+  m_LocalPosition: {x: -0.4030413, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.9999995, z: 1}
+  m_Children:
+  - {fileID: 4657973297248496}
+  m_Father: {fileID: 4773675675661639}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.344244, y: -12.30265, z: 6.138126}
+--- !u!1 &1817336079546995
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4657973297248496}
+  m_Layer: 0
+  m_Name: AlienLAntenae3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4657973297248496
+Transform:
+  m_GameObject: {fileID: 1817336079546995}
+  m_LocalRotation: {x: -0.02594639, y: 0.1048885, z: -0.06033541, w: 0.9923129}
+  m_LocalPosition: {x: -0.4030413, y: 1.937866E-07, z: 0}
+  m_LocalScale: {x: 0.9999998, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4306673014062515}
+  m_Father: {fileID: 4316170482956894}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.75805, y: -11.83146, z: 7.348459}
+--- !u!1 &1863503760047674
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4306673014062515}
+  m_Layer: 0
+  m_Name: AlienLAntenae4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4306673014062515
+Transform:
+  m_GameObject: {fileID: 1863503760047674}
+  m_LocalRotation: {x: -0.01135637, y: 0.101606, z: -0.06417584, w: 0.9926876}
+  m_LocalPosition: {x: -0.4030417, y: -2.906799E-07, z: 0}
+  m_LocalScale: {x: 1, y: 0.9999995, z: 1}
+  m_Children:
+  - {fileID: 4079734481267229}
+  m_Father: {fileID: 4657973297248496}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.081661, y: -11.55265, z: 7.608487}
+--- !u!1 &1205621737691844
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4079734481267229}
+  m_Layer: 0
+  m_Name: AlienLAntenae5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4079734481267229
+Transform:
+  m_GameObject: {fileID: 1205621737691844}
+  m_LocalRotation: {x: 0.006761593, y: 0.1004739, z: -0.05692001, w: 0.9932872}
+  m_LocalPosition: {x: -0.4030417, y: 1.937866E-07, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4306673014062515}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.1166396, y: -11.55851, z: 6.547654}
+--- !u!1 &1440119490282994
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4793873901809880}
+  m_Layer: 0
+  m_Name: AlienRAntenae1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4793873901809880
+Transform:
+  m_GameObject: {fileID: 1440119490282994}
+  m_LocalRotation: {x: 0.02691205, y: -0.1907423, z: -0.03365495, w: 0.9806939}
+  m_LocalPosition: {x: -0.6570103, y: 0, z: -0.2694594}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children:
+  - {fileID: 4003131316787569}
+  m_Father: {fileID: 4444566407402553}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 4.054596, y: 21.85804, z: 4.714188}
+--- !u!1 &1731539509356520
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4003131316787569}
+  m_Layer: 0
+  m_Name: AlienRAntenae2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4003131316787569
+Transform:
+  m_GameObject: {fileID: 1731539509356520}
+  m_LocalRotation: {x: 0.003190707, y: -0.1117964, z: -0.0335033, w: 0.9931611}
+  m_LocalPosition: {x: -0.403042, y: -9.689331E-08, z: -1.937866E-07}
+  m_LocalScale: {x: 1, y: 0.9999994, z: 1}
+  m_Children:
+  - {fileID: 4474626910729554}
+  m_Father: {fileID: 4793873901809880}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.812612, y: 12.81771, z: 3.955445}
+--- !u!1 &1956982154700402
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4474626910729554}
+  m_Layer: 0
+  m_Name: AlienRAntenae3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4474626910729554
+Transform:
+  m_GameObject: {fileID: 1956982154700402}
+  m_LocalRotation: {x: -0.01071955, y: -0.1119238, z: -0.02778107, w: 0.9932705}
+  m_LocalPosition: {x: -0.4030413, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999996, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4541046983188477}
+  m_Father: {fileID: 4003131316787569}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.8861323, y: 12.88159, z: 3.104173}
+--- !u!1 &1885508271480443
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4541046983188477}
+  m_Layer: 0
+  m_Name: AlienRAntenae4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4541046983188477
+Transform:
+  m_GameObject: {fileID: 1885508271480443}
+  m_LocalRotation: {x: -0.01676256, y: -0.1113463, z: -0.02456997, w: 0.9933365}
+  m_LocalPosition: {x: -0.4030413, y: 0, z: 7.751465E-07}
+  m_LocalScale: {x: 1, y: 0.9999995, z: 1}
+  m_Children:
+  - {fileID: 4678542559693963}
+  m_Father: {fileID: 4474626910729554}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.635593, y: 12.82843, z: 2.649935}
+--- !u!1 &1386822336408189
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4678542559693963}
+  m_Layer: 0
+  m_Name: AlienRAntenae5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4678542559693963
+Transform:
+  m_GameObject: {fileID: 1386822336408189}
+  m_LocalRotation: {x: -0.0188431, y: -0.108699, z: -0.02753218, w: 0.9935147}
+  m_LocalPosition: {x: -0.4030413, y: 1.937866E-07, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 4541046983188477}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.846641, y: 12.5344, z: 2.971919}
+--- !u!1 &1360477695203752
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4275665336315971}
+  m_Layer: 0
+  m_Name: AlienRLegPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4275665336315971
+Transform:
+  m_GameObject: {fileID: 1360477695203752}
+  m_LocalRotation: {x: 0.399575, y: -0.4126728, z: -0.569402, w: 0.5880667}
+  m_LocalPosition: {x: 1.385501, y: 0.02375427, z: 2.012704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4237252987674547}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 70.10859, y: 1.737507, z: 89.37144}
+--- !u!1 &1755539461907198
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4537983722679312}
+  - component: {fileID: 137774474095703645}
+  m_Layer: 0
+  m_Name: Box001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4537983722679312
+Transform:
+  m_GameObject: {fileID: 1755539461907198}
+  m_LocalRotation: {x: 2.185569E-08, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4237252987674547}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 2.504478E-06, y: 0, z: 0}
+--- !u!137 &137774474095703645
+SkinnedMeshRenderer:
+  m_GameObject: {fileID: 1755539461907198}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 20a1b17e13596504b90a8d94305fba77, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: a3b010eab1758b34c8b94dcee7fb595d, type: 2}
+  m_Bones:
+  - {fileID: 4938389867079126}
+  - {fileID: 4101132720346916}
+  - {fileID: 4575391685471157}
+  - {fileID: 4853350635691552}
+  - {fileID: 4794368466228250}
+  - {fileID: 4830582078188076}
+  - {fileID: 4861704240213684}
+  - {fileID: 4042154378791788}
+  - {fileID: 4370098385921219}
+  - {fileID: 4472410054994122}
+  - {fileID: 4444566407402553}
+  - {fileID: 4612702075960113}
+  - {fileID: 4034122153428965}
+  - {fileID: 4105246028958906}
+  - {fileID: 4568836457845323}
+  - {fileID: 4882182182985900}
+  - {fileID: 4555484194069332}
+  - {fileID: 4887394272902407}
+  - {fileID: 4463732986783997}
+  - {fileID: 4644129779318798}
+  - {fileID: 4445924280027824}
+  - {fileID: 4773675675661639}
+  - {fileID: 4316170482956894}
+  - {fileID: 4335939945024837}
+  - {fileID: 4217223503561800}
+  - {fileID: 4568864211516770}
+  - {fileID: 4176806051515339}
+  - {fileID: 4227158699170962}
+  - {fileID: 4793873901809880}
+  - {fileID: 4211623429027587}
+  - {fileID: 4445332360678659}
+  - {fileID: 4969237258645181}
+  - {fileID: 4113174021055812}
+  - {fileID: 4964315442122441}
+  - {fileID: 4146122551612802}
+  - {fileID: 4299615442758044}
+  - {fileID: 4306836690173859}
+  - {fileID: 4822642862908099}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4853350635691552}
+  m_AABB:
+    m_Center: {x: -1.359565, y: 0.4092718, z: 0.4499489}
+    m_Extent: {x: 4.608775, y: 2.857113, z: 3.621588}
+  m_DirtyAABB: 0
