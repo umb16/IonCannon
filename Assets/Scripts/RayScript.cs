@@ -79,8 +79,4 @@ public class RayScript : MonoBehaviour
 			UnityEngine.Object.Destroy(base.gameObject);
 		});
 	}
-
-	private void Update()
-	{
-	}
 }
