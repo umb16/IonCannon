@@ -61,10 +61,10 @@ public class Mob : MonoBehaviour
 			anim.speed = speed * localScale.x;
 			if (SpeedUpEnd != null)
 			{
-				SpeedUpEnd = new Timers.Timer((Action)delegate
+				SpeedUpEnd = new Timers.Timer(()=>
 				{
 					Speed = _maxSpeed;
-				}, 1f, isFrameTimer: false);
+				}, 1f);
 			}
 		}
 		if (collision.gameObject.tag == "Ray")
@@ -135,7 +135,8 @@ public class Mob : MonoBehaviour
 			Radiation += Player.Self.Radiation * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(_thisTransform.position, RayScript.RayTransform.position));
 			if (Radiation > 0f)
 			{
-				new Timers.Timer(delegate(Timers.Timer timer)
+				Timers.Timer timer = null;
+				timer = new Timers.Timer(()=>
 				{
 					if (_thisTransform == null)
 					{
@@ -143,7 +144,7 @@ public class Mob : MonoBehaviour
 					}
 					else
 					{
-						UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab2, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
+						Destroy(Instantiate(ParticlePrefab2, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
 					}
 				}, 1f);
 			}

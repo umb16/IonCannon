@@ -99,10 +99,10 @@ public class Player : MonoBehaviour
 			MainMenu.gameIsStart = false;
 			GameOver.SetActive(value: true);
 			UnityEngine.Object.Destroy(base.gameObject);
-			new Timers.Timer(delegate(Timers.Timer timer)
+			new Timers.Timer((x)=>
 			{
-				Time.timeScale = 1f - timer.NormalizedPlayTime;
-			}, 0f, 1f, 0f);
+				Time.timeScale = 1f - x;
+			}, null, 1f, 0f);
 			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, ThisTransform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
 		}
 	}
@@ -114,10 +114,10 @@ public class Player : MonoBehaviour
 			GameOver.SetActive(value: true);
 			UnityEngine.Object.Destroy(base.gameObject);
 			MainMenu.gameIsStart = false;
-			new Timers.Timer(delegate(Timers.Timer timer)
+			new Timers.Timer((x)=>
 			{
-				Time.timeScale = 1f - timer.NormalizedPlayTime;
-			}, 0f, 1f, 0f);
+				Time.timeScale = 1f - x;
+			}, null, 1f, 0f);
 			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, ThisTransform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
 		}
 	}

@@ -20,10 +20,10 @@ public class MainMenu : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			PlayerObj.SetActive(value: true);
-			new Timers.Timer((Action)delegate
+			new Timers.Timer(()=>
 			{
 				gameIsStart = true;
-			}, 1f, isFrameTimer: false);
+			}, 1f);
 			MobGenerator.SetActive(value: true);
 			base.gameObject.SetActive(value: false);
 			Score.CurrentScore = 0;

@@ -1,118 +1,113 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class Timers : MonoBehaviour
 {
-	public class Timer
-	{
-		public Action<Timer> Func;
+    private static bool _initialized;
+    private static Timers _instance;
+    private static Timers Instance
+    {
+        get
+        {
+            if (!_initialized)
+            {
+                _instance = new GameObject("Timer").AddComponent<Timers>();
+                _initialized = true;
+            }
+            return _instance;
+        }
+    }
 
-		public float CurrentDelay;
+    private readonly List<Timer> _timers = new List<Timer>();
 
-		public float Delay;
 
-		public bool IsFrameTimer;
+    private void OnDestroy()
+    {
+        _initialized = false;
+    }
 
-		public float TimeFromStart;
 
-		public float StartTime;
+    public class Timer
+    {
+        private bool _paused;
+        private float _delay;
+        private float _interval;
+        private float _currentTime;
+        private Action<float> _everyUpdate;
+        private Action _end;
 
-		public float PlayTime;
+        public bool IsEnd { private set; get; }
+        public float NormalizedPlayTime => Mathf.Clamp01((_currentTime - _delay) / _interval);
 
-		public float NormalizedPlayTime => Mathf.Min(1f, (TimeFromStart - StartTime) / PlayTime);
+        public Timer(Action<float> everyUpdate, Action end, float interval, float delay = 0)
+        {
+            _everyUpdate = everyUpdate;
+            _end = end;
+            _interval = interval;
+            _delay = delay;
+            Instance._timers.Add(this);
+        }
+        public Timer(Action end, float interval, float delay = 0)
+        {
+            _everyUpdate = null;
+            _end = end;
+            _interval = interval;
+            _delay = delay;
+            Instance._timers.Add(this);
+        }
+        public void Update()
+        {
+            if (!_paused)
+            {
+                _currentTime += Time.deltaTime;
 
-		public Timer(Action<Timer> func, float delay, bool isFrameTimer = false)
-		{
-			Func = func;
-			CurrentDelay = delay;
-			Delay = delay;
-			IsFrameTimer = isFrameTimer;
-			Self._timers.Add(this);
-		}
+                if (_currentTime > _delay)
+                {
+                    _everyUpdate?.Invoke(NormalizedPlayTime);
+                }
 
-		public Timer(Action<Timer> func, float startTime, float playTime, float delay = 0f, Action endAnimAction = null, bool isFrameTimer = false)
-		{
-			StartTime = startTime;
-			PlayTime = playTime;
-			Func = delegate(Timer timer)
-			{
-				func(timer);
-				if (NormalizedPlayTime == 1f)
-				{
-					timer.Stop();
-					if (endAnimAction != null)
-					{
-						endAnimAction();
-					}
-				}
-			};
-			CurrentDelay = startTime;
-			Delay = delay;
-			IsFrameTimer = isFrameTimer;
-			Self._timers.Add(this);
-		}
+                if (_currentTime - _delay > _interval)
+                {
+                    _end?.Invoke();
+                    IsEnd = true;
+                    Instance._timers.Remove(this);
+                }
+            }
+        }
 
-		public Timer(Action func, float delay, bool isFrameTimer = false)
-		{
-			Func = delegate(Timer timer)
-			{
-				func();
-				timer.Stop();
-			};
-			CurrentDelay = delay;
-			Delay = delay;
-			IsFrameTimer = isFrameTimer;
-			Self._timers.Add(this);
-		}
+        public void Restart()
+        {
+            IsEnd = false;
+            Instance._timers.Add(this);
+            _currentTime = 0;
+        }
 
-		public void Stop()
-		{
-			Self._timers.Remove(this);
-		}
-	}
+        public void Pause()
+        {
+            _paused = true;
+        }
 
-	private static Timers _self;
+        public void Stop()
+        {
+            Instance._timers.Remove(this);
+            IsEnd = true;
+        }
+        public void ForceEnd()
+        {
+            _currentTime = _interval + 1;
+            Update();
+        }
+    }
 
-	private readonly List<Timer> _timers = new List<Timer>();
 
-	public static Timers Self
-	{
-		get
-		{
-			if (_self == null)
-			{
-				new GameObject("Timer").AddComponent<Timers>();
-			}
-			return _self;
-		}
-	}
-
-	private void Awake()
-	{
-		_self = this;
-	}
-
-	private void Update()
-	{
-		for (int i = 0; i < _timers.Count; i++)
-		{
-			Timer timer = _timers[i];
-			if (timer.IsFrameTimer)
-			{
-				timer.CurrentDelay -= 1f;
-				timer.TimeFromStart += 1f;
-			}
-			else
-			{
-				timer.CurrentDelay -= Time.deltaTime;
-				timer.TimeFromStart += Time.deltaTime;
-			}
-			if (timer.CurrentDelay < 0f)
-			{
-				timer.Func(timer);
-				timer.CurrentDelay += timer.Delay;
-			}
-		}
-	}
+    private void Update()
+    {
+        for (int i = 0; i < _timers.Count; i++)
+        {
+            Timer timer = _timers[i];
+            timer.Update();
+        }
+    }
 }

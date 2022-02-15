@@ -19,13 +19,13 @@ public class Barrel : MonoBehaviour
 		{
 			Barr.SetActive(value: false);
 			Expl.SetActive(value: true);
-			new Timers.Timer((Action)delegate
+			new Timers.Timer(()=>
 			{
 				if (Expl != null)
 				{
 					Expl.SetActive(value: false);
 				}
-			}, 0.1f, isFrameTimer: false);
+			}, 0.1f);
 			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Particle, base.transform.position + Vector3.back * 0.5f, Particle.transform.rotation), 10f);
 			GetComponent<Collider>().enabled = false;
 		}
