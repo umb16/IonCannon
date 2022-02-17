@@ -82,6 +82,12 @@ public class Player : MonoBehaviour
 
     public float MaxPathLength => _maxPathLength + (float)(MassCurrentPerks[2] * 10);
 
+    [Inject]
+    private void Construct(IStatsCollection stats)
+    {
+        
+    }
+
     private void Awake()
     {
         Self = this;

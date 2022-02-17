@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StandartStatsCollection : IStatsCollection
 {
-    Dictionary<StatType, ComplexStat> _stats;
+    Dictionary<StatType, ComplexStat> _stats = new Dictionary<StatType, ComplexStat>();
     public StandartStatsCollection((StatType type, ComplexStat stat)[] stats)
     {
         foreach (var stat in stats)

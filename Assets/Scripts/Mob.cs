@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Mob : MonoBehaviour
 {
-	private Transform _thisTransform;
-
 	public Transform MobTransform;
 
 	public GameObject ParticlePrefab;
@@ -57,7 +55,7 @@ public class Mob : MonoBehaviour
 			Speed = 1.5f;
 			Animator anim = _anim;
 			float speed = Speed;
-			Vector3 localScale = _thisTransform.localScale;
+			Vector3 localScale = transform.localScale;
 			anim.speed = speed * localScale.x;
 			if (SpeedUpEnd != null)
 			{
@@ -69,7 +67,7 @@ public class Mob : MonoBehaviour
 		}
 		if (collision.gameObject.tag == "Ray")
 		{
-			Hp -= Player.Self.RayDmg * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(_thisTransform.position, RayScript.RayTransform.position));
+			Hp -= Player.Self.RayDmg * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(transform.position, RayScript.RayTransform.position));
 			DmgCheck(0);
 		}
 		if (collision.gameObject.tag == "Barrel")
@@ -88,10 +86,10 @@ public class Mob : MonoBehaviour
 			vector.Normalize();
 			vector *= 2f;
 			float x = vector.x;
-			Vector3 position = _thisTransform.position;
+			Vector3 position = transform.position;
 			vector.x = x + position.x;
 			float y = vector.y;
-			Vector3 position2 = _thisTransform.position;
+			Vector3 position2 = transform.position;
 			vector.y = y + position2.y;
 			GameObject gameObject = UnityEngine.Object.Instantiate(Child, new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
 			_listOfChilds.Add(gameObject);
@@ -122,7 +120,7 @@ public class Mob : MonoBehaviour
 	{
 		if (Hp <= 0f)
 		{
-			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab.transform.rotation), 10f);
+			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab, transform.position + Vector3.back * 0.5f, ParticlePrefab.transform.rotation), 10f);
 			UnityEngine.Object.Destroy(base.gameObject);
 			Score.CurrentScore += (int)((float)ScoreCost * (1f + 0.1f * (float)ComboCount));
 			ComboCount++;
@@ -132,33 +130,33 @@ public class Mob : MonoBehaviour
 		}
 		if (type == 0)
 		{
-			Radiation += Player.Self.Radiation * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(_thisTransform.position, RayScript.RayTransform.position));
+			Radiation += Player.Self.Radiation * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(transform.position, RayScript.RayTransform.position));
 			if (Radiation > 0f)
 			{
 				Timers.Timer timer = null;
 				timer = new Timers.Timer(()=>
 				{
-					if (_thisTransform == null)
+					if (transform == null)
 					{
 						timer.Stop();
 					}
 					else
 					{
-						Destroy(Instantiate(ParticlePrefab2, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
+						Destroy(Instantiate(ParticlePrefab2, transform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
 					}
 				}, 1f);
 			}
 		}
 		if (type == 0 || type == 2)
 		{
-			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab2, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
+			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab2, transform.position + Vector3.back * 0.5f, ParticlePrefab2.transform.rotation), 10f);
 		}
 		if (DmgAgrSpeed > 0f)
 		{
 			Speed = DmgAgrSpeed;
 			Animator anim = _anim;
 			float num = Speed * 1f;
-			Vector3 localScale = _thisTransform.localScale;
+			Vector3 localScale = transform.localScale;
 			anim.speed = num / localScale.x;
 		}
 	}
@@ -166,13 +164,12 @@ public class Mob : MonoBehaviour
 	private void Start()
 	{
 		_mobRenderer = GetComponentInChildren<Renderer>();
-		_thisTransform = base.transform;
 		_maxSpeed = Speed;
 		_maxHp = 3f;
 		_anim = GetComponentInChildren<Animator>();
 		Animator anim = _anim;
 		float num = Speed * 1f;
-		Vector3 localScale = _thisTransform.localScale;
+		Vector3 localScale = transform.localScale;
 		anim.speed = num / localScale.x;
 		if (Child != null)
 		{
@@ -180,7 +177,7 @@ public class Mob : MonoBehaviour
 		}
 		if (ParticlePrefab3 != null)
 		{
-			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab3, _thisTransform.position + Vector3.back * 0.5f, ParticlePrefab3.transform.rotation), 10f);
+			UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(ParticlePrefab3, transform.position + Vector3.back * 0.5f, ParticlePrefab3.transform.rotation), 10f);
 		}
 	}
 
@@ -191,16 +188,16 @@ public class Mob : MonoBehaviour
 			_anim.speed = 0f;
 			return;
 		}
-		_thisTransform.position += (Player.ThisTransform.position - _thisTransform.position).normalized * Time.deltaTime * Speed;
-		float num = Vector2.Angle(Vector2.up, Player.ThisTransform.position - _thisTransform.position);
-		Vector3 position = Player.ThisTransform.position;
+		transform.position += (Player.Self.transform.position - transform.position).normalized * Time.deltaTime * Speed;
+		float num = Vector2.Angle(Vector2.up, Player.Self.transform.position - transform.position);
+		Vector3 position = Player.Self.transform.position;
 		float x = position.x;
-		Vector3 position2 = _thisTransform.position;
+		Vector3 position2 = transform.position;
 		if (x > position2.x)
 		{
 			num *= -1f;
 		}
-		_thisTransform.eulerAngles = new Vector3(0f, 0f, num);
+		transform.eulerAngles = new Vector3(0f, 0f, num);
 		if (Bloody)
 		{
 			Hp += Time.deltaTime;
@@ -216,12 +213,12 @@ public class Mob : MonoBehaviour
 		}
 		if (HunterSpeed > 0f)
 		{
-			if (Vector3.Distance(_thisTransform.position, Player.ThisTransform.position) < 6f)
+			if (Vector3.Distance(transform.position, Player.Self.transform.position) < 6f)
 			{
 				Speed = HunterSpeed;
 				Animator anim = _anim;
 				float num2 = Speed * 1f;
-				Vector3 localScale = _thisTransform.localScale;
+				Vector3 localScale = transform.localScale;
 				anim.speed = num2 / localScale.x;
 			}
 			else
@@ -229,13 +226,13 @@ public class Mob : MonoBehaviour
 				Speed = _maxSpeed;
 				Animator anim2 = _anim;
 				float num3 = Speed * 1f;
-				Vector3 localScale2 = _thisTransform.localScale;
+				Vector3 localScale2 = transform.localScale;
 				anim2.speed = num3 / localScale2.x;
 			}
 		}
 		if (Stalker)
 		{
-			if (Vector3.Distance(_thisTransform.position, Player.ThisTransform.position) < 6f)
+			if (Vector3.Distance(transform.position, Player.Self.transform.position) < 6f)
 			{
 				_mobRenderer.enabled = !_mobRenderer.enabled;
 			}

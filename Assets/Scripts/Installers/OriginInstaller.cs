@@ -1,11 +1,13 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "LocalInstaller", menuName = "Installers/LocalInstaller")]
-public class LocalInstaller : ScriptableObjectInstaller<LocalInstaller>
+public class OriginInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
         Container.Bind<LocalizationManager>().FromInstance(new LocalizationManager()).AsSingle().NonLazy();
+
+        var collection = StatsCollectionsDB.StandartPlayer();
+        Container.Bind<IStatsCollection>().FromInstance(collection).AsSingle().NonLazy();
     }
 }
