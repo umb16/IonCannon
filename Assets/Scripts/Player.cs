@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
         3
     };
 
-    public static Transform ThisTransform;
-
     public static Player Self;
 
     private float _speed = 3f;
@@ -86,9 +84,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        LocalizationManager x = new LocalizationManager();
         Self = this;
-        ThisTransform = base.transform;
         _cannonPath = GetComponent<LineRenderer>();
         avaliablePercs.Clear();
         PerksMenu.SetActive(value: false);
@@ -105,7 +101,7 @@ public class Player : MonoBehaviour
             {
                 Time.timeScale = 1f - x;
             }, null, 1f, 0f);
-            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, ThisTransform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
     }
 
@@ -120,7 +116,7 @@ public class Player : MonoBehaviour
             {
                 Time.timeScale = 1f - x;
             }, null, 1f, 0f);
-            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, ThisTransform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
     }
 
@@ -136,10 +132,10 @@ public class Player : MonoBehaviour
         v.Normalize();
         v *= (float)UnityEngine.Random.Range(2, 10);
         float x = v.x;
-        Vector3 position = ThisTransform.position;
+        Vector3 position = transform.position;
         v.x = x + position.x;
         float y = v.y;
-        Vector3 position2 = ThisTransform.position;
+        Vector3 position2 = transform.position;
         v.y = y + position2.y;
         if (v.x > 9f)
         {
@@ -246,19 +242,19 @@ public class Player : MonoBehaviour
             num2 = 0.7f;
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
-                ThisTransform.eulerAngles = -Vector3.forward * 135f;
+                transform.eulerAngles = -Vector3.forward * 135f;
             }
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
-                ThisTransform.eulerAngles = Vector3.forward * 135f;
+                transform.eulerAngles = Vector3.forward * 135f;
             }
             if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
             {
-                ThisTransform.eulerAngles = -Vector3.forward * 45f;
+                transform.eulerAngles = -Vector3.forward * 45f;
             }
             if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
             {
-                ThisTransform.eulerAngles = Vector3.forward * 45f;
+                transform.eulerAngles = Vector3.forward * 45f;
             }
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
@@ -271,34 +267,34 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            ThisTransform.position += Vector3.up * Speed * Time.deltaTime * num2;
+            transform.position += Vector3.up * Speed * Time.deltaTime * num2;
             if (num2 == 1f)
             {
-                ThisTransform.eulerAngles = Vector3.forward * 180f;
+                transform.eulerAngles = Vector3.forward * 180f;
             }
         }
         if (Input.GetKey(KeyCode.S))
         {
-            ThisTransform.position += Vector3.down * Speed * Time.deltaTime * num2;
+            transform.position += Vector3.down * Speed * Time.deltaTime * num2;
             if (num2 == 1f)
             {
-                ThisTransform.eulerAngles = Vector3.one;
+                transform.eulerAngles = Vector3.one;
             }
         }
         if (Input.GetKey(KeyCode.A))
         {
-            ThisTransform.position += Vector3.left * Speed * Time.deltaTime * num2;
+            transform.position += Vector3.left * Speed * Time.deltaTime * num2;
             if (num2 == 1f)
             {
-                ThisTransform.eulerAngles = -Vector3.forward * 90f;
+                transform.eulerAngles = -Vector3.forward * 90f;
             }
         }
         if (Input.GetKey(KeyCode.D))
         {
-            ThisTransform.position += Vector3.right * Speed * Time.deltaTime * num2;
+            transform.position += Vector3.right * Speed * Time.deltaTime * num2;
             if (num2 == 1f)
             {
-                ThisTransform.eulerAngles = Vector3.forward * 90f;
+                transform.eulerAngles = Vector3.forward * 90f;
             }
         }
         if (Input.GetMouseButton(0) && _currentPathLength < MaxPathLength && rayIsReady)
