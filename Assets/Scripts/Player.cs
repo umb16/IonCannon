@@ -24,14 +24,14 @@ public class Player : MonoBehaviour
 
     public static Player Self;
 
-    private float _speed = 3f;
+    private ComplexStat _speed;
+    private ComplexStat _maxPathLength;
+    private ComplexStat _raySpeed;
+    private ComplexStat _rayDamage;
 
     private LineRenderer _cannonPath;
 
     private int _currentLineIndex;
-
-    private float _maxPathLength = 10f;
-
     private float _currentPathLength;
 
     private List<Vector2> cannonPath = new List<Vector2>();
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     private float rayTime;
 
-    private float _raySpeed = 6f;
+
 
     private float _rayDelayTime;
 
@@ -65,27 +65,34 @@ public class Player : MonoBehaviour
     private List<int> avaliablePercs = new List<int>();
 
     private Action SetPerc;
+    private IStatsCollection _stats;
+
+    
 
     public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
 
     public float Radiation => RayDmg * (float)MassCurrentPerks[6] * 0.1f;
 
-    public float RayDmg => 4f + (float)(MassCurrentPerks[5] * 2);
+    public float RayDmg => _rayDamage.Value + (float)(MassCurrentPerks[5] * 2);
 
     public float RayDelay => 1.3f - (float)MassCurrentPerks[3] * 0.3f;
 
     public float RaySplash => 1f + (float)MassCurrentPerks[4] * 0.3f;
 
-    public float Speed => _speed + (float)MassCurrentPerks[0];
+    public float Speed => _speed.Value + (float)MassCurrentPerks[0];
 
-    public float RaySpeed => _raySpeed + (float)(MassCurrentPerks[1] * 2);
+    public float RaySpeed => _raySpeed.Value + (float)(MassCurrentPerks[1] * 2);
 
-    public float MaxPathLength => _maxPathLength + (float)(MassCurrentPerks[2] * 10);
+    public float MaxPathLength => _maxPathLength.Value + (float)(MassCurrentPerks[2] * 10);
 
     [Inject]
     private void Construct(IStatsCollection stats)
     {
-        
+        _stats = stats;
+        _rayDamage = _stats.GetStat(StatType.RayDamage);
+        _speed = _stats.GetStat(StatType.Speed);
+        _maxPathLength = _stats.GetStat(StatType.RayPathLenght);
+        _raySpeed = _stats.GetStat(StatType.RaySpeed);
     }
 
     private void Awake()
