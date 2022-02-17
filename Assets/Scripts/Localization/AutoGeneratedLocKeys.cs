@@ -3,6 +3,10 @@ public enum LocKeys
 {
     //Играть
     Play,
+    //Нет
+    None,
+    //Скорость
+    Speed,
 }
 public static class LocKeyConverter
 {
@@ -12,6 +16,10 @@ public static class LocKeyConverter
         {
             case LocKeys.Play:
                 return "Play";
+            case LocKeys.None:
+                return "None";
+            case LocKeys.Speed:
+                return "Speed";
                 default: return "";
         }
     }
