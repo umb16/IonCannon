@@ -13,6 +13,7 @@ public interface IPerk
     public void SetLevel(int level);
     public void AddLevel();
     public void OnUpdate();
-    public void OnEnemyHit(DamageSources source, IStatsCollection collection);
+    public void OnEnemyHit(DamageSources source, Mob mob);
+    public void OnReceiveDamage(DamageSources source);
 
 }

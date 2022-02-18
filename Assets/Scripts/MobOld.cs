@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public class MobOld : MonoBehaviour
 {
 	public Transform MobTransform;
 
@@ -93,7 +93,7 @@ public class Mob : MonoBehaviour
 			vector.y = y + position2.y;
 			GameObject gameObject = UnityEngine.Object.Instantiate(Child, new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
 			_listOfChilds.Add(gameObject);
-			Mob component = gameObject.GetComponent<Mob>();
+			MobOld component = gameObject.GetComponent<MobOld>();
 			component.Hp = Hp / 20f;
 			if (UnityEngine.Random.value < 0.05f)
 			{

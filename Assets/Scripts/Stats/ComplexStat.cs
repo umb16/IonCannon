@@ -38,7 +38,7 @@ public class ComplexStat
         _correctionFunc = correctionFunc;
     }
 
-    public void AddBaseValue(int value)
+    public void AddBaseValue(float value)
     {
         _baseValue += value;
         if (_isUsedFunc)

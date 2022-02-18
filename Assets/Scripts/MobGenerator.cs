@@ -193,7 +193,7 @@ public class MobGenerator : MonoBehaviour
 			vector.Normalize();
 			vector *= 25f;
 			GameObject gameObject = Object.Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
-			Mob component = gameObject.GetComponent<Mob>();
+			MobOld component = gameObject.GetComponent<MobOld>();
 			component.Hp *= currentLoop + 1;
 			component.ScoreCost *= currentLoop + 1;
 			if (Random.value < 0.05f)
@@ -213,7 +213,7 @@ public class MobGenerator : MonoBehaviour
 		vector.Normalize();
 		vector *= 25f;
 		GameObject gameObject = Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
-		Mob component = gameObject.GetComponent<Mob>();
+		MobOld component = gameObject.GetComponent<MobOld>();
 		component.ScoreCost *= currentLoop + 1;
 		component.Hp += currentLoop * 10;
 		component.Hp *= 17f;

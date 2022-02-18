@@ -184,12 +184,12 @@ public class Player : MonoBehaviour
                 CreateBarell();
             }
         }
-        if (Mob.ComboTimer < 1f)
+        if (MobOld.ComboTimer < 1f)
         {
-            Mob.ComboTimer += Time.deltaTime;
-            if (Mob.ComboTimer >= 1f)
+            MobOld.ComboTimer += Time.deltaTime;
+            if (MobOld.ComboTimer >= 1f)
             {
-                Mob.ComboCount = 0;
+                MobOld.ComboCount = 0;
             }
         }
         PlayerAnim.speed = Speed / 3f;

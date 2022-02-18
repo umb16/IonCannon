@@ -62,4 +62,14 @@ public class SimplePerk : IPerk
     {
         //throw new NotImplementedException();
     }
+
+    public void OnEnemyHit(DamageSources source, Mob mob)
+    {
+       // throw new NotImplementedException();
+    }
+
+    public void OnReceiveDamage(DamageSources source)
+    {
+        //throw new NotImplementedException();
+    }
 }
