@@ -30,7 +30,7 @@ public class RayScript : MonoBehaviour
     {
         GetComponent<AudioSource>().PlayOneShot(RaySounds[0]);
         MainObj.transform.localScale = Vector3.one * _splash;
-        new Timers.Timer((Action)delegate
+        new Timer((Action)delegate
         {
             if (!stop)
             {
@@ -40,7 +40,7 @@ public class RayScript : MonoBehaviour
         RayTransform = base.transform;
         RayCylinder.SetActive(value: true);
         Trail.startWidth = 0.3f * _splash;
-        new Timers.Timer((x) =>
+        new Timer((x) =>
         {
             if (RayCylinder != null)
             {
@@ -56,13 +56,13 @@ public class RayScript : MonoBehaviour
     public void Stop()
     {
         stop = true;
-        new Timers.Timer(() =>
+        new Timer(() =>
         {
             GetComponent<AudioSource>().Stop();
         }, 0.01f);
         GetComponent<AudioSource>().PlayOneShot(RaySounds[1]);
         gameObject.GetComponentInChildren<ParticleSystem>().loop = false;
-        new Timers.Timer((x) =>
+        new Timer((x) =>
         {
             RayCylinder.transform.localScale = new Vector3(0.5f * _splash - x * 0.5f * _splash, 40f, 0.5f * _splash - x * 0.5f * _splash);
             RayLight.range = Mathf.SmoothStep(10f, 0f, x);
@@ -71,12 +71,12 @@ public class RayScript : MonoBehaviour
         {
             Destroy(RayCylinder);
         }, 0.5f, 0f);
-        new Timers.Timer((x) =>
+        new Timer((x) =>
         {
             transform.position += Vector3.forward;
         }, () =>
         {
-            UnityEngine.Object.Destroy(base.gameObject);
+            Destroy(gameObject);
         }, 20f, 0f);
     }
 }

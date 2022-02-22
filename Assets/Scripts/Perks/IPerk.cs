@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public interface IPerk
 {
@@ -9,11 +11,7 @@ public interface IPerk
     public int Level { get;}
     public bool Maxed { get; }
     public int MaxLevel { get; }
-    public void SetStatsCollection(IStatsCollection collection);
+    public void SetParent(Mob mob);
     public void SetLevel(int level);
     public void AddLevel();
-    public void OnUpdate();
-    public void OnEnemyHit(DamageSources source, Mob mob);
-    public void OnReceiveDamage(DamageSources source);
-
 }

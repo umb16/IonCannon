@@ -7,5 +7,7 @@ public class OriginInstaller : MonoInstaller
     {
         var collection = StatsCollectionsDB.StandartPlayer();
         Container.Bind<IStatsCollection>().FromInstance(collection).AsSingle().NonLazy();
+        Container.Bind<DamageController>().AsSingle().NonLazy();
+        Container.Bind<GameData>().AsSingle().NonLazy();
     }
 }

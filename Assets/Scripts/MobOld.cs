@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MobOld : MonoBehaviour
 {
-	public Transform MobTransform;
-
 	public GameObject ParticlePrefab;
 
 	public GameObject ParticlePrefab2;
@@ -44,7 +42,7 @@ public class MobOld : MonoBehaviour
 
 	private float _childTimer;
 
-	private Timers.Timer SpeedUpEnd;
+	private Timer SpeedUpEnd;
 
 	private List<GameObject> _listOfChilds = new List<GameObject>();
 
@@ -59,7 +57,7 @@ public class MobOld : MonoBehaviour
 			anim.speed = speed * localScale.x;
 			if (SpeedUpEnd != null)
 			{
-				SpeedUpEnd = new Timers.Timer(()=>
+				SpeedUpEnd = new Timer(()=>
 				{
 					Speed = _maxSpeed;
 				}, 1f);
@@ -133,8 +131,8 @@ public class MobOld : MonoBehaviour
 			Radiation += Player.Self.Radiation * Mathf.Max(0.25f, Player.Self.RaySplash * 1.25f - Vector3.Distance(transform.position, RayScript.RayTransform.position));
 			if (Radiation > 0f)
 			{
-				Timers.Timer timer = null;
-				timer = new Timers.Timer(()=>
+				Timer timer = null;
+				timer = new Timer(()=>
 				{
 					if (transform == null)
 					{

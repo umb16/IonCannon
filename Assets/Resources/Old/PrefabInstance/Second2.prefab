@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 54253250393519509}
   - component: {fileID: 135230689860527897}
   m_Layer: 0
-  m_Name: Second
+  m_Name: Second2
   m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

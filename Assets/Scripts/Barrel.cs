@@ -19,7 +19,7 @@ public class Barrel : MonoBehaviour
 		{
 			Barr.SetActive(value: false);
 			Expl.SetActive(value: true);
-			new Timers.Timer(()=>
+			new Timer(()=>
 			{
 				if (Expl != null)
 				{

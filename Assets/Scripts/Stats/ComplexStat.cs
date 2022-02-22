@@ -20,6 +20,7 @@ public class ComplexStat
     private int _intCachedValue;
     private List<StatModificator> _additiveModificators = new List<StatModificator>();
     private List<StatModificator> _multiplicativeModificators = new List<StatModificator>();
+    private List<StatModificator> _transformChain = new List<StatModificator>();
 
     public float Value => _cachedValue;
     public float IntValue => _intCachedValue;
@@ -71,34 +72,26 @@ public class ComplexStat
         {
             _additiveModificators.Add(modificator);
         }
-        else
+        else if(modificator.Type == StatModificatorType.Multiplicative)
         {
             _multiplicativeModificators.Add(modificator);
+        }
+        else
+        {
+            _transformChain.Add(modificator);
         }
         CalculateCache();
     }
 
-    public void RemoveModificator(int modificatorId)
+    public void RemoveModificator(StatModificator mod)
     {
-        for (int i = 0; i < _additiveModificators.Count; i++)
-        {
-            if (_additiveModificators[i].Id == modificatorId)
-            {
-                _additiveModificators.RemoveAt(i);
-                CalculateCache();
-                return;
-            }
-        }
-
-        for (int i = 0; i < _multiplicativeModificators.Count; i++)
-        {
-            if (_multiplicativeModificators[i].Id == modificatorId)
-            {
-                _multiplicativeModificators.RemoveAt(i);
-                CalculateCache();
-                return;
-            }
-        }
+        if(mod.Type== StatModificatorType.Additive)
+            _additiveModificators.Remove(mod);
+        if(mod.Type== StatModificatorType.Multiplicative)
+            _multiplicativeModificators.Remove(mod);
+        if (mod.Type == StatModificatorType.TransformChain)
+            _transformChain.Remove(mod);
+        CalculateCache();
     }
     private void OnValueChanged()
     {
@@ -136,7 +129,13 @@ public class ComplexStat
             multSum += _multiplicativeModificators[i].Value;
         }
 
-        _cachedValue = (BaseValue + additiveSum) * (1f + multSum);
+        float transformAccum = BaseValue;
+        for (int i = 0; i < _transformChain.Count; i++)
+        {
+            transformAccum = _transformChain[i].Func(transformAccum);
+        }
+
+        _cachedValue = (transformAccum + additiveSum) * (1f + multSum);
         if (_correctionFunc != null)
             _cachedValue = _correctionFunc.Invoke(_cachedValue);
         _intCachedValue = (int)_cachedValue;

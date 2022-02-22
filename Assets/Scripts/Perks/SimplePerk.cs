@@ -18,12 +18,13 @@ public class SimplePerk : IPerk
     private Func<string> _description;
     private Func<string> _name;
     private StatModificator[][] _modificators;
-    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, IStatsCollection statsCollection)
+    private DamageController _damageController;
+    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, Mob mob)
     {
-        _collection = statsCollection;
         _name = name;
         _description = description;
         _modificators = statModificators;
+        SetParent(mob);
     }
     public void AddLevel()
     {
@@ -41,35 +42,11 @@ public class SimplePerk : IPerk
         _collection.AddModificators(_modificators[Level - 1]);
     }
 
-    public void SetStatsCollection(IStatsCollection collection)
+    public void SetParent(Mob parent)
     {
-        _collection = collection;
+        _collection = parent.StatsCollection;
+        _damageController = parent.DamageController;
         if (Level > 0)
             _collection.AddModificators(_modificators[Level - 1]);
-    }
-
-    public void Update()
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void OnUpdate()
-    {
-        //throw new NotImplementedException();
-    }
-
-    public void OnEnemyHit(DamageSources source, IStatsCollection collection)
-    {
-        //throw new NotImplementedException();
-    }
-
-    public void OnEnemyHit(DamageSources source, Mob mob)
-    {
-       // throw new NotImplementedException();
-    }
-
-    public void OnReceiveDamage(DamageSources source)
-    {
-        //throw new NotImplementedException();
     }
 }

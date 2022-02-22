@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 54811902628168219}
   - component: {fileID: 135027663906021558}
   m_Layer: 0
-  m_Name: White
+  m_Name: White7
   m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

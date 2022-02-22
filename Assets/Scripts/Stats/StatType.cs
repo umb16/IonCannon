@@ -8,4 +8,8 @@ public enum StatType
     RayDamage = 5,
     HP = 6,
     MaxHP = 7,
+
+
+    Score = 8,
+    Size = 9,
 }

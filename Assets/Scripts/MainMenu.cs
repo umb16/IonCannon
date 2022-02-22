@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			PlayerObj.SetActive(value: true);
-			new Timers.Timer(()=>
+			new Timer(()=>
 			{
 				gameIsStart = true;
 			}, 1f);

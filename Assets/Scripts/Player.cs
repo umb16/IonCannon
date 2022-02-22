@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             MainMenu.gameIsStart = false;
             GameOver.SetActive(value: true);
             UnityEngine.Object.Destroy(base.gameObject);
-            new Timers.Timer((x) =>
+            new Timer((x) =>
             {
                 Time.timeScale = 1f - x;
             }, null, 1f, 0f);
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
             GameOver.SetActive(value: true);
             UnityEngine.Object.Destroy(base.gameObject);
             MainMenu.gameIsStart = false;
-            new Timers.Timer((x) =>
+            new Timer((x) =>
             {
                 Time.timeScale = 1f - x;
             }, null, 1f, 0f);
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
                 MobOld.ComboCount = 0;
             }
         }
-        PlayerAnim.speed = Speed / 3f;
+        //PlayerAnim.speed = Speed / 3f;
         if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
         {
             SetPerc = () =>
@@ -253,62 +253,30 @@ public class Player : MonoBehaviour
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
             num2 = 0.7f;
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                transform.eulerAngles = -Vector3.forward * 135f;
-            }
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                transform.eulerAngles = Vector3.forward * 135f;
-            }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-            {
-                transform.eulerAngles = -Vector3.forward * 45f;
-            }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-            {
-                transform.eulerAngles = Vector3.forward * 45f;
-            }
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            PlayerAnim.Play("Run");
+            //PlayerAnim.Play("Run");
         }
         else
         {
-            PlayerAnim.Play("Idle");
+            //PlayerAnim.Play("Idle");
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.up * Speed * Time.deltaTime * num2;
-            if (num2 == 1f)
-            {
-                transform.eulerAngles = Vector3.forward * 180f;
-            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += Vector3.down * Speed * Time.deltaTime * num2;
-            if (num2 == 1f)
-            {
-                transform.eulerAngles = Vector3.one;
-            }
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * Speed * Time.deltaTime * num2;
-            if (num2 == 1f)
-            {
-                transform.eulerAngles = -Vector3.forward * 90f;
-            }
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * Speed * Time.deltaTime * num2;
-            if (num2 == 1f)
-            {
-                transform.eulerAngles = Vector3.forward * 90f;
-            }
         }
         if (Input.GetMouseButton(0) && _currentPathLength < MaxPathLength && rayIsReady)
         {

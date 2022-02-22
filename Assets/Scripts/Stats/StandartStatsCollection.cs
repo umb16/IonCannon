@@ -31,7 +31,7 @@ public class StandartStatsCollection : IStatsCollection
     {
         foreach (var mod in modificators)
         {
-            _stats[mod.StatType].RemoveModificator(mod.Id);
+            _stats[mod.StatType].RemoveModificator(mod);
         }
     }
 
@@ -39,5 +39,7 @@ public class StandartStatsCollection : IStatsCollection
     {
         if (_stats.ContainsKey(statType))
             _stats[statType].SetBaseValue(value);
+        else
+            Debug.LogWarning(statType +" not found");
     }
 }

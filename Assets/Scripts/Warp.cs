@@ -9,14 +9,14 @@ public class Warp : MonoBehaviour
     private void Start()
     {
         Beam.SetActive(value: true);
-        new Timers.Timer((x) =>
+        new Timer((x) =>
         {
             Beam.transform.localScale = new Vector3(x * 1f, 40f, x * 1f);
         }, delegate
         {
             Barr.SetActive(value: true);
             GetComponent<Collider>().enabled = true;
-            new Timers.Timer((x) =>
+            new Timer((x) =>
             {
                 if (Beam != null)
                 {

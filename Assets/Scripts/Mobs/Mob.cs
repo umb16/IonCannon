@@ -3,27 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks.Linq;
 using Cysharp.Threading.Tasks;
+using Zenject;
+using System.Threading;
+using Umb16.Extensions;
 
 public class Mob : MonoBehaviour, IMovable
 {
+    public ComplexStat Speed { get; private set; }
+    public ComplexStat HP { get; protected set; }
+
     private List<IPerk> _perks = new List<IPerk>();
-    public StandartStatsCollection StatsCollection { get; private set; }
-
+    public StandartStatsCollection StatsCollection { get; protected set; }
+    public DamageController DamageController { get; private set; }
+    public GameData GameData { get; private set; }
+    public Player Player { get; private set; }
+    public bool IsReady { get; private set; }
     private Vector3 _moveTarget;
-    private bool _stopped;
+    private bool _stopped = true;
+    private SpriteRenderer _sprite;
 
-    public void AddPerk(Func<IStatsCollection, IPerk> perkGenerator)
+    // virtual public void Init() { }
+    [Inject]
+    private void Construct(DamageController damageController, GameData gameData, Player player)
     {
-        _perks.Add(perkGenerator(StatsCollection));
+        GameData = gameData;
+        damageController.Damage += ReceiveDamage;
+        DamageController = damageController;
+        Player = player;
+        IsReady = true;
     }
 
-    public void ReceiveDamage(DamageSources source, float value)
+    public void AddPerk(Func<Mob, IPerk> perkGenerator, int level = 0)
     {
-        StatsCollection.GetStat(StatType.HP).AddBaseValue(-value);
-        foreach (var perk in _perks)
+        var perk = perkGenerator(this);
+        _perks.Add(perk);
+        if(level>0)
+            perk.SetLevel(level);
+    }
+
+    private void ReceiveDamage(DamageMessage message)
+    {
+        HP.AddBaseValue(-message.Damage);
+        if (HP.Value <= 0)
         {
-            perk.OnReceiveDamage(source);
+            Die(message);
         }
+    }
+
+    public void Die(DamageMessage message)
+    {
+        Stop();
+        DamageController.SendDie(message);
     }
 
     public void MoveTo(Vector3 target)
@@ -37,24 +67,31 @@ public class Mob : MonoBehaviour, IMovable
         _stopped = true;
     }
 
-
-    private async UniTask Start()
+    private void Start()
     {
-        await foreach (var _ in UniTaskAsyncEnumerable.EveryUpdate())
-        {
-            OnUpdate();
-        }
+        Speed = StatsCollection.GetStat(StatType.Speed);
+        HP = StatsCollection.GetStat(StatType.HP);
+        var size = StatsCollection.GetStat(StatType.Size);
+        transform.localScale = Vector3.one * size.Value;
+        size.ValueChanged += (x) =>
+        transform.localScale = Vector3.one * x.Value;
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
-    private void OnUpdate()
+    private void FixedUpdate()
     {
         if (!_stopped)
         {
-            transform.position += (_moveTarget - transform.position).normalized * Time.deltaTime * StatsCollection.GetStat(StatType.Speed).Value;
-        }
-        foreach (var perk in _perks)
-        {
-            perk.OnUpdate();
+            if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
+            {
+                //разворачиваем справайт в зависимости от направления движения
+                _sprite.flipX = _moveTarget.x - transform.position.x < 0;
+
+                Vector3 pos = transform.position;
+                pos += Speed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
+                pos.z = pos.y * .1f;
+                transform.position = pos;
+            }
         }
     }
 }

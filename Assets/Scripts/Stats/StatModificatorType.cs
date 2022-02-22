@@ -1,5 +1,6 @@
 ﻿public enum StatModificatorType
 {
     Additive,
-    Multiplicative
+    Multiplicative,
+    TransformChain,
 }

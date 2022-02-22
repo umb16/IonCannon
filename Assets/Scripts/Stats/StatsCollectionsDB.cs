@@ -7,7 +7,7 @@ public static class StatsCollectionsDB
     public static StandartStatsCollection StandartPlayer()
     {
         ComplexStat maxHP = new ComplexStat(3);
-        ComplexStat HP = new ComplexStat(maxHP.Value);
+        ComplexStat HP = new ComplexStat(maxHP.Value, (x) => Mathf.Min(x, maxHP.Value));
         maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
         return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
          {
@@ -19,6 +19,20 @@ public static class StatsCollectionsDB
             (StatType.RayDamage, new ComplexStat(4)),
             (StatType.MaxHP, maxHP),
             (StatType.HP, HP),
+         });
+    }
+    public static StandartStatsCollection StandartEnemy()
+    {
+        ComplexStat maxHP = new ComplexStat(3);
+        ComplexStat HP = new ComplexStat(maxHP.Value, (x) => Mathf.Min(x, maxHP.Value));
+        maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
+        return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+         {
+            (StatType.Speed, new ComplexStat(3)),
+            (StatType.MaxHP, maxHP),
+            (StatType.HP, HP),
+            (StatType.Score, new ComplexStat(1)),
+            (StatType.Size, new ComplexStat(1)),
          });
     }
 }

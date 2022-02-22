@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatModificatorsCollection
 {
     private StatModificator[] _modificators;
-    private List<IStatsCollection> _statsCollections;
+    private List<IStatsCollection> _statsCollections = new List<IStatsCollection>();
 
     public StatModificatorsCollection(StatModificator[] modificators)
     {
