@@ -19,6 +19,7 @@ public static class StatsCollectionsDB
             (StatType.RayDamage, new ComplexStat(4)),
             (StatType.MaxHP, maxHP),
             (StatType.HP, HP),
+            (StatType.Size, new ComplexStat(1)),
          });
     }
     public static StandartStatsCollection StandartEnemy()

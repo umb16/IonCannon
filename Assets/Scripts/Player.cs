@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour
+public class Player : Mob
 {
     [SerializeField] private LayerMask _rayTaregetMask;
     public GameObject PerksMenu;
@@ -65,9 +65,7 @@ public class Player : MonoBehaviour
     private List<int> avaliablePercs = new List<int>();
 
     private Action SetPerc;
-    private IStatsCollection _stats;
 
-    
 
     public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
 
@@ -85,18 +83,14 @@ public class Player : MonoBehaviour
 
     public float MaxPathLength => _maxPathLength.Value + (float)(MassCurrentPerks[2] * 10);
 
-    [Inject]
-    private void Construct(IStatsCollection stats)
-    {
-        _stats = stats;
-        _rayDamage = _stats.GetStat(StatType.RayDamage);
-        _speed = _stats.GetStat(StatType.Speed);
-        _maxPathLength = _stats.GetStat(StatType.RayPathLenght);
-        _raySpeed = _stats.GetStat(StatType.RaySpeed);
-    }
-
     private void Awake()
     {
+        StatsCollection = StatsCollectionsDB.StandartPlayer();
+        _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
+        _speed = StatsCollection.GetStat(StatType.Speed);
+        _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
+        _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
+
         Self = this;
         _cannonPath = GetComponent<LineRenderer>();
         avaliablePercs.Clear();
@@ -175,109 +169,16 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (MassCurrentPerks[7] > 0)
-        {
-            BarrelTimer += Time.deltaTime;
-            if (BarrelTimer > BarrelDelay)
-            {
-                BarrelTimer -= BarrelDelay;
-                CreateBarell();
-            }
-        }
-        if (MobOld.ComboTimer < 1f)
-        {
-            MobOld.ComboTimer += Time.deltaTime;
-            if (MobOld.ComboTimer >= 1f)
-            {
-                MobOld.ComboCount = 0;
-            }
-        }
-        //PlayerAnim.speed = Speed / 3f;
-        if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
-        {
-            SetPerc = () =>
-            {
-                MassCurrentPerks[avaliablePercs[0]]++;
-            };
-            StopScore();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && avaliablePercs.Count > 1)
-        {
-            SetPerc = delegate
-            {
-                MassCurrentPerks[avaliablePercs[1]]++;
-            };
-            StopScore();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && avaliablePercs.Count > 2)
-        {
-            SetPerc = delegate
-            {
-                MassCurrentPerks[avaliablePercs[2]]++;
-            };
-            StopScore();
-        }
-        if (Score.CurrentScore >= _requedScore)
-        {
-            _requedScore += (int)((float)_requedScore * 1.5f);
-            avaliablePercs.Clear();
-            List<int> list = new List<int>();
-            for (int i = 0; i < MassCurrentPerks.Length; i++)
-            {
-                if (MassCurrentPerks[i] < MassPerksMax[i])
-                {
-                    list.Add(i);
-                }
-            }
-            int num;
-            for (num = 0; num < list.Count; num++)
-            {
-                int index = UnityEngine.Random.Range(0, list.Count);
-                avaliablePercs.Add(list[index]);
-                list.RemoveAt(index);
-                num--;
-            }
-            int[] array = new int[avaliablePercs.Count];
-            for (int j = 0; j < avaliablePercs.Count; j++)
-            {
-                array[j] = MassCurrentPerks[avaliablePercs[j]] + 1;
-            }
-            PerksMenu.GetComponent<PerksText>().SetPerks(avaliablePercs.ToArray(), array);
-            if (avaliablePercs.Count > 0)
-            {
-                Time.timeScale = 0f;
-                PerksMenu.SetActive(value: true);
-            }
-        }
-        float num2 = 1f;
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-        {
-            num2 = 0.7f;
-        }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            //PlayerAnim.Play("Run");
-        }
-        else
-        {
-            //PlayerAnim.Play("Idle");
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += Vector3.up * Speed * Time.deltaTime * num2;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += Vector3.down * Speed * Time.deltaTime * num2;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * Speed * Time.deltaTime * num2;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * Speed * Time.deltaTime * num2;
-        }
+        CheckBarrel();
+        ComboCalc();
+        SetPerkUpMenuAction();
+        CheckLvlup();
+        Movement();
+        RayLogic();
+    }
+
+    private void RayLogic()
+    {
         if (Input.GetMouseButton(0) && _currentPathLength < MaxPathLength && rayIsReady)
         {
             if (SetPerc != null)
@@ -334,7 +235,7 @@ public class Player : MonoBehaviour
         {
             if (_cannonRay == null)
             {
-                _cannonRay = UnityEngine.Object.Instantiate(CannonRayPrefab);
+                _cannonRay = Instantiate(CannonRayPrefab);
                 _cannonRay.GetComponent<RayScript>().SetSplash(RaySplash);
             }
             rayTime += Time.deltaTime * RaySpeed;
@@ -349,6 +250,110 @@ public class Player : MonoBehaviour
                 _cannonRay.GetComponent<RayScript>().Stop();
                 _cannonRay = null;
                 rayIsReady = true;
+            }
+        }
+    }
+
+    private void Movement()
+    {
+        Vector3 dir = Vector3.zero;
+        if (Input.GetKey(KeyCode.W))
+            dir += Vector3.up;
+        if (Input.GetKey(KeyCode.S))
+            dir += Vector3.down;
+
+        if (Input.GetKey(KeyCode.A))
+            dir += Vector3.left;
+        if (Input.GetKey(KeyCode.D))
+            dir += Vector3.right;
+        MoveTo(transform.position + dir * 10);
+    }
+
+    private void CheckLvlup()
+    {
+        if (Score.CurrentScore >= _requedScore)
+        {
+            _requedScore += (int)((float)_requedScore * 1.5f);
+            avaliablePercs.Clear();
+            List<int> list = new List<int>();
+            for (int i = 0; i < MassCurrentPerks.Length; i++)
+            {
+                if (MassCurrentPerks[i] < MassPerksMax[i])
+                {
+                    list.Add(i);
+                }
+            }
+            int num;
+            for (num = 0; num < list.Count; num++)
+            {
+                int index = UnityEngine.Random.Range(0, list.Count);
+                avaliablePercs.Add(list[index]);
+                list.RemoveAt(index);
+                num--;
+            }
+            int[] array = new int[avaliablePercs.Count];
+            for (int j = 0; j < avaliablePercs.Count; j++)
+            {
+                array[j] = MassCurrentPerks[avaliablePercs[j]] + 1;
+            }
+            PerksMenu.GetComponent<PerksText>().SetPerks(avaliablePercs.ToArray(), array);
+            if (avaliablePercs.Count > 0)
+            {
+                Time.timeScale = 0f;
+                PerksMenu.SetActive(value: true);
+            }
+        }
+    }
+
+    private void SetPerkUpMenuAction()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
+        {
+            SetPerc = () =>
+            {
+                MassCurrentPerks[avaliablePercs[0]]++;
+            };
+            StopScore();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && avaliablePercs.Count > 1)
+        {
+            SetPerc = delegate
+            {
+                MassCurrentPerks[avaliablePercs[1]]++;
+            };
+            StopScore();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && avaliablePercs.Count > 2)
+        {
+            SetPerc = delegate
+            {
+                MassCurrentPerks[avaliablePercs[2]]++;
+            };
+            StopScore();
+        }
+    }
+
+    private static void ComboCalc()
+    {
+       /* if (MobOld.ComboTimer < 1f)
+        {
+            MobOld.ComboTimer += Time.deltaTime;
+            if (MobOld.ComboTimer >= 1f)
+            {
+                MobOld.ComboCount = 0;
+            }
+        }*/
+    }
+
+    private void CheckBarrel()
+    {
+        if (MassCurrentPerks[7] > 0)
+        {
+            BarrelTimer += Time.deltaTime;
+            if (BarrelTimer > BarrelDelay)
+            {
+                BarrelTimer -= BarrelDelay;
+                CreateBarell();
             }
         }
     }

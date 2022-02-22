@@ -19,7 +19,7 @@ public class EnemySimple : Mob
     }
     private void Update()
     {
-        if (Player?.transform != null)
+        if (Player != null&& Player.transform != null)
             MoveTo(Player.transform.position);
     }
 }
