@@ -46,7 +46,7 @@ public class PerkEBoss : IPerk
                     new StatModificator((x) => x * (Wave + 1) * 6, StatModificatorType.TransformChain, StatType.Score),
                     new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.HP),
                     new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.MaxHP),
-                    new StatModificator(2, StatModificatorType.Multiplicative, StatType.Size),
+                    new StatModificator(1, StatModificatorType.Multiplicative, StatType.Size),
                     }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);

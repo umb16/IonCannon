@@ -43,10 +43,10 @@ public class PerkEChampion : IPerk
         _modificators = new StatModificatorsCollection
         (
             new[] { 
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Score),
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.HP),
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.MaxHP),
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Size),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.Score),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.HP),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.MaxHP),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.Size),
                     }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);

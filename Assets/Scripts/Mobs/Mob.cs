@@ -37,7 +37,7 @@ public class Mob : MonoBehaviour, IMovable
     {
         var perk = perkGenerator(this);
         _perks.Add(perk);
-        if(level>0)
+        if (level > 0)
             perk.SetLevel(level);
     }
 
@@ -73,8 +73,7 @@ public class Mob : MonoBehaviour, IMovable
         HP = StatsCollection.GetStat(StatType.HP);
         var size = StatsCollection.GetStat(StatType.Size);
         transform.localScale = Vector3.one * size.Value;
-        size.ValueChanged += (x) =>
-        transform.localScale = Vector3.one * x.Value;
+        size.ValueChanged += (x) => transform.localScale = Vector3.one * x.Value;
         _sprite = GetComponent<SpriteRenderer>();
     }
 
