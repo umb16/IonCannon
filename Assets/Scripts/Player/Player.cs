@@ -5,7 +5,6 @@ using Zenject;
 
 public class Player : Mob
 {
-    [SerializeField] private LayerMask _rayTaregetMask;
     public GameObject PerksMenu;
 
     private int[] MassCurrentPerks = new int[8];
@@ -29,25 +28,6 @@ public class Player : Mob
     private ComplexStat _raySpeed;
     private ComplexStat _rayDamage;
 
-    private LineRenderer _cannonPath;
-
-    private int _currentLineIndex;
-    private float _currentPathLength;
-
-    private List<Vector2> cannonPath = new List<Vector2>();
-
-    private Vector3 _oldPointOfPath;
-
-    public GameObject CannonRayPrefab;
-
-    private GameObject _cannonRay;
-
-    private float rayTime;
-
-
-
-    private float _rayDelayTime;
-
     private int _requedScore = 40;
 
     public GameObject Barrel;
@@ -57,8 +37,6 @@ public class Player : Mob
     private float BarrelTimer;
 
     public GameObject Blood;
-
-    private bool rayIsReady = true;
 
     private List<int> avaliablePercs = new List<int>();
 
@@ -90,7 +68,6 @@ public class Player : Mob
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
 
         Self = this;
-        _cannonPath = GetComponent<LineRenderer>();
         avaliablePercs.Clear();
         PerksMenu.SetActive(value: false);
     }
@@ -172,10 +149,10 @@ public class Player : Mob
         SetPerkUpMenuAction();
         CheckLvlup();
         Movement();
-        RayLogic();
+        //RayLogic();
     }
 
-    private void RayLogic()
+    /*private void RayLogic()
     {
         if (Input.GetMouseButton(0) && _currentPathLength < MaxPathLength && rayIsReady)
         {
@@ -250,7 +227,7 @@ public class Player : Mob
                 rayIsReady = true;
             }
         }
-    }
+    }*/
 
     private void Movement()
     {
