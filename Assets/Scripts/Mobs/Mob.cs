@@ -27,7 +27,6 @@ public class Mob : MonoBehaviour, IMovable
     private void Construct(DamageController damageController, GameData gameData, Player player)
     {
         GameData = gameData;
-        damageController.Damage += ReceiveDamage;
         DamageController = damageController;
         Player = player;
         IsReady = true;
@@ -41,9 +40,11 @@ public class Mob : MonoBehaviour, IMovable
             perk.SetLevel(level);
     }
 
-    private void ReceiveDamage(DamageMessage message)
+    internal void ReceiveDamage(DamageMessage message)
     {
+        DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
+        Debug.Log(HP.Value);
         if (HP.Value <= 0)
         {
             Die(message);
@@ -53,6 +54,7 @@ public class Mob : MonoBehaviour, IMovable
     public void Die(DamageMessage message)
     {
         Stop();
+        Destroy(gameObject);
         DamageController.SendDie(message);
     }
 

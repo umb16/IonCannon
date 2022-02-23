@@ -8,4 +8,12 @@ public struct DamageMessage
     public Mob Target;
     public float Damage;
     public DamageSources DamageSource;
+
+    public DamageMessage(Mob attacker, Mob target, float damage, DamageSources damageSource)
+    {
+        Attacker = attacker;
+        Target = target;
+        Damage = damage;
+        DamageSource = damageSource;
+    }
 }

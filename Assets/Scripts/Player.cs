@@ -60,8 +60,6 @@ public class Player : Mob
 
     private bool rayIsReady = true;
 
-    public Animator PlayerAnim;
-
     private List<int> avaliablePercs = new List<int>();
 
     private Action SetPerc;
@@ -112,7 +110,7 @@ public class Player : Mob
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ray" || collision.gameObject.tag == "Barrel")
         {
