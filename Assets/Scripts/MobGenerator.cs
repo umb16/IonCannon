@@ -214,6 +214,7 @@ public class MobGenerator : MonoBehaviour
             if (Random.value < 0.05f)
                 mob.AddPerk((x) => new PerkEChampion(x));
         }
+        WaveMobCounter++;
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)Score.CurrentScore + _time) / 100f)) + 1f);
         Debug.Log("Create mob delay "+ delay);
         Invoke("CrateMob", delay);
