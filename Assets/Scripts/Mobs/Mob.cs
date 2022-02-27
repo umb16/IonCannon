@@ -87,7 +87,7 @@ public class Mob : MonoBehaviour, IMob
         {
             if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
             {
-                //разворачиваем справайт в зависимости от направления движения
+                //разворачиваем спрайт в зависимости от направления движения
                 _sprite.flipX = _moveTarget.x - transform.position.x < 0;
 
                 Vector3 pos = transform.position;

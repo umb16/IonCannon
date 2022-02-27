@@ -17,6 +17,8 @@ public class RayScript : WithTimer
 
     private bool stop;
 
+    private Timer _timer;
+
     public void SetSplash(float splash)
     {
         _splash = splash;
@@ -36,7 +38,7 @@ public class RayScript : WithTimer
             });
         RayCylinder.SetActive(value: true);
         Trail.startWidth = 0.3f * _splash;
-        CreateTimer(1)
+        _timer = CreateTimer(1)
             .SetUpdate((x) =>
             {
                 if (RayCylinder != null)
@@ -49,7 +51,8 @@ public class RayScript : WithTimer
 
     public void Stop()
     {
-        stop = true;
+        _timer.Stop();
+           stop = true;
         CreateTimer(.01f)
             .SetEnd(() => GetComponent<AudioSource>().Stop());
         GetComponent<AudioSource>().PlayOneShot(RaySounds[1]);
@@ -63,7 +66,7 @@ public class RayScript : WithTimer
             .SetEnd(() =>
             {
                 MainObj.SetActive(false);
-                Destroy(RayCylinder);
+                RayCylinder.SetActive(false);
             });
         CreateTimer(20)
             .SetUpdate((x) => transform.position += Vector3.forward)

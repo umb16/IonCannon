@@ -5,7 +5,7 @@ using Zenject;
 public class MobGenerator : MonoBehaviour
 {
     public static MobGenerator Self;
-    public readonly HashSet<Mob> Mobs = new HashSet<Mob>();
+    public readonly HashSet<IMob> Mobs = new HashSet<IMob>();
 
     public GameObject[] MobPrafab;
 
@@ -214,7 +214,9 @@ public class MobGenerator : MonoBehaviour
             if (Random.value < 0.05f)
                 mob.AddPerk((x) => new PerkEChampion(x));
         }
-        Invoke("CrateMob", (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)Score.CurrentScore + _time) / 100f)) + 1f));
+        float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)Score.CurrentScore + _time) / 100f)) + 1f);
+        Debug.Log("Create mob delay "+ delay);
+        Invoke("CrateMob", delay);
     }
 
     private void CreateBoss()

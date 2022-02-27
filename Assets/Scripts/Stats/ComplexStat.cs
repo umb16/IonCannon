@@ -23,7 +23,7 @@ public class ComplexStat
     private List<StatModificator> _transformChain = new List<StatModificator>();
 
     public float Value => _cachedValue;
-    public float IntValue => _intCachedValue;
+    public int IntValue => _intCachedValue;
 
     public float BaseValue => _isUsedFunc ? _baseValueFunc() : _baseValue;
 

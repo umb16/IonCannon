@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Barrel : MonoBehaviour
+public class Barrell : MonoBehaviour
 {
 	public GameObject Barr;
 

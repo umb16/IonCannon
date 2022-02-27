@@ -5,25 +5,13 @@ using Zenject;
 
 public class Player : Mob
 {
-    public GameObject PerksMenu;
+    [SerializeField] Animator _animator;
+    //[SerializeField] float _speedFactor = 3;
 
-    private int[] MassCurrentPerks = new int[8];
-
-    private int[] MassPerksMax = new int[8]
-    {
-        3,
-        3,
-        5,
-        3,
-        5,
-        10,
-        3,
-        3
-    };
-
-    private ComplexStat _speed;
     private ComplexStat _maxPathLength;
     private ComplexStat _raySpeed;
+    private ComplexStat _rayDelay;
+    private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
 
     private int _requedScore = 40;
@@ -35,26 +23,29 @@ public class Player : Mob
     private float BarrelTimer;
 
     public GameObject Blood;
+    private PerksMenu _perksMenu;
 
-    private List<int> avaliablePercs = new List<int>();
+    //public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
 
-    public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
+    //public float Radiation => RayDmg * (float)MassCurrentPerks[6] * 0.1f;
 
-    public float Radiation => RayDmg * (float)MassCurrentPerks[6] * 0.1f;
+    public float RayDmg => _rayDamage.Value;
 
-    public float RayDmg => _rayDamage.Value + (float)(MassCurrentPerks[5] * 2);
+    public float RayDelay => _rayDelay.Value;
 
-    public float RayDelay => 1.3f - (float)MassCurrentPerks[3] * 0.3f;
+    public float RaySplash => _raySplashRadius.Value;
 
-    public float RaySplash => 1f + (float)MassCurrentPerks[4] * 0.3f;
+    public float RaySpeed => _raySpeed.Value;
 
-    public float RaySpeed => _raySpeed.Value + (float)(MassCurrentPerks[1] * 2);
+    public float MaxPathLength => _maxPathLength.Value;
 
-    public float MaxPathLength => _maxPathLength.Value + (float)(MassCurrentPerks[2] * 10);
     [Inject]
-    private void Construct()
+    private void Construct(PerksMenu perksMenu, DamageController damageController)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
+        
+        damageController.Die += x => Score.CurrentScore += x.Target.StatsCollection.GetStat(StatType.Score).IntValue;
+        _perksMenu = perksMenu;
     }
 
     private void Awake()
@@ -62,8 +53,8 @@ public class Player : Mob
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
-        avaliablePercs.Clear();
-        PerksMenu.SetActive(value: false);
+        _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
+        _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -76,7 +67,8 @@ public class Player : Mob
             new Timer(1f)
                 .SetUpdate((x) =>
             {
-                Time.timeScale = 1f - x;
+                if (this != null)
+                    Time.timeScale = 1f - x;
             });
             UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
@@ -91,16 +83,11 @@ public class Player : Mob
             MainMenu.gameIsStart = false;
             new Timer(1).SetUpdate((x) =>
             {
-                Time.timeScale = 1f - x;
+                if (this != null)
+                    Time.timeScale = 1f - x;
             });
             UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
-    }
-
-    private void StopScore()
-    {
-        Time.timeScale = 1f;
-        PerksMenu.SetActive(value: false);
     }
 
     private void CreateBarell()
@@ -144,85 +131,8 @@ public class Player : Mob
         SetPerkUpMenuAction();
         CheckLvlup();
         Movement();
-        //RayLogic();
+        //MovementSpeed.SetBaseValue(_speedFactor);
     }
-
-    /*private void RayLogic()
-    {
-        if (Input.GetMouseButton(0) && _currentPathLength < MaxPathLength && rayIsReady)
-        {
-            if (SetPerc != null)
-            {
-                SetPerc();
-                SetPerc = null;
-            }
-            Vector3 zero = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition * Camera.main.rect.width);
-            Debug.DrawRay(ray.origin, ray.direction);
-            if (!Physics.Raycast(ray, out RaycastHit hitInfo, 100f, _rayTaregetMask.value))
-            {
-                return;
-            }
-            zero = hitInfo.point;
-            _cannonPath.SetVertexCount(_currentLineIndex + 1);
-            if (_currentLineIndex > 0)
-            {
-                if (MaxPathLength > _currentPathLength + Vector3.Distance(zero, _oldPointOfPath))
-                {
-                    _currentPathLength += Vector3.Distance(zero, _oldPointOfPath);
-                }
-                else
-                {
-                    float d = MaxPathLength - _currentPathLength;
-                    zero = _oldPointOfPath + (zero - _oldPointOfPath).normalized * d;
-                    _currentPathLength = MaxPathLength;
-                }
-            }
-            else
-            {
-                cannonPath.Clear();
-            }
-            cannonPath.Add(zero);
-            _cannonPath.SetPosition(_currentLineIndex, zero);
-            _oldPointOfPath = zero;
-            _currentLineIndex++;
-        }
-        if (Input.GetMouseButtonUp(0) && rayIsReady)
-        {
-            rayIsReady = false;
-            _currentLineIndex = 0;
-            _currentPathLength = 0f;
-            rayTime = 0f;
-            _rayDelayTime = 0f;
-            _cannonPath.SetVertexCount(0);
-        }
-        if (cannonPath.Count <= 1 || _currentLineIndex != 0)
-        {
-            return;
-        }
-        _rayDelayTime += Time.deltaTime;
-        if (_rayDelayTime > RayDelay)
-        {
-            if (_cannonRay == null)
-            {
-                _cannonRay = Instantiate(CannonRayPrefab);
-                _cannonRay.GetComponent<RayScript>().SetSplash(RaySplash);
-            }
-            rayTime += Time.deltaTime * RaySpeed;
-            _cannonRay.transform.position = Vector3.Lerp(cannonPath[0], cannonPath[1], rayTime / Vector2.Distance(cannonPath[0], cannonPath[1]));
-            if (rayTime > Vector2.Distance(cannonPath[0], cannonPath[1]))
-            {
-                rayTime -= Vector2.Distance(cannonPath[0], cannonPath[1]);
-                cannonPath.RemoveAt(0);
-            }
-            if (cannonPath.Count < 2)
-            {
-                _cannonRay.GetComponent<RayScript>().Stop();
-                _cannonRay = null;
-                rayIsReady = true;
-            }
-        }
-    }*/
 
     private void Movement()
     {
@@ -236,6 +146,16 @@ public class Player : Mob
             dir += Vector3.left;
         if (Input.GetKey(KeyCode.D))
             dir += Vector3.right;
+        if (dir != Vector3.zero)
+        {
+            _animator.SetBool("Run", true);
+            _animator.speed = MovementSpeed.Value / 3;
+        }
+        else
+        {
+            _animator.speed = 1;
+            _animator.SetBool("Run", false);
+        }
         MoveTo(transform.position + dir * 10);
     }
 
@@ -243,35 +163,8 @@ public class Player : Mob
     {
         if (Score.CurrentScore >= _requedScore)
         {
-            _requedScore += (int)((float)_requedScore * 1.5f);
-            avaliablePercs.Clear();
-            List<int> list = new List<int>();
-            for (int i = 0; i < MassCurrentPerks.Length; i++)
-            {
-                if (MassCurrentPerks[i] < MassPerksMax[i])
-                {
-                    list.Add(i);
-                }
-            }
-            int num;
-            for (num = 0; num < list.Count; num++)
-            {
-                int index = UnityEngine.Random.Range(0, list.Count);
-                avaliablePercs.Add(list[index]);
-                list.RemoveAt(index);
-                num--;
-            }
-            int[] array = new int[avaliablePercs.Count];
-            for (int j = 0; j < avaliablePercs.Count; j++)
-            {
-                array[j] = MassCurrentPerks[avaliablePercs[j]] + 1;
-            }
-            PerksMenu.GetComponent<PerksText>().SetPerks(avaliablePercs.ToArray(), array);
-            if (avaliablePercs.Count > 0)
-            {
-                Time.timeScale = 0f;
-                PerksMenu.SetActive(value: true);
-            }
+            _requedScore += (int)(_requedScore * 1.5f);
+            _perksMenu.Show();
         }
     }
 
@@ -305,19 +198,19 @@ public class Player : Mob
 
     private static void ComboCalc()
     {
-       /* if (MobOld.ComboTimer < 1f)
-        {
-            MobOld.ComboTimer += Time.deltaTime;
-            if (MobOld.ComboTimer >= 1f)
-            {
-                MobOld.ComboCount = 0;
-            }
-        }*/
+        /* if (MobOld.ComboTimer < 1f)
+         {
+             MobOld.ComboTimer += Time.deltaTime;
+             if (MobOld.ComboTimer >= 1f)
+             {
+                 MobOld.ComboCount = 0;
+             }
+         }*/
     }
 
     private void CheckBarrel()
     {
-        if (MassCurrentPerks[7] > 0)
+        /*if (MassCurrentPerks[7] > 0)
         {
             BarrelTimer += Time.deltaTime;
             if (BarrelTimer > BarrelDelay)
@@ -325,6 +218,6 @@ public class Player : Mob
                 BarrelTimer -= BarrelDelay;
                 CreateBarell();
             }
-        }
+        }*/
     }
 }

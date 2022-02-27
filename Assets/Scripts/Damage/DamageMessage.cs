@@ -4,12 +4,12 @@ using UnityEngine;
 
 public struct DamageMessage
 {
-    public Mob Attacker;
-    public Mob Target;
+    public IMob Attacker;
+    public IMob Target;
     public float Damage;
     public DamageSources DamageSource;
 
-    public DamageMessage(Mob attacker, Mob target, float damage, DamageSources damageSource)
+    public DamageMessage(IMob attacker, IMob target, float damage, DamageSources damageSource)
     {
         Attacker = attacker;
         Target = target;

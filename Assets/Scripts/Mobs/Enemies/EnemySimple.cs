@@ -21,7 +21,7 @@ public class EnemySimple : Mob
     {
         if (collision.gameObject.tag == "Ray" || collision.gameObject.tag == "Barrel")
         {
-            ReceiveDamage(new DamageMessage(Player, this, 1 * Time.deltaTime, DamageSources.Ray));
+            ReceiveDamage(new DamageMessage(Player, this, Player.RayDmg * Time.deltaTime*2, DamageSources.Ray));
             //Destroy(gameObject);
             //Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }

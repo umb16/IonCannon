@@ -27,7 +27,12 @@ public class PlayerPerksController
 
     public IPerk[] GetRandomAvaliable(int number = 3)
     {
-        var perksList = _perkForLvlups.Where(x => !x.Maxed);
+        var perksList = _perkForLvlups.Where(x => !x.Maxed).ToArray();
+        Debug.Log(perksList.Count()); ;
+        foreach (var item in perksList)
+        {
+            Debug.Log(item.Perk.Name);
+        }
         if(!perksList.Any())
             return new IPerk[0];
         number = Mathf.Min(number, perksList.Count());
@@ -36,16 +41,16 @@ public class PlayerPerksController
         float weightSum = 0;
         for (int i = 0; i < number; i++)
         {
-            result[i] = _perkForLvlups[i].Perk;
-            weightSum += _perkForLvlups[i].Probability;
+            result[i] = perksList[i].Perk;
+            weightSum += perksList[i].Probability;
         }
-        for (int i = number; i < _perkForLvlups.Count; i++)
+        for (int i = number; i < perksList.Length; i++)
         {
-            weightSum += _perkForLvlups[i].Probability;
-            float probability = _perkForLvlups[i].Probability / weightSum;
+            weightSum += perksList[i].Probability;
+            float probability = perksList[i].Probability / weightSum;
             if (Random.value <= probability)
             {
-                result[Random.Range(0, result.Length)] = _perkForLvlups[i].Perk;
+                result[Random.Range(0, result.Length)] = perksList[i].Perk;
             }
         }
         return result;

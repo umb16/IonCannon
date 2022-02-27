@@ -14,9 +14,20 @@ public class PerksMenu : MonoBehaviour
         _perksController = perksController;
     }
 
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
     private void OnEnable()
     {
         IPerk[] perks = _perksController.GetRandomAvaliable(_elements.Length);
+        if (perks.Length == 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        Time.timeScale = 0;
         for (int i = 0; i < _elements.Length; i++)
         {
             var element = _elements[i];
@@ -27,7 +38,7 @@ public class PerksMenu : MonoBehaviour
                 element.Show(
                     perk.Name + " " + LocalizationManager.Instance.GetPhrase(LocKeys.Lvl) + " " + (perk.Level + 1),
                     perk.Description,
-                    () => { gameObject.SetActive(false); perk.AddLevel(); }
+                    () => { gameObject.SetActive(false); perk.AddLevel(); Time.timeScale = 1f; }
                     );
             }
             else
