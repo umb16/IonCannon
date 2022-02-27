@@ -149,7 +149,7 @@ public class Player : Mob
         if (dir != Vector3.zero)
         {
             _animator.SetBool("Run", true);
-            _animator.speed = MovementSpeed.Value / 3;
+            _animator.speed = MovementSpeed.Value / 6;
         }
         else
         {
