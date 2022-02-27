@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PerkEBoss : IPerk
 {
+    public PerkType Type => PerkType.EBoss;
     public string Name => throw new System.NotImplementedException();
 
     public string Description => throw new System.NotImplementedException();
 
-    private Mob _mob;
+    private IMob _mob;
 
     public int Level => 1;
 
@@ -19,7 +20,7 @@ public class PerkEBoss : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEBoss(Mob mob)
+    public PerkEBoss(IMob mob)
     {
         SetParent(mob);
     }
@@ -33,7 +34,7 @@ public class PerkEBoss : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(Mob mob)
+    public void SetParent(IMob mob)
     {
         if (mob == null)
         {

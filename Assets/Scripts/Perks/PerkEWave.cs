@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class PerkEWave : IPerk
 {
+    public PerkType Type => PerkType.EWaveFactor;
     public string Name => throw new System.NotImplementedException();
 
     public string Description => throw new System.NotImplementedException();
 
-    private Mob _mob;
+    private IMob _mob;
 
     public int Level => 1;
 
@@ -20,7 +21,7 @@ public class PerkEWave : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEWave(Mob mob)
+    public PerkEWave(IMob mob)
     {
         SetParent(mob);
     }
@@ -34,7 +35,7 @@ public class PerkEWave : IPerk
         Debug.Log("Is static perk");
     }
 
-    public async void SetParent(Mob mob)
+    public async void SetParent(IMob mob)
     {
         
         if (mob == null)

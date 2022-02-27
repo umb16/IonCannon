@@ -9,7 +9,7 @@ public static class StatsModificatorsDB
         return new StatModificatorsCollection(
             new StatModificator[]
                 {
-                    new StatModificator(1, StatModificatorType.Additive, StatType.Speed),
+                    new StatModificator(1, StatModificatorType.Additive, StatType.MovementSpeed),
                     new StatModificator(1, StatModificatorType.Additive, StatType.MaxHP),
                 }
             );

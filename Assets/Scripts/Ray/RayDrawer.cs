@@ -55,6 +55,7 @@ public class RayDrawer : MonoBehaviour
                 return;
             }
             zero = hitInfo.point;
+            zero.z = zero.y * .1f;
             _cannonPath.positionCount = _currentLineIndex + 1;
             if (_currentLineIndex > 0)
             {

@@ -11,7 +11,7 @@ public static class StatsCollectionsDB
         maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
         return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
          {
-            (StatType.Speed, new ComplexStat(3)),
+            (StatType.MovementSpeed, new ComplexStat(3)),
             (StatType.RaySpeed, new ComplexStat(6)),
             (StatType.RayPathLenght, new ComplexStat(10)),
             (StatType.RayDelay, new ComplexStat(1.3f)),
@@ -29,7 +29,7 @@ public static class StatsCollectionsDB
         maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
         return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
          {
-            (StatType.Speed, new ComplexStat(3)),
+            (StatType.MovementSpeed, new ComplexStat(3)),
             (StatType.MaxHP, maxHP),
             (StatType.HP, HP),
             (StatType.Score, new ComplexStat(1)),

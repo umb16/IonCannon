@@ -5,8 +5,20 @@ public enum LocKeys
     Play,
     //Нет
     None,
-    //Скорость
-    Speed,
+    //Скорость бега
+    MoveSpeed,
+    //Скорость луча
+    RaySpeed,
+    //Длинна пути луча
+    RayPathLenght,
+    //Скорость зарядки луча
+    RayChargeDelay,
+    //Ширина луча
+    RayDamageAreaRadius,
+    //Урон луча
+    RayDamage,
+    //Ур.
+    Lvl,
 }
 public static class LocKeyConverter
 {
@@ -18,8 +30,20 @@ public static class LocKeyConverter
                 return "Play";
             case LocKeys.None:
                 return "None";
-            case LocKeys.Speed:
-                return "Speed";
+            case LocKeys.MoveSpeed:
+                return "MoveSpeed";
+            case LocKeys.RaySpeed:
+                return "RaySpeed";
+            case LocKeys.RayPathLenght:
+                return "RayPathLenght";
+            case LocKeys.RayChargeDelay:
+                return "RayChargeDelay";
+            case LocKeys.RayDamageAreaRadius:
+                return "RayDamageAreaRadius";
+            case LocKeys.RayDamage:
+                return "RayDamage";
+            case LocKeys.Lvl:
+                return "Lvl";
                 default: return "";
         }
     }

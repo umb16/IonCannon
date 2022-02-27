@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PerkEChampion : IPerk
 {
+    public PerkType Type => PerkType.EChampion;
     public string Name => throw new System.NotImplementedException();
 
     public string Description => throw new System.NotImplementedException();
 
-    private Mob _mob;
+    private IMob _mob;
 
     public int Level => 1;
 
@@ -18,7 +19,7 @@ public class PerkEChampion : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEChampion(Mob mob)
+    public PerkEChampion(IMob mob)
     {
         SetParent(mob);
     }
@@ -33,7 +34,7 @@ public class PerkEChampion : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(Mob mob)
+    public void SetParent(IMob mob)
     {
         if (mob == null)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SimplePerk : IPerk
 {
+    public PerkType Type { get; private set; }
     public string Name => _name();
 
     public string Description => _description();
@@ -19,11 +20,12 @@ public class SimplePerk : IPerk
     private Func<string> _name;
     private StatModificator[][] _modificators;
     private DamageController _damageController;
-    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, Mob mob)
+    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, IMob mob, PerkType type)
     {
         _name = name;
         _description = description;
         _modificators = statModificators;
+        Type = type;
         SetParent(mob);
     }
     public void AddLevel()
@@ -42,7 +44,7 @@ public class SimplePerk : IPerk
         _collection.AddModificators(_modificators[Level - 1]);
     }
 
-    public void SetParent(Mob parent)
+    public void SetParent(IMob parent)
     {
         _collection = parent.StatsCollection;
         _damageController = parent.DamageController;

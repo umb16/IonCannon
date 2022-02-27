@@ -16,20 +16,18 @@ public class Timer
     private float _currentTime;
     private Action<float> _everyUpdate;
     private Action _end;
+    private Func<bool> _condition;
 
     public bool IsEnd { private set; get; }
     public float NormalizedPlayTime => Mathf.Clamp01((_currentTime - _delay) / _interval);
 
-    public Timer(Action<float> everyUpdate, Action end, float interval, float delay = 0)
+    public Timer(float interval)
     {
-        _everyUpdate = everyUpdate;
-        _end = end;
         _interval = interval;
-        _delay = delay;
         _timers.Add(this);
         TryStartLoop();
     }
-    public Timer(Action end, float interval, float delay = 0)
+    /*public Timer(Action end, float interval, float delay = 0)
     {
         _everyUpdate = null;
         _end = end;
@@ -37,7 +35,30 @@ public class Timer
         _delay = delay;
         _timers.Add(this);
         TryStartLoop();
+    }*/
+
+
+    public Timer SetUpdate(Action<float> everyUpdate)
+    {
+        _everyUpdate = everyUpdate;
+        return this;
     }
+    public Timer SetEnd(Action end)
+    {
+        _end = end;
+        return this;
+    }
+    public Timer SetDelay(float delay)
+    {
+        _delay = delay;
+        return this;
+    }
+    public Timer SetCondition(Func<bool> condition)
+    {
+        _condition = condition;
+        return this;
+    }
+
 
     private static void TryStartLoop()
     {

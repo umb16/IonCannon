@@ -7,12 +7,13 @@ using Zenject;
 using System.Threading;
 using Umb16.Extensions;
 
-public class Mob : MonoBehaviour, IMovable
+public class Mob : MonoBehaviour, IMob
+//: MonoBehaviour//, IMovable
 {
-    public ComplexStat Speed { get; private set; }
+    public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
 
-    private List<IPerk> _perks = new List<IPerk>();
+    private Dictionary<PerkType, IPerk> _perks = new Dictionary<PerkType, IPerk>();
     public StandartStatsCollection StatsCollection { get; protected set; }
     public DamageController DamageController { get; private set; }
     public GameData GameData { get; private set; }
@@ -35,7 +36,7 @@ public class Mob : MonoBehaviour, IMovable
     public void AddPerk(Func<Mob, IPerk> perkGenerator, int level = 0)
     {
         var perk = perkGenerator(this);
-        _perks.Add(perk);
+        _perks.Add(perk.Type, perk);
         if (level > 0)
             perk.SetLevel(level);
     }
@@ -71,10 +72,11 @@ public class Mob : MonoBehaviour, IMovable
 
     private void Start()
     {
-        Speed = StatsCollection.GetStat(StatType.Speed);
+        MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
         var size = StatsCollection.GetStat(StatType.Size);
         transform.localScale = Vector3.one * size.Value;
+        transform.position += new Vector3(transform.position.x, transform.position.y, transform.position.y * .1f);
         size.ValueChanged += (x) => transform.localScale = Vector3.one * x.Value;
         _sprite = GetComponent<SpriteRenderer>();
     }
@@ -89,7 +91,7 @@ public class Mob : MonoBehaviour, IMovable
                 _sprite.flipX = _moveTarget.x - transform.position.x < 0;
 
                 Vector3 pos = transform.position;
-                pos += Speed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
+                pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
                 pos.z = pos.y * .1f;
                 transform.position = pos;
             }

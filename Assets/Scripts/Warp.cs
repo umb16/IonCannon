@@ -9,27 +9,27 @@ public class Warp : MonoBehaviour
     private void Start()
     {
         Beam.SetActive(value: true);
-        new Timer((x) =>
-        {
-            Beam.transform.localScale = new Vector3(x * 1f, 40f, x * 1f);
-        }, delegate
-        {
-            Barr.SetActive(value: true);
-            GetComponent<Collider>().enabled = true;
-            new Timer((x) =>
+        new Timer(.5f)
+            .SetUpdate((x) =>Beam.transform.localScale = new Vector3(x * 1f, 40f, x * 1f))
+            .SetEnd(()=>
             {
-                if (Beam != null)
+                Barr.SetActive(value: true);
+                GetComponent<Collider>().enabled = true;
+                new Timer(.5f).SetUpdate((x) =>
                 {
-                    Beam.transform.localScale = new Vector3(1f - x * 1f, 40f, 1f - x * 1f);
-                }
-            }, () =>
-            {
-                if (Beam != null)
+                    if (Beam != null)
+                    {
+                        Beam.transform.localScale = new Vector3(1f - x * 1f, 40f, 1f - x * 1f);
+                    }
+                })
+                .SetEnd(() =>
                 {
-                    Beam.SetActive(value: false);
-                }
-            }, 0.5f, 0f);
-        }, 0.5f, 0f);
+                    if (Beam != null)
+                    {
+                        Beam.SetActive(value: false);
+                    }
+                });
+            });
     }
 
     private void Update()

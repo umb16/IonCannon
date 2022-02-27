@@ -1,6 +1,6 @@
 public enum StatType
 {
-    Speed = 0,
+    MovementSpeed = 0,
     RaySpeed = 1,
     RayPathLenght= 2,
     RayDelay= 3,

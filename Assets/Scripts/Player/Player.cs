@@ -21,8 +21,6 @@ public class Player : Mob
         3
     };
 
-    public static Player Self;
-
     private ComplexStat _speed;
     private ComplexStat _maxPathLength;
     private ComplexStat _raySpeed;
@@ -40,9 +38,6 @@ public class Player : Mob
 
     private List<int> avaliablePercs = new List<int>();
 
-    private Action SetPerc;
-
-
     public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
 
     public float Radiation => RayDmg * (float)MassCurrentPerks[6] * 0.1f;
@@ -53,21 +48,20 @@ public class Player : Mob
 
     public float RaySplash => 1f + (float)MassCurrentPerks[4] * 0.3f;
 
-    public float Speed => _speed.Value + (float)MassCurrentPerks[0];
-
     public float RaySpeed => _raySpeed.Value + (float)(MassCurrentPerks[1] * 2);
 
     public float MaxPathLength => _maxPathLength.Value + (float)(MassCurrentPerks[2] * 10);
+    [Inject]
+    private void Construct()
+    {
+        StatsCollection = StatsCollectionsDB.StandartPlayer();
+    }
 
     private void Awake()
     {
-        StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
-        _speed = StatsCollection.GetStat(StatType.Speed);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
-
-        Self = this;
         avaliablePercs.Clear();
         PerksMenu.SetActive(value: false);
     }
@@ -79,10 +73,11 @@ public class Player : Mob
             MainMenu.gameIsStart = false;
             GameOver.SetActive(value: true);
             UnityEngine.Object.Destroy(base.gameObject);
-            new Timer((x) =>
+            new Timer(1f)
+                .SetUpdate((x) =>
             {
                 Time.timeScale = 1f - x;
-            }, null, 1f, 0f);
+            });
             UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
     }
@@ -94,10 +89,10 @@ public class Player : Mob
             GameOver.SetActive(value: true);
             UnityEngine.Object.Destroy(base.gameObject);
             MainMenu.gameIsStart = false;
-            new Timer((x) =>
+            new Timer(1).SetUpdate((x) =>
             {
                 Time.timeScale = 1f - x;
-            }, null, 1f, 0f);
+            });
             UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
         }
     }
@@ -282,7 +277,7 @@ public class Player : Mob
 
     private void SetPerkUpMenuAction()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
+        /*if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
         {
             SetPerc = () =>
             {
@@ -305,7 +300,7 @@ public class Player : Mob
                 MassCurrentPerks[avaliablePercs[2]]++;
             };
             StopScore();
-        }
+        }*/
     }
 
     private static void ComboCalc()

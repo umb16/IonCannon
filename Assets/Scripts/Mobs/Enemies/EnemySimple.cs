@@ -13,7 +13,7 @@ public class EnemySimple : Mob
         StatsCollection = StatsCollectionsDB.StandartEnemy();
         StatsCollection.SetStat(StatType.MaxHP, _hp);
         StatsCollection.SetStat(StatType.HP, _hp);
-        StatsCollection.SetStat(StatType.Speed, _speed);
+        StatsCollection.SetStat(StatType.MovementSpeed, _speed);
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
     }
