@@ -12,6 +12,7 @@ public interface IMob
     StandartStatsCollection StatsCollection { get; }
 
     void AddPerk(Func<Mob, IPerk> perkGenerator, int level = 0);
+    public void ReceiveDamage(DamageMessage message);
     void Die(DamageMessage message);
     void MoveTo(Vector3 target);
     void Stop();

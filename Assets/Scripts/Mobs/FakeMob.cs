@@ -40,4 +40,9 @@ public class FakeMob : IMob
     {
         throw new NotImplementedException();
     }
+
+    public void ReceiveDamage(DamageMessage message)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -216,7 +216,7 @@ public class MobGenerator : MonoBehaviour
         }
         WaveMobCounter++;
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)Score.CurrentScore + _time) / 100f)) + 1f);
-        Debug.Log("Create mob delay "+ delay);
+        //Debug.Log("Create mob delay "+ delay);
         Invoke("CrateMob", delay);
     }
 

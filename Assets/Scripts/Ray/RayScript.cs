@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class RayScript : WithTimer
 {
@@ -52,7 +53,7 @@ public class RayScript : WithTimer
     public void Stop()
     {
         _timer.Stop();
-           stop = true;
+        stop = true;
         CreateTimer(.01f)
             .SetEnd(() => GetComponent<AudioSource>().Stop());
         GetComponent<AudioSource>().PlayOneShot(RaySounds[1]);

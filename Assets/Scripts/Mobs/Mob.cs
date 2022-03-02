@@ -10,6 +10,7 @@ using Umb16.Extensions;
 public class Mob : MonoBehaviour, IMob
 //: MonoBehaviour//, IMovable
 {
+    public event Action<DamageMessage> DamageEvent;
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
 
@@ -41,7 +42,7 @@ public class Mob : MonoBehaviour, IMob
             perk.SetLevel(level);
     }
 
-    internal void ReceiveDamage(DamageMessage message)
+    public void ReceiveDamage(DamageMessage message)
     {
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
@@ -50,12 +51,14 @@ public class Mob : MonoBehaviour, IMob
         {
             Die(message);
         }
+        DamageEvent?.Invoke(message);
     }
 
     public void Die(DamageMessage message)
     {
         Stop();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
         DamageController.SendDie(message);
     }
 
@@ -88,7 +91,7 @@ public class Mob : MonoBehaviour, IMob
             if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
             {
                 //разворачиваем спрайт в зависимости от направления движения
-                _sprite.flipX = _moveTarget.x - transform.position.x < 0;
+                Flip();
 
                 Vector3 pos = transform.position;
                 pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
@@ -96,5 +99,21 @@ public class Mob : MonoBehaviour, IMob
                 transform.position = pos;
             }
         }
+    }
+
+    private void Flip()
+    {
+        var scale = transform.localScale;
+        if (_moveTarget.x - transform.position.x < 0)
+        {
+
+            scale.x = -1;
+
+        }
+        else
+        {
+            scale.x = 1;
+        }
+        transform.localScale = scale;
     }
 }
