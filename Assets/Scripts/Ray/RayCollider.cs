@@ -26,7 +26,7 @@ public class RayCollider : MonoBehaviour
         var mob = col.gameObject.GetComponent<IMob>();
         if (mob != null)
         {
-            mob.ReceiveDamage(new DamageMessage(_player, mob, _player.RayDmg * 0, DamageSources.Ray));
+            mob.ReceiveDamage(new DamageMessage(_player, mob, _player.RayDmg, DamageSources.Ray));
             _mobs.Add(new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
         }
     }
@@ -54,7 +54,7 @@ public class RayCollider : MonoBehaviour
             if (mob.NextTick < Time.time)
             {
                 mob.NextTick = Time.time + tickTime;
-                mob.Mob.ReceiveDamage(new DamageMessage(_player, mob.Mob, _player.RayDmg * .5f * 0, DamageSources.Ray));
+                mob.Mob.ReceiveDamage(new DamageMessage(_player, mob.Mob, _player.RayDmg * .5f, DamageSources.Ray));
             }
         }
     }
