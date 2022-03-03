@@ -25,6 +25,7 @@ public class GrassSetter : MonoBehaviour
                 if (perlin > .6f)
                 {
                     var go = Instantiate(_grass[Random.Range(0, _grass.Length)]);
+                    go.transform.SetParent(transform);
                     go.transform.position = new Vector3(i * .5f, j * .5f, j * .5f * .1f);
                     if (Random.value > .5f)
                         go.transform.localScale = new Vector3(1, 1, 1);

@@ -10,9 +10,14 @@ using Umb16.Extensions;
 public class Mob : MonoBehaviour, IMob
 //: MonoBehaviour//, IMovable
 {
+    private static int idIndex;
+    public int ID { get; private set; }
     public event Action<DamageMessage> DamageEvent;
+    public event Action<DamageMessage> DieEvent;
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
+
+    public bool IsDead => HP.Value <= 0;
 
     private Dictionary<PerkType, IPerk> _perks = new Dictionary<PerkType, IPerk>();
     public StandartStatsCollection StatsCollection { get; protected set; }
@@ -23,6 +28,7 @@ public class Mob : MonoBehaviour, IMob
     private Vector3 _moveTarget;
     private bool _stopped = true;
     private SpriteRenderer _sprite;
+    public float DestroyDelay;
 
     // virtual public void Init() { }
     [Inject]
@@ -32,6 +38,7 @@ public class Mob : MonoBehaviour, IMob
         DamageController = damageController;
         Player = player;
         IsReady = true;
+        ID = ++idIndex;
     }
 
     public void AddPerk(Func<Mob, IPerk> perkGenerator, int level = 0)
@@ -44,21 +51,25 @@ public class Mob : MonoBehaviour, IMob
 
     public void ReceiveDamage(DamageMessage message)
     {
+        if(IsDead)
+            return;
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
         Debug.Log(HP.Value);
-        if (HP.Value <= 0)
+        DamageEvent?.Invoke(message);
+        if (IsDead)
         {
             Die(message);
         }
-        DamageEvent?.Invoke(message);
     }
 
     public void Die(DamageMessage message)
     {
+        DieEvent?.Invoke(message);
         Stop();
-        gameObject.SetActive(false);
-        //Destroy(gameObject);
+        //gameObject.SetActive(false);
+
+        Destroy(gameObject, DestroyDelay);
         DamageController.SendDie(message);
     }
 

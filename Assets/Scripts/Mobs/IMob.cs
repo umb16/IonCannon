@@ -3,6 +3,7 @@ using UnityEngine;
 
 public interface IMob
 {
+    int ID { get; }
     DamageController DamageController { get; }
     GameData GameData { get; }
     ComplexStat HP { get; }

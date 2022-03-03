@@ -100,6 +100,7 @@ Shader "SpriteMob"
             {
                 half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) ;
                 color.rgb += IN.color.rgb;
+                color.a *= IN.color.a;
                 //#if UNITY_UI_CLIP_RECT
                     //color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 //#endif

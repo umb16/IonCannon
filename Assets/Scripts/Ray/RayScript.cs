@@ -6,13 +6,13 @@ public class RayScript : WithTimer
 {
     public GameObject MainObj;
 
-    public GameObject RayCylinder;
+   [SerializeField] private RayAnimations _rayAnim;
 
     private float _splash = 1f;
 
     public static Transform RayTransform;
 
-    public TrailRenderer Trail;
+    //public TrailRenderer Trail;
 
     public AudioClip[] RaySounds;
 
@@ -37,14 +37,15 @@ public class RayScript : WithTimer
                     GetComponent<AudioSource>().Play();
                 }
             });
-        RayCylinder.SetActive(value: true);
-        Trail.startWidth = 0.3f * _splash;
+        _rayAnim.gameObject.SetActive(true);
+        //Trail.startWidth = 0.3f * _splash;
         _timer = CreateTimer(1)
             .SetUpdate((x) =>
             {
-                if (RayCylinder != null)
+                if (_rayAnim != null)
                 {
-                    RayCylinder.transform.localScale = new Vector3(x * 0.5f * _splash, x * 0.5f * _splash * .7f, 1);
+                    //_raySpot.transform.localScale = new Vector3(x * 0.5f * _splash, x * 0.5f * _splash * .7f, 1);
+                    _rayAnim.Set(x * _splash);
                 }
             })
             .SetEnd(() => MainObj.SetActive(true));
@@ -58,19 +59,19 @@ public class RayScript : WithTimer
             .SetEnd(() => GetComponent<AudioSource>().Stop());
         GetComponent<AudioSource>().PlayOneShot(RaySounds[1]);
         gameObject.GetComponentInChildren<ParticleSystem>().loop = false;
-        CreateTimer(.5f)
+        CreateTimer(.3f)
             .SetUpdate((x) =>
             {
-                RayCylinder.transform.localScale = new Vector3(0.5f * _splash - x * 0.5f * _splash, (0.5f * _splash - x * 0.5f * _splash) * .7f, 1);
+                _rayAnim.Set(_splash - x * _splash);
                 MainObj.transform.localScale = Vector3.one - Vector3.one * x;
             })
             .SetEnd(() =>
             {
                 MainObj.SetActive(false);
-                RayCylinder.SetActive(false);
+                _rayAnim.gameObject.SetActive(false);
             });
         CreateTimer(20)
-            .SetUpdate((x) => transform.position += Vector3.forward)
+            //.SetUpdate((x) => transform.position += Vector3.forward)
             .SetEnd(() => Destroy(gameObject));
     }
 }

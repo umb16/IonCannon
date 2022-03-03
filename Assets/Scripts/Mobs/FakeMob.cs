@@ -19,6 +19,8 @@ public class FakeMob : IMob
 
     public StandartStatsCollection StatsCollection { get; private set; }
 
+    public int ID => throw new NotImplementedException();
+
     public FakeMob()
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();

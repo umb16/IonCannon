@@ -6,7 +6,6 @@ using Zenject;
 public class Player : Mob
 {
     [SerializeField] Animator _animator;
-    //[SerializeField] float _speedFactor = 3;
 
     private ComplexStat _maxPathLength;
     private ComplexStat _raySpeed;
@@ -50,44 +49,17 @@ public class Player : Mob
 
     private void Awake()
     {
+        DestroyDelay = 0;
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Mob" || collision.gameObject.tag == "Ray")
+        DieEvent += (_) =>
         {
-            MainMenu.gameIsStart = false;
-            GameOver.SetActive(value: true);
-            UnityEngine.Object.Destroy(base.gameObject);
-            new Timer(1f)
-                .SetUpdate((x) =>
-            {
-                if (this != null)
-                    Time.timeScale = 1f - x;
-            });
-            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Ray" || collision.gameObject.tag == "Barrel")
-        {
-            GameOver.SetActive(value: true);
-            UnityEngine.Object.Destroy(base.gameObject);
-            MainMenu.gameIsStart = false;
-            new Timer(1).SetUpdate((x) =>
-            {
-                if (this != null)
-                    Time.timeScale = 1f - x;
-            });
-            UnityEngine.Object.Destroy(UnityEngine.Object.Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
-        }
+            GameOver.SetActive(true);
+            Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+        };
     }
 
     private void CreateBarell()

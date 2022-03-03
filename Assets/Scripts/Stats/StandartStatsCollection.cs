@@ -24,7 +24,10 @@ public class StandartStatsCollection : IStatsCollection
     {
         if (_stats.TryGetValue(statType, out ComplexStat result))
             return result;
-        return null;
+        Debug.LogWarning("stat not found " + statType);
+        var stat = new ComplexStat(0);
+        _stats[statType] = stat;
+        return stat;
     }
 
     public void RemoveModificators(StatModificator[] modificators)
