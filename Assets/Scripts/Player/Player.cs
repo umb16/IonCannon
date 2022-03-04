@@ -96,10 +96,6 @@ public class Player : Mob
 
     private void Update()
     {
-        if (!MainMenu.GameIsStart)
-        {
-            return;
-        }
         CheckBarrel();
         ComboCalc();
         SetPerkUpMenuAction();

@@ -27,13 +27,14 @@ public class RayDrawer : MonoBehaviour
     private LineRenderer _cannonPath;
 
     private Player _player;
-
+    private GameData _gameData;
     private float? _cashedLenght;
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, GameData gameData)
     {
         _player = player;
+        _gameData = gameData;
     }
 
     private void Awake()
@@ -42,7 +43,7 @@ public class RayDrawer : MonoBehaviour
     }
     private void RayLogic()
     {
-        if (!MainMenu.GameIsStart)
+        if (_gameData.State != GameState.InGame)
             return;
         if (Input.GetMouseButton(0) && rayIsReady)
         {
