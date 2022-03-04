@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    public static bool gameIsStart;
+    public static bool GameIsStart;
+    public static bool FirstStart = true;
 
     public GameObject MobGenerator;
 
@@ -11,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        gameIsStart = false;
+        GameIsStart = false;
         Time.timeScale = 1f;
     }
 
@@ -20,9 +21,9 @@ public class MainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerObj.SetActive(value: true);
-            new Timer(1).SetEnd(() => gameIsStart = true);
-            MobGenerator.SetActive(value: true);
-            base.gameObject.SetActive(value: false);
+            new Timer(.1f).SetEnd(() => GameIsStart = true);
+            MobGenerator.SetActive(true);
+            gameObject.SetActive(false);
             Score.CurrentScore = 0;
         }
     }

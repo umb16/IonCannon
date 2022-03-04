@@ -12,8 +12,6 @@ public class Mob : MonoBehaviour, IMob
 {
     private static int idIndex;
     public int ID { get; private set; }
-    public event Action<DamageMessage> DamageEvent;
-    public event Action<DamageMessage> DieEvent;
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
 
@@ -27,10 +25,7 @@ public class Mob : MonoBehaviour, IMob
     public bool IsReady { get; private set; }
     private Vector3 _moveTarget;
     private bool _stopped = true;
-    private SpriteRenderer _sprite;
-    public float DestroyDelay;
 
-    // virtual public void Init() { }
     [Inject]
     private void Construct(DamageController damageController, GameData gameData, Player player)
     {
@@ -49,27 +44,22 @@ public class Mob : MonoBehaviour, IMob
             perk.SetLevel(level);
     }
 
-    public void ReceiveDamage(DamageMessage message)
+    public virtual void ReceiveDamage(DamageMessage message)
     {
-        if(IsDead)
+        if (IsDead)
             return;
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
         Debug.Log(HP.Value);
-        DamageEvent?.Invoke(message);
         if (IsDead)
         {
             Die(message);
         }
     }
 
-    public void Die(DamageMessage message)
+    public virtual void Die(DamageMessage message)
     {
-        DieEvent?.Invoke(message);
         Stop();
-        //gameObject.SetActive(false);
-
-        Destroy(gameObject, DestroyDelay);
         DamageController.SendDie(message);
     }
 
@@ -92,7 +82,6 @@ public class Mob : MonoBehaviour, IMob
         transform.localScale = Vector3.one * size.Value;
         transform.position += new Vector3(transform.position.x, transform.position.y, transform.position.y * .1f);
         size.ValueChanged += (x) => transform.localScale = Vector3.one * x.Value;
-        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()

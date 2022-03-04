@@ -17,8 +17,6 @@ public class Player : Mob
 
     public GameObject Barrel;
 
-    public GameObject GameOver;
-
     private float BarrelTimer;
 
     public GameObject Blood;
@@ -42,26 +40,30 @@ public class Player : Mob
     private void Construct(PerksMenu perksMenu, DamageController damageController)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
-        
         damageController.Die += x => Score.CurrentScore += x.Target.StatsCollection.GetStat(StatType.Score).IntValue;
         _perksMenu = perksMenu;
     }
 
     private void Awake()
     {
-        DestroyDelay = 0;
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
-        DieEvent += (_) =>
-        {
-            GameOver.SetActive(true);
-            Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
-        };
     }
 
+    public override void Die(DamageMessage message)
+    {
+        base.Die(message);
+        OnDie();
+    }
+
+    private void OnDie()
+    {
+        Destroy(gameObject);
+        Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+    }
     private void CreateBarell()
     {
         Vector2 v = new Vector2(UnityEngine.Random.value * 2f - 1f, UnityEngine.Random.value * 2f - 1f);
@@ -94,7 +96,7 @@ public class Player : Mob
 
     private void Update()
     {
-        if (!MainMenu.gameIsStart)
+        if (!MainMenu.GameIsStart)
         {
             return;
         }

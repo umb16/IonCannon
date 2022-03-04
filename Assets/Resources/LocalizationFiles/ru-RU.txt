@@ -7,3 +7,4 @@ RayChargeDelay=Скорость зарядки луча
 RayDamageAreaRadius=Ширина луча
 RayDamage=Урон луча
 Lvl=Ур.
+PressSpaceToStart=Нажмите пробел чтобы начать

@@ -42,6 +42,8 @@ public class RayDrawer : MonoBehaviour
     }
     private void RayLogic()
     {
+        if (!MainMenu.GameIsStart)
+            return;
         if (Input.GetMouseButton(0) && rayIsReady)
         {
             if (_cashedLenght == null)

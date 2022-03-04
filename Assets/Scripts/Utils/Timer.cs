@@ -41,6 +41,7 @@ public class Timer
     public Timer SetUpdate(Action<float> everyUpdate)
     {
         _everyUpdate = everyUpdate;
+        _everyUpdate?.Invoke(0);
         return this;
     }
     public Timer SetEnd(Action end)

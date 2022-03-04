@@ -19,6 +19,8 @@ public enum LocKeys
     RayDamage,
     //Ур.
     Lvl,
+    //Нажмите пробел чтобы начать
+    PressSpaceToStart,
 }
 public static class LocKeyConverter
 {
@@ -44,6 +46,8 @@ public static class LocKeyConverter
                 return "RayDamage";
             case LocKeys.Lvl:
                 return "Lvl";
+            case LocKeys.PressSpaceToStart:
+                return "PressSpaceToStart";
                 default: return "";
         }
     }
