@@ -158,6 +158,7 @@ public class MobGenerator : MonoBehaviour
     private float _time;
 
     private float _bossTime;
+    private Player _player;
 
     public int WaveMobCounter
     {
@@ -176,9 +177,10 @@ public class MobGenerator : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(DamageController damageController)
+    private void Construct(DamageController damageController, Player player)
     {
         damageController.Die += OnEnemyDie;
+        _player = player;
     }
 
     private void OnEnemyDie(DamageMessage msg)
@@ -215,7 +217,7 @@ public class MobGenerator : MonoBehaviour
                 mob.AddPerk((x) => new PerkEChampion(x));
         }
         WaveMobCounter++;
-        float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)Score.CurrentScore + _time) / 100f)) + 1f);
+        float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
         //Debug.Log("Create mob delay "+ delay);
         Invoke("CrateMob", delay);
     }

@@ -21,6 +21,8 @@ public enum LocKeys
     Lvl,
     //Нажмите пробел чтобы начать
     PressSpaceToStart,
+    //Комбо
+    Combo,
 }
 public static class LocKeyConverter
 {
@@ -48,6 +50,8 @@ public static class LocKeyConverter
                 return "Lvl";
             case LocKeys.PressSpaceToStart:
                 return "PressSpaceToStart";
+            case LocKeys.Combo:
+                return "Combo";
                 default: return "";
         }
     }

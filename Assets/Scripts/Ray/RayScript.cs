@@ -53,7 +53,7 @@ public class RayScript : WithTimer
 
     public void Stop()
     {
-        _timer.Stop();
+        _timer?.Stop();
         stop = true;
         CreateTimer(.01f)
             .SetEnd(() => GetComponent<AudioSource>().Stop());

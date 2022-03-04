@@ -3,6 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+public class PlayerExp
+{
+    public event Action LevelUp;
+    public event Action ExpGained;
+    public int CurrentLevel { get; private set; }
+    public int Requed { get; private set; } = 40;
+    public int Value { get; private set; }
+    public float Normalized => Value / (float)Requed;
+    public int ComboFactor { get; private set; }
+
+    public float NormalizedComboTime => Mathf.Max(0, (_comboTime - Time.time) / _comboDelay);
+    private float _comboTime = .01f;
+    private float _comboDelay = 2;
+    public void AddExp(int exp)
+    {
+        if (_comboTime < Time.time)
+        {
+            ComboFactor = 1;
+        }
+        _comboTime = Time.time + _comboDelay;
+        ComboFactor++;
+
+        Value += exp * (ComboFactor - 1);
+        if (Value >= Requed)
+        {
+            Value -= Requed;
+            Requed = (int)(Requed * 1.5f);
+            CurrentLevel++;
+            LevelUp?.Invoke();
+        }
+        ExpGained?.Invoke();
+    }
+
+}
+
 public class Player : Mob
 {
     [SerializeField] Animator _animator;
@@ -13,11 +48,8 @@ public class Player : Mob
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
 
-    private int _requedScore = 40;
-
     public GameObject Barrel;
-
-    private float BarrelTimer;
+    public PlayerExp Exp = new PlayerExp();
 
     public GameObject Blood;
     private PerksMenu _perksMenu;
@@ -40,7 +72,11 @@ public class Player : Mob
     private void Construct(PerksMenu perksMenu, DamageController damageController)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
-        damageController.Die += x => Score.CurrentScore += x.Target.StatsCollection.GetStat(StatType.Score).IntValue;
+        damageController.Die += x =>
+        {
+            if (ID != x.Target.ID)
+                Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
+        };
         _perksMenu = perksMenu;
     }
 
@@ -51,6 +87,7 @@ public class Player : Mob
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
+        Exp.LevelUp += OnLvlup;
     }
 
     public override void Die(DamageMessage message)
@@ -97,11 +134,7 @@ public class Player : Mob
     private void Update()
     {
         CheckBarrel();
-        ComboCalc();
-        SetPerkUpMenuAction();
-        CheckLvlup();
         Movement();
-        //MovementSpeed.SetBaseValue(_speedFactor);
     }
 
     private void Movement()
@@ -129,53 +162,9 @@ public class Player : Mob
         MoveTo(transform.position + dir * 10);
     }
 
-    private void CheckLvlup()
+    private void OnLvlup()
     {
-        if (Score.CurrentScore >= _requedScore)
-        {
-            _requedScore += (int)(_requedScore * 1.5f);
-            _perksMenu.Show();
-        }
-    }
-
-    private void SetPerkUpMenuAction()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Alpha1) && avaliablePercs.Count > 0)
-        {
-            SetPerc = () =>
-            {
-                MassCurrentPerks[avaliablePercs[0]]++;
-            };
-            StopScore();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && avaliablePercs.Count > 1)
-        {
-            SetPerc = delegate
-            {
-                MassCurrentPerks[avaliablePercs[1]]++;
-            };
-            StopScore();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && avaliablePercs.Count > 2)
-        {
-            SetPerc = delegate
-            {
-                MassCurrentPerks[avaliablePercs[2]]++;
-            };
-            StopScore();
-        }*/
-    }
-
-    private static void ComboCalc()
-    {
-        /* if (MobOld.ComboTimer < 1f)
-         {
-             MobOld.ComboTimer += Time.deltaTime;
-             if (MobOld.ComboTimer >= 1f)
-             {
-                 MobOld.ComboCount = 0;
-             }
-         }*/
+        _perksMenu.Show();
     }
 
     private void CheckBarrel()

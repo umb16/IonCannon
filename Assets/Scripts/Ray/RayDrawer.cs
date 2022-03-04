@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Umb16.Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -12,7 +13,7 @@ public class RayDrawer : MonoBehaviour
 
     private float _currentPathLength;
 
-    private List<Vector2> cannonPath = new List<Vector2>();
+    private List<Vector3> cannonPath = new List<Vector3>();
 
     private Vector3 _oldPointOfPath;
 
@@ -60,6 +61,8 @@ public class RayDrawer : MonoBehaviour
                 }
                 zero = hitInfo.point;
                 zero.z = zero.y * .1f;
+                if (zero.EqualsWithThreshold(_oldPointOfPath, 0.01f))
+                    return;
                 _cannonPath.positionCount = _currentLineIndex + 1;
                 if (_currentLineIndex > 0)
                 {
@@ -86,7 +89,12 @@ public class RayDrawer : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && rayIsReady)
         {
-            rayIsReady = false;
+            if (cannonPath.Count != 0)
+            {
+                if (cannonPath.Count == 1)
+                    cannonPath.Add(cannonPath[0]);
+                rayIsReady = false;
+            }
             _currentLineIndex = 0;
             _currentPathLength = 0f;
             rayTime = 0f;

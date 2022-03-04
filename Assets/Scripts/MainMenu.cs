@@ -31,7 +31,6 @@ public class MainMenu : MonoBehaviour
         new Timer(.1f).SetEnd(() => _gameData.State = GameState.InGame);
         MobGenerator.SetActive(true);
         gameObject.SetActive(false);
-        Score.CurrentScore = 0;
     }
 
     private void Update()

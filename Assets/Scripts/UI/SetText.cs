@@ -6,6 +6,9 @@ using UnityEngine;
 public class SetText : MonoBehaviour
 {
     [SerializeField] LocKeysStableEnum _key;
+    [SerializeField] string _pefix;
+    [SerializeField] string _affix;
+
     private TMP_Text _text;
     private bool _destroyed;
     private void Awake()
@@ -17,7 +20,7 @@ public class SetText : MonoBehaviour
 
     private void Set()
     {
-        _text.text = LocalizationManager.Instance.GetPhrase(_key);
+        _text.text = _pefix + LocalizationManager.Instance.GetPhrase(_key) + _affix;
     }
 
     private void OnDestroy()
