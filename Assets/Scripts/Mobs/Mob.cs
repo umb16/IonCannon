@@ -11,6 +11,7 @@ public class Mob : MonoBehaviour, IMob
 //: MonoBehaviour//, IMovable
 {
     private static int idIndex;
+    [SerializeField] bool _mirroringOnMove = true;
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
@@ -91,7 +92,8 @@ public class Mob : MonoBehaviour, IMob
             if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
             {
                 //разворачиваем спрайт в зависимости от направления движения
-                Flip();
+                if (_mirroringOnMove)
+                    Flip();
 
                 Vector3 pos = transform.position;
                 pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
