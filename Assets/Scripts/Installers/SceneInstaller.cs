@@ -10,5 +10,9 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<PerksMenu>().FromInstance(_perksMenu).AsSingle().NonLazy();
         Container.Bind<Player>().FromInstance(_player).AsSingle().NonLazy();
         Container.Bind<PlayerPerksController>().AsSingle();
+
+        Container.Bind<DamageController>().AsSingle().NonLazy();
+        Container.Bind<GameData>().AsSingle().NonLazy();
+
     }
 }

@@ -28,11 +28,6 @@ public class PlayerPerksController
     public IPerk[] GetRandomAvaliable(int number = 3)
     {
         var perksList = _perkForLvlups.Where(x => !x.Maxed).ToArray();
-        Debug.Log(perksList.Count()); ;
-        foreach (var item in perksList)
-        {
-            Debug.Log(item.Perk.Name);
-        }
         if(!perksList.Any())
             return new IPerk[0];
         number = Mathf.Min(number, perksList.Count());
