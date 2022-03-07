@@ -607,6 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df97d8b10bb4a3342b061d3a917ee2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mirroringOnMove: 1
   _animator: {fileID: 318}
   Barrel: {fileID: 1553508469165013, guid: 47f069035e42006438db37f037447f2d, type: 3}
   Blood: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 3}

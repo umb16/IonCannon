@@ -30,6 +30,9 @@ public class RayDrawer : MonoBehaviour
     private Player _player;
     private GameData _gameData;
     private float? _cashedLenght;
+    private bool _twoPointWay;
+
+    private Timer _stopTimer;
 
     [Inject]
     private void Construct(Player player, GameData gameData)
@@ -93,6 +96,7 @@ public class RayDrawer : MonoBehaviour
             {
                 if (cannonPath.Count == 1)
                     cannonPath.Add(cannonPath[0]);
+                _twoPointWay = cannonPath.Count == 2;
                 rayIsReady = false;
             }
             _currentLineIndex = 0;
@@ -123,11 +127,26 @@ public class RayDrawer : MonoBehaviour
             }
             if (cannonPath.Count < 2)
             {
-                _cannonRay.GetComponent<RayScript>().Stop();
-                _cannonRay = null;
-                rayIsReady = true;
+             _stopTimer?.ForceEnd();
+             _stopTimer = null;
+                if (_twoPointWay)
+                    _stopTimer =  new Timer(1).SetEnd(StopRay);
+                else
+                    StopRay();
             }
         }
+    }
+
+    private void StopRay()
+    {
+        _cannonRay.GetComponent<RayScript>().Stop();
+        _cannonRay = null;
+        rayIsReady = true;
+    }
+
+    private void OnDestroy()
+    {
+        _stopTimer?.ForceEnd();
     }
 
     private void Update()

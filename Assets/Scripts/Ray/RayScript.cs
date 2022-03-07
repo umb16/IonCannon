@@ -70,7 +70,7 @@ public class RayScript : WithTimer
                 MainObj.SetActive(false);
                 _rayAnim.gameObject.SetActive(false);
             });
-        CreateTimer(20)
+        CreateTimer(10)
             //.SetUpdate((x) => transform.position += Vector3.forward)
             .SetEnd(() => Destroy(gameObject));
     }

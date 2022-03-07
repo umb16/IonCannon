@@ -90,13 +90,6 @@ public class Timer
         }
     }
 
-    public void Restart()
-    {
-        IsEnd = false;
-        _timers.Add(this);
-        _currentTime = 0;
-    }
-
     public void Pause()
     {
         _paused = true;
@@ -104,13 +97,19 @@ public class Timer
 
     public void Stop()
     {
-        _timers.Remove(this);
-        IsEnd = true;
+        if (!IsEnd)
+        {
+            _timers.Remove(this);
+            IsEnd = true;
+        }
     }
     public void ForceEnd()
     {
-        _currentTime = _interval + 1;
-        Update();
+        if (!IsEnd)
+        {
+            _currentTime = _interval + 1;
+            Update();
+        }
     }
     private static async UniTask UpdateLoop()
     {
