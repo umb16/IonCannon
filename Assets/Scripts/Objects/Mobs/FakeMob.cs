@@ -21,6 +21,8 @@ public class FakeMob : IMob
 
     public int ID => throw new NotImplementedException();
 
+    public Vector3 Position => throw new NotImplementedException();
+
     public FakeMob()
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
@@ -44,6 +46,16 @@ public class FakeMob : IMob
     }
 
     public void ReceiveDamage(DamageMessage message)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetPosition(float x, float y)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetPosition(Vector3 vector)
     {
         throw new NotImplementedException();
     }

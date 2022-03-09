@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
+using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
 
 public class MobGenerator : MonoBehaviour
@@ -207,9 +208,10 @@ public class MobGenerator : MonoBehaviour
         if (_createMobsLeft > 0)
         {
             _createMobsLeft--;
-            Vector2 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
+            Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
             vector.Normalize();
             vector *= 25f;
+            vector += _player.transform.position;
             GameObject gameObject = await MobPrafab[GetRandomMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
             //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
             Mob mob = gameObject.GetComponent<Mob>();
@@ -228,10 +230,11 @@ public class MobGenerator : MonoBehaviour
     private async UniTask CreateBoss()
     {
         GetComponent<AudioSource>().Play();
-        Vector2 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
+        Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
         vector.Normalize();
         vector *= 25f;
-        GameObject gameObject =  await MobPrafab[Random.Range(0, MobPrafab.Length)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+        vector += _player.transform.position;
+        GameObject gameObject = await MobPrafab[Random.Range(0, MobPrafab.Length)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
         // Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
         Mob mob = gameObject.GetComponent<Mob>();
         Mobs.Add(mob);
@@ -269,5 +272,14 @@ public class MobGenerator : MonoBehaviour
             _bossTime = 0f;
         }
         _time += Time.deltaTime;
+
+        foreach (var mob in Mobs)
+        {
+            Vector3 dir = mob.Position - _player.Position;
+            if ((dir).SqrMagnetudeXY() > 60 * 60)
+            {
+                mob.SetPosition(_player.Position + dir.NormalizedXY() * 25);
+            }
+        }
     }
 }

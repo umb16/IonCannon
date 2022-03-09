@@ -24,6 +24,9 @@ public class Mob : MonoBehaviour, IMob
     public GameData GameData { get; private set; }
     public Player Player { get; private set; }
     public bool IsReady { get; private set; }
+
+    public Vector3 Position => transform.position;
+
     private Vector3 _moveTarget;
     private bool _stopped = true;
 
@@ -114,5 +117,15 @@ public class Mob : MonoBehaviour, IMob
             scale.x = 1;
         }
         transform.localScale = scale;
+    }
+
+    public void SetPosition(float x, float y)
+    {
+        transform.Set2DPos(x, y);
+    }
+
+    public void SetPosition(Vector3 vector)
+    {
+        transform.Set2DPos(vector.x, vector.y);
     }
 }
