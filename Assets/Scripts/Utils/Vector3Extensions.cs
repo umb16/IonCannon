@@ -4,6 +4,11 @@ namespace Umb16.Extensions
 {
     public static class Vector3Extensions
     {
+
+        public static Vector3 Get2D(this Vector3 v)
+        {
+            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor);
+        }
         public static bool EqualsWithThreshold(this Vector3 v1, Vector3 v2, float threshold)
         {
             return Mathf.Abs(v1.x - v2.x) < threshold && Mathf.Abs(v1.y - v2.y) < threshold &&
@@ -92,7 +97,7 @@ namespace Umb16.Extensions
 
         public static Vector3 DiamondRotateXZ(this Vector3 v, float angle)
         {
-            return v.RotateXZ(DiamondToNormalVectorXZ(angle));
+            return v.RotateXZ(DiamondToNormalVectorXY(angle));
         }
 
         public static Vector3 RotateXZ90(this Vector3 v)
@@ -140,23 +145,26 @@ namespace Umb16.Extensions
             float z = (angle < 3 ? ((angle > 1) ? 2 - angle : angle) : angle - 4);
             return new Vector3(x, 0, z);
         }
-        public static Vector3 DiamondToNormalVectorXZ(float angle)
+        public static Vector3 DiamondToNormalVectorXY(float angle)
         {
-            return DiamondToVectorXZ(angle).NormalizedXZ();
+            return DiamondToVectorXZ(angle).NormalizedXY();
         }
-        public static Vector3 NormalizedXZ(this Vector3 v, bool clearY = false)
+        public static Vector3 NormalizedXY(this Vector3 v)
         {
-            var x = Mathf.Sqrt(v.x * v.x + v.z * v.z);
+            var x = Mathf.Sqrt(v.x * v.x + v.y * v.y);
             v.x /= x;
-            v.z /= x;
-            if (clearY)
-                v.y = 0;
+            v.y /= x;
             return v;
         }
 
-        public static float MagnetudeXZ(this Vector3 v)
+        public static float SqrMagnetudeXY(this Vector3 v)
         {
-            return Mathf.Sqrt(v.x * v.x + v.z * v.z);
+            return v.x * v.x + v.y * v.y;
+        }
+
+        public static float MagnetudeXY(this Vector3 v)
+        {
+            return Mathf.Sqrt(v.x * v.x + v.y * v.y);
         }
     }
 }

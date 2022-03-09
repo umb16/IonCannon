@@ -58,12 +58,11 @@ public class RayDrawer : MonoBehaviour
                 Vector3 zero = Vector3.zero;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition * Camera.main.rect.width);
                 Debug.DrawRay(ray.origin, ray.direction);
-                if (!Physics.Raycast(ray, out RaycastHit hitInfo, 100f, _rayTaregetMask.value))
+                if (!Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, _rayTaregetMask.value))
                 {
                     return;
                 }
-                zero = hitInfo.point;
-                zero.z = zero.y * .1f;
+                zero = hitInfo.point.Get2D();
                 if (zero.EqualsWithThreshold(_oldPointOfPath, 0.01f))
                     return;
                 _cannonPath.positionCount = _currentLineIndex + 1;

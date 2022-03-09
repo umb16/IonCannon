@@ -81,7 +81,7 @@ public class Mob : MonoBehaviour, IMob
         HP = StatsCollection.GetStat(StatType.HP);
         var size = StatsCollection.GetStat(StatType.Size);
         transform.localScale = Vector3.one * size.Value;
-        transform.position += new Vector3(transform.position.x, transform.position.y, transform.position.y * .1f);
+        transform.To2DPos();
         size.ValueChanged += (x) => transform.localScale = Vector3.one * x.Value;
     }
 
@@ -91,14 +91,12 @@ public class Mob : MonoBehaviour, IMob
         {
             if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
             {
-                //разворачиваем спрайт в зависимости от направления движения
                 if (_mirroringOnMove)
                     Flip();
 
                 Vector3 pos = transform.position;
-                pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - transform.position).normalized;
-                pos.z = pos.y * .1f;
-                transform.position = pos;
+                pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - pos).normalized;
+                transform.position = pos.Get2D();
             }
         }
     }
