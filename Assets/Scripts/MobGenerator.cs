@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
+using Cysharp.Threading.Tasks;
 
 public class MobGenerator : MonoBehaviour
 {
     public static MobGenerator Self;
     public readonly HashSet<IMob> Mobs = new HashSet<IMob>();
 
-    public GameObject[] MobPrafab;
+    public AssetReference[] MobPrafab;
 
     private int _currenWave;
 
@@ -200,21 +202,23 @@ public class MobGenerator : MonoBehaviour
         _createMobsLeft = _wawesMobCount[_currenWave] * (currentLoop + 1);
     }
 
-    private void CrateMob()
+    private async UniTask CrateMob()
     {
         if (_createMobsLeft > 0)
         {
             _createMobsLeft--;
             Vector2 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
             vector.Normalize();
-            vector *= 15f;
-            GameObject gameObject = Object.Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
+            vector *= 25f;
+            GameObject gameObject = await MobPrafab[GetRandomMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+            Debug.Log("mob pos "+vector);
+            //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
             Mob mob = gameObject.GetComponent<Mob>();
             //mob.Init();
             mob.AddPerk((x) => new PerkEWave(x));
             Mobs.Add(mob);
-            if (Random.value < 0.05f)
-                mob.AddPerk((x) => new PerkEChampion(x));
+            /*if (Random.value < 0.05f)
+                mob.AddPerk((x) => new PerkEChampion(x));*/
         }
         WaveMobCounter++;
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
@@ -222,13 +226,14 @@ public class MobGenerator : MonoBehaviour
         Invoke("CrateMob", delay);
     }
 
-    private void CreateBoss()
+    private async UniTask CreateBoss()
     {
         GetComponent<AudioSource>().Play();
         Vector2 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
         vector.Normalize();
-        vector *= 15f;
-        GameObject gameObject = Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
+        vector *= 25f;
+        GameObject gameObject =  await MobPrafab[Random.Range(0, MobPrafab.Length)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+        // Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
         Mob mob = gameObject.GetComponent<Mob>();
         Mobs.Add(mob);
         mob.AddPerk((x) => new PerkEBoss(x));
