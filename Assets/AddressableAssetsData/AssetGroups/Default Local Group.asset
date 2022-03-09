@@ -22,6 +22,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Mob
+  - m_GUID: 0384c60c51ae1964baf25b467b03a290
+    m_Address: Fx/Dust
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

@@ -51,7 +51,6 @@ public class Mob : MonoBehaviour, IMob
             return;
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
-        Debug.Log(HP.Value);
         if (IsDead)
         {
             Die(message);

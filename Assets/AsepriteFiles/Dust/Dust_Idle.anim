@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemies_02_Move
+  m_Name: Dust_Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,19 +20,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2793242040221885516, guid: 48f1062d5420e2e40b31bf304a401f80,
+      value: {fileID: -508727684007084144, guid: cb6f118364d25e3498e3709cceb32610,
         type: 3}
     - time: 0.2
-      value: {fileID: 1501625644128891991, guid: 48f1062d5420e2e40b31bf304a401f80,
+      value: {fileID: -641499013660883272, guid: cb6f118364d25e3498e3709cceb32610,
         type: 3}
     - time: 0.4
-      value: {fileID: 1668246041195209329, guid: 48f1062d5420e2e40b31bf304a401f80,
+      value: {fileID: -9154092281341689641, guid: cb6f118364d25e3498e3709cceb32610,
         type: 3}
     - time: 0.6
-      value: {fileID: 628894063591958246, guid: 48f1062d5420e2e40b31bf304a401f80,
+      value: {fileID: -8462667795730438807, guid: cb6f118364d25e3498e3709cceb32610,
         type: 3}
     - time: 0.76
-      value: {fileID: 628894063591958246, guid: 48f1062d5420e2e40b31bf304a401f80,
+      value: {fileID: -8462667795730438807, guid: cb6f118364d25e3498e3709cceb32610,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -53,11 +53,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2793242040221885516, guid: 48f1062d5420e2e40b31bf304a401f80, type: 3}
-    - {fileID: 1501625644128891991, guid: 48f1062d5420e2e40b31bf304a401f80, type: 3}
-    - {fileID: 1668246041195209329, guid: 48f1062d5420e2e40b31bf304a401f80, type: 3}
-    - {fileID: 628894063591958246, guid: 48f1062d5420e2e40b31bf304a401f80, type: 3}
-    - {fileID: 628894063591958246, guid: 48f1062d5420e2e40b31bf304a401f80, type: 3}
+    - {fileID: -508727684007084144, guid: cb6f118364d25e3498e3709cceb32610, type: 3}
+    - {fileID: -641499013660883272, guid: cb6f118364d25e3498e3709cceb32610, type: 3}
+    - {fileID: -9154092281341689641, guid: cb6f118364d25e3498e3709cceb32610, type: 3}
+    - {fileID: -8462667795730438807, guid: cb6f118364d25e3498e3709cceb32610, type: 3}
+    - {fileID: -8462667795730438807, guid: cb6f118364d25e3498e3709cceb32610, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -82,32 +82,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0
-    functionName: Instantiate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 3
-    messageOptions: 0
-  - time: 0.2
-    functionName: Instantiate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.2
-    functionName: Instantiate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4
-    functionName: Instantiate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 2
-    messageOptions: 0
+  m_Events: []

@@ -211,7 +211,6 @@ public class MobGenerator : MonoBehaviour
             vector.Normalize();
             vector *= 25f;
             GameObject gameObject = await MobPrafab[GetRandomMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-            Debug.Log("mob pos "+vector);
             //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
             Mob mob = gameObject.GetComponent<Mob>();
             //mob.Init();
