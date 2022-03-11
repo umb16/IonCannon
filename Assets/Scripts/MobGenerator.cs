@@ -162,6 +162,7 @@ public class MobGenerator : MonoBehaviour
 
     private float _bossTime;
     private Player _player;
+    private GameData _gameData;
 
     public int WaveMobCounter
     {
@@ -180,10 +181,11 @@ public class MobGenerator : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(DamageController damageController, Player player)
+    private void Construct(DamageController damageController, Player player, GameData gameData)
     {
         damageController.Die += OnEnemyDie;
         _player = player;
+        _gameData = gameData;
     }
 
     private void OnEnemyDie(DamageMessage msg)
@@ -205,6 +207,8 @@ public class MobGenerator : MonoBehaviour
 
     private async UniTask CrateMob()
     {
+        if (_gameData.State != GameState.InGame)
+            return;
         if (_createMobsLeft > 0)
         {
             _createMobsLeft--;
@@ -265,6 +269,8 @@ public class MobGenerator : MonoBehaviour
 
     private void Update()
     {
+        if (_gameData.State != GameState.InGame)
+            return;
         _bossTime += Time.deltaTime;
         if (_bossTime > 100f)
         {
