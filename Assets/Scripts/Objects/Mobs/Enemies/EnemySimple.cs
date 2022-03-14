@@ -31,7 +31,7 @@ public class EnemySimple : Mob
     public override void Die(DamageMessage message)
     {
         base.Die(message);
-        OnDie();
+        Stop();
     }
 
     private void OnReceiveamage()
@@ -47,7 +47,7 @@ public class EnemySimple : Mob
         });
     }
 
-    private void OnDie()
+    private void Stop()
     {
         _dieTimer = new Timer(.1f)
             .SetDelay(.1f)

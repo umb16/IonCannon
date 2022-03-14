@@ -10,4 +10,6 @@ public enum PerkType
     EWaveFactor = 6,
     EBoss = 7,
     EChampion = 8,
+    ESpeedAura = 9,
+    ESpeedAuraEffect = 10,
 }

@@ -3,4 +3,5 @@
     Additive,
     Multiplicative,
     TransformChain,
+    Correction,
 }

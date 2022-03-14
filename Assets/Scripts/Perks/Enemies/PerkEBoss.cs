@@ -46,10 +46,14 @@ public class PerkEBoss : IPerk
             new[] { 
                     new StatModificator((x) => x * (Wave + 1) * 6, StatModificatorType.TransformChain, StatType.Score),
                     new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.HP),
-                    new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.MaxHP),
-                   // new StatModificator(1, StatModificatorType.Multiplicative, StatType.Size),
+                    new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.MaxHP)
                     }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
+    }
+
+    public void Shutdown()
+    {
+        throw new System.NotImplementedException();
     }
 }

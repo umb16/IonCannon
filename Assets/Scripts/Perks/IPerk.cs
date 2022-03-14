@@ -6,13 +6,14 @@ using Zenject;
 
 public interface IPerk
 {
-    public PerkType Type { get; }
-    public string Name { get; }
-    public string Description { get; }
-    public int Level { get;}
-    public bool Maxed { get; }
-    public int MaxLevel { get; }
-    public void SetParent(IMob mob);
-    public void SetLevel(int level);
-    public void AddLevel();
+    PerkType Type { get; }
+    string Name { get; }
+    string Description { get; }
+    int Level { get;}
+    bool Maxed { get; }
+    int MaxLevel { get; }
+    void SetParent(IMob mob);
+    void SetLevel(int level);
+    void AddLevel();
+    void Shutdown();
 }

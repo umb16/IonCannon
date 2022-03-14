@@ -21,6 +21,7 @@ public class ComplexStat
     private List<StatModificator> _additiveModificators = new List<StatModificator>();
     private List<StatModificator> _multiplicativeModificators = new List<StatModificator>();
     private List<StatModificator> _transformChain = new List<StatModificator>();
+    private List<StatModificator> _correction = new List<StatModificator>();
 
     public float Value => _cachedValue;
     public int IntValue => _intCachedValue;
@@ -68,29 +69,45 @@ public class ComplexStat
 
     public void AddModificator(StatModificator modificator)
     {
-        if (modificator.Type == StatModificatorType.Additive)
+        switch (modificator.Type)
         {
-            _additiveModificators.Add(modificator);
-        }
-        else if(modificator.Type == StatModificatorType.Multiplicative)
-        {
-            _multiplicativeModificators.Add(modificator);
-        }
-        else
-        {
-            _transformChain.Add(modificator);
+            case StatModificatorType.Additive:
+                _additiveModificators.Add(modificator);
+                break;
+            case StatModificatorType.Multiplicative:
+                _multiplicativeModificators.Add(modificator);
+                break;
+            case StatModificatorType.TransformChain:
+                _transformChain.Add(modificator);
+                break;
+            case StatModificatorType.Correction:
+                _correction.Add(modificator);
+                break;
+            default:
+                break;
         }
         CalculateCache();
     }
 
     public void RemoveModificator(StatModificator mod)
     {
-        if(mod.Type== StatModificatorType.Additive)
-            _additiveModificators.Remove(mod);
-        if(mod.Type== StatModificatorType.Multiplicative)
-            _multiplicativeModificators.Remove(mod);
-        if (mod.Type == StatModificatorType.TransformChain)
-            _transformChain.Remove(mod);
+        switch (mod.Type)
+        {
+            case StatModificatorType.Additive:
+                _additiveModificators.Remove(mod);
+                break;
+            case StatModificatorType.Multiplicative:
+                _multiplicativeModificators.Remove(mod);
+                break;
+            case StatModificatorType.TransformChain:
+                _transformChain.Remove(mod);
+                break;
+            case StatModificatorType.Correction:
+                _correction.Remove(mod);
+                break;
+            default:
+                break;
+        }            
         CalculateCache();
     }
     private void OnValueChanged()
@@ -138,6 +155,10 @@ public class ComplexStat
         _cachedValue = (transformAccum + additiveSum) * (1f + multSum);
         if (_correctionFunc != null)
             _cachedValue = _correctionFunc.Invoke(_cachedValue);
+        for (int i = 0; i < _correction.Count; i++)
+        {
+            _cachedValue = _correction[i].Func(_cachedValue);
+        }
         _intCachedValue = (int)_cachedValue;
         OnValueChanged();
     }

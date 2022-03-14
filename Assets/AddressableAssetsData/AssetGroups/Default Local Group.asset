@@ -18,12 +18,20 @@ MonoBehaviour:
   m_GUID: 168b254436769ec4e99c36bf3914929b
   m_SerializeEntries:
   - m_GUID: 1ee326539f9f0634dadb466b9864bd73
-    m_Address: Mob/First
+    m_Address: Mob_First
     m_ReadOnly: 0
     m_SerializedLabels:
     - Mob
   - m_GUID: 0384c60c51ae1964baf25b467b03a290
-    m_Address: Fx/Dust
+    m_Address: Fx_Dust
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f708e1c994c766545b7b50d76ea2d6dd
+    m_Address: Fx_SpeedUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ca15dc02a5edb845bbd6bc29d2fa91f
+    m_Address: Fx_Aura0
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

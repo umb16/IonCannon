@@ -51,4 +51,9 @@ public class SimplePerk : IPerk
         if (Level > 0)
             _collection.AddModificators(_modificators[Level - 1]);
     }
+
+    public void Shutdown()
+    {
+        throw new NotImplementedException();
+    }
 }

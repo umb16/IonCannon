@@ -6,8 +6,8 @@ using UnityEngine.AddressableAssets;
 
 public static class PrefabCreator
 {
-    public static async UniTask<T> Get<T>(string name)
+    public static async UniTask<GameObject> GetInstance(string name, Transform parent)
     {
-        return await Addressables.LoadAssetAsync<T>(name).Task;
+        return await Addressables.InstantiateAsync(name, parent.position, Quaternion.identity, parent).Task;
     }
 }

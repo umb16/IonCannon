@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9061520091049279718}
   - component: {fileID: 9061520091049279713}
   - component: {fileID: 9061520091049279716}
-  - component: {fileID: 446153040575408395}
   m_Layer: 0
   m_Name: Dust
   m_TagString: Untagged
@@ -171,7 +170,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -662,16 +661,16 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 0
-    type: 4
+    enabled: 1
+    type: 5
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.03
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Rotation: {x: -90, y: 0, z: 0}
+    m_Scale: {x: 0.1, y: 0.1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4891,17 +4890,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddac062a9c4fbe842bd0a0e6de90c879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyDelay: 2
---- !u!114 &446153040575408395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9061520091049279712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef10f49bce090f14a8eb00ddb74d9dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _velocity: {x: 0, y: 3, z: 0}
+  _destroyDelay: 1.1

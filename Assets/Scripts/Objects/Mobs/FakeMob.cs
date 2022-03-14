@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,12 +24,18 @@ public class FakeMob : IMob
 
     public Vector3 Position => throw new NotImplementedException();
 
+    public HashSet<IMob> AllMobs => throw new NotImplementedException();
+
+    public Vector3 GroundCenter => throw new NotImplementedException();
+
+    public bool IsDead => throw new NotImplementedException();
+
     public FakeMob()
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
     }
 
-    public void AddPerk(Func<Mob, IPerk> perkGenerator, int level = 0)
+    public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
     {
         throw new NotImplementedException();
     }
@@ -40,7 +47,7 @@ public class FakeMob : IMob
     {
         throw new NotImplementedException();
     }
-    public void Stop()
+    public void OnDie()
     {
         throw new NotImplementedException();
     }
@@ -56,6 +63,26 @@ public class FakeMob : IMob
     }
 
     public void SetPosition(Vector3 vector)
+    {
+        throw new NotImplementedException();
+    }
+
+    UniTask IMob.AddFx(Fx fx)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveFx(Fx fx)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemovePerk(PerkType perkType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool ContainPerk(PerkType perkType)
     {
         throw new NotImplementedException();
     }

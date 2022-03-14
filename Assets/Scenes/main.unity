@@ -654,6 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mirroringOnMove: 1
+  _groundCenterPoint: {fileID: 0}
   _animator: {fileID: 318}
   Barrel: {fileID: 1553508469165013, guid: 47f069035e42006438db37f037447f2d, type: 3}
   Blood: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 3}
@@ -1157,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 310}
   _perksMenu: {fileID: 1829328030}
+  _mobSpawner: {fileID: 309}
 --- !u!114 &1111731683
 MonoBehaviour:
   m_ObjectHideFlags: 0

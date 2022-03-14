@@ -5,9 +5,8 @@ using Zenject;
 using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
 
-public class MobGenerator : MonoBehaviour
+public class MobSpawner : MonoBehaviour
 {
-    public static MobGenerator Self;
     public readonly HashSet<IMob> Mobs = new HashSet<IMob>();
 
     public AssetReference[] MobPrafab;
@@ -205,7 +204,7 @@ public class MobGenerator : MonoBehaviour
         _createMobsLeft = _wawesMobCount[_currenWave] * (currentLoop + 1);
     }
 
-    private async UniTask CrateMob()
+    private async UniTask CreateMob()
     {
         if (_gameData.State != GameState.InGame)
             return;
@@ -221,6 +220,11 @@ public class MobGenerator : MonoBehaviour
             Mob mob = gameObject.GetComponent<Mob>();
             //mob.Init();
             mob.AddPerk((x) => new PerkEWave(x));
+            if (Random.value < 0.05f)
+            {
+                mob.AddPerk((x) => new PerkSpeedAura(x));
+                mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
+            }
             Mobs.Add(mob);
             /*if (Random.value < 0.05f)
                 mob.AddPerk((x) => new PerkEChampion(x));*/
@@ -228,7 +232,8 @@ public class MobGenerator : MonoBehaviour
         WaveMobCounter++;
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
         //Debug.Log("Create mob delay "+ delay);
-        Invoke("CrateMob", delay);
+        //if (Mobs.Count < 3)
+            Invoke("CreateMob", delay);
     }
 
     private async UniTask CreateBoss()
@@ -262,9 +267,8 @@ public class MobGenerator : MonoBehaviour
 
     private void Start()
     {
-        Self = this;
         _createMobsLeft = _wawesMobCount[0];
-        Invoke("CrateMob", 1f);
+        Invoke("CreateMob", 1f);
     }
 
     private void Update()
@@ -274,7 +278,7 @@ public class MobGenerator : MonoBehaviour
         _bossTime += Time.deltaTime;
         if (_bossTime > 100f)
         {
-            CreateBoss();
+            CreateBoss().Forget();
             _bossTime = 0f;
         }
         _time += Time.deltaTime;

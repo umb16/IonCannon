@@ -52,4 +52,9 @@ public class PerkEChampion : IPerk
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
     }
+
+    public void Shutdown()
+    {
+        throw new System.NotImplementedException();
+    }
 }

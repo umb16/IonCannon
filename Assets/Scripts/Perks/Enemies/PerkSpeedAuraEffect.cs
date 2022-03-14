@@ -1,29 +1,24 @@
-using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PerkEWave : IPerk
+public class PerkSpeedAuraEffect : IPerk
 {
-    public PerkType Type => PerkType.EWaveFactor;
+    public PerkType Type => PerkType.ESpeedAuraEffect;
     public string Name => throw new System.NotImplementedException();
-
     public string Description => throw new System.NotImplementedException();
-
     private IMob _mob;
-
     public int Level => 1;
 
     public bool Maxed => true;
 
     public int MaxLevel => 1;
-    public int Wave => _mob.GameData.Wave;
-
     private StatModificatorsCollection _modificators;
+    private Fx _speedUpfx = new Fx("Fx_SpeedUp", FxPosition.Ground);
+    private float _speedUpValue = 4f;
 
-    public PerkEWave(IMob mob)
+    public PerkSpeedAuraEffect(IMob mob)
     {
         SetParent(mob);
+        mob.AddFx(_speedUpfx);
     }
     public void AddLevel()
     {
@@ -35,29 +30,32 @@ public class PerkEWave : IPerk
         Debug.Log("Is static perk");
     }
 
-    public async void SetParent(IMob mob)
+    public void SetParent(IMob mob)
     {
-        
         if (mob == null)
         {
             _modificators.RemoveStatsCollection(_mob.StatsCollection);
-            return;
         }
-        await UniTask.WaitUntil(() => mob.IsReady);
         _mob = mob;
         _modificators = new StatModificatorsCollection
         (
-            new[] { 
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.Score),
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.HP),
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.MaxHP),
-                  }
+            new[]
+            {
+                    new StatModificator((x)=>
+                    {
+                        if(x<_speedUpValue)
+                            return _speedUpValue;
+                        else
+                            return x;
+                    }, StatModificatorType.Correction, StatType.MovementSpeed)
+            }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
     }
 
     public void Shutdown()
     {
-        _modificators.RemoveStatsCollection(_mob.StatsCollection);
+        _mob.RemoveFx(_speedUpfx);
+        _modificators.RemoveAll();
     }
 }
