@@ -5317,41 +5317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayPillar
       objectReference: {fileID: 0}
-    - target: {fileID: 7815138690961741545, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815138690961741545, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 75992989317056086, guid: f593de0bda628ac4c8377aa48e26c775,
-        type: 3}
-    - target: {fileID: 7815138690961741545, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.43137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815138690961741545, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815138690961741545, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8879657500035154427, guid: acab0daea9c7eb548b7308a4beefb8e1,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8879657500035154427, guid: acab0daea9c7eb548b7308a4beefb8e1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8879657500035154427, guid: acab0daea9c7eb548b7308a4beefb8e1,
         type: 3}
@@ -5434,17 +5403,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RaySpot
-      objectReference: {fileID: 0}
-    - target: {fileID: 847960369303225478, guid: fb30bc43ae084e640b321b10c266226d,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 6851257538425666728, guid: 5ade7f13235b27542b3916fa4908cc89,
-        type: 3}
-    - target: {fileID: 847960369303225478, guid: fb30bc43ae084e640b321b10c266226d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 847960369303225479, guid: fb30bc43ae084e640b321b10c266226d,
         type: 3}

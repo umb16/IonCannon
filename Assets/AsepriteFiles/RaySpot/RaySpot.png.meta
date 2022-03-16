@@ -17,6 +17,15 @@ TextureImporter:
   - first:
       213: 6851257538425666728
     second: RaySpot4
+  - first:
+      213: -106971626178657277
+    second: RaySpot5
+  - first:
+      213: 3691209081438151396
+    second: RaySpot6
+  - first:
+      213: 2995865499579825339
+    second: RaySpot7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -199,6 +208,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: RaySpot5
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 19
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304439c6fd5f38ef0800000000000000
+      internalID: -106971626178657277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RaySpot6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e221da4a1fc93330800000000000000
+      internalID: 3691209081438151396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RaySpot7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbcbd419cc3739920800000000000000
+      internalID: 2995865499579825339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -211,9 +283,12 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       RaySpot1: -6542128543355174880
+      RaySpot7: 2995865499579825339
+      RaySpot6: 3691209081438151396
       RaySpot4: 6851257538425666728
       RaySpot2: -7227546805245908747
       RaySpot3: -4893874614939375950
+      RaySpot5: -106971626178657277
       RaySpot0: 7041704948098738177
   spritePackingTag: 
   pSDRemoveMatte: 0

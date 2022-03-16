@@ -40,7 +40,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6477211087550523050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -74,9 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7641692275842109107, guid: f593de0bda628ac4c8377aa48e26c775,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.38431373}
+  m_Sprite: {fileID: 75992989317056086, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,3 +104,6 @@ MonoBehaviour:
   - {fileID: -3362803720392122397, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
   - {fileID: 7778818365474277079, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
   - {fileID: 75992989317056086, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
+  - {fileID: -7854086045224850069, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
+  - {fileID: -1977487153629346690, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}
+  - {fileID: 7156646246227303934, guid: f593de0bda628ac4c8377aa48e26c775, type: 3}

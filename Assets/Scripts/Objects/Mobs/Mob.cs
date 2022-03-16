@@ -79,6 +79,11 @@ public class Mob : MonoBehaviour, IMob
     public void OnDie()
     {
         _stopped = true;
+        ShutdownPerks();
+    }
+
+    private void ShutdownPerks()
+    {
         foreach (var perk in _perks)
         {
             perk.Value.Shutdown();
@@ -168,5 +173,10 @@ public class Mob : MonoBehaviour, IMob
     public bool ContainPerk(PerkType perkType)
     {
         return _perks.ContainsKey(perkType);
+    }
+
+    private void OnDestroy()
+    {
+        ShutdownPerks();
     }
 }

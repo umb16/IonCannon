@@ -6,7 +6,7 @@ public class RaySpotAnimation : MonoBehaviour, IRayAnimation
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite[] _sprites;
-    private int _max = 8;
+    [SerializeField] private int _max = 16;
 
     [EditorButton]
     public void Set(float size)

@@ -17,6 +17,15 @@ TextureImporter:
   - first:
       213: 75992989317056086
     second: RayPillar4
+  - first:
+      213: -7854086045224850069
+    second: RayPillar5
+  - first:
+      213: -1977487153629346690
+    second: RayPillar6
+  - first:
+      213: 7156646246227303934
+    second: RayPillar7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -199,10 +208,73 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: RayPillar5
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6d2507ca5ea00390800000000000000
+      internalID: -7854086045224850069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RayPillar6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e74460439ed8e84e0800000000000000
+      internalID: -1977487153629346690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RayPillar7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efdd289e7d3815360800000000000000
+      internalID: 7156646246227303934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7bd8d5123127eac4798ec2dfae9fcefb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -211,7 +283,10 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       RayPillar3: 7778818365474277079
+      RayPillar7: 7156646246227303934
       RayPillar4: 75992989317056086
+      RayPillar5: -7854086045224850069
+      RayPillar6: -1977487153629346690
       RayPillar2: -3362803720392122397
       RayPillar1: -5110252782388565640
       RayPillar0: 7641692275842109107
