@@ -29,10 +29,13 @@ public class PerkSpeedAura : IPerk
     private Fx _aura = new Fx("Fx_Aura0", FxPosition.Ground);
     private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
+    private bool _enabled;
+
     public PerkSpeedAura(IMob mob)
     {
         SetParent(mob);
         mob.AddFx(_aura);
+        _enabled = true;
     }
 
     public void AddLevel()
@@ -55,6 +58,8 @@ public class PerkSpeedAura : IPerk
     {
         await foreach (var _ in UniTaskAsyncEnumerable.EveryUpdate())
         {
+            if (!_enabled)
+                continue;
             foreach (var mob in _mob.AllMobs)
             {
                 if (mob == _mob)
@@ -104,6 +109,7 @@ public class PerkSpeedAura : IPerk
     {
         _cancellationTokenSource.Cancel();
         _cancellationTokenSource.Dispose();
+        _enabled = false;
         RemoveAll();
     }
 }

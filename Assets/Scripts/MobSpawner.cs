@@ -18,7 +18,7 @@ public class MobSpawner : MonoBehaviour
         new float[9]
         {
             0.84f,
-            0f,
+            0.2f,
             0f,
             0f,
             0f,
@@ -30,7 +30,7 @@ public class MobSpawner : MonoBehaviour
         new float[9]
         {
             0.66f,
-            33f,
+            0.33f,
             0f,
             0f,
             0f,
@@ -220,11 +220,12 @@ public class MobSpawner : MonoBehaviour
             Mob mob = gameObject.GetComponent<Mob>();
             //mob.Init();
             mob.AddPerk((x) => new PerkEWave(x));
-            if (Random.value < 0.05f)
-            {
-                mob.AddPerk((x) => new PerkSpeedAura(x));
-                mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
-            }
+            if (gameObject.name.Contains("First"))
+                if (Random.value < 0.05f)
+                {
+                    mob.AddPerk((x) => new PerkSpeedAura(x));
+                    mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
+                }
             Mobs.Add(mob);
             /*if (Random.value < 0.05f)
                 mob.AddPerk((x) => new PerkEChampion(x));*/
@@ -233,7 +234,7 @@ public class MobSpawner : MonoBehaviour
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
         //Debug.Log("Create mob delay "+ delay);
         //if (Mobs.Count < 3)
-            Invoke("CreateMob", delay);
+        Invoke("CreateMob", delay);
     }
 
     private async UniTask CreateBoss()
