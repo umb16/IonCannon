@@ -54,6 +54,6 @@ public class PerkEBoss : IPerk
 
     public void Shutdown()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }
