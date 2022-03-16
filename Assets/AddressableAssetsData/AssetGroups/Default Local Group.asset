@@ -34,6 +34,10 @@ MonoBehaviour:
     m_Address: Fx_Aura0
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 84ba4e0bb9ad31444bc80f158b50c32c
+    m_Address: Assets/Res/Prefabs/Mobs/Second.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:
