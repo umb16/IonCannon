@@ -3,8 +3,8 @@ guid: d6301629ef239f040b97869a45776e36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4280070886449429678
-    second: Enemies_040
+      213: 7138533871877236133
+    second: Enemies_04000
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -83,22 +83,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemies_040
+      name: Enemies_04000
       rect:
         serializedVersion: 2
         x: 1
         y: 1
         width: 128
         height: 128
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 253c0bf94322a94c0800000000000000
-      internalID: -4280070886449429678
+      spriteID: 5a526522cba211360800000000000000
+      internalID: 7138533871877236133
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemies_040: -4280070886449429678
+      Enemies_04000: 7138533871877236133
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

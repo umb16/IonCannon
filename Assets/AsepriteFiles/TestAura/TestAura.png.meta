@@ -3,14 +3,14 @@ guid: be381c5caf73fc34a8854da786992f62
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5477329930229799688
-    second: TestAura0
+      213: 5171596537116220229
+    second: TestAura000
   - first:
-      213: -3356193309446588787
-    second: TestAura1
+      213: -2060126648859076983
+    second: TestAura001
   - first:
-      213: -5657565760427398763
-    second: TestAura2
+      213: -1314174941904381269
+    second: TestAura002
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +89,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestAura0
+      name: TestAura000
       rect:
         serializedVersion: 2
         x: 1
@@ -103,14 +103,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f4a907d27d9cf3b0800000000000000
-      internalID: -5477329930229799688
+      spriteID: 54bd37476a335c740800000000000000
+      internalID: 5171596537116220229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestAura1
+      name: TestAura001
       rect:
         serializedVersion: 2
         x: 35
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d86b4e887f76c61d0800000000000000
-      internalID: -3356193309446588787
+      spriteID: 98650765ab5f863e0800000000000000
+      internalID: -2060126648859076983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestAura2
+      name: TestAura002
       rect:
         serializedVersion: 2
         x: 69
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 599ef4c7ae94c71b0800000000000000
-      internalID: -5657565760427398763
+      spriteID: baad1176adc13cde0800000000000000
+      internalID: -1314174941904381269
       vertices: []
       indices: 
       edges: []
@@ -162,9 +162,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TestAura1: -3356193309446588787
-      TestAura2: -5657565760427398763
-      TestAura0: -5477329930229799688
+      TestAura001: -2060126648859076983
+      TestAura000: 5171596537116220229
+      TestAura002: -1314174941904381269
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

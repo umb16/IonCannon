@@ -3,11 +3,11 @@ guid: 4627c1b1a0027e349890053bdf009def
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8516840263321069609
-    second: Barrel0
+      213: -3863969748089218330
+    second: Barrel000
   - first:
-      213: 7488054924329378281
-    second: Barrel1
+      213: -7145881304737369738
+    second: Barrel001
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Barrel0
+      name: Barrel000
       rect:
         serializedVersion: 2
         x: 1
@@ -100,14 +100,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d7d00897ea1ec980800000000000000
-      internalID: -8516840263321069609
+      spriteID: 6ea594e7cfb606ac0800000000000000
+      internalID: -3863969748089218330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barrel1
+      name: Barrel001
       rect:
         serializedVersion: 2
         x: 35
@@ -121,8 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e1644fb74aeae760800000000000000
-      internalID: 7488054924329378281
+      spriteID: 671360850dab4dc90800000000000000
+      internalID: -7145881304737369738
       vertices: []
       indices: 
       edges: []
@@ -138,8 +138,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Barrel1: 7488054924329378281
-      Barrel0: -8516840263321069609
+      Barrel001: -7145881304737369738
+      Barrel000: -3863969748089218330
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

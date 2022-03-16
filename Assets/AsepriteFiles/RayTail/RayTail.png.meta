@@ -3,20 +3,20 @@ guid: 415d0911538567b44a0e70ec2ef05ea0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5380852482517020342
-    second: RayTail0
+      213: -8203818087348945149
+    second: RayTail000
   - first:
-      213: -4561460743717460351
-    second: RayTail1
+      213: -6376657925623494872
+    second: RayTail001
   - first:
-      213: 9164151018131463058
-    second: RayTail2
+      213: -4052945881525241869
+    second: RayTail002
   - first:
-      213: -722173218438856065
-    second: RayTail3
+      213: 5082115148611286472
+    second: RayTail003
   - first:
-      213: -963892393489232454
-    second: RayTail4
+      213: -8987027548691012674
+    second: RayTail004
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,7 +95,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RayTail0
+      name: RayTail000
       rect:
         serializedVersion: 2
         x: 1
@@ -109,14 +109,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a415bc61d2f5355b0800000000000000
-      internalID: -5380852482517020342
+      spriteID: 30f34ad4aee262e80800000000000000
+      internalID: -8203818087348945149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RayTail1
+      name: RayTail001
       rect:
         serializedVersion: 2
         x: 19
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 186e4d90f9f62b0c0800000000000000
-      internalID: -4561460743717460351
+      spriteID: 8274801d66f8187a0800000000000000
+      internalID: -6376657925623494872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RayTail2
+      name: RayTail002
       rect:
         serializedVersion: 2
         x: 37
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29b92c71cca9d2f70800000000000000
-      internalID: 9164151018131463058
+      spriteID: 3f73ec5b13b01c7c0800000000000000
+      internalID: -4052945881525241869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RayTail3
+      name: RayTail003
       rect:
         serializedVersion: 2
         x: 1
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f72c6a8b8435af5f0800000000000000
-      internalID: -722173218438856065
+      spriteID: 8c57b9c2dcc478640800000000000000
+      internalID: 5082115148611286472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RayTail4
+      name: RayTail004
       rect:
         serializedVersion: 2
         x: 19
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: abd8f5c99f09f92f0800000000000000
-      internalID: -963892393489232454
+      spriteID: eb36f9d4f0aa74380800000000000000
+      internalID: -8987027548691012674
       vertices: []
       indices: 
       edges: []
@@ -210,11 +210,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RayTail2: 9164151018131463058
-      RayTail4: -963892393489232454
-      RayTail1: -4561460743717460351
-      RayTail3: -722173218438856065
-      RayTail0: -5380852482517020342
+      RayTail000: -8203818087348945149
+      RayTail001: -6376657925623494872
+      RayTail004: -8987027548691012674
+      RayTail003: 5082115148611286472
+      RayTail002: -4052945881525241869
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

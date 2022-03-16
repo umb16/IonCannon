@@ -5491,11 +5491,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayTail
       objectReference: {fileID: 0}
-    - target: {fileID: 5872020907730921657, guid: 13d0da6cf5583ed479c2ed658cd1ee9b,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime2
-      value: 57825
-      objectReference: {fileID: 0}
     - target: {fileID: 6046239719490276243, guid: 13d0da6cf5583ed479c2ed658cd1ee9b,
         type: 3}
       propertyPath: m_RootOrder

@@ -3,17 +3,17 @@ guid: b37a6c2ad1efd1545af0b7004173eba5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4626895709655316251
-    second: Hero_run0
+      213: 5069194292167367270
+    second: Hero_run000
   - first:
-      213: 9120775570050588802
-    second: Hero_run1
+      213: 5063186570023285010
+    second: Hero_run001
   - first:
-      213: -4303979828156197052
-    second: Hero_run2
+      213: 3093525442292448486
+    second: Hero_run002
   - first:
-      213: 7595000343712415995
-    second: Hero_run3
+      213: 6445306029859334087
+    second: Hero_run003
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -92,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hero_run0
+      name: Hero_run000
       rect:
         serializedVersion: 2
         x: 1
@@ -106,14 +106,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b17b8c23229063040800000000000000
-      internalID: 4626895709655316251
+      spriteID: 66ad21ad955695640800000000000000
+      internalID: 5069194292167367270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hero_run1
+      name: Hero_run001
       rect:
         serializedVersion: 2
         x: 67
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2802de89e01839e70800000000000000
-      internalID: 9120775570050588802
+      spriteID: 21134c90c5d044640800000000000000
+      internalID: 5063186570023285010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hero_run2
+      name: Hero_run002
       rect:
         serializedVersion: 2
         x: 1
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4479d4656213544c0800000000000000
-      internalID: -4303979828156197052
+      spriteID: 6ec7973eff86eea20800000000000000
+      internalID: 3093525442292448486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hero_run3
+      name: Hero_run003
       rect:
         serializedVersion: 2
         x: 67
@@ -169,8 +169,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf0c2f3929cd66960800000000000000
-      internalID: 7595000343712415995
+      spriteID: 7c7e27a7fa3527950800000000000000
+      internalID: 6445306029859334087
       vertices: []
       indices: 
       edges: []
@@ -186,10 +186,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hero_run1: 9120775570050588802
-      Hero_run2: -4303979828156197052
-      Hero_run0: 4626895709655316251
-      Hero_run3: 7595000343712415995
+      Hero_run003: 6445306029859334087
+      Hero_run002: 3093525442292448486
+      Hero_run000: 5069194292167367270
+      Hero_run001: 5063186570023285010
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
