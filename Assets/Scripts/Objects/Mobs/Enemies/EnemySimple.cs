@@ -20,6 +20,8 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
+        movSpeed.ValueChanged += (x) => _animator.speed = x.Ratio;
     }
 
     public override void ReceiveDamage(DamageMessage message)
@@ -76,6 +78,8 @@ public class EnemySimple : Mob
     private void Update()
     {
         if (Player != null && Player.transform != null)
+        {
             MoveTo(Player.transform.position);
+        }
     }
 }

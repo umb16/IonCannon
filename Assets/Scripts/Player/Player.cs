@@ -4,8 +4,6 @@ using Zenject;
 
 public class Player : Mob
 {
-    [SerializeField] Animator _animator;
-
     private ComplexStat _maxPathLength;
     private ComplexStat _raySpeed;
     private ComplexStat _rayDelay;

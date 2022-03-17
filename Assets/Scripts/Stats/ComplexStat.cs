@@ -25,8 +25,8 @@ public class ComplexStat
 
     public float Value => _cachedValue;
     public int IntValue => _intCachedValue;
-
     public float BaseValue => _isUsedFunc ? _baseValueFunc() : _baseValue;
+    public float Ratio => Value / BaseValue;
 
     public ComplexStat(float newValue, Func<float, float> correctionFunc = null)
     {
@@ -107,7 +107,7 @@ public class ComplexStat
                 break;
             default:
                 break;
-        }            
+        }
         CalculateCache();
     }
     private void OnValueChanged()

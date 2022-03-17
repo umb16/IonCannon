@@ -12,6 +12,7 @@ public class Mob : MonoBehaviour, IMob
     private static int idIndex;
     [SerializeField] bool _mirroringOnMove = true;
     [SerializeField] private Transform _groundCenterPoint;
+    internal Animator _animator;
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
@@ -42,6 +43,7 @@ public class Mob : MonoBehaviour, IMob
         IsReady = true;
         ID = ++idIndex;
         AllMobs = mobSpawner.Mobs;
+        _animator = GetComponent<Animator>();
     }
 
     public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
