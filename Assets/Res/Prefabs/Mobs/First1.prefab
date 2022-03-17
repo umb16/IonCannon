@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22291a4f071b0904d933127237d0f4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mirroringOnMove: 1
+  _mirroringOnMove: 0
   _groundCenterPoint: {fileID: 2097849084}
   _hp: 1.5
   _speed: 2.4

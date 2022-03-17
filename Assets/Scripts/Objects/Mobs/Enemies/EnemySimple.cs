@@ -71,7 +71,7 @@ public class EnemySimple : Mob
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.ReceiveDamage(new DamageMessage(this, Player, 10, DamageSources.Melee));
+            Player.ReceiveDamage(new DamageMessage(this, Player, 10, DamageSources.Melee, 0));
         }
     }
 

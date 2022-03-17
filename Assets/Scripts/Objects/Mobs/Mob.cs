@@ -33,6 +33,7 @@ public class Mob : MonoBehaviour, IMob
     private bool _stopped = true;
 
     private MobFxes _mobFxes = new MobFxes();
+    private float _stunEndTime;
 
     [Inject]
     private void Construct(DamageController damageController, GameData gameData, Player player, MobSpawner mobSpawner)
@@ -58,6 +59,7 @@ public class Mob : MonoBehaviour, IMob
     {
         if (IsDead)
             return;
+        _stunEndTime = message.StunTime + Time.time;
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
         if (IsDead)
@@ -104,7 +106,7 @@ public class Mob : MonoBehaviour, IMob
 
     private void FixedUpdate()
     {
-        if (!_stopped)
+        if (!_stopped && _stunEndTime < Time.time)
         {
             if (!transform.position.EqualsWithThreshold(_moveTarget, .1f))
             {
@@ -146,7 +148,7 @@ public class Mob : MonoBehaviour, IMob
 
     public async UniTask AddFx(Fx fx)
     {
-       Transform parent;
+        Transform parent;
         switch (fx.FxPosition)
         {
             case FxPosition.Ground:
