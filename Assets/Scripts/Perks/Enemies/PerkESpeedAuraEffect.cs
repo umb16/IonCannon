@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PerkSpeedAuraEffect : IPerk
+public class PerkESpeedAuraEffect : IPerk
 {
     public PerkType Type => PerkType.ESpeedAuraEffect;
     public string Name => throw new System.NotImplementedException();
@@ -15,7 +15,7 @@ public class PerkSpeedAuraEffect : IPerk
     private Fx _speedUpfx = new Fx("Fx_SpeedUp", FxPosition.Ground);
     private float _speedUpValue = 4f;
 
-    public PerkSpeedAuraEffect(IMob mob)
+    public PerkESpeedAuraEffect(IMob mob)
     {
         SetParent(mob);
         mob.AddFx(_speedUpfx);

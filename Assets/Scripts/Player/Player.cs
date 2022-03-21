@@ -63,41 +63,10 @@ public class Player : Mob
         Destroy(gameObject);
         Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
     }
-    private void CreateBarell()
-    {
-        Vector2 v = new Vector2(UnityEngine.Random.value * 2f - 1f, UnityEngine.Random.value * 2f - 1f);
-        v.Normalize();
-        v *= (float)UnityEngine.Random.Range(2, 10);
-        float x = v.x;
-        Vector3 position = transform.position;
-        v.x = x + position.x;
-        float y = v.y;
-        Vector3 position2 = transform.position;
-        v.y = y + position2.y;
-        if (v.x > 9f)
-        {
-            v.x = 9f;
-        }
-        if (v.y > 16f)
-        {
-            v.y = 16f;
-        }
-        if (v.x < -9f)
-        {
-            v.x = -9f;
-        }
-        if (v.y < -6f)
-        {
-            v.y = -6f;
-        }
-        UnityEngine.Object.Instantiate(Barrel, v, Quaternion.identity);
-    }
 
     private void Update()
     {
-        CheckBarrel();
         Movement();
-        
     }
 
     private void Movement()
@@ -128,18 +97,5 @@ public class Player : Mob
     private void OnLvlup()
     {
         _perksMenu.Show();
-    }
-
-    private void CheckBarrel()
-    {
-        /*if (MassCurrentPerks[7] > 0)
-        {
-            BarrelTimer += Time.deltaTime;
-            if (BarrelTimer > BarrelDelay)
-            {
-                BarrelTimer -= BarrelDelay;
-                CreateBarell();
-            }
-        }*/
     }
 }

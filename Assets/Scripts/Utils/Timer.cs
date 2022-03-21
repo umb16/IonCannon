@@ -12,30 +12,24 @@ public class Timer
 
     private bool _paused;
     private float _delay;
-    private float _interval;
+    private float _time;
     private float _currentTime;
     private Action<float> _everyUpdate;
     private Action _end;
     private Func<bool> _condition;
-
+    public float TimeToEnd => _delay + _time - _currentTime;
     public bool IsEnd { private set; get; }
-    public float NormalizedPlayTime => Mathf.Clamp01((_currentTime - _delay) / _interval);
+    public float NormalizedPlayTime => Mathf.Clamp01((_currentTime - _delay) / _time);
+    Comparison<Timer> _timeToEndComparsion = (x, y) => x.TimeToEnd.CompareTo(y.TimeToEnd);
 
     public Timer(float interval)
     {
-        _interval = interval;
+        _time = interval;
         _timers.Add(this);
+       
+        _timers.Sort(_timeToEndComparsion);
         TryStartLoop();
     }
-    /*public Timer(Action end, float interval, float delay = 0)
-    {
-        _everyUpdate = null;
-        _end = end;
-        _interval = interval;
-        _delay = delay;
-        _timers.Add(this);
-        TryStartLoop();
-    }*/
 
 
     public Timer SetUpdate(Action<float> everyUpdate)
@@ -52,6 +46,7 @@ public class Timer
     public Timer SetDelay(float delay)
     {
         _delay = delay;
+        _timers.Sort(_timeToEndComparsion);
         return this;
     }
     public Timer SetCondition(Func<bool> condition)
@@ -70,7 +65,7 @@ public class Timer
         }
     }
 
-    public void Update()
+    public bool Update()
     {
         if (!_paused)
         {
@@ -81,13 +76,15 @@ public class Timer
                 _everyUpdate?.Invoke(NormalizedPlayTime);
             }
 
-            if (_currentTime - _delay > _interval)
+            if (_currentTime - _delay > _time)
             {
                 _end?.Invoke();
                 IsEnd = true;
                 _timers.Remove(this);
+                return false;
             }
         }
+        return true;
     }
 
     public void Pause()
@@ -107,7 +104,7 @@ public class Timer
     {
         if (!IsEnd)
         {
-            _currentTime = _interval + 1;
+            _currentTime = _time + 1;
             Update();
         }
     }
@@ -118,7 +115,10 @@ public class Timer
             for (int i = 0; i < _timers.Count; i++)
             {
                 Timer timer = _timers[i];
-                timer.Update();
+                if (!timer.Update())
+                {
+                    i--;
+                }
             }
         }
     }

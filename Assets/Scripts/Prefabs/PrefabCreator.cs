@@ -8,6 +8,10 @@ public static class PrefabCreator
 {
     public static async UniTask<GameObject> GetInstance(string name, Transform parent)
     {
-        return await Addressables.InstantiateAsync(name, parent.position, Quaternion.identity, parent).Task;
+        return await Addressables.InstantiateAsync(name, parent.position, Quaternion.identity, parent);
+    }
+    public static async UniTask<GameObject> Instantiate(string name, Vector3 position)
+    {
+        return await Addressables.InstantiateAsync(name, position, Quaternion.identity);
     }
 }

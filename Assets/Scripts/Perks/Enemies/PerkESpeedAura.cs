@@ -6,7 +6,7 @@ using System.Threading;
 using Umb16.Extensions;
 using UnityEngine;
 
-public class PerkSpeedAura : IPerk
+public class PerkESpeedAura : IPerk
 {
     public PerkType Type => PerkType.ESpeedAura;
     public string Name => throw new System.NotImplementedException();
@@ -31,7 +31,7 @@ public class PerkSpeedAura : IPerk
 
     private bool _enabled;
 
-    public PerkSpeedAura(IMob mob)
+    public PerkESpeedAura(IMob mob)
     {
         SetParent(mob);
         mob.AddFx(_aura);
@@ -62,7 +62,7 @@ public class PerkSpeedAura : IPerk
                 continue;
             foreach (var mob in _mob.AllMobs)
             {
-                if (mob == _mob)
+                if (mob == _mob || mob.Type == MobType.Object)
                     continue;
                 if ((_mob.Position - mob.Position).SqrMagnetudeXY() < _distanceValue * _distanceValue)
                 {
@@ -102,7 +102,7 @@ public class PerkSpeedAura : IPerk
     private void OnEnter(IMob mob)
     {
         _mobsInRadius.Add(mob);
-        mob.AddPerk((x) => new PerkSpeedAuraEffect(x));
+        mob.AddPerk((x) => new PerkESpeedAuraEffect(x));
     }
 
     public void Shutdown()

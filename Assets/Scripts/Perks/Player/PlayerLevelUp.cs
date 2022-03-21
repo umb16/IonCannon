@@ -15,13 +15,16 @@ public class PlayerPerksController
          (1,PlayerPerksDB.RayChargeDelay),
          (1,PlayerPerksDB.RayDamageAreaRadius),
          (1,PlayerPerksDB.RayDamage),
+         (10,PlayerPerksDB.ExplosiveBarrel)
     };
     List<PerkForLvlup> _perkForLvlups = new List<PerkForLvlup>();
     public PlayerPerksController(Player player)
     {
         foreach (var item in _perkGenerators)
         {
-            _perkForLvlups.Add(new PerkForLvlup(item.probability, item.createPerk(player)));
+            IPerk perk = item.createPerk(player);
+            _perkForLvlups.Add(new PerkForLvlup(item.probability, perk));
+            player.AddPerk(perk);
         }
     }
 

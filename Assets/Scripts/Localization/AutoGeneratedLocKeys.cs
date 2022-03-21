@@ -23,6 +23,8 @@ public enum LocKeys
     PressSpaceToStart,
     //Комбо
     Combo,
+    //Взрывающийся ящик
+    ExplosiveBox,
 }
 public static class LocKeyConverter
 {
@@ -52,6 +54,8 @@ public static class LocKeyConverter
                 return "PressSpaceToStart";
             case LocKeys.Combo:
                 return "Combo";
+            case LocKeys.ExplosiveBox:
+                return "ExplosiveBox";
                 default: return "";
         }
     }

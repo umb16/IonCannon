@@ -54,6 +54,6 @@ public class SimplePerk : IPerk
 
     public void Shutdown()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

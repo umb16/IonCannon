@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3545971773993693323}
   - component: {fileID: 4613247348413688335}
   - component: {fileID: 5438836307274720433}
+  - component: {fileID: 1727457842}
+  - component: {fileID: 1260338488462468195}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -55,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f538212c4a6b3be4a935da0cf9309fd1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -3863969748089218330, guid: 4627c1b1a0027e349890053bdf009def,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,10 +123,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00407815, y: 0.4603107}
+  m_Offset: {x: 0.00407815, y: -0.20804386}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.04}
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -132,7 +134,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3253865, y: 0.8687601}
+  m_Size: {x: 1.3253865, y: 1.4034437}
   m_EdgeRadius: 0
 --- !u!50 &5438836307274720433
 Rigidbody2D:
@@ -147,7 +149,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.5
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -155,3 +157,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1727457842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545971773993693320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22291a4f071b0904d933127237d0f4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mirroringOnMove: 1
+  _groundCenterPoint: {fileID: 3545971773993693325}
+  _type: 1
+  _destroyType: 1
+  _hp: 0.1
+  _speed: 0
+  _score: 0
+  _size: 1
+  _noTouchDamage: 1
+  _startPerks: 0b000000
+--- !u!114 &1260338488462468195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545971773993693320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2

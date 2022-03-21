@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 
 public class MobSpawner : MonoBehaviour
 {
-    public readonly HashSet<IMob> Mobs = new HashSet<IMob>();
+    public readonly List<IMob> Mobs = new List<IMob>();
 
     public AssetReference[] MobPrafab;
 
@@ -223,7 +223,7 @@ public class MobSpawner : MonoBehaviour
             if (gameObject.name.Contains("First"))
                 if (Random.value < 0.05f)
                 {
-                    mob.AddPerk((x) => new PerkSpeedAura(x));
+                    mob.AddPerk((x) => new PerkESpeedAura(x));
                     mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
                 }
             Mobs.Add(mob);

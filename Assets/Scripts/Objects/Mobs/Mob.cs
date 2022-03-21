@@ -12,12 +12,15 @@ public class Mob : MonoBehaviour, IMob
     private static int idIndex;
     [SerializeField] bool _mirroringOnMove = true;
     [SerializeField] private Transform _groundCenterPoint;
-    internal Animator _animator;
+    [SerializeField] private MobType _type;
+    protected Animator _animator;
+    private Rigidbody2D _rigidbody;
+
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
 
-    public bool IsDead => HP.Value <= 0;
+    public bool IsDead => HP == null || HP.Value <= 0;
 
     private Dictionary<PerkType, IPerk> _perks = new Dictionary<PerkType, IPerk>();
     public StandartStatsCollection StatsCollection { get; protected set; }
@@ -27,7 +30,10 @@ public class Mob : MonoBehaviour, IMob
     public bool IsReady { get; private set; }
 
     public Vector3 Position => transform.position;
-    public HashSet<IMob> AllMobs { get; private set; }
+    public Vector3 GroundCenterPosition => _groundCenterPoint.position;
+    public List<IMob> AllMobs { get; private set; }
+
+    public MobType Type => _type;
 
     private Vector3 _moveTarget;
     private bool _stopped = true;
@@ -45,11 +51,16 @@ public class Mob : MonoBehaviour, IMob
         ID = ++idIndex;
         AllMobs = mobSpawner.Mobs;
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
     {
         var perk = perkGenerator(this);
+        AddPerk(perk, level);
+    }
+    public void AddPerk(IPerk perk, int level = 0)
+    {
         _perks.Add(perk.Type, perk);
         if (level > 0)
             perk.SetLevel(level);
@@ -94,7 +105,7 @@ public class Mob : MonoBehaviour, IMob
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
@@ -182,5 +193,10 @@ public class Mob : MonoBehaviour, IMob
     private void OnDestroy()
     {
         ShutdownPerks();
+    }
+
+    public void AddForce(Vector2 force, ForceMode2D mode)
+    {
+        _rigidbody.AddForce(force, mode);
     }
 }

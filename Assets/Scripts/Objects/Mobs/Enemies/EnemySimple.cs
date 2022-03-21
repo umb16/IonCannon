@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DestroyType
+{
+    None,
+    Delayed,
+    FadeOut,
+}
+
 public class EnemySimple : Mob
 {
+    [SerializeField] private DestroyType _destroyType = DestroyType.FadeOut;
     [SerializeField] private float _hp = 1;
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _score = 1;
     [SerializeField] private float _size = 1;
+    [SerializeField] private bool _noTouchDamage;
+    [SerializeField] private PerkType[] _startPerks;
     private SpriteRenderer _spriteRenderer;
     private Timer _damageTimer;
     private Timer _dieTimer;
@@ -35,6 +45,14 @@ public class EnemySimple : Mob
         base.Die(message);
         Stop();
     }
+    protected override void Start()
+    {
+        base.Start();
+        foreach (var perk in _startPerks)
+        {
+            AddPerk(EnemyPerksDB.Create(perk, this));
+        }
+    }
 
     private void OnReceiveamage()
     {
@@ -51,7 +69,16 @@ public class EnemySimple : Mob
 
     private void Stop()
     {
-        _dieTimer = new Timer(.1f)
+        switch (_destroyType)
+        {
+            case DestroyType.None:
+                break;
+            case DestroyType.Delayed:
+                _dieTimer = new Timer(.5f)
+                   .SetEnd(() => Destroy(gameObject));
+                break;
+            case DestroyType.FadeOut:
+                _dieTimer = new Timer(.1f)
             .SetDelay(.1f)
             .SetUpdate((x) =>
             {
@@ -59,6 +86,11 @@ public class EnemySimple : Mob
                 _spriteRenderer.color = color;
             })
             .SetEnd(() => Destroy(gameObject));
+                break;
+            default:
+                break;
+        }
+        
     }
 
     private void OnDestroy()
@@ -69,6 +101,8 @@ public class EnemySimple : Mob
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_noTouchDamage)
+            return;
         if (collision.gameObject.CompareTag("Player"))
         {
             Player.ReceiveDamage(new DamageMessage(this, Player, 10, DamageSources.Melee, 0));

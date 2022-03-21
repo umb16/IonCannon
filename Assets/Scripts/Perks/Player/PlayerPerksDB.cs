@@ -99,4 +99,9 @@ public static class PlayerPerksDB
            mob,
            PerkType.RayDamage);
     }
+
+    public static IPerk ExplosiveBarrel(IMob mob)
+    { 
+        return new PerkPBarrels(mob);
+    }
 }

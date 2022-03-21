@@ -5,7 +5,7 @@ using UnityEngine;
 public class WithTimer : MonoBehaviour
 {
     private List<Timer> _timers = new List<Timer>();
-    internal Timer CreateTimer(float interval)
+    protected Timer CreateTimer(float interval)
     {
         var timer = new Timer(interval);
         _timers.Add(timer);

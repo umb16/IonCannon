@@ -24,11 +24,13 @@ public class FakeMob : IMob
 
     public Vector3 Position => throw new NotImplementedException();
 
-    public HashSet<IMob> AllMobs => throw new NotImplementedException();
-
-    public Vector3 GroundCenter => throw new NotImplementedException();
+    public List<IMob> AllMobs => throw new NotImplementedException();
 
     public bool IsDead => throw new NotImplementedException();
+
+    public Vector3 GroundCenterPosition => throw new NotImplementedException();
+
+    public MobType Type => throw new NotImplementedException();
 
     public FakeMob()
     {
@@ -83,6 +85,11 @@ public class FakeMob : IMob
     }
 
     public bool ContainPerk(PerkType perkType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AddForce(Vector2 force, ForceMode2D mode)
     {
         throw new NotImplementedException();
     }

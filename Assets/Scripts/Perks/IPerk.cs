@@ -12,7 +12,6 @@ public interface IPerk
     int Level { get;}
     bool Maxed { get; }
     int MaxLevel { get; }
-    void SetParent(IMob mob);
     void SetLevel(int level);
     void AddLevel();
     void Shutdown();

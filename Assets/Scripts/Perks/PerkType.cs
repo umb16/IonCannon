@@ -12,4 +12,6 @@ public enum PerkType
     EChampion = 8,
     ESpeedAura = 9,
     ESpeedAuraEffect = 10,
+    EAfterDeathExplosion = 11,
+    PBarrels = 12,
 }
