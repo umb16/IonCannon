@@ -15,7 +15,7 @@ public class PlayerPerksController
          (1,PlayerPerksDB.RayChargeDelay),
          (1,PlayerPerksDB.RayDamageAreaRadius),
          (1,PlayerPerksDB.RayDamage),
-         (10,PlayerPerksDB.ExplosiveBarrel)
+         (1,PlayerPerksDB.ExplosiveBarrel)
     };
     List<PerkForLvlup> _perkForLvlups = new List<PerkForLvlup>();
     public PlayerPerksController(Player player)

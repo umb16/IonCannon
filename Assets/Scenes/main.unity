@@ -533,6 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 170}
   _shift: {x: 0, y: 0, z: -10}
+  _mapSize: {x: 80, y: 80}
 --- !u!157 &303
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -655,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mirroringOnMove: 1
   _groundCenterPoint: {fileID: 0}
+  _type: 0
   Barrel: {fileID: 1553508469165013, guid: 47f069035e42006438db37f037447f2d, type: 3}
   Blood: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 3}
 --- !u!50 &314

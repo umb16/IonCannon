@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 
 public class MobSpawner : MonoBehaviour
 {
+    [SerializeField] private bool teleportation = false;
     public readonly List<IMob> Mobs = new List<IMob>();
 
     public AssetReference[] MobPrafab;
@@ -284,12 +285,16 @@ public class MobSpawner : MonoBehaviour
         }
         _time += Time.deltaTime;
 
-        foreach (var mob in Mobs)
+        //Телепортация мобов
+        if (teleportation)
         {
-            Vector3 dir = mob.Position - _player.Position;
-            if ((dir).SqrMagnetudeXY() > 60 * 60)
+            foreach (var mob in Mobs)
             {
-                mob.SetPosition(_player.Position + dir.NormalizedXY() * 25);
+                Vector3 dir = mob.Position - _player.Position;
+                if ((dir).SqrMagnetudeXY() > 60 * 60)
+                {
+                    mob.SetPosition(_player.Position + dir.NormalizedXY() * 25);
+                }
             }
         }
     }
