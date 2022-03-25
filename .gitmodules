@@ -1,0 +1,3 @@
+[submodule "Assets/OnGuiConsole"]
+	path = Assets/OnGuiConsole
+	url = git@github.com:umb16/OnGuiConsole.git
