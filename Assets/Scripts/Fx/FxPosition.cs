@@ -1,4 +1,5 @@
 ﻿public enum FxPosition
 {
-    Ground
+    Ground,
+    SpriteMesh
 }

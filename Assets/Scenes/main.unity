@@ -658,6 +658,7 @@ MonoBehaviour:
   _mirroringOnMove: 1
   _groundCenterPoint: {fileID: 0}
   _type: 0
+  _spriteRenderer: {fileID: 0}
   Barrel: {fileID: 1553508469165013, guid: 47f069035e42006438db37f037447f2d, type: 3}
   Blood: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 3}
 --- !u!50 &314
@@ -2119,6 +2120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014648523}
   - component: {fileID: 2014648522}
+  - component: {fileID: 2014648525}
   m_Layer: 0
   m_Name: Console
   m_TagString: Untagged
@@ -2153,6 +2155,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014648525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014648521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d2da8a8fb87cb4a8908b99c5ff6ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2049903124
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,18 +18,17 @@ public class EnemySimple : Mob
     [SerializeField] private float _size = 1;
     [SerializeField] private bool _noTouchDamage;
     [SerializeField] private PerkType[] _startPerks;
-    private SpriteRenderer _spriteRenderer;
     private Timer _damageTimer;
     private Timer _dieTimer;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         StatsCollection = StatsCollectionsDB.StandartEnemy();
         StatsCollection.SetStat(StatType.MaxHP, _hp);
         StatsCollection.SetStat(StatType.HP, _hp);
         StatsCollection.SetStat(StatType.MovementSpeed, _speed);
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) => _animator.speed = x.Ratio;
     }

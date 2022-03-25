@@ -13,6 +13,7 @@ public class Mob : MonoBehaviour, IMob
     [SerializeField] bool _mirroringOnMove = true;
     [SerializeField] private Transform _groundCenterPoint;
     [SerializeField] private MobType _type;
+    protected SpriteRenderer _spriteRenderer;
     protected Animator _animator;
     private Rigidbody2D _rigidbody;
 
@@ -105,6 +106,11 @@ public class Mob : MonoBehaviour, IMob
         }
     }
 
+    protected virtual void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     protected virtual void Start()
     {
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
@@ -171,6 +177,12 @@ public class Mob : MonoBehaviour, IMob
         }
         var go = await PrefabCreator.GetInstance(fx.Key, parent).AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
         go.transform.localPosition = Vector3.zero;
+        if (fx.FxPosition == FxPosition.SpriteMesh)
+        {
+            var shape = go.GetComponent<ParticleSystem>().shape;
+            shape.shapeType = ParticleSystemShapeType.SpriteRenderer;
+            shape.spriteRenderer = _spriteRenderer;
+        }
         _mobFxes.Add(fx, go);
     }
 
