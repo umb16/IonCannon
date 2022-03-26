@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 public class MobSpawner : MonoBehaviour
 {
     [SerializeField] private bool teleportation = false;
+    public bool Stop;
     public readonly List<IMob> Mobs = new List<IMob>();
 
     public AssetReference[] MobPrafab;
@@ -209,29 +210,33 @@ public class MobSpawner : MonoBehaviour
     {
         if (_gameData.State != GameState.InGame)
             return;
-        if (_createMobsLeft > 0)
+        if (!Stop)
         {
-            _createMobsLeft--;
-            Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
-            vector.Normalize();
-            vector *= 25f;
-            vector += _player.transform.position;
-            GameObject gameObject = await MobPrafab[GetRandomMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-            //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
-            Mob mob = gameObject.GetComponent<Mob>();
-            //mob.Init();
-            mob.AddPerk((x) => new PerkEWave(x));
-            if (gameObject.name.Contains("First"))
-                if (Random.value < 0.05f)
-                {
-                    mob.AddPerk((x) => new PerkESpeedAura(x));
-                    mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
-                }
-            Mobs.Add(mob);
-            /*if (Random.value < 0.05f)
-                mob.AddPerk((x) => new PerkEChampion(x));*/
+            if (_createMobsLeft > 0)
+            {
+                _createMobsLeft--;
+                Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
+                vector.Normalize();
+                vector *= 25f;
+                vector += _player.transform.position;
+                GameObject gameObject = await MobPrafab[GetRandomMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+                //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
+                Mob mob = gameObject.GetComponent<Mob>();
+                //mob.Init();
+                mob.AddPerk((x) => new PerkEWave(x));
+                if (gameObject.name.Contains("First"))
+                    if (Random.value < 0.05f)
+                    {
+                        mob.AddPerk((x) => new PerkESpeedAura(x));
+                        mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
+                    }
+                Mobs.Add(mob);
+                /*if (Random.value < 0.05f)
+                    mob.AddPerk((x) => new PerkEChampion(x));*/
+                WaveMobCounter++;
+            }
+            
         }
-        WaveMobCounter++;
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
         //Debug.Log("Create mob delay "+ delay);
         //if (Mobs.Count < 3)
@@ -280,7 +285,7 @@ public class MobSpawner : MonoBehaviour
         _bossTime += Time.deltaTime;
         if (_bossTime > 100f)
         {
-            CreateBoss().Forget();
+            //CreateBoss().Forget();
             _bossTime = 0f;
         }
         _time += Time.deltaTime;
