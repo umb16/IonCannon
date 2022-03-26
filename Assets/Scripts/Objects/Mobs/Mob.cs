@@ -51,8 +51,8 @@ public class Mob : MonoBehaviour, IMob
         IsReady = true;
         ID = ++idIndex;
         AllMobs = mobSpawner.Mobs;
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
+        _rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
 
     public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
@@ -108,7 +108,7 @@ public class Mob : MonoBehaviour, IMob
 
     protected virtual void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void Start()
