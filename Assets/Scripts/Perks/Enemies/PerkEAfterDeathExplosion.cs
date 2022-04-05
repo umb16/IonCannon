@@ -7,16 +7,10 @@ using UnityEngine;
 
 public class PerkEAfterDeathExplosion : PerkEStandart
 {
-    private IMob _mob;
     private float _radius = 10;
     private DamageSources _source = DamageSources.Explosion;
     public override PerkType Type => PerkType.EAfterDeathExplosion;
     private Fx _explosion = new Fx("Fx_Explosion", FxPosition.Ground);
-    public PerkEAfterDeathExplosion(IMob mob)
-    {
-        _mob = mob;
-        _mob.DamageController.Die += OnDie;
-    }
 
     private void OnDie(DamageMessage msg)
     {
@@ -41,6 +35,12 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                 var go = PrefabCreator.Instantiate(_explosion.Key, _mob.GroundCenterPosition);
             });
         }
+    }
+
+    public override void Init(IMob mob)
+    {
+        base.Init(mob);
+        _mob.DamageController.Die += OnDie;
     }
 
     public override void Shutdown()

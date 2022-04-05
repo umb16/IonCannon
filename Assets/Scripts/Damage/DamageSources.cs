@@ -4,4 +4,5 @@ public enum DamageSources
     Ray = 1,
     Melee = 2,
     Explosion = 3,
+    Ionization = 4,
 }

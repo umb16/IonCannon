@@ -16,9 +16,20 @@ public class PerkEStandart : IPerk
 
     public int MaxLevel => 1;
 
+    protected IMob _mob;
+
+    public PerkEStandart()
+    {
+    }
+
     public void AddLevel()
     {
         Debug.Log("Its enemy perk");
+    }
+
+    public virtual void Init(IMob mob)
+    {
+        _mob = mob;
     }
 
     public void SetLevel(int level)
@@ -29,5 +40,10 @@ public class PerkEStandart : IPerk
     public virtual void Shutdown()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

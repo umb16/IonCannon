@@ -15,11 +15,6 @@ public class PerkESpeedAuraEffect : IPerk
     private Fx _speedUpfx = new Fx("Fx_SpeedUp", FxPosition.Ground);
     private float _speedUpValue = 4f;
 
-    public PerkESpeedAuraEffect(IMob mob)
-    {
-        SetParent(mob);
-        mob.AddFx(_speedUpfx);
-    }
     public void AddLevel()
     {
         Debug.Log("Is static perk");
@@ -30,7 +25,13 @@ public class PerkESpeedAuraEffect : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(IMob mob)
+    public void Init(IMob mob)
+    {
+        SetParent(mob);
+        mob.AddFx(_speedUpfx);
+    }
+
+    private void SetParent(IMob mob)
     {
         if (mob == null)
         {
@@ -57,5 +58,10 @@ public class PerkESpeedAuraEffect : IPerk
     {
         _mob.RemoveFx(_speedUpfx);
         _modificators.RemoveAll();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

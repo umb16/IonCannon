@@ -21,7 +21,7 @@ public class MobSpawner : MonoBehaviour
         {
             0.84f,
             0.2f,
-            0f,
+            0.1f,
             0f,
             0f,
             0f,
@@ -206,6 +206,14 @@ public class MobSpawner : MonoBehaviour
         _createMobsLeft = _wawesMobCount[_currenWave] * (currentLoop + 1);
     }
 
+    public async UniTask SpawnByName(string key, Vector3 position)
+    {
+        if (_gameData.State != GameState.InGame)
+            return;
+        GameObject go = await PrefabCreator.Instantiate(key, position);
+        IMob mob = go.GetComponent<IMob>();
+        Mobs.Add(mob);
+    }
     private async UniTask CreateMob()
     {
         if (_gameData.State != GameState.InGame)
@@ -223,23 +231,13 @@ public class MobSpawner : MonoBehaviour
                 //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
                 Mob mob = gameObject.GetComponent<Mob>();
                 //mob.Init();
-                mob.AddPerk((x) => new PerkEWave(x));
-                if (gameObject.name.Contains("First"))
-                    if (Random.value < 0.05f)
-                    {
-                        mob.AddPerk((x) => new PerkESpeedAura(x));
-                        mob.StatsCollection.SetStat(StatType.MovementSpeed, 4);
-                    }
+                mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
-                /*if (Random.value < 0.05f)
-                    mob.AddPerk((x) => new PerkEChampion(x));*/
                 WaveMobCounter++;
             }
             
         }
         float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
-        //Debug.Log("Create mob delay "+ delay);
-        //if (Mobs.Count < 3)
         Invoke("CreateMob", delay);
     }
 
@@ -254,7 +252,7 @@ public class MobSpawner : MonoBehaviour
         // Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
         Mob mob = gameObject.GetComponent<Mob>();
         Mobs.Add(mob);
-        mob.AddPerk((x) => new PerkEBoss(x));
+        mob.AddPerk(new PerkEBoss());
     }
 
     private int GetRandomMob()

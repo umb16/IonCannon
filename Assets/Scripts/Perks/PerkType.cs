@@ -14,4 +14,6 @@ public enum PerkType
     ESpeedAuraEffect = 10,
     EAfterDeathExplosion = 11,
     PBarrels = 12,
+    Ionization = 13,
+    IonizationEffect = 14,
 }

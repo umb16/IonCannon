@@ -42,8 +42,9 @@ public class Player : Mob
         _perksMenu = perksMenu;
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);

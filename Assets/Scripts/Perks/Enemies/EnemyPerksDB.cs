@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class EnemyPerksDB
 {
-    public static IPerk Create(PerkType perkType, IMob mob)
+    public static IPerk Create(PerkType perkType)
     {
         switch (perkType)
         {
@@ -21,17 +21,17 @@ public static class EnemyPerksDB
             case PerkType.RayDamage:
                 break;*/
             case PerkType.EWaveFactor:
-                return new PerkEWave(mob);
+                return new PerkEWave();
             case PerkType.EBoss:
-                return new PerkEBoss(mob);
+                return new PerkEBoss();
             case PerkType.EChampion:
-                return new PerkEChampion(mob);
+                return new PerkEChampion();
             case PerkType.ESpeedAura:
-                return new PerkESpeedAura(mob);
+                return new PerkESpeedAura();
             case PerkType.ESpeedAuraEffect:
-                return new PerkESpeedAuraEffect(mob);
+                return new PerkESpeedAuraEffect();
             case PerkType.EAfterDeathExplosion:
-                return new PerkEAfterDeathExplosion(mob);
+                return new PerkEAfterDeathExplosion();
             default:
                 return null;
         }

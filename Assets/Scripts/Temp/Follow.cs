@@ -7,6 +7,9 @@ public class Follow : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _shift;
     [SerializeField] private Vector2 _mapSize = new Vector2(100, 100);
+    [SerializeField] private float _cameraToCursor;
+    [SerializeField] private float _smoothFactor = 10;
+
     private Vector2 _cameraSize;
 
     private void Start()
@@ -19,8 +22,19 @@ public class Follow : MonoBehaviour
 
     void Update()
     {
+
         if (_target != null)
-            transform.position = CheckCamera(Vector3.Lerp(transform.position, _target.position + _shift, Time.deltaTime * 10));
+        {
+            Vector2 pos;
+            if (_cameraToCursor != 0)
+            {
+                pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pos = Vector3.LerpUnclamped(_target.position, pos, _cameraToCursor);
+            }
+            else
+                pos = _target.position;
+            transform.position = CheckCamera(Vector3.Lerp(transform.position, (Vector3)pos + _shift, Time.deltaTime * _smoothFactor));
+        }
     }
 
     private Vector3 CheckCamera(Vector3 pos)

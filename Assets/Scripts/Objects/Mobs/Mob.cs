@@ -55,16 +55,19 @@ public class Mob : MonoBehaviour, IMob
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
 
-    public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
-    {
-        var perk = perkGenerator(this);
-        AddPerk(perk, level);
-    }
     public void AddPerk(IPerk perk, int level = 0)
     {
-        _perks.Add(perk.Type, perk);
-        if (level > 0)
-            perk.SetLevel(level);
+        if (_perks.TryGetValue(perk.Type, out IPerk value))
+        {
+            value.Add(perk);
+        }
+        else
+        {
+            perk.Init(this);
+            _perks.Add(perk.Type, perk);
+            if (level > 0)
+                perk.SetLevel(level);
+        }
     }
 
     public virtual void ReceiveDamage(DamageMessage message)

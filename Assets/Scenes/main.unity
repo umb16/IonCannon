@@ -534,6 +534,8 @@ MonoBehaviour:
   _target: {fileID: 170}
   _shift: {x: 0, y: 0, z: -10}
   _mapSize: {x: 80, y: 80}
+  _cameraToCursor: 0
+  _smoothFactor: 10
 --- !u!157 &303
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -606,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportation: 0
+  Stop: 0
   MobPrafab:
   - m_AssetGUID: 1ee326539f9f0634dadb466b9864bd73
     m_SubObjectName: 
@@ -615,7 +618,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 1ee326539f9f0634dadb466b9864bd73
+  - m_AssetGUID: 4698c1ef00f8a934b9ca10c67ba9c06b
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -658,7 +661,6 @@ MonoBehaviour:
   _mirroringOnMove: 1
   _groundCenterPoint: {fileID: 0}
   _type: 0
-  _spriteRenderer: {fileID: 0}
   Barrel: {fileID: 1553508469165013, guid: 47f069035e42006438db37f037447f2d, type: 3}
   Blood: {fileID: 1817275556667098, guid: 281c8b5b35495c04e82636ed0b10ff9a, type: 3}
 --- !u!50 &314
@@ -698,7 +700,7 @@ BoxCollider2D:
   m_Offset: {x: 0.024099752, y: 0.23052654}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.52, y: 0.25}
+    pivot: {x: 0.5, y: 0.21}
     oldSize: {x: 4, y: 4}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
@@ -2140,6 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8febc94ca96be84392bb566a7f25cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoExecPath: OnGuiConsoleConfigs
 --- !u!4 &2014648523
 Transform:
   m_ObjectHideFlags: 0

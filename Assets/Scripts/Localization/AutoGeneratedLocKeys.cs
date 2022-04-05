@@ -25,6 +25,8 @@ public enum LocKeys
     Combo,
     //Взрывающийся ящик
     ExplosiveBox,
+    //Ионизация
+    Ionization,
 }
 public static class LocKeyConverter
 {
@@ -56,6 +58,8 @@ public static class LocKeyConverter
                 return "Combo";
             case LocKeys.ExplosiveBox:
                 return "ExplosiveBox";
+            case LocKeys.Ionization:
+                return "Ionization";
                 default: return "";
         }
     }

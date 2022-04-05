@@ -20,10 +20,6 @@ public class PerkEBoss : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEBoss(IMob mob)
-    {
-        SetParent(mob);
-    }
     public void AddLevel()
     {
         Debug.Log("Is static perk");
@@ -34,7 +30,7 @@ public class PerkEBoss : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(IMob mob)
+    public void Init(IMob mob)
     {
         if (mob == null)
         {
@@ -55,5 +51,10 @@ public class PerkEBoss : IPerk
     public void Shutdown()
     {
         _modificators.RemoveStatsCollection(_mob.StatsCollection);
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

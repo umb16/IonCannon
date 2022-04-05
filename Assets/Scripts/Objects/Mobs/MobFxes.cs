@@ -10,7 +10,10 @@ public class MobFxes
     }
     public void Remove(Fx fx)
     {
-        GameObject.Destroy(_mobFxes[fx.Id]);
-        _mobFxes.Remove(fx.Id);
+        if (_mobFxes.ContainsKey(fx.Id))
+        {
+            GameObject.Destroy(_mobFxes[fx.Id]);
+            _mobFxes.Remove(fx.Id);
+        }
     }
 }

@@ -24,7 +24,7 @@ public class StandartStatsCollection : IStatsCollection
     {
         if (_stats.TryGetValue(statType, out ComplexStat result))
             return result;
-        Debug.LogWarning("stat not found " + statType);
+        Debug.LogWarning("GetStat: stat not found " + statType);
         var stat = new ComplexStat(0);
         _stats[statType] = stat;
         return stat;
@@ -41,8 +41,14 @@ public class StandartStatsCollection : IStatsCollection
     public void SetStat(StatType statType, float value)
     {
         if (_stats.ContainsKey(statType))
+        {
             _stats[statType].SetBaseValue(value);
+        }
         else
-            Debug.LogWarning(statType +" not found");
+        {
+            var stat = new ComplexStat(value);
+            _stats[statType] = stat;
+            Debug.LogWarning("SetStat: " + statType + " not found");
+        }
     }
 }

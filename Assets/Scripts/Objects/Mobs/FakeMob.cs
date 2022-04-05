@@ -37,7 +37,7 @@ public class FakeMob : IMob
         StatsCollection = StatsCollectionsDB.StandartPlayer();
     }
 
-    public void AddPerk(Func<IMob, IPerk> perkGenerator, int level = 0)
+    public void AddPerk(IPerk perk, int level = 0)
     {
         throw new NotImplementedException();
     }

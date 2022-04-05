@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlayerPerksDB
 {
-    public static IPerk SpeedPerk(IMob mob)
+    public static IPerk SpeedPerk()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.MoveSpeed),
@@ -15,10 +15,9 @@ public static class PlayerPerksDB
             new[] {new StatModificator(2, StatModificatorType.Additive, StatType.MovementSpeed) },
             new[] {new StatModificator(3, StatModificatorType.Additive, StatType.MovementSpeed) },
            },
-           mob,
            PerkType.Speed);
     }
-    public static IPerk RaySpeedPerk(IMob mob)
+    public static IPerk RaySpeedPerk()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.RaySpeed),
@@ -29,10 +28,9 @@ public static class PlayerPerksDB
             new[] {new StatModificator(4, StatModificatorType.Additive, StatType.RaySpeed) },
             new[] {new StatModificator(6, StatModificatorType.Additive, StatType.RaySpeed) },
            },
-           mob,
            PerkType.RaySpeed);
     }
-    public static IPerk RayPathLenghtPerk(IMob mob)
+    public static IPerk RayPathLenghtPerk()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.RayPathLenght),
@@ -45,10 +43,9 @@ public static class PlayerPerksDB
             new[] {new StatModificator(40, StatModificatorType.Additive, StatType.RayPathLenght) },
             new[] {new StatModificator(50, StatModificatorType.Additive, StatType.RayPathLenght) },
            },
-           mob,
            PerkType.RayPathLenght);
     }
-    public static IPerk RayChargeDelay(IMob mob)
+    public static IPerk RayChargeDelay()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.RayChargeDelay),
@@ -59,10 +56,9 @@ public static class PlayerPerksDB
             new[] {new StatModificator(-.6f, StatModificatorType.Additive, StatType.RayDelay) },
             new[] {new StatModificator(-.9f, StatModificatorType.Additive, StatType.RayDelay) },
            },
-           mob,
            PerkType.RayDelay);
     }
-    public static IPerk RayDamageAreaRadius(IMob mob)
+    public static IPerk RayDamageAreaRadius()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.RayDamageAreaRadius),
@@ -75,10 +71,9 @@ public static class PlayerPerksDB
             new[] {new StatModificator(1.2f, StatModificatorType.Additive, StatType.RayDamageAreaRadius) },
             new[] {new StatModificator(1.5f, StatModificatorType.Additive, StatType.RayDamageAreaRadius) },
            },
-           mob,
            PerkType.RayDamageAreaRadius);
     }
-    public static IPerk RayDamage(IMob mob)
+    public static IPerk RayDamage()
     {
         return new SimplePerk(
             () => LocalizationManager.Instance.GetPhrase(LocKeys.RayDamage),
@@ -96,12 +91,15 @@ public static class PlayerPerksDB
             new[] {new StatModificator(18, StatModificatorType.Additive, StatType.RayDamage) },
             new[] {new StatModificator(20, StatModificatorType.Additive, StatType.RayDamage) },
            },
-           mob,
            PerkType.RayDamage);
     }
 
-    public static IPerk ExplosiveBarrel(IMob mob)
+    public static IPerk ExplosiveBarrel()
     { 
-        return new PerkPBarrels(mob);
+        return new PerkPBarrels();
+    }
+    public static IPerk Ionization()
+    { 
+        return new PerkPIonization();
     }
 }

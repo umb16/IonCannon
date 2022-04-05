@@ -21,10 +21,6 @@ public class PerkEWave : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEWave(IMob mob)
-    {
-        SetParent(mob);
-    }
     public void AddLevel()
     {
         Debug.Log("Is static perk");
@@ -35,7 +31,7 @@ public class PerkEWave : IPerk
         Debug.Log("Is static perk");
     }
 
-    public async void SetParent(IMob mob)
+    public async void Init(IMob mob)
     {
         
         if (mob == null)
@@ -59,5 +55,10 @@ public class PerkEWave : IPerk
     public void Shutdown()
     {
         _modificators.RemoveStatsCollection(_mob.StatsCollection);
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

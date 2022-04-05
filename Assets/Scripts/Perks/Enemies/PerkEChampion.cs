@@ -19,11 +19,6 @@ public class PerkEChampion : IPerk
 
     private StatModificatorsCollection _modificators;
 
-    public PerkEChampion(IMob mob)
-    {
-        SetParent(mob);
-    }
-
     public void AddLevel()
     {
         Debug.Log("Is static perk");
@@ -34,7 +29,7 @@ public class PerkEChampion : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(IMob mob)
+    public void Init(IMob mob)
     {
         if (mob == null)
         {
@@ -56,5 +51,10 @@ public class PerkEChampion : IPerk
     public void Shutdown()
     {
         //throw new System.NotImplementedException();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

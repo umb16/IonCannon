@@ -36,7 +36,7 @@ namespace StableEnumUtilities
                 if (element.Contains("["))
                 {
                     var elementName = element.Substring(0, element.IndexOf("["));
-                    var index = System.Convert.ToInt32(element.Substring(element.IndexOf("[")).Replace("[", "").Replace("]", ""));
+                    var index = Convert.ToInt32(element.Substring(element.IndexOf("[")).Replace("[", "").Replace("]", ""));
                     obj = GetValue_Imp(obj, elementName, index);
                 }
                 else

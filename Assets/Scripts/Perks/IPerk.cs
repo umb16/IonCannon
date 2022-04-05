@@ -15,4 +15,6 @@ public interface IPerk
     void SetLevel(int level);
     void AddLevel();
     void Shutdown();
+    void Init(IMob mob);
+    void Add(IPerk perk);
 }

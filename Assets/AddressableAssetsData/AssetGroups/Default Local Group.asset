@@ -50,6 +50,14 @@ MonoBehaviour:
     m_Address: Obj_Barrel
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 4698c1ef00f8a934b9ca10c67ba9c06b
+    m_Address: Mob_SpdBuff
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9abc7823d9e9546448d9f7f8b252cd72
+    m_Address: Fx_Radiation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

@@ -31,13 +31,6 @@ public class PerkESpeedAura : IPerk
 
     private bool _enabled;
 
-    public PerkESpeedAura(IMob mob)
-    {
-        SetParent(mob);
-        mob.AddFx(_aura);
-        _enabled = true;
-    }
-
     public void AddLevel()
     {
         Debug.Log("Is static perk");
@@ -48,9 +41,11 @@ public class PerkESpeedAura : IPerk
         Debug.Log("Is static perk");
     }
 
-    public void SetParent(IMob mob)
+    public void Init(IMob mob)
     {
         _mob = mob;
+        mob.AddFx(_aura);
+        _enabled = true;
         StartUpdate().AttachExternalCancellation(_cancellationTokenSource.Token);
     }
 
@@ -102,7 +97,7 @@ public class PerkESpeedAura : IPerk
     private void OnEnter(IMob mob)
     {
         _mobsInRadius.Add(mob);
-        mob.AddPerk((x) => new PerkESpeedAuraEffect(x));
+        mob.AddPerk(new PerkESpeedAuraEffect());
     }
 
     public void Shutdown()
@@ -111,5 +106,10 @@ public class PerkESpeedAura : IPerk
         _cancellationTokenSource.Dispose();
         _enabled = false;
         RemoveAll();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

@@ -10,3 +10,4 @@ Lvl=Ур.
 PressSpaceToStart=Нажмите пробел чтобы начать
 Combo=Комбо
 ExplosiveBox=Взрывающийся ящик
+Ionization=Ионизация

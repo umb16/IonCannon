@@ -27,12 +27,15 @@ public class PerkPBarrels : IPerk
     private float NextSpawnTime => _lastSpawnTime + Cooldown;
     private bool SpawnTimeCome => Level > 0 && NextSpawnTime < Time.time;
     private IDisposable _loop;
-    public PerkPBarrels(IMob mob)
+    public PerkPBarrels()
     {
-        _mob = mob;
         _loop = UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
             .Where(x => x == true)
             .Subscribe(async _ => await CreateBarrel());
+    }
+    public void Init(IMob mob)
+    {
+        _mob = mob;
     }
     public void AddLevel()
     {
@@ -54,5 +57,10 @@ public class PerkPBarrels : IPerk
     public void Shutdown()
     {
         _loop.Dispose();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

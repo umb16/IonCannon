@@ -20,13 +20,12 @@ public class SimplePerk : IPerk
     private Func<string> _name;
     private StatModificator[][] _modificators;
     private DamageController _damageController;
-    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, IMob mob, PerkType type)
+    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, PerkType type)
     {
         _name = name;
         _description = description;
         _modificators = statModificators;
         Type = type;
-        SetParent(mob);
     }
     public void AddLevel()
     {
@@ -44,7 +43,7 @@ public class SimplePerk : IPerk
         _collection.AddModificators(_modificators[Level - 1]);
     }
 
-    public void SetParent(IMob parent)
+    public void Init(IMob parent)
     {
         _collection = parent.StatsCollection;
         _damageController = parent.DamageController;
@@ -55,5 +54,10 @@ public class SimplePerk : IPerk
     public void Shutdown()
     {
         //throw new NotImplementedException();
+    }
+
+    public void Add(IPerk perk)
+    {
+        
     }
 }

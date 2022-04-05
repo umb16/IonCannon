@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class PlayerPerksController
 {
 
-    private static (float probability, Func<IMob, IPerk> createPerk)[] _perkGenerators =
+    private static (float probability, Func<IPerk> createPerk)[] _perkGenerators =
     {
         (1,PlayerPerksDB.SpeedPerk),
         (1,PlayerPerksDB.RaySpeedPerk),
@@ -15,14 +15,15 @@ public class PlayerPerksController
          (1,PlayerPerksDB.RayChargeDelay),
          (1,PlayerPerksDB.RayDamageAreaRadius),
          (1,PlayerPerksDB.RayDamage),
-         (1,PlayerPerksDB.ExplosiveBarrel)
+         (1,PlayerPerksDB.ExplosiveBarrel),
+         (1,PlayerPerksDB.Ionization)
     };
     List<PerkForLvlup> _perkForLvlups = new List<PerkForLvlup>();
     public PlayerPerksController(Player player)
     {
         foreach (var item in _perkGenerators)
         {
-            IPerk perk = item.createPerk(player);
+            IPerk perk = item.createPerk();
             _perkForLvlups.Add(new PerkForLvlup(item.probability, perk));
             player.AddPerk(perk);
         }

@@ -55,27 +55,20 @@ public class RayDrawer : MonoBehaviour
                 _cashedLenght = _player.MaxPathLength;
             if (_currentPathLength < _cashedLenght)
             {
-                Vector3 zero = Vector3.zero;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition * Camera.main.rect.width);
-                Debug.DrawRay(ray.origin, ray.direction);
-                if (!Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, _rayTaregetMask.value))
-                {
-                    return;
-                }
-                zero = hitInfo.point.Get2D();
-                if (zero.EqualsWithThreshold(_oldPointOfPath, 0.01f))
+                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
+                if (pos.EqualsWithThreshold(_oldPointOfPath, 0.01f))
                     return;
                 _cannonPath.positionCount = _currentLineIndex + 1;
                 if (_currentLineIndex > 0)
                 {
-                    if (_cashedLenght > _currentPathLength + Vector3.Distance(zero, _oldPointOfPath))
+                    if (_cashedLenght > _currentPathLength + Vector3.Distance(pos, _oldPointOfPath))
                     {
-                        _currentPathLength += Vector3.Distance(zero, _oldPointOfPath);
+                        _currentPathLength += Vector3.Distance(pos, _oldPointOfPath);
                     }
                     else
                     {
                         float d = (float)_cashedLenght - _currentPathLength;
-                        zero = _oldPointOfPath + (zero - _oldPointOfPath).normalized * d;
+                        pos = _oldPointOfPath + (pos - _oldPointOfPath).normalized * d;
                         _currentPathLength = (float)_cashedLenght;
                     }
                 }
@@ -83,9 +76,9 @@ public class RayDrawer : MonoBehaviour
                 {
                     cannonPath.Clear();
                 }
-                cannonPath.Add(zero);
-                _cannonPath.SetPosition(_currentLineIndex, zero);
-                _oldPointOfPath = zero;
+                cannonPath.Add(pos);
+                _cannonPath.SetPosition(_currentLineIndex, pos);
+                _oldPointOfPath = pos;
                 _currentLineIndex++;
             }
         }
