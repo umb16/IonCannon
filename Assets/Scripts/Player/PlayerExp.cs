@@ -21,7 +21,7 @@ public class PlayerExp
             ComboFactor = 1;
         }
         _comboTime = Time.time + _comboDelay;
-        ComboFactor++;
+        //ComboFactor++;
 
         Value += exp * (ComboFactor - 1);
         if (Value >= Requed)
