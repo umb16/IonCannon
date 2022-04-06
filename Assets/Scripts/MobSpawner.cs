@@ -4,6 +4,7 @@ using UnityEngine.AddressableAssets;
 using Zenject;
 using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
+using System.Linq;
 
 public class MobSpawner : MonoBehaviour
 {
@@ -257,7 +258,7 @@ public class MobSpawner : MonoBehaviour
 
     private int GetRandomMob()
     {
-        float value = Random.value;
+        float value = Random.value * _waves[_currenWave].Sum();
         float num = 0f;
         for (int i = 0; i < _waves[_currenWave].Length; i++)
         {

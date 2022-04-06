@@ -145,9 +145,7 @@ public class Mob : MonoBehaviour, IMob
         var scale = transform.localScale;
         if (_moveTarget.x - transform.position.x < 0)
         {
-
             scale.x = -1;
-
         }
         else
         {
@@ -207,6 +205,7 @@ public class Mob : MonoBehaviour, IMob
 
     private void OnDestroy()
     {
+        Debug.Log("OnDestroy");
         ShutdownPerks();
     }
 

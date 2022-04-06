@@ -44,7 +44,7 @@ public class PerkESpeedAuraEffect : IPerk
             {
                     new StatModificator((x)=>
                     {
-                        if(x<_speedUpValue)
+                        if( x < _speedUpValue)
                             return _speedUpValue;
                         else
                             return x;
@@ -62,6 +62,6 @@ public class PerkESpeedAuraEffect : IPerk
 
     public void Add(IPerk perk)
     {
-        
+
     }
 }

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -27,7 +28,7 @@ public class PerkESpeedAura : IPerk
     private float _distanceValue = 12;
 
     private Fx _aura = new Fx("Fx_Aura0", FxPosition.Ground);
-    private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+    private IDisposable _disposable;
 
     private bool _enabled;
 
@@ -46,32 +47,29 @@ public class PerkESpeedAura : IPerk
         _mob = mob;
         mob.AddFx(_aura);
         _enabled = true;
-        StartUpdate().AttachExternalCancellation(_cancellationTokenSource.Token);
+        _disposable = UniTaskAsyncEnumerable.EveryUpdate().Subscribe(Update);
     }
 
-    private async UniTask StartUpdate()
+    private void Update(AsyncUnit obj)
     {
-        await foreach (var _ in UniTaskAsyncEnumerable.EveryUpdate())
+        if (!_enabled)
+            return;
+        foreach (var mob in _mob.AllMobs)
         {
-            if (!_enabled)
+            if (mob == _mob || mob.Type == MobType.Object)
                 continue;
-            foreach (var mob in _mob.AllMobs)
+            if ((_mob.Position - mob.Position).SqrMagnetudeXY() < _distanceValue * _distanceValue)
             {
-                if (mob == _mob || mob.Type == MobType.Object)
-                    continue;
-                if ((_mob.Position - mob.Position).SqrMagnetudeXY() < _distanceValue * _distanceValue)
+                if (!_mobsInRadius.Contains(mob) && !mob.ContainPerk(PerkType.ESpeedAuraEffect))
                 {
-                    if (!_mobsInRadius.Contains(mob) && !mob.ContainPerk(PerkType.ESpeedAuraEffect))
-                    {
-                        OnEnter(mob);
-                    }
+                    OnEnter(mob);
                 }
-                else
+            }
+            else
+            {
+                if (_mobsInRadius.Contains(mob))
                 {
-                    if (_mobsInRadius.Contains(mob))
-                    {
-                        OnExit(mob);
-                    }
+                    OnExit(mob);
                 }
             }
         }
@@ -102,9 +100,9 @@ public class PerkESpeedAura : IPerk
 
     public void Shutdown()
     {
-        _cancellationTokenSource.Cancel();
-        _cancellationTokenSource.Dispose();
+        _disposable.Dispose();
         _enabled = false;
+        Debug.Log("Dispose");
         RemoveAll();
     }
 
