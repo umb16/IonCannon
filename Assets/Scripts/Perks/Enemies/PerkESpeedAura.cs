@@ -102,7 +102,6 @@ public class PerkESpeedAura : IPerk
     {
         _disposable.Dispose();
         _enabled = false;
-        Debug.Log("Dispose");
         RemoveAll();
     }
 

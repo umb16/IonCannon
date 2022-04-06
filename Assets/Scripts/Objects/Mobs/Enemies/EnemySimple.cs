@@ -92,10 +92,11 @@ public class EnemySimple : Mob
         
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         _damageTimer?.Stop();
         _dieTimer?.Stop();
+        base.OnDestroy();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -203,9 +203,8 @@ public class Mob : MonoBehaviour, IMob
         return _perks.ContainsKey(perkType);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        Debug.Log("OnDestroy");
         ShutdownPerks();
     }
 
