@@ -27,7 +27,7 @@ public class PlayerExp
         if (Value >= Requed)
         {
             Value -= Requed;
-            Requed = (int)(Requed * 1.5f);
+            Requed = (int)(Requed * 1.3f);
             CurrentLevel++;
             LevelUp?.Invoke();
         }
