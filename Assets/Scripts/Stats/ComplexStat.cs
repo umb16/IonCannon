@@ -13,15 +13,17 @@ public class ComplexStat
     private bool _isUsedFunc = false;
     private Func<float> _baseValueFunc = null;
     private Func<float, float> _correctionFunc = null;
-
+    private bool _baseLimitsOn;
+    private float _baseLimitMax;
+    private float _baseLimitMin;
     public event Action<ComplexStat> ValueChanged;
 
     private float _cachedValue;
     private int _intCachedValue;
-    private List<StatModificator> _additiveModificators = new List<StatModificator>();
-    private List<StatModificator> _multiplicativeModificators = new List<StatModificator>();
-    private List<StatModificator> _transformChain = new List<StatModificator>();
-    private List<StatModificator> _correction = new List<StatModificator>();
+    private List<IStatModificator> _additiveModificators = new List<IStatModificator>();
+    private List<IStatModificator> _multiplicativeModificators = new List<IStatModificator>();
+    private List<IStatModificator> _transformChain = new List<IStatModificator>();
+    private List<IStatModificator> _correction = new List<IStatModificator>();
 
     public float Value => _cachedValue;
     public int IntValue => _intCachedValue;
@@ -40,9 +42,19 @@ public class ComplexStat
         _correctionFunc = correctionFunc;
     }
 
+    public ComplexStat SetBaseLimit(float min, float max)
+    {
+        _baseLimitsOn = true;
+        _baseLimitMin = min;
+        _baseLimitMax = max;
+        return this;
+    }
+
     public void AddBaseValue(float value)
     {
         _baseValue += value;
+        if (_baseLimitsOn)
+            _baseValue = Mathf.Min(_baseLimitMax, Mathf.Max(_baseLimitMin, _baseValue));
         if (_isUsedFunc)
         {
             Debug.LogError("Attention! You try use SetBaseValue() but baseValueFunc already setted");
@@ -67,7 +79,7 @@ public class ComplexStat
         parentStat.ValueChanged += OnParentStatChanged;
     }
 
-    public void AddModificator(StatModificator modificator)
+    public void AddModificator(IStatModificator modificator)
     {
         switch (modificator.Type)
         {
@@ -89,7 +101,7 @@ public class ComplexStat
         CalculateCache();
     }
 
-    public void RemoveModificator(StatModificator mod)
+    public void RemoveModificator(IStatModificator mod)
     {
         switch (mod.Type)
         {

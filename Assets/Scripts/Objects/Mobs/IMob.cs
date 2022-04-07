@@ -15,6 +15,7 @@ public interface IMob
     bool IsReady { get; }
     Player Player { get; }
     List<IMob> AllMobs { get; }
+    MobSpawner Spawner { get; }
     ComplexStat MovementSpeed { get; }
     StandartStatsCollection StatsCollection { get; }
     bool IsDead { get; }

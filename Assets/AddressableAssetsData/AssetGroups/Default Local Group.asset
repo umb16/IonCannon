@@ -35,7 +35,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 84ba4e0bb9ad31444bc80f158b50c32c
-    m_Address: Mob_second
+    m_Address: Mob_Second
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 71c99e4095413f04482a3e06043fc3cc
@@ -56,6 +56,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 9abc7823d9e9546448d9f7f8b252cd72
     m_Address: Fx_Radiation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88b0e62931735a8439720766e0b2ee85
+    m_Address: Mob_Child
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

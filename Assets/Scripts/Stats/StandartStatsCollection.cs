@@ -12,14 +12,28 @@ public class StandartStatsCollection : IStatsCollection
             _stats.Add(stat.type, stat.stat);
         }
     }
-    public void AddModificators(StatModificator[] modificators)
+    public void AddModificators(IStatModificator[] modificators)
     {
         foreach (var mod in modificators)
         {
             _stats[mod.StatType].AddModificator(mod);
         }
     }
-
+    public void RemoveModificators(IStatModificator[] modificators)
+    {
+        foreach (var mod in modificators)
+        {
+            _stats[mod.StatType].RemoveModificator(mod);
+        }
+    }
+    public void AddModificator(IStatModificator modificator)
+    {
+        GetStat(modificator.StatType).AddModificator(modificator);
+    }
+    public void RemoveModificator(IStatModificator modificator)
+    {
+        GetStat(modificator.StatType).RemoveModificator(modificator);
+    }
     public ComplexStat GetStat(StatType statType)
     {
         if (_stats.TryGetValue(statType, out ComplexStat result))
@@ -30,13 +44,7 @@ public class StandartStatsCollection : IStatsCollection
         return stat;
     }
 
-    public void RemoveModificators(StatModificator[] modificators)
-    {
-        foreach (var mod in modificators)
-        {
-            _stats[mod.StatType].RemoveModificator(mod);
-        }
-    }
+
 
     public void SetStat(StatType statType, float value)
     {

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ProgressBar : MonoBehaviour
 {
-   // [EditorButton]
+    [SerializeField] private bool InvisibleOnFull;
+    // [EditorButton]
     public void Set(float value)
     {
-        transform.localScale = new Vector3(value, 1, 1);
+        if (InvisibleOnFull && value == 1)
+            transform.localScale = new Vector3(0, 1, 1);
+        else
+            transform.localScale = new Vector3(value, 1, 1);
     }
 }

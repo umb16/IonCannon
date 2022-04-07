@@ -12,4 +12,5 @@ public enum StatType
 
     Score = 8,
     Size = 9,
+    LifeSupport = 10,
 }

@@ -32,7 +32,9 @@ public class Mob : MonoBehaviour, IMob
 
     public Vector3 Position => transform.position;
     public Vector3 GroundCenterPosition => _groundCenterPoint.position;
-    public List<IMob> AllMobs { get; private set; }
+    public List<IMob> AllMobs => Spawner.Mobs;
+
+    public MobSpawner Spawner { get; private set; }
 
     public MobType Type => _type;
 
@@ -50,7 +52,7 @@ public class Mob : MonoBehaviour, IMob
         Player = player;
         IsReady = true;
         ID = ++idIndex;
-        AllMobs = mobSpawner.Mobs;
+        Spawner = mobSpawner;
         _animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
@@ -205,7 +207,8 @@ public class Mob : MonoBehaviour, IMob
 
     protected virtual void OnDestroy()
     {
-        ShutdownPerks();
+        if (!IsDead)
+            ShutdownPerks();
     }
 
     public void AddForce(Vector2 force, ForceMode2D mode)

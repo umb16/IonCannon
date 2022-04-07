@@ -15,6 +15,7 @@ public class Player : Mob
 
     public GameObject Blood;
     private PerksMenu _perksMenu;
+    private ComplexStat _lifeSupport;
 
     //public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
 
@@ -50,7 +51,17 @@ public class Player : Mob
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
+        _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
+        _lifeSupport.ValueChanged += LifeSupportValueChanged;
         Exp.LevelUp += OnLvlup;
+    }
+
+    private void LifeSupportValueChanged(ComplexStat stat)
+    {
+        if (stat.Value <= 0)
+        {
+            Die(new DamageMessage(this,this,1000,DamageSources.Unknown));
+        }
     }
 
     public override void Die(DamageMessage message)

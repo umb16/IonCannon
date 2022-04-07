@@ -5,10 +5,13 @@ public enum AddressKeys
    Fx_Dust,
    Fx_SpeedUp,
    Fx_Aura0,
-   Mob_second,
+   Mob_Second,
    Fx_Explosion,
    Snd_Explosion,
    Obj_Barrel,
+   Mob_SpdBuff,
+   Fx_Radiation,
+   Mob_Child,
 }
 public static class AddressKeysConverter
 {
@@ -24,14 +27,20 @@ public static class AddressKeysConverter
                 return "Fx_SpeedUp";
             case AddressKeys.Fx_Aura0:
                 return "Fx_Aura0";
-            case AddressKeys.Mob_second:
-                return "Mob_second";
+            case AddressKeys.Mob_Second:
+                return "Mob_Second";
             case AddressKeys.Fx_Explosion:
                 return "Fx_Explosion";
             case AddressKeys.Snd_Explosion:
                 return "Snd_Explosion";
             case AddressKeys.Obj_Barrel:
                 return "Obj_Barrel";
+            case AddressKeys.Mob_SpdBuff:
+                return "Mob_SpdBuff";
+            case AddressKeys.Fx_Radiation:
+                return "Fx_Radiation";
+            case AddressKeys.Mob_Child:
+                return "Mob_Child";
                 default: return "";
         }
     }

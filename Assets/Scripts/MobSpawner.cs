@@ -207,13 +207,14 @@ public class MobSpawner : MonoBehaviour
         _createMobsLeft = _wawesMobCount[_currenWave] * (currentLoop + 1);
     }
 
-    public async UniTask SpawnByName(string key, Vector3 position)
+    public async UniTask<IMob> SpawnByName(string key, Vector3 position)
     {
         if (_gameData.State != GameState.InGame)
-            return;
+            return null;
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
         Mobs.Add(mob);
+        return mob;
     }
     private async UniTask CreateMob()
     {

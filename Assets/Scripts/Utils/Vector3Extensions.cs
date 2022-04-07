@@ -84,25 +84,25 @@ namespace Umb16.Extensions
             return v.x * v.x + v.z * v.z;
         }
 
-        public static float DotXZ(this Vector3 v1, Vector3 v2)
+        public static float DotXY(this Vector3 v1, Vector3 v2)
         {
-            return v1.x * v2.x + v1.z * v2.z;
+            return v1.x * v2.x + v1.y * v2.y;
         }
 
-        public static Vector3 RotateXZ(this Vector3 v, Vector3 rotator)
+        public static Vector3 RotateXY(this Vector3 v, Vector3 rotator)
         {
-            v = new Vector3(rotator.x, v.y, rotator.z) * v.x + new Vector3(rotator.z, v.y, -rotator.x) * v.z;
+            v = new Vector3(rotator.x, rotator.y, v.z) * v.x + new Vector3(rotator.y, -rotator.x, v.z) * v.y;
             return v;
         }
 
-        public static Vector3 DiamondRotateXZ(this Vector3 v, float angle)
+        public static Vector3 DiamondRotateXY(this Vector3 v, float angle)
         {
-            return v.RotateXZ(DiamondToNormalVectorXY(angle));
+            return v.RotateXY(DiamondToNormalVectorXY(angle));
         }
 
-        public static Vector3 RotateXZ90(this Vector3 v)
+        public static Vector3 RotateXY90(this Vector3 v)
         {
-            return new Vector3(v.z, v.y, -v.x);
+            return new Vector3(v.y, -v.x, v.z);
         }
 
         public static Vector3 Min(this Vector3 v1, Vector3 v2)
@@ -139,15 +139,15 @@ namespace Umb16.Extensions
             return v1;
         }
 
-        public static Vector3 DiamondToVectorXZ(float angle)
+        public static Vector3 DiamondToVectorXY(float angle)
         {
             float x = (angle < 2 ? 1 - angle : angle - 3);
-            float z = (angle < 3 ? ((angle > 1) ? 2 - angle : angle) : angle - 4);
-            return new Vector3(x, 0, z);
+            float y = (angle < 3 ? ((angle > 1) ? 2 - angle : angle) : angle - 4);
+            return new Vector3(x, y, 0);
         }
         public static Vector3 DiamondToNormalVectorXY(float angle)
         {
-            return DiamondToVectorXZ(angle).NormalizedXY();
+            return DiamondToVectorXY(angle).NormalizedXY();
         }
         public static Vector3 NormalizedXY(this Vector3 v)
         {

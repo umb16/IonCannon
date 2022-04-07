@@ -30,7 +30,10 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
-        movSpeed.ValueChanged += (x) => _animator.speed = x.Ratio;
+        movSpeed.ValueChanged += (x) =>
+        {
+            if (_animator != null) _animator.speed = x.Ratio;
+        };
     }
 
     public override void ReceiveDamage(DamageMessage message)
@@ -89,7 +92,7 @@ public class EnemySimple : Mob
             default:
                 break;
         }
-        
+
     }
 
     protected override void OnDestroy()

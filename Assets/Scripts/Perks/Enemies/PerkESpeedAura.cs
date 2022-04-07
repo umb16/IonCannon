@@ -7,20 +7,9 @@ using System.Threading;
 using Umb16.Extensions;
 using UnityEngine;
 
-public class PerkESpeedAura : IPerk
+public class PerkESpeedAura : PerkEStandart
 {
-    public PerkType Type => PerkType.ESpeedAura;
-    public string Name => throw new System.NotImplementedException();
-
-    public string Description => throw new System.NotImplementedException();
-
-    private IMob _mob;
-
-    public int Level => 1;
-
-    public bool Maxed => true;
-
-    public int MaxLevel => 1;
+    public override PerkType Type => PerkType.ESpeedAura;
 
     private HashSet<IMob> _mobsInRadius = new HashSet<IMob>();
 
@@ -32,19 +21,10 @@ public class PerkESpeedAura : IPerk
 
     private bool _enabled;
 
-    public void AddLevel()
-    {
-        Debug.Log("Is static perk");
-    }
 
-    public void SetLevel(int level)
+    public override void Init(IMob mob)
     {
-        Debug.Log("Is static perk");
-    }
-
-    public void Init(IMob mob)
-    {
-        _mob = mob;
+        base.Init(mob);
         mob.AddFx(_aura);
         _enabled = true;
         _disposable = UniTaskAsyncEnumerable.EveryUpdate().Subscribe(Update);
@@ -83,7 +63,6 @@ public class PerkESpeedAura : IPerk
                 mob.RemovePerk(PerkType.ESpeedAuraEffect);
         }
         _mob.RemoveFx(_aura);
-        //_mobsInRadius.Clear();
     }
 
     private void OnExit(IMob mob)
@@ -98,15 +77,10 @@ public class PerkESpeedAura : IPerk
         mob.AddPerk(new PerkESpeedAuraEffect());
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _disposable.Dispose();
         _enabled = false;
         RemoveAll();
-    }
-
-    public void Add(IPerk perk)
-    {
-        
     }
 }

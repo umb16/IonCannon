@@ -3,44 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkEWave : IPerk
+public class PerkEWave : PerkEStandart
 {
-    public PerkType Type => PerkType.EWaveFactor;
-    public string Name => throw new System.NotImplementedException();
+    public override PerkType Type => PerkType.EWaveFactor;
 
-    public string Description => throw new System.NotImplementedException();
-
-    private IMob _mob;
-
-    public int Level => 1;
-
-    public bool Maxed => true;
-
-    public int MaxLevel => 1;
     public int Wave => _mob.GameData.Wave;
 
     private StatModificatorsCollection _modificators;
 
-    public void AddLevel()
+    public override async void Init(IMob mob)
     {
-        Debug.Log("Is static perk");
-    }
-
-    public void SetLevel(int level)
-    {
-        Debug.Log("Is static perk");
-    }
-
-    public async void Init(IMob mob)
-    {
-        
-        if (mob == null)
-        {
-            _modificators.RemoveStatsCollection(_mob.StatsCollection);
-            return;
-        }
         await UniTask.WaitUntil(() => mob.IsReady);
-        _mob = mob;
+        base.Init(mob);
         _modificators = new StatModificatorsCollection
         (
             new[] { 
@@ -52,13 +26,8 @@ public class PerkEWave : IPerk
         _modificators.AddStatsCollection(_mob.StatsCollection);
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _modificators.RemoveStatsCollection(_mob.StatsCollection);
-    }
-
-    public void Add(IPerk perk)
-    {
-        
     }
 }

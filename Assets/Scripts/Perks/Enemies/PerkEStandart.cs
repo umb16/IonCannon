@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkEStandart : IPerk
+public abstract class PerkEStandart : IPerk
 {
-    public virtual PerkType Type { get; }
+    public abstract PerkType Type { get; }
 
     public string Name => "Its enemy perk";
 
@@ -17,10 +17,6 @@ public class PerkEStandart : IPerk
     public int MaxLevel => 1;
 
     protected IMob _mob;
-
-    public PerkEStandart()
-    {
-    }
 
     public void AddLevel()
     {
@@ -39,10 +35,10 @@ public class PerkEStandart : IPerk
 
     public virtual void Shutdown()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    public void Add(IPerk perk)
+    public virtual void Add(IPerk perk)
     {
         
     }

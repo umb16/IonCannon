@@ -1,43 +1,23 @@
 ﻿using UnityEngine;
 
-public class PerkESpeedAuraEffect : IPerk
+public class PerkESpeedAuraEffect : PerkEStandart
 {
-    public PerkType Type => PerkType.ESpeedAuraEffect;
-    public string Name => throw new System.NotImplementedException();
-    public string Description => throw new System.NotImplementedException();
-    private IMob _mob;
-    public int Level => 1;
+    public override PerkType Type => PerkType.ESpeedAuraEffect;
 
-    public bool Maxed => true;
-
-    public int MaxLevel => 1;
     private StatModificatorsCollection _modificators;
     private Fx _speedUpfx = new Fx("Fx_SpeedUp", FxPosition.Ground);
     private float _speedUpValue = 4f;
 
-    public void AddLevel()
-    {
-        Debug.Log("Is static perk");
-    }
 
-    public void SetLevel(int level)
+    public override void Init(IMob mob)
     {
-        Debug.Log("Is static perk");
-    }
-
-    public void Init(IMob mob)
-    {
+        base.Init(mob);
         SetParent(mob);
         mob.AddFx(_speedUpfx);
     }
 
     private void SetParent(IMob mob)
     {
-        if (mob == null)
-        {
-            _modificators.RemoveStatsCollection(_mob.StatsCollection);
-        }
-        _mob = mob;
         _modificators = new StatModificatorsCollection
         (
             new[]
@@ -54,14 +34,9 @@ public class PerkESpeedAuraEffect : IPerk
         _modificators.AddStatsCollection(_mob.StatsCollection);
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _mob.RemoveFx(_speedUpfx);
         _modificators.RemoveAll();
-    }
-
-    public void Add(IPerk perk)
-    {
-
     }
 }

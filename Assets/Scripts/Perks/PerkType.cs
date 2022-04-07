@@ -16,4 +16,6 @@ public enum PerkType
     PBarrels = 12,
     Ionization = 13,
     IonizationEffect = 14,
+    EHunter = 15,
+    EMother = 16,
 }
