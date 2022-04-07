@@ -23,7 +23,7 @@ public class PlayerExp
         _comboTime = Time.time + _comboDelay;
         //ComboFactor++;
 
-        Value += exp * (ComboFactor - 1);
+        Value += exp; //* (ComboFactor - 1);
         if (Value >= Requed)
         {
             Value -= Requed;

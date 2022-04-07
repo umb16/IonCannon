@@ -19,6 +19,11 @@ public class GameData
         }
     }
 
+    public void AddWave()
+    {
+        Wave++;
+    }
+
     public void Reset()
     {
         Wave = 0;

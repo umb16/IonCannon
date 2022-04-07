@@ -21,7 +21,7 @@ public class MobSpawner : MonoBehaviour
         new float[9]
         {
             0.84f,
-            0.2f,
+            0.0f,
             0.1f,
             0f,
             0f,
@@ -33,8 +33,8 @@ public class MobSpawner : MonoBehaviour
         new float[9]
         {
             0.66f,
-            0.33f,
-            0f,
+            0.05f,
+            0.1f,
             0f,
             0f,
             0f,
@@ -45,7 +45,7 @@ public class MobSpawner : MonoBehaviour
         new float[9]
         {
             0.49f,
-            0.4f,
+            0.1f,
             0.1f,
             0f,
             0f,
@@ -198,6 +198,8 @@ public class MobSpawner : MonoBehaviour
     private void NextWave()
     {
         _currenWave++;
+        _gameData.AddWave();
+        Debug.Log("Current wave " + _currenWave);
         if (_currenWave >= _waves.Length)
         {
             _currenWave = 0;
@@ -250,7 +252,7 @@ public class MobSpawner : MonoBehaviour
         vector.Normalize();
         vector *= 25f;
         vector += _player.transform.position;
-        GameObject gameObject = await MobPrafab[Random.Range(0, MobPrafab.Length)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+        GameObject gameObject = await MobPrafab[Random.Range(0, 4)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
         // Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
         Mob mob = gameObject.GetComponent<Mob>();
         Mobs.Add(mob);
@@ -285,7 +287,7 @@ public class MobSpawner : MonoBehaviour
         _bossTime += Time.deltaTime;
         if (_bossTime > 100f)
         {
-            //CreateBoss().Forget();
+            CreateBoss().Forget();
             _bossTime = 0f;
         }
         _time += Time.deltaTime;

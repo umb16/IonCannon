@@ -23,7 +23,7 @@ public class LifeSupportTower : MonoBehaviour
         for (int i = 0; i < _vertexCount; i++)
         {
             Vector3 newPoint = Vector3.up.DiamondRotateXY(4.0f / _vertexCount * i);
-            newPoint.y *= .8f;
+            //newPoint.y *= .8f;
             newPoint *= _radius;
 
             _lineRenderer.SetPosition(i, newPoint.Get2D());

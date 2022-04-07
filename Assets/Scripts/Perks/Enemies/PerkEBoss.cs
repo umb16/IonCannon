@@ -8,7 +8,7 @@ public class PerkEBoss : PerkEStandart
     public int Wave => _mob.GameData.Wave;
 
     private StatModificatorsCollection _modificators;
-
+    private Fx _aura = new Fx("Fx_AuraBoss", FxPosition.Ground);
     public override void Init(IMob mob)
     {
         base.Init(mob);
@@ -21,10 +21,12 @@ public class PerkEBoss : PerkEStandart
                     }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
+        _mob.AddFx(_aura);
     }
 
     public override void Shutdown()
     {
+        _mob.RemoveFx(_aura);
         _modificators.RemoveStatsCollection(_mob.StatsCollection);
     }
 }
