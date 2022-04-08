@@ -11,9 +11,9 @@ public static class PlayerPerksDB
             () => LocalizationManager.Instance.GetPhrase(LocKeys.MoveSpeed),
            new[]
            {
+            new[] {new StatModificator(.33f, StatModificatorType.Additive, StatType.MovementSpeed) },
+            new[] {new StatModificator(.66f, StatModificatorType.Additive, StatType.MovementSpeed) },
             new[] {new StatModificator(1, StatModificatorType.Additive, StatType.MovementSpeed) },
-            new[] {new StatModificator(2, StatModificatorType.Additive, StatType.MovementSpeed) },
-            new[] {new StatModificator(3, StatModificatorType.Additive, StatType.MovementSpeed) },
            },
            PerkType.Speed);
     }

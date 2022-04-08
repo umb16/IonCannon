@@ -16,6 +16,7 @@ public class EnemySimple : Mob
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _score = 1;
     [SerializeField] private float _size = 1;
+    [SerializeField] private float _damagePerSecond = 1;
     [SerializeField] private bool _noTouchDamage;
     [SerializeField] private PerkType[] _startPerks;
     private Timer _damageTimer;
@@ -29,6 +30,7 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.MovementSpeed, _speed);
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
+        StatsCollection.SetStat(StatType.Damage, _damagePerSecond);
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) =>
         {
@@ -102,13 +104,13 @@ public class EnemySimple : Mob
         base.OnDestroy();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (_noTouchDamage)
             return;
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.ReceiveDamage(new DamageMessage(this, Player, 10, DamageSources.Melee, 0));
+            Player.ReceiveDamage(new DamageMessage(this, Player, StatsCollection.GetStat(StatType.Damage).Value * Time.fixedDeltaTime, DamageSources.Melee, 0));
         }
     }
 

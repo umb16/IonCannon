@@ -21,6 +21,7 @@ bind 1 speedup
 bind 2 speeddown
 bind 3 "SpawnerStop 1" "SpawnerStop 0"
 bind 4 KillUnderCursor
+bind 5 AddWave
 alias help all_binds all_aliases
 alias speedup "AddStat MovementSpeed 5"
 alias speeddown "AddStat MovementSpeed -5"

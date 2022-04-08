@@ -8,6 +8,7 @@ public class PlayerExp
     public int CurrentLevel { get; private set; }
     public int Requed { get; private set; } = 40;
     public int Value { get; private set; }
+    public int Cumulative { get; private set; }
     public float Normalized => Value / (float)Requed;
     public int ComboFactor { get; private set; }
 
@@ -22,7 +23,7 @@ public class PlayerExp
         }
         _comboTime = Time.time + _comboDelay;
         //ComboFactor++;
-
+        Cumulative += exp;
         Value += exp; //* (ComboFactor - 1);
         if (Value >= Requed)
         {

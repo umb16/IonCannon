@@ -6,6 +6,7 @@ public class GameData
 {
     public event Action<GameState> GameStateChanged;
     public int Wave = 0;
+    public float StartGameTime;
     public GameState State
     {
         get
@@ -14,6 +15,10 @@ public class GameData
         }
         set
         {
+            if (value != _state && value == GameState.InGame)
+            {
+                StartGameTime = Time.time;
+            }
             GameStateChanged?.Invoke(value);
             _state = value;
         }

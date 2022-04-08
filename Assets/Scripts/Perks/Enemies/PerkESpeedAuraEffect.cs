@@ -18,19 +18,26 @@ public class PerkESpeedAuraEffect : PerkEStandart
 
     private void SetParent(IMob mob)
     {
+        /* _modificators = new StatModificatorsCollection
+         (
+             new[]
+             {
+                     new StatModificator((x)=>
+                     {
+                         if( x < _speedUpValue)
+                             return _speedUpValue;
+                         else
+                             return x;
+                     }, StatModificatorType.Correction, StatType.MovementSpeed)
+             }
+         );*/
         _modificators = new StatModificatorsCollection
-        (
-            new[]
-            {
-                    new StatModificator((x)=>
-                    {
-                        if( x < _speedUpValue)
-                            return _speedUpValue;
-                        else
-                            return x;
-                    }, StatModificatorType.Correction, StatType.MovementSpeed)
-            }
-        );
+         (
+             new[]
+             {
+                    new StatModificator(1.8f, StatModificatorType.Additive, StatType.MovementSpeed)
+             }
+         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
     }
 

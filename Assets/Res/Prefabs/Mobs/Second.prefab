@@ -154,6 +154,7 @@ MonoBehaviour:
   _speed: 1.5
   _score: 10
   _size: 1
+  _damagePerSecond: 3
   _noTouchDamage: 0
   _startPerks: 10000000
 --- !u!114 &7378671863223666826

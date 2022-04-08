@@ -4,6 +4,7 @@ bind 1 speedup
 bind 2 speeddown
 bind 3 "SpawnerStop 1" "SpawnerStop 0"
 bind 4 KillUnderCursor
+bind 5 AddWave
 bind e spawn_first
 bind r spawn_second
 bind t spawn_spd_buff

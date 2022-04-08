@@ -19,11 +19,12 @@ public class PerkEWave : PerkEStandart
         (
             new[] { 
                     new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.Score),
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.HP),
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.MaxHP),
+                    new StatModificator((x) => x * (Wave*.7f + 1), StatModificatorType.TransformChain, StatType.MaxHP),
+                    new StatModificator((x) => x * (Wave*.1f + 1), StatModificatorType.TransformChain, StatType.Damage),
                   }
         );
         _modificators.AddStatsCollection(_mob.StatsCollection);
+        mob.HP.SetBaseValue(mob.StatsCollection.GetStat(StatType.MaxHP).Value);
     }
 
     public override void Shutdown()
