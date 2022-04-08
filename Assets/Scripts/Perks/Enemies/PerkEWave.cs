@@ -9,26 +9,25 @@ public class PerkEWave : PerkEStandart
 
     public int Wave => _mob.GameData.Wave;
 
-    private StatModificatorsCollection _modificators;
+    private IStatModificator[] _modificators;
 
     public override async void Init(IMob mob)
     {
         await UniTask.WaitUntil(() => mob.IsReady);
         base.Init(mob);
-        _modificators = new StatModificatorsCollection
-        (
-            new[] { 
-                    new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.Score),
-                    new StatModificator((x) => x * (Wave*.7f + 1), StatModificatorType.TransformChain, StatType.MaxHP),
-                    new StatModificator((x) => x * (Wave*.1f + 1), StatModificatorType.TransformChain, StatType.Damage),
-                  }
-        );
-        _modificators.AddStatsCollection(_mob.StatsCollection);
+        _modificators = new[]
+        {
+            new StatModificator((x) => x * (Wave + 1), StatModificatorType.TransformChain, StatType.Score),
+            new StatModificator((x) => x * (Wave*.7f + 1), StatModificatorType.TransformChain, StatType.MaxHP),
+            new StatModificator((x) => x * (Wave*.1f + 1), StatModificatorType.TransformChain, StatType.Damage),
+         };
+
+        _mob.StatsCollection.AddModificators(_modificators);
         mob.HP.SetBaseValue(mob.StatsCollection.GetStat(StatType.MaxHP).Value);
     }
 
     public override void Shutdown()
     {
-        _modificators.RemoveStatsCollection(_mob.StatsCollection);
+        _mob.StatsCollection.RemoveModificators(_modificators);
     }
 }

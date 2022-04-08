@@ -7,19 +7,17 @@ public class PerkEBoss : PerkEStandart
     public override PerkType Type => PerkType.EBoss;
     public int Wave => _mob.GameData.Wave;
 
-    private StatModificatorsCollection _modificators;
+    private IStatModificator[] _modificators;
     private Fx _aura = new Fx("Fx_AuraBoss", FxPosition.Ground);
     public override void Init(IMob mob)
     {
         base.Init(mob);
-        _modificators = new StatModificatorsCollection
-        (
+        _modificators = 
             new[] { 
                     new StatModificator((x) => x * (Wave + 1) * 6, StatModificatorType.TransformChain, StatType.Score),
                     new StatModificator((x) => (x + Wave * 10) * 17, StatModificatorType.TransformChain, StatType.MaxHP)
-                    }
-        );
-        _modificators.AddStatsCollection(_mob.StatsCollection);
+                    };
+        _mob.StatsCollection.AddModificators(_modificators);
         mob.HP.SetBaseValue(mob.StatsCollection.GetStat(StatType.MaxHP).Value);
         _mob.AddFx(_aura);
     }
@@ -27,6 +25,6 @@ public class PerkEBoss : PerkEStandart
     public override void Shutdown()
     {
         _mob.RemoveFx(_aura);
-        _modificators.RemoveStatsCollection(_mob.StatsCollection);
+        _mob.StatsCollection.RemoveModificators(_modificators);
     }
 }

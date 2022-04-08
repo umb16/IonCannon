@@ -6,19 +6,15 @@ public class PerkEChampion : PerkEStandart
 {
     public override PerkType Type => PerkType.EChampion;
 
-    private StatModificatorsCollection _modificators;
+    private IStatModificator[] _modificators = new[] {
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.Score),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.HP),
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.MaxHP),
+                  };
 
     public override void Init(IMob mob)
     {
         base.Init(mob);
-        _modificators = new StatModificatorsCollection
-        (
-            new[] { 
-                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.Score),
-                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.HP),
-                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.MaxHP),
-                  }
-        );
-        _modificators.AddStatsCollection(_mob.StatsCollection);
+        _mob.StatsCollection.AddModificators(_modificators);
     }
 }
