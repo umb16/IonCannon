@@ -1,14 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
-public enum DestroyType
-{
-    None,
-    Delayed,
-    FadeOut,
-}
-
 public class EnemySimple : Mob
 {
     [SerializeField] private DestroyType _destroyType = DestroyType.FadeOut;
@@ -19,6 +12,7 @@ public class EnemySimple : Mob
     [SerializeField] private float _damagePerSecond = 1;
     [SerializeField] private bool _noTouchDamage;
     [SerializeField] private PerkType[] _startPerks;
+    [SerializeField] private Drop[] _drop;
     private Timer _damageTimer;
     private Timer _dieTimer;
     protected override void Awake()
@@ -79,7 +73,7 @@ public class EnemySimple : Mob
                 break;
             case DestroyType.Delayed:
                 _dieTimer = new Timer(.5f)
-                   .SetEnd(() => Destroy(gameObject));
+                   .SetEnd(AfterDie);
                 break;
             case DestroyType.FadeOut:
                 _dieTimer = new Timer(.1f)
@@ -89,7 +83,7 @@ public class EnemySimple : Mob
                 Color color = new Color(0, 0, 0, 1 - x);
                 _spriteRenderer.color = color;
             })
-            .SetEnd(() => Destroy(gameObject));
+            .SetEnd((AfterDie));
                 break;
             default:
                 break;
@@ -97,8 +91,18 @@ public class EnemySimple : Mob
 
     }
 
+    private void AfterDie()
+    {
+        foreach (var drop in _drop)
+        {
+            drop.Release(GroundCenterPosition, StatsCollection.GetStat(StatType.Score).Value);
+        }
+        Destroy(gameObject);
+    }
+
     protected override void OnDestroy()
     {
+
         _damageTimer?.Stop();
         _dieTimer?.Stop();
         base.OnDestroy();

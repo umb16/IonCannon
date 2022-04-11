@@ -6,6 +6,34 @@ using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
 using System.Linq;
 
+public class WaveData
+{
+    private int[] _units;
+    private int _currentIndex;
+    public int UnitsLeft => _units.Length - _currentIndex;
+    public int UnitsCount => _units.Length;
+    public bool IsEnd { get; private set; }
+    
+    public WaveData(int[] units, bool shuffle = false)
+    {
+        if(shuffle)
+            _units = units.OrderBy(x => Random.value).ToArray();
+        else
+            _units = units.ToArray();
+    }
+
+    public int GetNext()
+    {
+        if (IsEnd)
+            return 0;
+        int result = _units[_currentIndex];
+        _currentIndex++;
+        if (_currentIndex >= _units.Length)
+            IsEnd = true;
+        return result;
+    }
+}
+
 public class MobSpawner : MonoBehaviour
 {
     [SerializeField] private bool teleportation = false;

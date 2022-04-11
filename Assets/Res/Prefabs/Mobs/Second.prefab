@@ -152,11 +152,15 @@ MonoBehaviour:
   _destroyType: 2
   _hp: 9
   _speed: 1.5
-  _score: 10
+  _score: 1
   _size: 1
   _damagePerSecond: 3
   _noTouchDamage: 0
   _startPerks: 10000000
+  _drop:
+  - Probability: 1
+    GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
+      type: 3}
 --- !u!114 &7378671863223666826
 MonoBehaviour:
   m_ObjectHideFlags: 0
