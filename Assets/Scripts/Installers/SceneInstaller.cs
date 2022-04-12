@@ -6,6 +6,7 @@ public class SceneInstaller : MonoInstaller
     [SerializeField] private Player _player;
     [SerializeField] private PerksMenu _perksMenu;
     [SerializeField] private MobSpawner _mobSpawner;
+    [SerializeField] private CooldownsPanel _cooldownsPanel;
     public override void InstallBindings()
     {
         Container.Bind<PerksMenu>().FromInstance(_perksMenu).AsSingle().NonLazy();
@@ -15,6 +16,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<DamageController>().AsSingle().NonLazy();
         Container.Bind<GameData>().AsSingle().NonLazy();
         Container.Bind<MobSpawner>().FromInstance(_mobSpawner).AsSingle();
+        Container.Bind<CooldownsPanel>().FromInstance(_cooldownsPanel).AsSingle();
 
     }
 }

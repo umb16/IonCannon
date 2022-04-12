@@ -109,7 +109,7 @@ public class MobSpawner : MonoBehaviour
         Mobs.Remove(msg.Target);
     }
 
-    private void NextWave()
+    public void NextWave()
     {
         CurrentWave.Reset();
         _currenWave++;

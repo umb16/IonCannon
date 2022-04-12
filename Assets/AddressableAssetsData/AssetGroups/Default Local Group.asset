@@ -66,6 +66,10 @@ MonoBehaviour:
     m_Address: Fx_AuraBoss
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 965dbcaed01b1c347bca444ea416872f
+    m_Address: Ico_Laser
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

@@ -49,7 +49,8 @@ public class ConsoleMethods : MonoBehaviour
     }
     private void AddWave()
     {
-        _gameData.AddWave();
+        _mobSpawner.NextWave();
+        //_gameData.AddWave();
     }
     private void KillUnderCursor()
     {

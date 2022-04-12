@@ -76,8 +76,9 @@ public class Player : Mob
         Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         Movement();
     }
 

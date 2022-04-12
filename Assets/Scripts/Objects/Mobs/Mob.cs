@@ -141,7 +141,10 @@ public class Mob : MonoBehaviour, IMob
             }
         }
     }
-
+    protected virtual void Update()
+    {
+        transform.To2DPos();
+    }
     private void Flip()
     {
         var scale = transform.localScale;

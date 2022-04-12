@@ -12,6 +12,8 @@ public enum AddressKeys
    Mob_SpdBuff,
    Fx_Radiation,
    Mob_Child,
+   Fx_AuraBoss,
+   Ico_Laser,
 }
 public static class AddressKeysConverter
 {
@@ -41,6 +43,10 @@ public static class AddressKeysConverter
                 return "Fx_Radiation";
             case AddressKeys.Mob_Child:
                 return "Mob_Child";
+            case AddressKeys.Fx_AuraBoss:
+                return "Fx_AuraBoss";
+            case AddressKeys.Ico_Laser:
+                return "Ico_Laser";
                 default: return "";
         }
     }
