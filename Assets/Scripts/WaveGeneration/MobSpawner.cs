@@ -38,7 +38,7 @@ public class WaveData
 
     public int GetNext()
     {
-        if(_currentIndex == 0)
+        if (_currentIndex == 0)
             _startTime = Time.time;
         if (IsEnd)
             return 0;
@@ -71,144 +71,6 @@ public class MobSpawner : MonoBehaviour
     };
 
     private WaveData CurrentWave => _waves[_currenWave];
-
-    /*private float[][] _waves = new float[10][]
-    {
-        new float[9]
-        {
-            0.84f,
-            0.0f,
-            0.1f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0.001f,
-            0.05f
-        },
-        new float[9]
-        {
-            0.66f,
-            0.05f,
-            0.1f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.49f,
-            0.1f,
-            0.1f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.39f,
-            0.4f,
-            0.1f,
-            0.1f,
-            0f,
-            0f,
-            0f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.29f,
-            0.3f,
-            0.1f,
-            0.1f,
-            0.2f,
-            0f,
-            0f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.19f,
-            0.2f,
-            0.2f,
-            0.2f,
-            0.1f,
-            0.01f,
-            0f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.19f,
-            0.2f,
-            0.1f,
-            0.2f,
-            0.1f,
-            0.02f,
-            0.1f,
-            0.001f,
-            0f
-        },
-        new float[9]
-        {
-            0.2f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.2f,
-            0.03f,
-            0.1f,
-            0f
-        },
-        new float[9]
-        {
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            1f,
-            0f
-        },
-        new float[9]
-        {
-            0.1f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.1f,
-            0.01f,
-            0.2f
-        }
-    };*/
-
-    /*private int[] _wawesMobCount = new int[10]
-    {
-        20,
-        20,
-        20,
-        25,
-        35,
-        40,
-        45,
-        50,
-        55,
-        60
-    };*/
 
     private int currentLoop;
 
@@ -288,7 +150,7 @@ public class MobSpawner : MonoBehaviour
                 mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
             }
-            if (CurrentWave.IsEnd &&( Mobs.Count < 5 || CurrentWave.TimeIsOver))
+            if (CurrentWave.IsEnd && (Mobs.Count(x =>/* x != null &&*/ x.Type == MobType.Default) < 5 || CurrentWave.TimeIsOver))
                 NextWave();
         }
         //float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
