@@ -72,6 +72,11 @@ public class Mob : MonoBehaviour, IMob
         }
     }
 
+    public void SetAnimVariable(string name, bool value)
+    {
+        _animator?.SetBool(name, value);
+    }
+
     public virtual void ReceiveDamage(DamageMessage message)
     {
         if (IsDead)

@@ -44,11 +44,13 @@ public class PerkEHunter : PerkEStandart
     private void OnRadiusExit()
     {
         _mob.StatsCollection.RemoveModificator(_statModificator);
+        _mob.SetAnimVariable("Run", false);
     }
 
     private void OnRadiusEnter()
     {
         _mob.StatsCollection.AddModificator(_statModificator);
+        _mob.SetAnimVariable("Run", true);
     }
 
     public override void Shutdown()
