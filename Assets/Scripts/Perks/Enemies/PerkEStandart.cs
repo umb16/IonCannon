@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PerkEStandart : IPerk
+public abstract class PerkEStandart : WithId, IPerk
 {
     public abstract PerkType Type { get; }
 
@@ -15,6 +15,8 @@ public abstract class PerkEStandart : IPerk
     public bool Maxed => true;
 
     public int MaxLevel => 1;
+
+    public bool IsÑommon => false;
 
     protected IMob _mob;
 
@@ -40,6 +42,6 @@ public abstract class PerkEStandart : IPerk
 
     public virtual void Add(IPerk perk)
     {
-        
+
     }
 }

@@ -6,6 +6,8 @@ using Zenject;
 
 public interface IPerk
 {
+    int InstanceId { get; }
+    bool Is—ommon { get; }
     PerkType Type { get; }
     string Name { get; }
     string Description { get; }

@@ -17,10 +17,6 @@ public class Player : Mob
     private PerksMenu _perksMenu;
     private ComplexStat _lifeSupport;
 
-    //public float BarrelDelay => 25 - MassCurrentPerks[7] * 5;
-
-    //public float Radiation => RayDmg * (float)MassCurrentPerks[6] * 0.1f;
-
     public float RayDmg => _rayDamage.Value;
 
     public float RayDelay => _rayDelay.Value;

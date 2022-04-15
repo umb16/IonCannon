@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimplePerk : IPerk
+public class SimplePerk : WithId, IPerk
 {
     public PerkType Type { get; private set; }
     public string Name => _name();
@@ -14,6 +14,8 @@ public class SimplePerk : IPerk
 
     public int MaxLevel => _modificators.Length;
     public bool Maxed => MaxLevel == Level;
+
+    public bool IsÑommon => false;
 
     private IStatsCollection _collection;
     private Func<string> _description;

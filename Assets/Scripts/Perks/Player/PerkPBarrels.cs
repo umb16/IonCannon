@@ -7,7 +7,7 @@ using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PerkPBarrels : IPerk
+public class PerkPBarrels : WithId, IPerk
 {
     private IMob _mob;
 
@@ -26,6 +26,9 @@ public class PerkPBarrels : IPerk
     private float _lastSpawnTime;
     private float NextSpawnTime => _lastSpawnTime + Cooldown;
     private bool SpawnTimeCome => Level > 0 && NextSpawnTime < Time.time;
+
+    public bool IsÑommon => false;
+
     private IDisposable _loop;
     public PerkPBarrels()
     {

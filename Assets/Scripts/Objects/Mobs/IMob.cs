@@ -22,9 +22,8 @@ public interface IMob
 
     void SetPosition(float x, float y);
     void SetPosition(Vector3 vector);
-
     void AddPerk(IPerk perk, int level = 0);
-    void RemovePerk(PerkType perkType);
+    void RemovePerksByType(PerkType perkType);
     bool ContainPerk(PerkType perkType);
     public void ReceiveDamage(DamageMessage message);
     void Die(DamageMessage message);

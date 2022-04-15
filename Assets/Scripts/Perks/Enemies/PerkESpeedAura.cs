@@ -60,7 +60,7 @@ public class PerkESpeedAura : PerkEStandart
         foreach (var mob in _mobsInRadius)
         {
             if (mob != null && !mob.IsDead)
-                mob.RemovePerk(PerkType.ESpeedAuraEffect);
+                mob.RemovePerksByType(PerkType.ESpeedAuraEffect);
         }
         _mob.RemoveFx(_aura);
     }
@@ -68,7 +68,7 @@ public class PerkESpeedAura : PerkEStandart
     private void OnExit(IMob mob)
     {
         _mobsInRadius.Remove(mob);
-        mob.RemovePerk(PerkType.ESpeedAuraEffect);
+        mob.RemovePerksByType(PerkType.ESpeedAuraEffect);
     }
 
     private void OnEnter(IMob mob)

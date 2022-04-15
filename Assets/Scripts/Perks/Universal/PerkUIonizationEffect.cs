@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkUIonizationEffect : IPerk
+public class PerkUIonizationEffect : WithId, IPerk
 {
     public PerkType Type => PerkType.IonizationEffect;
 
@@ -18,6 +18,8 @@ public class PerkUIonizationEffect : IPerk
     public bool Maxed => true;
 
     public int MaxLevel => 1;
+
+    public bool IsÑommon => false;
 
     protected float Damage;
 

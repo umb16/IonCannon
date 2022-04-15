@@ -23,7 +23,7 @@ public class Mob : MonoBehaviour, IMob
 
     public bool IsDead => HP == null || HP.Value <= 0;
 
-    private Dictionary<PerkType, IPerk> _perks = new Dictionary<PerkType, IPerk>();
+    private Dictionary<PerkType, List<IPerk>> _perks = new Dictionary<PerkType, List<IPerk>>();
     public StandartStatsCollection StatsCollection { get; protected set; }
     public DamageController DamageController { get; private set; }
     public GameData GameData { get; private set; }
@@ -59,14 +59,22 @@ public class Mob : MonoBehaviour, IMob
 
     public void AddPerk(IPerk perk, int level = 0)
     {
-        if (_perks.TryGetValue(perk.Type, out IPerk value))
+        if (_perks.TryGetValue(perk.Type, out List<IPerk> value))
         {
-            value.Add(perk);
+            if (!perk.Is—ommon)
+            {
+                value[0].Add(perk);
+            }
+            else
+            {
+                perk.Init(this);
+                value.Add(perk);
+            }
         }
         else
         {
             perk.Init(this);
-            _perks.Add(perk.Type, perk);
+            _perks.Add(perk.Type, new List<IPerk>(new[]{ perk }));
             if (level > 0)
                 perk.SetLevel(level);
         }
@@ -110,9 +118,12 @@ public class Mob : MonoBehaviour, IMob
 
     private void ShutdownPerks()
     {
-        foreach (var perk in _perks)
+        foreach (var perksByType in _perks)
         {
-            perk.Value.Shutdown();
+            foreach (var perk in perksByType.Value)
+            {
+                perk.Shutdown();
+            }
         }
     }
 
@@ -202,9 +213,12 @@ public class Mob : MonoBehaviour, IMob
         _mobFxes.Remove(fx);
     }
 
-    public void RemovePerk(PerkType perkType)
+    public void RemovePerksByType(PerkType perkType)
     {
-        _perks[perkType].Shutdown();
+        foreach (var item in _perks[perkType])
+        {
+            item.Shutdown();
+        }
         _perks.Remove(perkType);
     }
 

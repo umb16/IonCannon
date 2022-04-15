@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks.Linq;
 
-public class PerkPIonization : IPerk
+public class PerkPIonization : WithId,IPerk
 {
     public PerkType Type => PerkType.Ionization;
 
@@ -21,6 +21,8 @@ public class PerkPIonization : IPerk
     private IMob _mob;
 
     private float Damage => _mob.StatsCollection.GetStat(StatType.RayDamage).Value * Level * .1f;
+
+    public bool IsÑommon => false;
 
     public void Add(IPerk perk)
     {
