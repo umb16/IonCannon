@@ -18,6 +18,7 @@ public interface IMob
     MobSpawner Spawner { get; }
     ComplexStat MovementSpeed { get; }
     StandartStatsCollection StatsCollection { get; }
+    Inventory Inventory { get; }
     bool IsDead { get; }
 
     void SetPosition(float x, float y);
@@ -34,4 +35,5 @@ public interface IMob
 
     void AddForce(Vector2 force, ForceMode2D mode);
     void SetAnimVariable(string name, bool value);
+    void RemovePerk(IPerk perk);
 }

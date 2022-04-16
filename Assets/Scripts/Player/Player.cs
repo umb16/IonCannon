@@ -16,6 +16,7 @@ public class Player : Mob
     public GameObject Blood;
     private PerksMenu _perksMenu;
     private ComplexStat _lifeSupport;
+    public Inventory Stash = new Inventory();
 
     public float RayDmg => _rayDamage.Value;
 

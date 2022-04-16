@@ -43,6 +43,7 @@ public class Mob : MonoBehaviour, IMob
 
     private MobFxes _mobFxes = new MobFxes();
     private float _stunEndTime;
+    public Inventory Inventory { get; private set; } = new Inventory();
 
     [Inject]
     private void Construct(DamageController damageController, GameData gameData, Player player, MobSpawner mobSpawner)
@@ -55,6 +56,13 @@ public class Mob : MonoBehaviour, IMob
         Spawner = mobSpawner;
         _animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
+        Inventory.ItemAdded += AddItem;
+        Inventory.ItemRemoved += RemoveItem;
+    }
+
+    public void SetAnimVariable(string name, bool value)
+    {
+        _animator?.SetBool(name, value);
     }
 
     public void AddPerk(IPerk perk, int level = 0)
@@ -80,9 +88,32 @@ public class Mob : MonoBehaviour, IMob
         }
     }
 
-    public void SetAnimVariable(string name, bool value)
+    public void RemovePerksByType(PerkType perkType)
     {
-        _animator?.SetBool(name, value);
+        foreach (var item in _perks[perkType])
+        {
+            item.Shutdown();
+        }
+        _perks.Remove(perkType);
+    }
+
+    public void RemovePerk(IPerk perk)
+    {
+        _perks[perk.Type].Remove(perk);
+    }
+
+    public bool ContainPerk(PerkType perkType)
+    {
+        return _perks.ContainsKey(perkType);
+    }
+
+    public void AddItem(Item item)
+    {
+        AddPerk(item.Perk, 0);
+    }
+    public void RemoveItem(Item item)
+    {
+        RemovePerk(item.Perk);
     }
 
     public virtual void ReceiveDamage(DamageMessage message)
@@ -213,19 +244,7 @@ public class Mob : MonoBehaviour, IMob
         _mobFxes.Remove(fx);
     }
 
-    public void RemovePerksByType(PerkType perkType)
-    {
-        foreach (var item in _perks[perkType])
-        {
-            item.Shutdown();
-        }
-        _perks.Remove(perkType);
-    }
-
-    public bool ContainPerk(PerkType perkType)
-    {
-        return _perks.ContainsKey(perkType);
-    }
+    
 
     protected virtual void OnDestroy()
     {
