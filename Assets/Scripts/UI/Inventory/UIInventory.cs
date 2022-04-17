@@ -10,8 +10,6 @@ public class UIInventory : MonoBehaviour
     public event Action<Item> OnRemoved;
     [SerializeField] private GameObject _uiSlotPrefab;
     private List<UIInventorySlot> _slots = new List<UIInventorySlot>();
-    private int _currentCursorPos = 0;
-    private UIInventorySlot CurrentSlot => _slots[_currentCursorPos];
 
     private void Start()
     {
@@ -32,9 +30,15 @@ public class UIInventory : MonoBehaviour
     }
     public void AddItem(Item item)
     {
-        CurrentSlot.Set(item).Forget();
-        _currentCursorPos++;
-        OnAdded?.Invoke(item);
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            if (_slots[i].IsEmpty)
+            {
+                _slots[i].Set(item).Forget();
+                OnAdded?.Invoke(item);
+                break;
+            }
+        }
     }
     public void RemoveItem(Item item)
     {
@@ -44,7 +48,6 @@ public class UIInventory : MonoBehaviour
             if (slot.Item == item)
             {
                 slot.Clear();
-                _currentCursorPos--;
                 OnRemoved?.Invoke(item);
                 break;
             }
