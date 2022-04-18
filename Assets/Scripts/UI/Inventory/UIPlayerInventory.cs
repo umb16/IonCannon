@@ -14,9 +14,19 @@ public class UIPlayerInventory : MonoBehaviour
     private void Construct(Player player)
     {
         _player = player;
-        _uiInventory.OnAdded += Inventory.Add;
-        _uiInventory.OnRemoved += Inventory.Remove;
-        _uiStash.OnAdded += Stash.Add;
-        _uiStash.OnRemoved += Stash.Remove;
+        SetInventory(Inventory, _uiInventory);
+        SetInventory(Stash, _uiStash);
+    }
+    private void Start()
+    {
+        Inventory.Add(new Item());
+        Stash.Add(new Item());
+        Stash.Add(new Item());
+    }
+    private void SetInventory(Inventory inventory, UIInventory uiInventory)
+    {
+        inventory.ItemAdded += uiInventory.AddItem;
+        inventory.ItemRemoved += uiInventory.RemoveItem;
+        uiInventory.RealInventory = inventory;
     }
 }

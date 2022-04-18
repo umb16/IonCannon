@@ -7,15 +7,15 @@ using UnityEngine.EventSystems;
 
 public class UIInventory : MonoBehaviour
 {
-    public event Action<Item> OnAdded;
-    public event Action<Item> OnRemoved;
+    //public event Action<Item> OnAdded;
+    //public event Action<Item> OnRemoved;
+    public Inventory RealInventory;
     [SerializeField] private GameObject _uiSlotPrefab;
     private List<UIInventorySlot> _slots = new List<UIInventorySlot>();
     private static bool _draging;
-    private void Start()
+    private void Awake()
     {
         SetSlotsCount(6);
-        AddItem(new Item());
     }
 
     public void SetSlotsCount(int count)
@@ -59,20 +59,21 @@ public class UIInventory : MonoBehaviour
         var result = eventData.pointerCurrentRaycast;
         if (result.gameObject.GetComponentInParent<UIInventoryTrashCan>() != null)
         {
-            RemoveItem(slot.Item);
+            RealInventory.Remove(slot.Item);
+            //RemoveItem(slot.Item);
         }
         else
         {
             var inventory = result.gameObject.GetComponentInParent<UIInventory>();
             if (inventory != null && this != inventory)
             {
-                inventory.AddItem(slot.Item);
-                RemoveItem(slot.Item);
+                inventory.RealInventory.Add(slot.Item);
+                RealInventory.Remove(slot.Item);
+                //RemoveItem(slot.Item);
             }
         }
         slot.ImageTransform.SetParent(slot.transform);
         slot.ImageTransform.localPosition = Vector3.zero;
-        Debug.Log("OnEndDrag " + result.gameObject.name);
     }
 
     private void OnBeginDrag(PointerEventData eventData, UIInventorySlot slot)
@@ -81,15 +82,15 @@ public class UIInventory : MonoBehaviour
             return;
         TooltipController.Instance.UnassignTooltip();
         _draging = true;
-        slot.ImageTransform.SetParent(transform.parent, true);
+        slot.ImageTransform.SetParent(transform.parent.parent, true);
     }
     private void OnDrag(PointerEventData eventData, UIInventorySlot slot)
     {
         if (slot.IsEmpty)
             return;
         var result = eventData.pointerCurrentRaycast;
-        if (result.gameObject != null)
-            Debug.Log(result.gameObject.name);
+       /* if (result.gameObject != null)
+            Debug.Log(result.gameObject.name);*/
         slot.ImageTransform.position = eventData.position;
     }
 
@@ -100,7 +101,6 @@ public class UIInventory : MonoBehaviour
             if (_slots[i].IsEmpty)
             {
                 _slots[i].Set(item).Forget();
-                OnAdded?.Invoke(item);
                 break;
             }
         }
@@ -113,7 +113,6 @@ public class UIInventory : MonoBehaviour
             if (slot.Item == item)
             {
                 slot.Clear();
-                OnRemoved?.Invoke(item);
                 break;
             }
         }
