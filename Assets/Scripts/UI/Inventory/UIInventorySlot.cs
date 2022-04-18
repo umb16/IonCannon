@@ -7,8 +7,9 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private static bool _draging;
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _costText;
     public UIInventory Inventory;
@@ -25,25 +26,26 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (IsEmpty)
             return;
+        TooltipController.Instance.UnassignTooltip();
+        _draging = true;
         Debug.Log("OnBeginDrag");
-        //_image.transform.position = eventData.position;
         _image.transform.SetParent(Inventory.transform.parent, true);
-        
-        
         Debug.Log(eventData.position);
-        //(.ForceUpdateRectTransforms();
-       // LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)_image.transform.parent);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (IsEmpty)
             return;
+        var result = eventData.pointerCurrentRaycast;
+        if (result.gameObject != null)
+            Debug.Log(result.gameObject.name);
         _image.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        _draging = false;
         if (IsEmpty)
             return;
         var result = eventData.pointerCurrentRaycast;
@@ -71,5 +73,20 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _costText.text = item.Cost.ToString();
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(item.AddressKeys)).Task;
         _image.gameObject.SetActive(true);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (IsEmpty || _draging)
+            return;
+        TooltipController.Instance.
+            AssignTooltip(@$"<color=yellow><size=30>{Item.Name}</size></color>
+<color=red>”никальное</color>
+{Item.Description}");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipController.Instance.UnassignTooltip();
     }
 }
