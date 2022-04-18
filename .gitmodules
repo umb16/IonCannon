@@ -1,3 +1,6 @@
 [submodule "Assets/OnGuiConsole"]
 	path = Assets/OnGuiConsole
 	url = git@github.com:umb16/OnGuiConsole.git
+[submodule "Assets/UnityWinForms"]
+	path = Assets/UnityWinForms
+	url = git@github.com:umb16/UnityWinForms.git
