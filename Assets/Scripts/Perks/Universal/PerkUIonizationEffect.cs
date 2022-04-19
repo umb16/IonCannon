@@ -9,17 +9,7 @@ public class PerkUIonizationEffect : WithId, IPerk
 {
     public PerkType Type => PerkType.IonizationEffect;
 
-    public string Name => throw new System.NotImplementedException();
-
-    public string Description => throw new System.NotImplementedException();
-
-    public int Level => 1;
-
-    public bool Maxed => true;
-
-    public int MaxLevel => 1;
-
-    public bool IsÑommon => false;
+    public bool IsCommon => false;
 
     protected float Damage;
 
@@ -41,11 +31,6 @@ public class PerkUIonizationEffect : WithId, IPerk
             Damage = effect.Damage;
     }
 
-    public void AddLevel()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void Init(IMob mob)
     {
         _mob = mob;
@@ -56,11 +41,6 @@ public class PerkUIonizationEffect : WithId, IPerk
     private void Update(AsyncUnit obj)
     {
         _mob.ReceiveDamage(new DamageMessage(_attacker, _mob, Damage, DamageSources.Ionization));
-    }
-
-    public void SetLevel(int level)
-    {
-        throw new System.NotImplementedException();
     }
 
     public void Shutdown()

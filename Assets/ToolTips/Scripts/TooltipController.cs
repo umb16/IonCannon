@@ -57,6 +57,33 @@ public class TooltipController : MonoBehaviour
                 offset.y = height + PaddingFromMouse;
             }
 
+            if (Input.mousePosition.x + width + offset.x > Screen.width)
+            {
+                flipHorizontal = true;
+            }
+            if (Input.mousePosition.y - height + offset.y < 0)
+            {
+                flipVertical = true;
+            }
+
+            if (!flipHorizontal)
+            {
+                offset.x = PaddingFromMouse;
+            }
+            else
+            {
+                offset.x = -width + -PaddingFromMouse;
+            }
+            if (!flipVertical)
+            {
+                offset.y = -PaddingFromMouse;
+            }
+            else
+            {
+                offset.y = height + PaddingFromMouse;
+            }
+
+
             transform.position = Input.mousePosition + offset;
         }        
 	}

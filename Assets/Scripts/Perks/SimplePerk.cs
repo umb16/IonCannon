@@ -6,51 +6,23 @@ using UnityEngine;
 public class SimplePerk : WithId, IPerk
 {
     public PerkType Type { get; private set; }
-    public string Name => _name();
 
-    public string Description => _description();
-
-    public int Level { get; private set; }
-
-    public int MaxLevel => _modificators.Length;
-    public bool Maxed => MaxLevel == Level;
-
-    public bool IsÑommon => false;
+    public bool IsCommon => true;
 
     private IStatsCollection _collection;
-    private Func<string> _description;
-    private Func<string> _name;
-    private StatModificator[][] _modificators;
+    private StatModificator[] _modificators;
     private DamageController _damageController;
-    public SimplePerk(Func<string> name, Func<string> description, StatModificator[][] statModificators, PerkType type)
+    public SimplePerk(StatModificator[] statModificators, PerkType type)
     {
-        _name = name;
-        _description = description;
         _modificators = statModificators;
         Type = type;
-    }
-    public void AddLevel()
-    {
-        if (Level > 0)
-            _collection.RemoveModificators(_modificators[Level - 1] );
-        Level++;
-        _collection.AddModificators( _modificators[Level - 1] );
-    }
-
-    public void SetLevel(int level)
-    {
-        if (Level > 0)
-            _collection.RemoveModificators( _modificators[Level - 1] );
-        Level = level;
-        _collection.AddModificators(_modificators[Level - 1]);
     }
 
     public void Init(IMob parent)
     {
         _collection = parent.StatsCollection;
         _damageController = parent.DamageController;
-        if (Level > 0)
-            _collection.AddModificators(_modificators[Level - 1]);
+        _collection.AddModificators(_modificators);
     }
 
     public void Shutdown()

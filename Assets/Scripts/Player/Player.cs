@@ -14,7 +14,6 @@ public class Player : Mob
     public PlayerExp Exp = new PlayerExp();
 
     public GameObject Blood;
-    private PerksMenu _perksMenu;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
 
@@ -29,7 +28,7 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(PerksMenu perksMenu, DamageController damageController)
+    private void Construct(DamageController damageController)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         damageController.Die += x =>
@@ -37,7 +36,6 @@ public class Player : Mob
             if (ID != x.Target.ID)
                 Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
         };
-        _perksMenu = perksMenu;
     }
 
     protected override void Awake()
@@ -105,7 +103,6 @@ public class Player : Mob
     }
 
     private void OnLvlup()
-    {
-        _perksMenu.Show();
+    {        
     }
 }

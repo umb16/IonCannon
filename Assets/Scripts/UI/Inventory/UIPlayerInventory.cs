@@ -19,8 +19,8 @@ public class UIPlayerInventory : MonoBehaviour
     }
     private void Start()
     {
-        Inventory.Add(new Item());
-        Stash.Add(new Item());
+        Inventory.Add(ItemsDB.Battery());
+        Stash.Add(ItemsDB.AdditionalDrives());
         Stash.Add(new Item());
     }
     private void SetInventory(Inventory inventory, UIInventory uiInventory)

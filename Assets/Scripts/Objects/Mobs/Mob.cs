@@ -65,11 +65,11 @@ public class Mob : MonoBehaviour, IMob
         _animator?.SetBool(name, value);
     }
 
-    public void AddPerk(IPerk perk, int level = 0)
+    public void AddPerk(IPerk perk)
     {
         if (_perks.TryGetValue(perk.Type, out List<IPerk> value))
         {
-            if (!perk.Is—ommon)
+            if (!perk.IsCommon)
             {
                 value[0].Add(perk);
             }
@@ -83,8 +83,6 @@ public class Mob : MonoBehaviour, IMob
         {
             perk.Init(this);
             _perks.Add(perk.Type, new List<IPerk>(new[]{ perk }));
-            if (level > 0)
-                perk.SetLevel(level);
         }
     }
 
@@ -109,11 +107,17 @@ public class Mob : MonoBehaviour, IMob
 
     public void AddItem(Item item)
     {
-        AddPerk(item.Perk, 0);
+        foreach (var perk in item.Perks)
+        {
+            AddPerk(perk);
+        }
     }
     public void RemoveItem(Item item)
     {
-        RemovePerk(item.Perk);
+        foreach (var perk in item.Perks)
+        {
+            RemovePerk(perk);
+        }
     }
 
     public virtual void ReceiveDamage(DamageMessage message)

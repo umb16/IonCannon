@@ -12,22 +12,12 @@ public class PerkPBarrels : WithId, IPerk
     private IMob _mob;
 
     public PerkType Type => PerkType.PBarrels;
-
-    public string Name => LocalizationManager.Instance.GetPhrase(LocKeys.ExplosiveBox);
-
-    public string Description => LocalizationManager.Instance.GetPhrase(LocKeys.ExplosiveBox);
-
-    public int Level { get; private set; }
-
-    public bool Maxed => Level == MaxLevel;
-
-    public int MaxLevel => 3;
-    private float Cooldown => 30 - Level * 5;
+    private float Cooldown => 25;
     private float _lastSpawnTime;
     private float NextSpawnTime => _lastSpawnTime + Cooldown;
-    private bool SpawnTimeCome => Level > 0 && NextSpawnTime < Time.time;
+    private bool SpawnTimeCome => NextSpawnTime < Time.time;
 
-    public bool IsÑommon => false;
+    public bool IsCommon => false;
 
     private IDisposable _loop;
     public PerkPBarrels()
@@ -39,15 +29,6 @@ public class PerkPBarrels : WithId, IPerk
     public void Init(IMob mob)
     {
         _mob = mob;
-    }
-    public void AddLevel()
-    {
-        Level++;
-    }
-
-    public void SetLevel(int level)
-    {
-        Level = level;
     }
 
     private async UniTask CreateBarrel()
