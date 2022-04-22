@@ -37,7 +37,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public async UniTask Set(Item item)
     {
         Item = item;
-        _costText.text = item.Cost.ToString();
+        _costText.text = item.SellCost.ToString();
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(item.Icon)).Task;
         _image.gameObject.SetActive(true);
     }

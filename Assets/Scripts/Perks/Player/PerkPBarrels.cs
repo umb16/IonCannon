@@ -22,13 +22,14 @@ public class PerkPBarrels : WithId, IPerk
     private IDisposable _loop;
     public PerkPBarrels()
     {
-        _loop = UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
-            .Where(x => x == true)
-            .Subscribe(async _ => await CreateBarrel());
+
     }
     public void Init(IMob mob)
     {
         _mob = mob;
+        _loop = UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
+        .Where(x => x == true)
+        .Subscribe(async _ => await CreateBarrel());
     }
 
     private async UniTask CreateBarrel()

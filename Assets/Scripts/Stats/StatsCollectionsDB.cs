@@ -14,7 +14,7 @@ public static class StatsCollectionsDB
             (StatType.MovementSpeed, new ComplexStat(6)),
             (StatType.RaySpeed, new ComplexStat(6)),
             (StatType.RayPathLenght, new ComplexStat(10)),
-            (StatType.RayDelay, new ComplexStat(1.3f)),
+            (StatType.RayDelay, new ComplexStat(1.3f, (x)=>Mathf.Max(0,x))),
             (StatType.RayDamageAreaRadius, new ComplexStat(1)),
             (StatType.RayDamage, new ComplexStat(4)),
             (StatType.MaxHP, maxHP),

@@ -17,4 +17,9 @@ public class PerkEChampion : PerkEStandart
         base.Init(mob);
         _mob.StatsCollection.AddModificators(_modificators);
     }
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _mob.StatsCollection.RemoveModificators(_modificators);
+    }
 }

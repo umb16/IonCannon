@@ -20,8 +20,12 @@ public class UIPlayerInventory : MonoBehaviour
     private void Start()
     {
         Inventory.Add(ItemsDB.Battery());
-        Stash.Add(ItemsDB.AdditionalDrives());
-        Stash.Add(new Item());
+        Stash.Add(ItemsDB.Coprocessor());
+        Stash.Add(ItemsDB.ExoskeletonSpeedBooster());
+        Stash.Add(ItemsDB.Amplifier());
+        Stash.Add(ItemsDB.FocusLens());
+        Stash.Add(ItemsDB.DeliveryDevice());
+        Stash.Add(ItemsDB.IonizationUnit());
     }
     private void SetInventory(Inventory inventory, UIInventory uiInventory)
     {

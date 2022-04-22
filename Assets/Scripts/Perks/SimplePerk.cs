@@ -27,7 +27,7 @@ public class SimplePerk : WithId, IPerk
 
     public void Shutdown()
     {
-        //throw new NotImplementedException();
+        _collection.RemoveModificators(_modificators);
     }
 
     public void Add(IPerk perk)

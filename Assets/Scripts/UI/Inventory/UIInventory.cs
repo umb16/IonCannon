@@ -2,17 +2,26 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 public class UIInventory : MonoBehaviour
 {
-    //public event Action<Item> OnAdded;
-    //public event Action<Item> OnRemoved;
     public Inventory RealInventory;
     [SerializeField] private GameObject _uiSlotPrefab;
     private List<UIInventorySlot> _slots = new List<UIInventorySlot>();
     private static bool _draging;
+    private Player _player;
+    public bool IsFull => !RealInventory.FreeSlotAvailable;
+
+    [Inject]
+    private void Construct(Player player)
+    {
+        _player = player;
+    }
+
     private void Awake()
     {
         SetSlotsCount(6);
@@ -45,7 +54,6 @@ public class UIInventory : MonoBehaviour
             return;
         TooltipController.Instance.
             AssignTooltip(@$"<color=yellow><size=30>{slot.Item.Name}</size></color>
-<color=red>”никальное</color>
 {slot.Item.Description}");
     }
 
@@ -57,15 +65,18 @@ public class UIInventory : MonoBehaviour
         if (slot.IsEmpty)
             return;
         var result = eventData.pointerCurrentRaycast;
-        if (result.gameObject.GetComponentInParent<UIInventoryTrashCan>() != null)
+        var trash = result.gameObject.GetComponentInParent<UIInventoryTrashCan>();
+        if (trash != null)
         {
+            _player.Exp.AddExp(slot.Item.SellCost);
             RealInventory.Remove(slot.Item);
+            trash.PlaySound();
             //RemoveItem(slot.Item);
         }
         else
         {
             var inventory = result.gameObject.GetComponentInParent<UIInventory>();
-            if (inventory != null && this != inventory)
+            if (inventory != null && this != inventory && !inventory.IsFull)
             {
                 inventory.RealInventory.Add(slot.Item);
                 RealInventory.Remove(slot.Item);

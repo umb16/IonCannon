@@ -97,6 +97,7 @@ public class Mob : MonoBehaviour, IMob
 
     public void RemovePerk(IPerk perk)
     {
+        perk.Shutdown();
         _perks[perk.Type].Remove(perk);
     }
 

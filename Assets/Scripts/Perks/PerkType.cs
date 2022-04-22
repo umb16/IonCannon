@@ -18,4 +18,6 @@ public enum PerkType
     IonizationEffect = 14,
     EHunter = 15,
     EMother = 16,
+    Amplifier = 17,
+    FocusLens = 18,
 }

@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 
 public class TooltipElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    
     public string TooltipText;
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
