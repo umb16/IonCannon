@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory
@@ -27,5 +28,17 @@ public class Inventory
     {
         _items.Remove(item);
         ItemRemoved?.Invoke(item);
+    }
+
+    public bool ContainsUnique(Item item)
+    {
+        if(!item.Unique)
+            return false;
+        return ContainsByType(item.Type);
+    }
+
+    public bool ContainsByType(ItemType type)
+    {
+        return _items.Any(x => x.Type == type);
     }
 }

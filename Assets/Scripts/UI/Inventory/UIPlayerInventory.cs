@@ -15,6 +15,7 @@ public class UIPlayerInventory : MonoBehaviour
     {
         _player = player;
         SetInventory(Inventory, _uiInventory);
+        _uiInventory.IsActiveInventory = true;
         SetInventory(Stash, _uiStash);
     }
     private void Start()
@@ -24,13 +25,19 @@ public class UIPlayerInventory : MonoBehaviour
         Stash.Add(ItemsDB.ExoskeletonSpeedBooster());
         Stash.Add(ItemsDB.Amplifier());
         Stash.Add(ItemsDB.FocusLens());
+        Stash.Add(ItemsDB.FocusLens());
         Stash.Add(ItemsDB.DeliveryDevice());
-        Stash.Add(ItemsDB.IonizationUnit());
     }
     private void SetInventory(Inventory inventory, UIInventory uiInventory)
     {
         inventory.ItemAdded += uiInventory.AddItem;
         inventory.ItemRemoved += uiInventory.RemoveItem;
         uiInventory.RealInventory = inventory;
+        uiInventory.PlayerInventory = this;
+    }
+    public void HighlightItems(ItemType itemType)
+    {
+        _uiInventory.HighlightItems(itemType);
+        _uiStash.HighlightItems(itemType);
     }
 }

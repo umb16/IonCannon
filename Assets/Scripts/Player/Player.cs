@@ -4,6 +4,7 @@ using Zenject;
 
 public class Player : Mob
 {
+    public ComplexStat Gold { get; private set; } = new ComplexStat(0);
     private ComplexStat _maxPathLength;
     private ComplexStat _raySpeed;
     private ComplexStat _rayDelay;
@@ -11,7 +12,7 @@ public class Player : Mob
     private ComplexStat _rayDamage;
 
     public GameObject Barrel;
-    public PlayerExp Exp = new PlayerExp();
+    //public PlayerExp Exp = new PlayerExp();
 
     public GameObject Blood;
     private ComplexStat _lifeSupport;
@@ -34,7 +35,8 @@ public class Player : Mob
         damageController.Die += x =>
         {
             if (ID != x.Target.ID)
-                Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
+                Gold.AddBaseValue(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
+                //Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
         };
     }
 
@@ -48,7 +50,22 @@ public class Player : Mob
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
-        Exp.LevelUp += OnLvlup;
+        //Exp.LevelUp += OnLvlup;
+    }
+
+    public bool AddItemDirectly(Item item)
+    {
+        if (Inventory.FreeSlotAvailable && !Inventory.ContainsUnique(item))
+        {
+            Inventory.Add(item);
+            return true;
+        }
+        if(Stash.FreeSlotAvailable)
+        {
+            Stash.Add(item);
+            return true;
+        }
+        return false;
     }
 
     private void LifeSupportValueChanged(ComplexStat stat)
@@ -102,7 +119,7 @@ public class Player : Mob
         MoveTo(transform.position + dir * 10);
     }
 
-    private void OnLvlup()
+    /*private void OnLvlup()
     {        
-    }
+    }*/
 }

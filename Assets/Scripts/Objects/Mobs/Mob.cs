@@ -99,6 +99,8 @@ public class Mob : MonoBehaviour, IMob
     {
         perk.Shutdown();
         _perks[perk.Type].Remove(perk);
+        if (_perks[perk.Type].Count == 0)
+            _perks.Remove(perk.Type);
     }
 
     public bool ContainPerk(PerkType perkType)

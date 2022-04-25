@@ -13,19 +13,30 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _costText;
+    [SerializeField] private GameObject _darkFront;
     public event Action<PointerEventData> BeginDrag;
     public event Action<PointerEventData> Drag;
     public event Action<PointerEventData> EndDrag;
     public event Action<PointerEventData> PointerEnter;
     public event Action<PointerEventData> PointerExit;
+    public Action<Item> RemoveFromInventoryAction;
+    public Action<Item> AddToInventoryAction;
     public Item Item { get; private set; }
     public Transform ImageTransform => _image.transform;
     public bool IsEmpty => Item == null;
-    private static bool _draging;
     public void Clear()
     {
         Item = null;
         _image.gameObject.SetActive(false);
+    }
+
+    public void ToDark()
+    {
+        _darkFront.SetActive(true);
+    }
+    public void ToLight()
+    {
+        _darkFront.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData) => BeginDrag?.Invoke(eventData);
@@ -33,6 +44,9 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnDrag(PointerEventData eventData) => Drag.Invoke(eventData);
 
     public void OnEndDrag(PointerEventData eventData) => EndDrag.Invoke(eventData);
+
+    public void RemoveFromInventory() => RemoveFromInventoryAction(Item);
+    public void AddToInventory(Item item) => AddToInventoryAction(item);
 
     public async UniTask Set(Item item)
     {

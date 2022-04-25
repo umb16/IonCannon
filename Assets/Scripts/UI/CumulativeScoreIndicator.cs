@@ -15,7 +15,6 @@ public class CumulativeScoreIndicator : MonoBehaviour
     private void Construct(Player player)
     {
         _player = player;
-        UniTaskAsyncEnumerable.EveryValueChanged(_player.Exp, x => x.Cumulative)
-            .Subscribe(x => _text.text = "Ресурсы: " + x);
+        _player.Gold.ValueChanged += x => _text.text = "Ресурсы: " + x;
     }
 }

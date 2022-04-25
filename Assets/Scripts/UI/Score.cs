@@ -13,6 +13,6 @@ public class Score : MonoBehaviour
     }
     private void Update()
     {
-        _expProgressbar.Set(_player.Exp.Normalized);
+        //_expProgressbar.Set(_player.Exp.Normalized);
     }
 }

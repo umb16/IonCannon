@@ -25,9 +25,9 @@ public class ComboMenu : MonoBehaviour
 
     private void Update()
     {
-        _progressBar.Set(_player.Exp.NormalizedComboTime);
-        _root.SetActive(_player.Exp.NormalizedComboTime != 0);
-        _text.text = "X" + _player.Exp.ComboFactor;
+        //_progressBar.Set(_player.Exp.NormalizedComboTime);
+        //_root.SetActive(_player.Exp.NormalizedComboTime != 0);
+        //_text.text = "X" + _player.Exp.ComboFactor;
     }
 
 }
