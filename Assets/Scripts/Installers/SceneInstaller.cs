@@ -7,6 +7,7 @@ public class SceneInstaller : MonoInstaller
     [SerializeField] private MobSpawner _mobSpawner;
     [SerializeField] private CooldownsPanel _cooldownsPanel;
     [SerializeField] private UIShop _uiShop;
+    [SerializeField] private UIPlayerInventory _uiPlayerInventory;
     public override void InstallBindings()
     {
         Container.Bind<Player>().FromInstance(_player).AsSingle().NonLazy();
@@ -16,5 +17,6 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<MobSpawner>().FromInstance(_mobSpawner).AsSingle();
         Container.Bind<CooldownsPanel>().FromInstance(_cooldownsPanel).AsSingle();
         Container.Bind<UIShop>().FromInstance(_uiShop).AsSingle();
+        Container.Bind<UIPlayerInventory>().FromInstance(_uiPlayerInventory).AsSingle();
     }
 }

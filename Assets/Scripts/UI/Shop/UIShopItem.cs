@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-public class UIShopItem : MonoBehaviour
+public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private TMP_Text _buyButtonText;
     [SerializeField] private Button _buyButton;
+
+    public event Action<PointerEventData> PointerEnter;
+    public event Action<PointerEventData> PointerExit;
+
     private Player _player;
 
     public event Action<UIShopItem> OnBuyButtonClicked;
@@ -68,4 +73,8 @@ public class UIShopItem : MonoBehaviour
     {
         OnBuyButtonClicked?.Invoke(this);
     }
+
+    public void OnPointerEnter(PointerEventData eventData) => PointerEnter?.Invoke(eventData);
+
+    public void OnPointerExit(PointerEventData eventData) => PointerExit?.Invoke(eventData);
 }

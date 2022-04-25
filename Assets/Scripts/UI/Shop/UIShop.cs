@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 public class UIShop : MonoBehaviour
@@ -15,25 +16,40 @@ public class UIShop : MonoBehaviour
     private int _itemsCount = 4;
     public List<UIShopItem> _items = new List<UIShopItem>();
     private Player _player;
+    private UIPlayerInventory _playerInventory;
 
     public bool Lock { get; private set; } = false;
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, UIPlayerInventory playerInventory)
     {
         _player = player;
+        _playerInventory = playerInventory;
     }
 
     private void Awake()
     {
         for (int i = 0; i < _itemsCount; i++)
         {
-            /*var go = Instantiate(_itemPrefab, _itemsRoot);
-            var item = go.GetComponent<UIShopItem>();*/
-            _items[i].OnBuyButtonClicked += OnBuyButtonClicked;
-            //_items.Add(item);
+            var item = _items[i];
+            item.OnBuyButtonClicked += OnBuyButtonClicked;
+            item.PointerEnter += x => OnItemPointerEnter(x, item);
+            item.PointerExit += OnItemPointerExit;
         }
     }
+
+    private void OnItemPointerExit(PointerEventData obj)
+    {
+        _playerInventory.HighlightItems(ItemType.None);
+    }
+
+    private void OnItemPointerEnter(PointerEventData obj, UIShopItem shopItem)
+    {
+        var item = shopItem.Item;
+        if (item != null)
+            _playerInventory.HighlightItems(item.Type);
+    }
+
     private void OnEnable()
     {
         if (!Lock)

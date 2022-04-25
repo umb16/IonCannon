@@ -1032,9 +1032,9 @@ RectTransform:
   m_Father: {fileID: 1619609828}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -115}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103570409
@@ -1801,10 +1801,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 600762383}
     m_Modifications:
-    - target: {fileID: 419390606, guid: af06adc99379da74692e83dfae32667e, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5550761454559123242, guid: af06adc99379da74692e83dfae32667e,
         type: 3}
       propertyPath: m_Name
@@ -2746,9 +2742,9 @@ RectTransform:
   m_Father: {fileID: 1619609828}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -65}
   m_SizeDelta: {x: 50, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600762384
@@ -2978,9 +2974,9 @@ RectTransform:
   m_Father: {fileID: 1619609828}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -165}
   m_SizeDelta: {x: 50, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628799889
@@ -4305,6 +4301,7 @@ MonoBehaviour:
   _mobSpawner: {fileID: 309}
   _cooldownsPanel: {fileID: 995395255}
   _uiShop: {fileID: 1685591787}
+  _uiPlayerInventory: {fileID: 1365853092}
 --- !u!114 &1111731683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5047,7 +5044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1365853091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5295,7 +5292,7 @@ GameObject:
   - component: {fileID: 1619609828}
   - component: {fileID: 1619609829}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7051,9 +7048,9 @@ RectTransform:
   m_Father: {fileID: 1619609828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -15}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098435274
