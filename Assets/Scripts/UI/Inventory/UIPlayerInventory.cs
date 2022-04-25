@@ -18,15 +18,23 @@ public class UIPlayerInventory : MonoBehaviour
         _uiInventory.IsActiveInventory = true;
         SetInventory(Stash, _uiStash);
     }
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
     private void Start()
     {
         Inventory.Add(ItemsDB.Battery());
-        Stash.Add(ItemsDB.Coprocessor());
+        /*Stash.Add(ItemsDB.Coprocessor());
         Stash.Add(ItemsDB.ExoskeletonSpeedBooster());
         Stash.Add(ItemsDB.Amplifier());
         Stash.Add(ItemsDB.FocusLens());
         Stash.Add(ItemsDB.FocusLens());
-        Stash.Add(ItemsDB.DeliveryDevice());
+        Stash.Add(ItemsDB.DeliveryDevice());*/
     }
     private void SetInventory(Inventory inventory, UIInventory uiInventory)
     {

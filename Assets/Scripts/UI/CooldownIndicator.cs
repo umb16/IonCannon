@@ -21,11 +21,11 @@ public class CooldownIndicator : MonoBehaviour
     //[EditorButton]
     public void SetTime(float time, float maxTime)
     {
-        _frontImage.fillAmount = time/maxTime;
+        _frontImage.fillAmount = time / maxTime;
         /*if(time < 1)
             _text.text = time.ToString(".00");
         else*/
-            _text.text = time.ToString("#.");
+        _text.text = time.ToString("#.");
     }
 
     public void Destroy()

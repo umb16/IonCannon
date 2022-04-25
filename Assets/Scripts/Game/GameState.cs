@@ -3,5 +3,6 @@
     StartMenu,
     Restart,
     InGame,
-    GameOver
+    GameOver,
+    InShop
 }

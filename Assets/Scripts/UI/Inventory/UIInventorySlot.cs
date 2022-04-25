@@ -30,13 +30,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _image.gameObject.SetActive(false);
     }
 
-    public void ToDark()
-    {
-        _darkFront.SetActive(true);
-    }
-    public void ToLight()
+    public void Normal()
     {
         _darkFront.SetActive(false);
+    }
+    public void Highlighted()
+    {
+        _darkFront.SetActive(true);
     }
 
     public void OnBeginDrag(PointerEventData eventData) => BeginDrag?.Invoke(eventData);

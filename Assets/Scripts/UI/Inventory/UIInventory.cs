@@ -66,7 +66,7 @@ public class UIInventory : MonoBehaviour
                 var result = Recipes.GetResult(slot.Item.Type, _dragingItem.Item.Type);
                 if (result != ItemType.None)
                 {
-                    ShowTooltip(ItemsDB.CreateByType(result));
+                    ShowTooltip(ItemsDB.CreateByType(result), true);
                 }
             }
         }
@@ -78,16 +78,19 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    private static void ShowTooltip(Item item)
+    private static void ShowTooltip(Item item, bool newItem = false)
     {
+        string tooltiptext = string.Empty;
+        if (newItem)
+            tooltiptext += "<color=green><size=30>–≈«”À‹“¿“</size></color>\n";
         if (item.Unique)
             TooltipController.Instance.
-            AssignTooltip(@$"<color=yellow><size=30>{item.Name}</size></color>
+            AssignTooltip(tooltiptext+@$"<color=yellow><size=30>{item.Name}</size></color>
 <color=red>”ÌËÍ‡Î¸ÌÓ</color>
 {item.Description}");
         else
             TooltipController.Instance.
-                AssignTooltip(@$"<color=yellow><size=30>{item.Name}</size></color>
+                AssignTooltip(tooltiptext+@$"<color=yellow><size=30>{item.Name}</size></color>
 {item.Description}");
     }
 
@@ -100,7 +103,7 @@ public class UIInventory : MonoBehaviour
             if (!TryCombine(slot, result))
                 TryPut(slot, result);
         slot.ImageTransform.SetParent(slot.transform);
-        slot.ImageTransform.SetSiblingIndex(slot.ImageTransform.GetSiblingIndex()-1);
+        //slot.ImageTransform.SetSiblingIndex(slot.ImageTransform.GetSiblingIndex()-1);
         slot.ImageTransform.localPosition = Vector3.zero;
         PlayerInventory.HighlightItems(ItemType.None);
         _dragingItem = null;
@@ -108,7 +111,7 @@ public class UIInventory : MonoBehaviour
 
     private bool TryPut(UIInventorySlot slot, RaycastResult result)
     {
-        var inventory = result.gameObject.GetComponentInParent<UIInventory>();
+        var inventory = result.gameObject?.GetComponentInParent<UIInventory>();
         if (inventory != null && this != inventory && !inventory.IsFull &&
             (!inventory.IsActiveInventory || !slot.Item.Unique || !inventory.RealInventory.ContainsByType(slot.Item.Type)))
         {
@@ -121,7 +124,7 @@ public class UIInventory : MonoBehaviour
 
     private bool TryRecycle(UIInventorySlot slot, RaycastResult result)
     {
-        var trash = result.gameObject.GetComponentInParent<UIInventoryTrashCan>();
+        var trash = result.gameObject?.GetComponentInParent<UIInventoryTrashCan>();
         if (trash != null)
         {
             _player.Gold.AddBaseValue(slot.Item.SellCost);
@@ -134,7 +137,7 @@ public class UIInventory : MonoBehaviour
 
     private bool TryCombine(UIInventorySlot slot, RaycastResult result)
     {
-        var hoveredSlot = result.gameObject.GetComponentInParent<UIInventorySlot>();
+        var hoveredSlot = result.gameObject?.GetComponentInParent<UIInventorySlot>();
         if (hoveredSlot != null && slot != hoveredSlot && !hoveredSlot.IsEmpty)
         {
             var resultType = Recipes.GetResult(slot.Item.Type, hoveredSlot.Item.Type);
@@ -143,7 +146,8 @@ public class UIInventory : MonoBehaviour
                 var newItem = ItemsDB.CreateByType(resultType);
                 hoveredSlot.RemoveFromInventory();
                 slot.RemoveFromInventory();
-                hoveredSlot.AddToInventory(newItem);
+                _player.AddItemDirectly(newItem);
+                //hoveredSlot.AddToInventory(newItem);
                 return true;
             }
         }
@@ -198,24 +202,24 @@ public class UIInventory : MonoBehaviour
         {
             if (exception == slot || type == ItemType.None)
             {
-                slot.ToLight();
+                slot.Normal();
                 continue;
             }
             if (validComponents.Count() == 0)
             {
-                slot.ToDark();
+                slot.Normal();
                 continue;
             }
             foreach (var component in validComponents)
             {
 
-                if (slot.IsEmpty || slot.Item.Type == component)
+                if (!slot.IsEmpty && slot.Item.Type == component)
                 {
-                    slot.ToLight();
+                    slot.Highlighted();
                 }
                 else
                 {
-                    slot.ToDark();
+                    slot.Normal();
                 }
             }
         }

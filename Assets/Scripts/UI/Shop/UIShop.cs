@@ -4,27 +4,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Zenject;
+using Button = UnityEngine.UI.Button;
 
 public class UIShop : MonoBehaviour
 {
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Transform _itemsRoot;
+    [SerializeField] private Button _refrashButton;
     public event Action OnClosed;
     private int _refrashCount = 0;
     private int _itemsCount = 4;
     public List<UIShopItem> _items = new List<UIShopItem>();
     private Player _player;
     private UIPlayerInventory _playerInventory;
+    private GameData _gameData;
 
     public bool Lock { get; private set; } = false;
 
     [Inject]
-    private void Construct(Player player, UIPlayerInventory playerInventory)
+    private void Construct(Player player, UIPlayerInventory playerInventory, GameData gameData)
     {
         _player = player;
         _playerInventory = playerInventory;
+        _gameData = gameData;
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        _playerInventory.Show();
+        Time.timeScale = 0;
+        _gameData.State = GameState.InShop;
     }
 
     private void Awake()
@@ -52,6 +65,7 @@ public class UIShop : MonoBehaviour
 
     private void OnEnable()
     {
+        _refrashButton.interactable = true;
         if (!Lock)
             Generate();
         else
@@ -73,6 +87,7 @@ public class UIShop : MonoBehaviour
         {
             item.gameObject.SetActive(false);
             _player.Gold.AddBaseValue(-item.Item.Cost);
+            _playerInventory.HighlightItems(ItemType.None);
         }
         else
             MessageBox.Show("Нехватает места");
@@ -81,11 +96,16 @@ public class UIShop : MonoBehaviour
     public void OnClose()
     {
         OnClosed?.Invoke();
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
+        _playerInventory.Hide();
+        _gameData.State = GameState.InGame;
     }
 
     public void Refrash()
     {
         _refrashCount++;
+        _refrashButton.interactable = false;
         Generate();
     }
 
