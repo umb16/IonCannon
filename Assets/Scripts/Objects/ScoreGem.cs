@@ -16,7 +16,7 @@ public class ScoreGem : MonoBehaviour
 
     private void Update()
     {
-        if ((_player.Position - transform.position).magnitude < _player.StatsCollection.GetStat(StatType.PickupRadius).Value)
+        if (_player != null && (_player.Position - transform.position).magnitude < _player.StatsCollection.GetStat(StatType.PickupRadius).Value)
         {
             _player.Gold.AddBaseValue(_score);
             Destroy(gameObject);
