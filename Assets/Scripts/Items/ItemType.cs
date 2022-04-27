@@ -11,5 +11,6 @@
     Coprocessor,
     DivergingLens,
     PowerController,
-    LensSystem
+    LensSystem,
+    MagneticManipulator
 }

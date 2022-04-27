@@ -21,6 +21,7 @@ public static class StatsCollectionsDB
             (StatType.HP, HP),
             (StatType.Size, new ComplexStat(1)),
             (StatType.LifeSupport, new ComplexStat(1).SetBaseLimit(0, 1)),
+            (StatType.PickupRadius, new ComplexStat(2)),
          });
     }
     public static StandartStatsCollection StandartEnemy()

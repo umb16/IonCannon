@@ -14,4 +14,5 @@ public enum StatType
     Size = 9,
     LifeSupport = 10,
     Damage = 11,
+    PickupRadius = 12,
 }

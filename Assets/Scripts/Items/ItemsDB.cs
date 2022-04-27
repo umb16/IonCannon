@@ -251,17 +251,36 @@ public static class ItemsDB
             NotForSale = true,
             Unique = false,
             Name = "Система линз",
-            Description = "Урон луча +10%\nШирина луча +30%",
+            Description = "Ширина луча +100%",
             Cost = 150,
             Icon = AddressKeys.Ico_Lenses,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
-                    new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)
                 },
                 PerkType.LensSystem)
+            }
+        };
+    }
+    public static Item MagneticManipulator()
+    {
+        return new Item()
+        {
+            Type = ItemType.MagneticManipulator,
+            Unique = false,
+            Name = "Магнитный манипулятор",
+            Description = "Радиус сбора + 100%",
+            Cost = 40,
+            Icon = AddressKeys.Ico_Magnet,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius)
+                },
+                PerkType.MagneticManipulator)
             }
         };
     }

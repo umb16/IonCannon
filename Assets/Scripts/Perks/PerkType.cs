@@ -23,4 +23,5 @@ public enum PerkType
     DivergingLens = 19,
     PowerController = 20,
     LensSystem = 21,
+    MagneticManipulator = 22,
 }
