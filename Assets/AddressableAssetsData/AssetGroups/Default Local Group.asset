@@ -74,6 +74,54 @@ MonoBehaviour:
     m_Address: Ico_Battery
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 83958347a3a9c434aa73d7c002318332
+    m_Address: Ico_Ship
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 64c38b39a55cbf543862d53fb52afa48
+    m_Address: Ico_Amplifier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c3c11f08e327ad4c9674d92e20a6c08
+    m_Address: Ico_Box
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5062a11232e19a54ea5dcff61c7112a6
+    m_Address: Ico_Chip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4bbeb781d487ecf46ac212b1ea80edb6
+    m_Address: Ico_Lens
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 68f3fa22144b14c4a98160e4b0c51570
+    m_Address: Ico_Magnet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2f3e197d2177be544952226e73023d7b
+    m_Address: Ico_Radiation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a31115cec93578645b5afd9c03b5cd75
+    m_Address: Ico_Servo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d39d0b233348b9044977234f4073f2ba
+    m_Address: Ico_SpeedBoost
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2a211196558fa354588c63ac4cac7277
+    m_Address: Ico_DivergingLens
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98b6d12cdef66a64f94eb8a54592986f
+    m_Address: Ico_PowerController
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30ca1ad480420eb458908e7babb50799
+    m_Address: Ico_Lenses
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

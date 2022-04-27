@@ -11,9 +11,6 @@ public class Player : Mob
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
 
-    public GameObject Barrel;
-    //public PlayerExp Exp = new PlayerExp();
-
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
@@ -34,8 +31,8 @@ public class Player : Mob
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         damageController.Die += x =>
         {
-            if (ID != x.Target.ID)
-                Gold.AddBaseValue(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
+            //if (ID != x.Target.ID)
+            //    Gold.AddBaseValue(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
                 //Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
         };
     }

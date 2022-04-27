@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameData
 {
     public event Action<GameState> GameStateChanged;
+    public event Action GameStarted;
     public int Wave = 0;
     public float StartGameTime;
     public GameState State
@@ -15,13 +16,20 @@ public class GameData
         }
         set
         {
-            if (value != _state && value == GameState.InGame)
-            {
-                StartGameTime = Time.time;
-            }
+            if (value == GameState.Gameplay)
+                Time.timeScale = 1;
+            else
+                Time.timeScale = 0;
             GameStateChanged?.Invoke(value);
             _state = value;
         }
+    }
+
+    public void StartGame()
+    {
+        GameStarted?.Invoke();
+        StartGameTime = Time.time;
+        State = GameState.Gameplay;
     }
 
     public void AddWave()

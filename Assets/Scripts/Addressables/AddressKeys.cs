@@ -15,6 +15,18 @@ public enum AddressKeys
    Fx_AuraBoss,
    Ico_Laser,
    Ico_Battery,
+   Ico_Ship,
+   Ico_Amplifier,
+   Ico_Box,
+   Ico_Chip,
+   Ico_Lens,
+   Ico_Magnet,
+   Ico_Radiation,
+   Ico_Servo,
+   Ico_SpeedBoost,
+   Ico_DivergingLens,
+   Ico_PowerController,
+   Ico_Lenses,
 }
 public static class AddressKeysConverter
 {
@@ -50,6 +62,30 @@ public static class AddressKeysConverter
                 return "Ico_Laser";
             case AddressKeys.Ico_Battery:
                 return "Ico_Battery";
+            case AddressKeys.Ico_Ship:
+                return "Ico_Ship";
+            case AddressKeys.Ico_Amplifier:
+                return "Ico_Amplifier";
+            case AddressKeys.Ico_Box:
+                return "Ico_Box";
+            case AddressKeys.Ico_Chip:
+                return "Ico_Chip";
+            case AddressKeys.Ico_Lens:
+                return "Ico_Lens";
+            case AddressKeys.Ico_Magnet:
+                return "Ico_Magnet";
+            case AddressKeys.Ico_Radiation:
+                return "Ico_Radiation";
+            case AddressKeys.Ico_Servo:
+                return "Ico_Servo";
+            case AddressKeys.Ico_SpeedBoost:
+                return "Ico_SpeedBoost";
+            case AddressKeys.Ico_DivergingLens:
+                return "Ico_DivergingLens";
+            case AddressKeys.Ico_PowerController:
+                return "Ico_PowerController";
+            case AddressKeys.Ico_Lenses:
+                return "Ico_Lenses";
                 default: return "";
         }
     }

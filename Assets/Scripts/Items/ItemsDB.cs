@@ -1,15 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class ItemsDB
 {
+    private static ItemType[] shop ={
+        ItemType.AdditionalDrives,
+        ItemType.ExoskeletonSpeedBooster,
+         ItemType.Battery,
+         ItemType.Amplifier,
+         ItemType.FocusLens,
+         ItemType.IonizationUnit,
+         ItemType.DeliveryDevice,
+         ItemType.Coprocessor,
+         ItemType.DivergingLens
+    };
     public static Item GetRandomItem()
     {
-        var values = Enum.GetValues(typeof(ItemType));
-        var randomEnum = (ItemType)values.GetValue(Random.Range(0,values.Length));
+        var randomEnum = shop[Random.Range(0, shop.Length)];
         return CreateByType(randomEnum);
     }
     public static Item CreateByType(ItemType type)
@@ -32,6 +43,12 @@ public static class ItemsDB
                 return DeliveryDevice();
             case ItemType.Coprocessor:
                 return Coprocessor();
+            case ItemType.DivergingLens:
+                return DivergingLens();
+            case ItemType.PowerController:
+                return PowerController();
+            case ItemType.LensSystem:
+                return LensSystem();
             default:
                 return Battery();
         }
@@ -43,15 +60,15 @@ public static class ItemsDB
             Type = ItemType.Battery,
             Name = "Батарея",
             Description = "Длинна пути +50%",
-            Cost = 10,
+            Cost = 30,
             Icon = AddressKeys.Ico_Battery,
-            Perks = new IPerk[] 
-            { 
-                new SimplePerk(new[] 
-                { 
-                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght) 
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
                 },
-                    PerkType.RayPathLenght) 
+                    PerkType.RayPathLenght)
             },
         };
     }
@@ -62,12 +79,12 @@ public static class ItemsDB
             Type = ItemType.AdditionalDrives,
             Name = "Дополнительные приводы",
             Description = "Скорость луча +50%",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Laser,
-            Perks = new IPerk[] 
+            Cost = 50,
+            Icon = AddressKeys.Ico_Servo,
+            Perks = new IPerk[]
             {
-                new SimplePerk(new[] 
-                { 
+                new SimplePerk(new[]
+                {
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RaySpeed)
                 },
                 PerkType.RaySpeed)
@@ -81,8 +98,8 @@ public static class ItemsDB
             Type = ItemType.ExoskeletonSpeedBooster,
             Name = "Ускоритель экзоскелета",
             Description = "Скорость бега +0.5 п/с",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Laser,
+            Cost = 60,
+            Icon = AddressKeys.Ico_SpeedBoost,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -100,8 +117,8 @@ public static class ItemsDB
             Type = ItemType.Amplifier,
             Name = "Усилитель",
             Description = "Длинна пути -20%\nУрон луча +20%",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Laser,
+            Cost = 50,
+            Icon = AddressKeys.Ico_Amplifier,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -113,7 +130,7 @@ public static class ItemsDB
             }
         };
     }
-    
+
     public static Item FocusLens()
     {
         return new Item()
@@ -122,8 +139,8 @@ public static class ItemsDB
             Unique = true,
             Name = "Фокусирующая линза",
             Description = "Урон луча +50%\nШирина луча -90%",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Battery,
+            Cost = 70,
+            Icon = AddressKeys.Ico_Lens,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -142,8 +159,8 @@ public static class ItemsDB
             Type = ItemType.IonizationUnit,
             Name = "Блок ионизации",
             Description = "Поражённые лучом враги получают периодический урон 10% в секунду",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Battery,
+            Cost = 60,
+            Icon = AddressKeys.Ico_Radiation,
             Perks = new IPerk[]
             {
                 new PerkPIonization(),
@@ -157,8 +174,8 @@ public static class ItemsDB
             Type = ItemType.DeliveryDevice,
             Name = "Устройство доставки",
             Description = "Раз в 20 секунд доставляет с орбиты ящик со взравчаткой",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Battery,
+            Cost = 50,
+            Icon = AddressKeys.Ico_Box,
             Perks = new IPerk[]
             {
                 new PerkPBarrels(),
@@ -172,8 +189,8 @@ public static class ItemsDB
             Type = ItemType.Coprocessor,
             Name = "Сопроцессор",
             Description = "Время наведения -30%",
-            Cost = 10,
-            Icon = AddressKeys.Ico_Battery,
+            Cost = 50,
+            Icon = AddressKeys.Ico_Chip,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -182,6 +199,70 @@ public static class ItemsDB
                 },
                     PerkType.RayDelay)
             },
+        };
+    }
+    public static Item DivergingLens()
+    {
+        return new Item()
+        {
+            Type = ItemType.DivergingLens,
+            Unique = false,
+            Name = "Рассеивающая линза",
+            Description = "Урон луча -50%\nШирина луча +200%",
+            Cost = 60,
+            Icon = AddressKeys.Ico_DivergingLens,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
+                    new StatModificator(-0.5f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                PerkType.DivergingLens)
+            }
+        };
+    }
+    public static Item PowerController()
+    {
+        return new Item()
+        {
+            Type = ItemType.PowerController,
+            NotForSale = true,
+            Name = "Контроллер питания",
+            Description = "Урон +10%\nДлинна пути +20%",
+            Cost = 100,
+            Icon = AddressKeys.Ico_PowerController,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.1f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                    PerkType.PowerController)
+            },
+        };
+    }
+    public static Item LensSystem()
+    {
+        return new Item()
+        {
+            Type = ItemType.LensSystem,
+            NotForSale = true,
+            Unique = false,
+            Name = "Система линз",
+            Description = "Урон луча +10%\nШирина луча +30%",
+            Cost = 150,
+            Icon = AddressKeys.Ico_Lenses,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
+                    new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                PerkType.LensSystem)
+            }
         };
     }
 }

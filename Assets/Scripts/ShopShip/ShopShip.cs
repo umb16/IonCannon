@@ -24,20 +24,20 @@ public class ShopShip : MonoBehaviour
     private UIShop _shop;
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
-    private IDisposable _updateDisposible;
     private float _lastArrival;
-    private float _cooldownTime = 10;
+    private Player _player;
+    private float _cooldownTime = 60;
     private float TimeToArrival => _cooldownTime - (Time.time - _lastArrival);
 
     [Inject]
-    private void Construct(UIShop shop, CooldownsPanel cooldownsPanel, GameData gameData)
+    private void Construct(UIShop shop, CooldownsPanel cooldownsPanel, GameData gameData, Player player)
     {
         _gameData = gameData;
-        _shopIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Battery);
+        _shopIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Ship);
         _shop = shop;
         _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
-        _updateDisposible = UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ => FakeUpdate());
+        _player = player;
     }
 
     public void CountDownForceEnd()
@@ -51,8 +51,8 @@ public class ShopShip : MonoBehaviour
     }
     private void StartLanding()
     {
-        _newPosition = (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 25 * Random.value).Get2D();
-        _startPosition = _newPosition + Vector3.up * 60 - Vector3.forward * 50;
+        _newPosition = (_player.Position+(new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
+        _startPosition = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
         _landingTimer = new Timer(2)
             .SetUpdate(x => transform.position = Vector3.Lerp(_startPosition, _newPosition, x))
             .SetEnd(StartCountdown);
@@ -79,10 +79,9 @@ public class ShopShip : MonoBehaviour
 
     private void OnDestroy()
     {
-        _landingTimer.Stop();
-        _countdownTimer.Stop();
+        _landingTimer?.Stop();
+        _countdownTimer?.Stop();
         _shop.OnClosed -= CountDownForceEnd;
-        _updateDisposible.Dispose();
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -101,9 +100,13 @@ public class ShopShip : MonoBehaviour
         }
     }
 
-    private void FakeUpdate()
+    private void Update()
     {
-        if (_gameData.State == GameState.InGame)
+        if (_playerInRadius && Input.GetKeyDown(KeyCode.E))
+        {
+            _shop.Show();
+        }
+        if (_gameData.State == GameState.Gameplay)
         {
             _shopIndicator.SetTime(TimeToArrival, _cooldownTime);
             if (TimeToArrival <= 0)
@@ -111,14 +114,6 @@ public class ShopShip : MonoBehaviour
                 _lastArrival = Time.time;
                 StartLanding();
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (_playerInRadius && Input.GetKeyDown(KeyCode.E))
-        {
-            _shop.Show();
         }
     }
 }

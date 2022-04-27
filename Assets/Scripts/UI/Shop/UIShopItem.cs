@@ -61,7 +61,7 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void OnDisable()
     {
-        _player.Gold.ValueChanged -= CheckButtonStatus;
+       // _player.Gold.ValueChanged -= CheckButtonStatus;
     }
 
     private void Awake()

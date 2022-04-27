@@ -2,7 +2,8 @@
 {
     StartMenu,
     Restart,
-    InGame,
+    Gameplay,
     GameOver,
-    InShop
+    InShop,
+    Inventory
 }

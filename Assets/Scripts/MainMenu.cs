@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
     private void StartGame()
     {
         PlayerObj.SetActive(value: true);
-        new Timer(.1f).SetEnd(() => _gameData.State = GameState.InGame);
+        new Timer(.1f).SetEnd(() => _gameData.StartGame());
         MobGenerator.SetActive(true);
         gameObject.SetActive(false);
     }

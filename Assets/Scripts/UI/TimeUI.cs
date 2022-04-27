@@ -14,21 +14,20 @@ public class TimeUI : MonoBehaviour
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += OnGameStateChanged;
+        _gameData.GameStarted += GameStarted;
     }
 
-    private void OnGameStateChanged(GameState gameState)
+    private void GameStarted()
     {
-        if(gameState == GameState.InGame)
-            text.gameObject.SetActive(true);
+        text.gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        if (_gameData.State == GameState.InGame)
+        if (_gameData.State == GameState.Gameplay)
         {
             var time = TimeSpan.FromSeconds(Time.time - _gameData.StartGameTime);
-            if(time.Hours > 0)
+            if (time.Hours > 0)
                 text.text = time.ToString(@"hh\:mm\:ss");
             else
                 text.text = time.ToString(@"mm\:ss");

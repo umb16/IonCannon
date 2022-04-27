@@ -8,5 +8,8 @@
     FocusLens,
     IonizationUnit,
     DeliveryDevice,
-    Coprocessor
+    Coprocessor,
+    DivergingLens,
+    PowerController,
+    LensSystem
 }

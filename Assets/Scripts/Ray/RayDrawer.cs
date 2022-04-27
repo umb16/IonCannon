@@ -55,7 +55,7 @@ public class RayDrawer : MonoBehaviour
     }
     private void RayLogic()
     {
-        if (_gameData.State != GameState.InGame)
+        if (_gameData.State != GameState.Gameplay)
             return;
         if (Input.GetMouseButton(0) && rayIsReady)
         {

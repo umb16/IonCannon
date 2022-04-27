@@ -14,7 +14,16 @@ public class ScoreGem : MonoBehaviour
         _player = player;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void Update()
+    {
+        if ((_player.Position - transform.position).magnitude < 2)
+        {
+            _player.Gold.AddBaseValue(_score);
+            Destroy(gameObject);
+        }
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D col)
     {
         var mob = col.gameObject.GetComponent<IMob>();
         if (mob != null && mob == (IMob)_player)
@@ -23,5 +32,5 @@ public class ScoreGem : MonoBehaviour
             _player.Gold.AddBaseValue(_score);
             Destroy(gameObject);
         }
-    }
+    }*/
 }

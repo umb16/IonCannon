@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : WithId
 {
     public ItemType Type;
+    public bool NotForSale;
     public bool Unique = false;
     public string Name = "Батарея";
     public string Description = "Длинна пути +10 м";

@@ -25,6 +25,7 @@ public class UIPlayerInventory : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        TooltipController.Instance.UnassignTooltip();
     }
     private void Start()
     {

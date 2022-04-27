@@ -21,21 +21,24 @@ public class UIShop : MonoBehaviour
     private Player _player;
     private UIPlayerInventory _playerInventory;
     private GameData _gameData;
+    private UIPlayerStats _playerStats;
 
     public bool Lock { get; private set; } = false;
 
     [Inject]
-    private void Construct(Player player, UIPlayerInventory playerInventory, GameData gameData)
+    private void Construct(Player player, UIPlayerInventory playerInventory, GameData gameData, UIPlayerStats playerStats)
     {
         _player = player;
         _playerInventory = playerInventory;
         _gameData = gameData;
+        _playerStats = playerStats;
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
         _playerInventory.Show();
+        _playerStats.Show();
         Time.timeScale = 0;
         _gameData.State = GameState.InShop;
     }
@@ -99,7 +102,8 @@ public class UIShop : MonoBehaviour
         Time.timeScale = 1;
         gameObject.SetActive(false);
         _playerInventory.Hide();
-        _gameData.State = GameState.InGame;
+        _playerStats.Hide();
+        new Timer(.1f).SetEnd(() => _gameData.State = GameState.Gameplay);
     }
 
     public void Refrash()

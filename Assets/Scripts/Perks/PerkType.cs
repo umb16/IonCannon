@@ -20,4 +20,7 @@ public enum PerkType
     EMother = 16,
     Amplifier = 17,
     FocusLens = 18,
+    DivergingLens = 19,
+    PowerController = 20,
+    LensSystem = 21,
 }

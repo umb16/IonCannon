@@ -39,7 +39,7 @@ public class UIPlayerStats : UIBase
 
     private UIStatText AddString()
     {
-        var go = Instantiate(_textPrefab, transform);
+        var go = Instantiate(_textPrefab, _textPrefab.transform.parent);
         go.SetActive(true);
         return go.GetComponent<UIStatText>();
     }

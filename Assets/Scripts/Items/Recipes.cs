@@ -28,7 +28,11 @@ public struct Recipe
 
 public class Recipes
 {
-    public static Recipe[] _recipes = { new Recipe(ItemType.Battery, ItemType.Coprocessor, ItemType.FocusLens) };
+    public static Recipe[] _recipes = 
+        { 
+        new Recipe(ItemType.Battery, ItemType.Coprocessor, ItemType.PowerController),
+        new Recipe(ItemType.FocusLens, ItemType.DivergingLens, ItemType.LensSystem),
+    };
     public static IEnumerable<Recipe> GetAllValidRecipes(ItemType type)
     {
         return _recipes.Where(x => x.GetSecondComponent(type) != ItemType.None);

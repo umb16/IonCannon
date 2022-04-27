@@ -124,7 +124,7 @@ public class MobSpawner : MonoBehaviour
 
     public async UniTask<IMob> SpawnByName(string key, Vector3 position)
     {
-        if (_gameData.State != GameState.InGame)
+        if (_gameData.State != GameState.Gameplay)
             return null;
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
@@ -133,7 +133,7 @@ public class MobSpawner : MonoBehaviour
     }
     private async UniTask CreateMob()
     {
-        if (_gameData.State != GameState.InGame)
+        if (_gameData.State != GameState.Gameplay)
             return;
         if (!Stop)
         {
@@ -193,7 +193,7 @@ public class MobSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (_gameData.State != GameState.InGame)
+        if (_gameData.State != GameState.Gameplay)
             return;
         _bossTime += Time.deltaTime;
         if (_bossTime > 100f)
