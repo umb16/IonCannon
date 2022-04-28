@@ -28,14 +28,14 @@ namespace Umb16.Extensions
         /// 3 противоположно оси z;</para>
         /// </summary>
         ///  <returns></returns>
-        public static float DiamondAngleXZ4(this Vector3 v)
+        public static float DiamondAngleXY4(this Vector3 v)
         {
-            if (v.z >= 0)
-                return v.x >= 0 ? v.z / (v.x + v.z) : 1 - v.x / (-v.x + v.z);
-            return v.x < 0 ? 2 - v.z / (-v.x - v.z) : 3 + v.x / (v.x - v.z);
+            if (v.y >= 0)
+                return v.x >= 0 ? v.y / (v.x + v.y) : 1 - v.x / (-v.x + v.y);
+            return v.x < 0 ? 2 - v.y / (-v.x - v.y) : 3 + v.x / (v.x - v.y);
         }
 
-        public static float DiamondAngleXZ4(this Vector3 v1, Vector3 v2)
+      /*  public static float DiamondAngleXZ4(this Vector3 v1, Vector3 v2)
         {
             var a = v1.DiamondAngleXZ4();
             var b = v2.DiamondAngleXZ4();
@@ -43,20 +43,20 @@ namespace Umb16.Extensions
             if (angle < 0)
                 angle += 4;
             return angle;
-        }
+        }*/
 
-        public static float DiamondAngleXZSign2(this Vector3 v1, Vector3 v2)
+     /*   public static float DiamondAngleXZSign2(this Vector3 v1, Vector3 v2)
         {
             float angle = DiamondAngleXZ4(v1, v2);
             if (angle > 2)
                 angle = -(4 - angle);
             return angle;
-        }
+        }*/
 
         /// <summary>
         /// Угол между векторами в диапозоне от 0 до 2
         /// </summary>
-        public static float DiamondAngleXZ2(this Vector3 v1, Vector3 v2)
+      /*  public static float DiamondAngleXZ2(this Vector3 v1, Vector3 v2)
         {
             var a = v1.DiamondAngleXZ4();
             var b = v2.DiamondAngleXZ4();
@@ -78,7 +78,7 @@ namespace Umb16.Extensions
 
             return angle;
         }
-
+      */
         public static float SqrMagnetudeXZ(this Vector3 v)
         {
             return v.x * v.x + v.z * v.z;

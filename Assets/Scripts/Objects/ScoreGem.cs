@@ -22,15 +22,4 @@ public class ScoreGem : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D col)
-    {
-        var mob = col.gameObject.GetComponent<IMob>();
-        if (mob != null && mob == (IMob)_player)
-        {
-            //_player.Exp.AddExp(_score);
-            _player.Gold.AddBaseValue(_score);
-            Destroy(gameObject);
-        }
-    }*/
 }

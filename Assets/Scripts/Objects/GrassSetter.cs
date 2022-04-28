@@ -23,7 +23,9 @@ public class GrassSetter : MonoBehaviour
         {
             for (int j = -50; j < 50; j++)
             {
-                if (i * i + j * j > 2500)
+                /*if (i * i + j * j > 2500)
+                    continue;*/
+                if (Random.value < .9f)
                     continue;
                 float x = i + 50 + shift;
                 float y = j + 50 + shift;

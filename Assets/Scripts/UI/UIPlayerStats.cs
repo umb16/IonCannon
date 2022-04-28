@@ -12,15 +12,14 @@ public class UIPlayerStats : UIBase
     private void Construct(Player player)
     {
         _player = player;
-        AddString("Персонаж:");
         AddString("Максимальное здоровье", StatType.MaxHP);
         AddString("Скорость бега", StatType.MovementSpeed," п/с");
-        AddString("Луч:");
-        AddString("Урон", StatType.RayDamage);
-        AddString("Скорость", StatType.RaySpeed," п/с");
-        AddString("Длинна пути", StatType.RayPathLenght," п");
-        AddString("Время наведения", StatType.RayDelay," c");
-        AddString("Ширина", StatType.RayDamageAreaRadius," п");
+        AddString("Радиус сбора", StatType.PickupRadius," п");
+        AddString("Урон луча", StatType.RayDamage);
+        AddString("Скорость луча", StatType.RaySpeed," п/с");
+        AddString("Длинна пути луча", StatType.RayPathLenght," п");
+        AddString("Время наведения луча", StatType.RayDelay," c");
+        AddString("Ширина луча", StatType.RayDamageAreaRadius," п");
     }
 
     private void AddString(string text, StatType statType, string postfix="", string format="")
