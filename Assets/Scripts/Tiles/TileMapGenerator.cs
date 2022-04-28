@@ -53,8 +53,8 @@ public class TileMapGenerator : MonoBehaviour
             }
         }
         GenerateLayer(.4f);
-        GenerateLayer(.6f);
-        GenerateLayer(.7f);
+       // GenerateLayer(.6f);
+       // GenerateLayer(.7f);
     }
 
     private void GenerateLayer(float threshold)
