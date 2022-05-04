@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Umb16.Extensions;
@@ -14,10 +13,26 @@ public enum Directions
     Right = 2,
     Down = 4,
     Left = 8,
+
     UR = Up + Right,
     RD = Right + Down,
     DL = Down + Left,
-    LU = Left + Up
+    LU = Left + Up,
+
+    UD = Up + Down,
+    LR = Left + Right,
+
+    URD = Up + Down + Right,
+    RDL = Right + Down + Left,
+    DLU = Down + Left + Up,
+    LUR = Left + Up + Right,
+
+    ALL = Up + Down + Left + Right,
+}
+
+public enum TileType
+{
+    Standart
 }
 
 public class TileMapGenerator : MonoBehaviour
@@ -41,20 +56,35 @@ public class TileMapGenerator : MonoBehaviour
     [EditorButton]
     private void Start()
     {
-        _perlinMap = new float[_mapSize, _mapSize];
-        float xShift = Random.value * 100;
-        float yShift = Random.value * 100;
-        for (int i = 0; i < _perlinMap.GetLength(0); i++)
+        var chunk = new Chunk(_mapSize, 0, 0, perlinFactor);
+        chunk.CreateLayer(.5f, TileType.Standart);
+        chunk.CreateLayer(.6f, TileType.Standart);
+        for (int i = 0; i < _mapSize; i++)
         {
-            for (int j = 0; j < _perlinMap.GetLength(1); j++)
+            for (int j = 0; j < _mapSize; j++)
             {
-                float perlin = Mathf.PerlinNoise(i * perlinFactor + xShift, j * perlinFactor + yShift);
-                _perlinMap[i, j] = perlin;
+                var (type, directions) = chunk.GetTile(new Vector2Int(i, j));
+                if (directions == Directions.UR
+                    || directions == Directions.RD
+                    || directions == Directions.DL
+                    || directions == Directions.LU)
+                {
+                    SetTwoSides(i, j, directions);
+                }
+                else if (directions == Directions.Up
+                    || directions == Directions.Right
+                    || directions == Directions.Down
+                    || directions == Directions.Left)
+                {
+                    SetThreeSides(i, j, directions);
+                }
+                else if(directions == Directions.None)
+                    SetEmpty(i, j);
+
             }
         }
-        GenerateLayer(.4f);
-       // GenerateLayer(.6f);
-       // GenerateLayer(.7f);
+        // GenerateLayer(.6f);
+        // GenerateLayer(.7f);
     }
 
     private void GenerateLayer(float threshold)
@@ -70,69 +100,85 @@ public class TileMapGenerator : MonoBehaviour
                     if (sidesCount == 2)
                     {
                         Debug.Log(dir);
-                        Matrix4x4 matrix; //= Matrix4x4.TRS(Vector3.zero, quaternion, new Vector3(Random.value < .5f ? 1 : -1, 1, 1));
-                        switch (dir)
-                        {
-                            case Directions.RD:
-                                if (Random.value < .5f)
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, -90), Vector3.one);
-                                else
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1, -1, 1));
-                                break;
-                            case Directions.DL:
-                                if (Random.value < .5f)
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, 180), Vector3.one);
-                                else
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1, -1, 1));
-                                break;
-                            case Directions.LU:
-                                if (Random.value < .5f)
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, 90), Vector3.one);
-                                else
-                                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1, 1, 1));
-                                break;
-                            default:
-                                matrix = Matrix4x4.identity;
-                                break;
-                        }
-                        var tileCD = new TileChangeData(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2),
-                            _twoSideTiles[Random.Range(0, _twoSideTiles.Length)],
-                            Color.white, matrix);
-                        _tilemap.SetTile(tileCD, true);
-                        
+                        SetTwoSides(i, j, dir);
+
                         //_tilemap.SetTile(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2), _twoSideTiles[Random.Range(0, _twoSideTiles.Length)]);
                     }
                     if (sidesCount == 3)
                     {
-                        Quaternion quaternion;
-                        switch (dir)
-                        {
-                            case Directions.Right:
-                                quaternion = Quaternion.Euler(0, 0, -90);
-                                break;
-                            case Directions.Down:
-                                quaternion = Quaternion.Euler(0, 0, 180);
-                                break;
-                            case Directions.Left:
-                                quaternion = Quaternion.Euler(0, 0, 90);
-                                break;
-                            default:
-                                quaternion = Quaternion.identity;
-                                break;
-                        }
-                        Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, quaternion, new Vector3(Random.value < .5f ? 1 : -1, 1, 1));
-                        var tileCD = new TileChangeData(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2),
-                            _threeSideTiles[Random.Range(0, _threeSideTiles.Length)],
-                            Color.white, matrix);
-                        _tilemap.SetTile(tileCD, true);
+                        SetThreeSides(i, j, dir);
                         //_tilemap.SetTile(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2), _threeSideTiles[Random.Range(0, _threeSideTiles.Length)]);
                     }
                     if (sidesCount == 4)
-                        _tilemap.SetTile(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2), _fullTiles[Random.Range(0, _fullTiles.Length)]);
+                        SetEmpty(i, j);
                 }
             }
         }
     }
+
+    private void SetEmpty(int i, int j)
+    {
+        _tilemap.SetTile(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2), _fullTiles[Random.Range(0, _fullTiles.Length)]);
+    }
+
+    private void SetThreeSides(int i, int j, Directions dir)
+    {
+        Quaternion quaternion;
+        switch (dir)
+        {
+            case Directions.Right:
+                quaternion = Quaternion.Euler(0, 0, -90);
+                break;
+            case Directions.Down:
+                quaternion = Quaternion.Euler(0, 0, 180);
+                break;
+            case Directions.Left:
+                quaternion = Quaternion.Euler(0, 0, 90);
+                break;
+            default:
+                quaternion = Quaternion.identity;
+                break;
+        }
+        Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, quaternion, new Vector3(Random.value < .5f ? 1 : -1, 1, 1));
+        var tileCD = new TileChangeData(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2),
+            _threeSideTiles[Random.Range(0, _threeSideTiles.Length)],
+            Color.white, matrix);
+        _tilemap.SetTile(tileCD, true);
+    }
+
+    private void SetTwoSides(int i, int j, Directions dir)
+    {
+        Matrix4x4 matrix; //= Matrix4x4.TRS(Vector3.zero, quaternion, new Vector3(Random.value < .5f ? 1 : -1, 1, 1));
+        switch (dir)
+        {
+            case Directions.RD:
+                if (Random.value < .5f)
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, -90), Vector3.one);
+                else
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1, -1, 1));
+                break;
+            case Directions.DL:
+                if (Random.value < .5f)
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, 180), Vector3.one);
+                else
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1, -1, 1));
+                break;
+            case Directions.LU:
+                if (Random.value < .5f)
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0, 0, 90), Vector3.one);
+                else
+                    matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1, 1, 1));
+                break;
+            default:
+                matrix = Matrix4x4.identity;
+                break;
+        }
+        var tileCD = new TileChangeData(new Vector3Int(i - _mapSize / 2, j - _mapSize / 2),
+            _twoSideTiles[Random.Range(0, _twoSideTiles.Length)],
+            Color.white, matrix);
+        _tilemap.SetTile(tileCD, true);
+    }
+
     private (int count, Directions direction) GetNormalSidesCount(Vector3Int position, float threshold)
     {
         int result = 0;
