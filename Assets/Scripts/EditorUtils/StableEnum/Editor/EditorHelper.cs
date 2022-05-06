@@ -6,6 +6,7 @@ using UnityEditor;
 
 namespace StableEnumUtilities
 {
+#if UNITY_EDITOR
     public static class EditorHelper
     {
         public static List<T> FindAssetsOfType<T>() where T : UnityEngine.Object
@@ -169,4 +170,5 @@ namespace StableEnumUtilities
             return enm.Current;
         }
     }
+#endif
 }

@@ -72,29 +72,8 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData CurrentWave => _waves[_currenWave];
 
-    private int currentLoop;
-
-    private float _time;
-
-    private float _bossTime;
     private Player _player;
     private GameData _gameData;
-
-    /*public int WaveMobCounter
-    {
-        get
-        {
-            return _waveMobCounter;
-        }
-        set
-        {
-            _waveMobCounter = value;
-            if (_waveMobCounter >= _wawesMobCount[_currenWave] * (currentLoop + 1))
-            {
-                NextWave();
-            }
-        }
-    }*/
 
     [Inject]
     private void Construct(DamageController damageController, Player player, GameData gameData)
@@ -118,7 +97,6 @@ public class MobSpawner : MonoBehaviour
         if (_currenWave >= _waves.Length)
         {
             _currenWave = 0;
-            currentLoop++;
         }
     }
 
@@ -165,7 +143,6 @@ public class MobSpawner : MonoBehaviour
         vector *= 25f;
         vector += _player.transform.position;
         GameObject gameObject = await MobPrafab[Random.Range(0, 4)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-        // Object.Instantiate(MobPrafab[Random.Range(0, MobPrafab.Length)], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
         Mob mob = gameObject.GetComponent<Mob>();
         Mobs.Add(mob);
         mob.AddPerk(new PerkEBoss());
@@ -173,16 +150,6 @@ public class MobSpawner : MonoBehaviour
 
     private int GetNextMob()
     {
-        /*float value = Random.value * _waves[_currenWave].Sum();
-        float num = 0f;
-        for (int i = 0; i < _waves[_currenWave].Length; i++)
-        {
-            if (value > num && value < num + _waves[_currenWave][i])
-            {
-                return i;
-            }
-            num += _waves[_currenWave][i];
-        }*/
         return _waves[_currenWave].GetNext();
     }
 
@@ -195,13 +162,6 @@ public class MobSpawner : MonoBehaviour
     {
         if (_gameData.State != GameState.Gameplay)
             return;
-        _bossTime += Time.deltaTime;
-        if (_bossTime > 100f)
-        {
-            CreateBoss().Forget();
-            _bossTime = 0f;
-        }
-        _time += Time.deltaTime;
 
         //Телепортация мобов
         if (teleportation)

@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.IO;
 using System.Text;
-
+#if UNITY_EDITOR
 public class LocalizationEnumCodeGenerator : AssetPostprocessor
 {
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
@@ -57,3 +57,4 @@ public class LocalizationEnumCodeGenerator : AssetPostprocessor
         }
     }
 }
+#endif

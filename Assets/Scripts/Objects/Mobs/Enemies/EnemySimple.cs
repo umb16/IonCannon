@@ -13,6 +13,7 @@ public class EnemySimple : Mob
     [SerializeField] private bool _noTouchDamage;
     [SerializeField] private PerkType[] _startPerks;
     [SerializeField] private Drop[] _drop;
+    [SerializeField] bool _fixedAnimSpeed;
     private Timer _damageTimer;
     private Timer _dieTimer;
     protected override void Awake()
@@ -28,7 +29,8 @@ public class EnemySimple : Mob
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) =>
         {
-            if (_animator != null) _animator.speed = x.Ratio;
+            if (!_fixedAnimSpeed && _animator != null)
+                _animator.speed = x.Ratio;
         };
     }
 

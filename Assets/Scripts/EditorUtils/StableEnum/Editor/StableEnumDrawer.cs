@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using StableEnumUtilities;
 using System.Linq;
-
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(BaseStableEnum), true)]
 public class StableEnumDrawer : PropertyDrawer
 {
@@ -107,3 +107,4 @@ public class StableEnumDrawer : PropertyDrawer
         options = Array.FindAll(allOptions, name => string.IsNullOrEmpty(search) || name.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) >= 0);
     }
 }
+#endif

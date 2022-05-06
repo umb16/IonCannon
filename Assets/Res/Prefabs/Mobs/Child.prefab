@@ -130,6 +130,7 @@ MonoBehaviour:
   - Probability: 0.2
     GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
       type: 3}
+  _fixedAnimSpeed: 1
 --- !u!114 &6239646004283202743
 MonoBehaviour:
   m_ObjectHideFlags: 0
