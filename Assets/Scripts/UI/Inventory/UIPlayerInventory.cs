@@ -10,13 +10,16 @@ public class UIPlayerInventory : MonoBehaviour
     private Inventory Inventory => _player.Inventory;
     private Inventory Stash => _player.Stash;
     private Player _player;
+    private ItemsDB _itemsDB;
+
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, ItemsDB itemsDB)
     {
         _player = player;
         SetInventory(Inventory, _uiInventory);
         _uiInventory.IsActiveInventory = true;
         SetInventory(Stash, _uiStash);
+        _itemsDB = itemsDB;
     }
     public void Show()
     {
@@ -27,16 +30,7 @@ public class UIPlayerInventory : MonoBehaviour
         gameObject.SetActive(false);
         TooltipController.Instance.UnassignTooltip();
     }
-    private void Start()
-    {
-        Inventory.Add(ItemsDB.Battery());
-        /*Stash.Add(ItemsDB.Coprocessor());
-        Stash.Add(ItemsDB.ExoskeletonSpeedBooster());
-        Stash.Add(ItemsDB.Amplifier());
-        Stash.Add(ItemsDB.FocusLens());
-        Stash.Add(ItemsDB.FocusLens());
-        Stash.Add(ItemsDB.DeliveryDevice());*/
-    }
+
     private void SetInventory(Inventory inventory, UIInventory uiInventory)
     {
         inventory.ItemAdded += uiInventory.AddItem;

@@ -33,6 +33,7 @@ public class ShopShip : MonoBehaviour
     private void Construct(UIShop shop, CooldownsPanel cooldownsPanel, GameData gameData, Player player)
     {
         _gameData = gameData;
+        _gameData.GameStarted += OnGameStarted;
         _shopIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Ship);
         _shop = shop;
         _shop.OnClosed += CountDownForceEnd;
@@ -43,6 +44,11 @@ public class ShopShip : MonoBehaviour
     public void CountDownForceEnd()
     {
         _countdownTimer.ForceEnd();
+    }
+
+    public void OnGameStarted()
+    {
+        _lastArrival = Time.time;
     }
 
     private void Awake()
@@ -82,6 +88,7 @@ public class ShopShip : MonoBehaviour
         _landingTimer?.Stop();
         _countdownTimer?.Stop();
         _shop.OnClosed -= CountDownForceEnd;
+        _gameData.GameStarted -= OnGameStarted;
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {

@@ -5,9 +5,9 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public static class ItemsDB
+public class ItemsDB
 {
-    private static ItemType[] shop ={
+    private ItemType[] shop ={
         ItemType.AdditionalDrives,
         ItemType.ExoskeletonSpeedBooster,
          ItemType.Battery,
@@ -16,14 +16,22 @@ public static class ItemsDB
          ItemType.IonizationUnit,
          ItemType.DeliveryDevice,
          ItemType.Coprocessor,
-         ItemType.DivergingLens
+         ItemType.DivergingLens,
+         ItemType.MagneticManipulator,
     };
-    public static Item GetRandomItem()
+    private PerksFactory _perksFactory;
+
+    private ItemsDB(PerksFactory perksFactory)
+    {
+        _perksFactory = perksFactory;
+    }
+
+    public Item GetRandomItem()
     {
         var randomEnum = shop[Random.Range(0, shop.Length)];
         return CreateByType(randomEnum);
     }
-    public static Item CreateByType(ItemType type)
+    public Item CreateByType(ItemType type)
     {
         switch (type)
         {
@@ -49,11 +57,13 @@ public static class ItemsDB
                 return PowerController();
             case ItemType.LensSystem:
                 return LensSystem();
+            case ItemType.MagneticManipulator:
+                return MagneticManipulator();
             default:
                 return Battery();
         }
     }
-    public static Item Battery()
+    public Item Battery()
     {
         return new Item()
         {
@@ -72,7 +82,7 @@ public static class ItemsDB
             },
         };
     }
-    public static Item AdditionalDrives()
+    public Item AdditionalDrives()
     {
         return new Item()
         {
@@ -91,7 +101,7 @@ public static class ItemsDB
             }
         };
     }
-    public static Item ExoskeletonSpeedBooster()
+    public Item ExoskeletonSpeedBooster()
     {
         return new Item()
         {
@@ -110,7 +120,7 @@ public static class ItemsDB
             }
         };
     }
-    public static Item Amplifier()
+    public Item Amplifier()
     {
         return new Item()
         {
@@ -131,7 +141,7 @@ public static class ItemsDB
         };
     }
 
-    public static Item FocusLens()
+    public Item FocusLens()
     {
         return new Item()
         {
@@ -152,7 +162,7 @@ public static class ItemsDB
             }
         };
     }
-    public static Item IonizationUnit()
+    public Item IonizationUnit()
     {
         return new Item()
         {
@@ -163,11 +173,11 @@ public static class ItemsDB
             Icon = AddressKeys.Ico_Radiation,
             Perks = new IPerk[]
             {
-                new PerkPIonization(),
+                _perksFactory.Create<PerkPIonization>()
             }
         };
     }
-    public static Item DeliveryDevice()
+    public Item DeliveryDevice()
     {
         return new Item()
         {
@@ -178,11 +188,11 @@ public static class ItemsDB
             Icon = AddressKeys.Ico_Box,
             Perks = new IPerk[]
             {
-                new PerkPBarrels(),
+                _perksFactory.Create<PerkPBarrels>(),
             }
         };
     }
-    public static Item Coprocessor()
+    public Item Coprocessor()
     {
         return new Item()
         {
@@ -201,7 +211,7 @@ public static class ItemsDB
             },
         };
     }
-    public static Item DivergingLens()
+    public Item DivergingLens()
     {
         return new Item()
         {
@@ -222,7 +232,7 @@ public static class ItemsDB
             }
         };
     }
-    public static Item PowerController()
+    public Item PowerController()
     {
         return new Item()
         {
@@ -243,7 +253,7 @@ public static class ItemsDB
             },
         };
     }
-    public static Item LensSystem()
+    public Item LensSystem()
     {
         return new Item()
         {
@@ -264,7 +274,7 @@ public static class ItemsDB
             }
         };
     }
-    public static Item MagneticManipulator()
+    public Item MagneticManipulator()
     {
         return new Item()
         {

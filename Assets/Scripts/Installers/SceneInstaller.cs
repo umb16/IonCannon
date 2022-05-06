@@ -12,9 +12,7 @@ public class SceneInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<Player>().FromInstance(_player).AsSingle().NonLazy();
-        
-        Container.Bind<DamageController>().AsSingle().NonLazy();
-        Container.Bind<GameData>().AsSingle().NonLazy();
+
         Container.Bind<MobSpawner>().FromInstance(_mobSpawner).AsSingle();
         Container.Bind<CooldownsPanel>().FromInstance(_cooldownsPanel).AsSingle();
         Container.Bind<UIShop>().FromInstance(_uiShop).AsSingle();

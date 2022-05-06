@@ -74,10 +74,12 @@ public class MobSpawner : MonoBehaviour
 
     private Player _player;
     private GameData _gameData;
+    private DamageController _damageController;
 
     [Inject]
     private void Construct(DamageController damageController, Player player, GameData gameData)
     {
+        _damageController = damageController;
         damageController.Die += OnEnemyDie;
         _player = player;
         _gameData = gameData;
@@ -158,6 +160,10 @@ public class MobSpawner : MonoBehaviour
         Invoke("CreateMob", 1f);
     }
 
+    private void OnDestroy()
+    {
+        _damageController.Die -= OnEnemyDie;
+    }
     private void Update()
     {
         if (_gameData.State != GameState.Gameplay)

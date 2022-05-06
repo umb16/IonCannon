@@ -7,24 +7,36 @@ public class EndScreen : MonoBehaviour
 {
     [SerializeField] private GameObject text;
     private GameData _gameData;
+    private Player _player;
+    private DamageController _damageController;
 
     [Inject]
     private void Construct(GameData gameData, Player player, DamageController damageController)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += x =>
-        {
-            if (x == GameState.GameOver)
-                text.SetActive(true);
-        };
+        _player = player;
+        _gameData.GameStateChanged += OnGameStateChanged;
+        _damageController = damageController;
+        damageController.Die += CheckGameOver;
+    }
+    private void OnDestroy()
+    {
+        _damageController.Die -= CheckGameOver;
+        _gameData.GameStateChanged -= OnGameStateChanged;
+    }
 
-        damageController.Die += (msg) =>
+    private void OnGameStateChanged(GameState gameState)
+    {
+        if (gameState == GameState.GameOver)
+            text.SetActive(true);
+    }
+
+    private void CheckGameOver(DamageMessage msg)
+    {
+        if (_player.ID == msg.Target.ID)
         {
-            if (player.ID == msg.Target.ID)
-            {
-                _gameData.State = GameState.GameOver;
-            }
-        };
+            _gameData.State = GameState.GameOver;
+        }
     }
 
     private void Update()

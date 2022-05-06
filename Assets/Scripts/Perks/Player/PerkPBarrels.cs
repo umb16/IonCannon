@@ -18,18 +18,28 @@ public class PerkPBarrels : WithId, IPerk
     private bool SpawnTimeCome => NextSpawnTime < Time.time;
 
     public bool IsCommon => false;
+    private CooldownIndicator _indicator;
 
-    private IDisposable _loop;
-    public PerkPBarrels()
+    private List<IDisposable> _loops = new List<IDisposable>();
+    private CooldownsPanel _cooldownsPanel;
+
+    public PerkPBarrels(CooldownsPanel cooldownsPanel)
     {
-
+        _cooldownsPanel = cooldownsPanel;
     }
     public void Init(IMob mob)
     {
+        _lastSpawnTime = Time.time;
+        _indicator = _cooldownsPanel.AddIndiacator(AddressKeys.Ico_Box);
         _mob = mob;
-        _loop = UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
+        _loops.Add(UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
         .Where(x => x == true)
-        .Subscribe(async _ => await CreateBarrel());
+        .Subscribe(async _ => await CreateBarrel()));
+        _loops.Add(UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ =>
+        {
+            _indicator.SetTime(NextSpawnTime - Time.time, Cooldown);
+        }
+        ));
     }
 
     private async UniTask CreateBarrel()
@@ -41,11 +51,15 @@ public class PerkPBarrels : WithId, IPerk
 
     public void Shutdown()
     {
-        _loop.Dispose();
+        foreach (var loop in _loops)
+        {
+            loop.Dispose();
+        }
+        _indicator.Destroy();
     }
 
     public void Add(IPerk perk)
     {
-        
+
     }
 }

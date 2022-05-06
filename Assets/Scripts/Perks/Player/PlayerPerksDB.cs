@@ -43,13 +43,4 @@ public static class PlayerPerksDB
             new[] {new StatModificator(2, StatModificatorType.Additive, StatType.RayDamage) },
            PerkType.RayDamage);
     }
-
-    public static IPerk ExplosiveBarrel()
-    {
-        return new PerkPBarrels();
-    }
-    public static IPerk Ionization()
-    {
-        return new PerkPIonization();
-    }
 }

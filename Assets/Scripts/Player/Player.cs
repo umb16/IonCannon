@@ -14,6 +14,7 @@ public class Player : Mob
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
+    private ItemsDB _itemsDB;
 
     public float RayDmg => _rayDamage.Value;
 
@@ -26,15 +27,10 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(DamageController damageController)
+    private void Construct(DamageController damageController, ItemsDB itemsDB)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
-        damageController.Die += x =>
-        {
-            //if (ID != x.Target.ID)
-            //    Gold.AddBaseValue(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
-                //Exp.AddExp(x.Target.StatsCollection.GetStat(StatType.Score).IntValue);
-        };
+        _itemsDB = itemsDB;
     }
 
     protected override void Awake()
@@ -47,7 +43,9 @@ public class Player : Mob
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
-        //Exp.LevelUp += OnLvlup;
+
+        Inventory.Add(_itemsDB.IonizationUnit());
+        Inventory.Add(_itemsDB.DeliveryDevice());
     }
 
     public bool AddItemDirectly(Item item)
@@ -57,7 +55,7 @@ public class Player : Mob
             Inventory.Add(item);
             return true;
         }
-        if(Stash.FreeSlotAvailable)
+        if (Stash.FreeSlotAvailable)
         {
             Stash.Add(item);
             return true;
@@ -69,7 +67,7 @@ public class Player : Mob
     {
         if (stat.Value <= 0)
         {
-            Die(new DamageMessage(this,this,1000,DamageSources.Unknown));
+            Die(new DamageMessage(this, this, 1000, DamageSources.Unknown));
         }
     }
 

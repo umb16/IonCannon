@@ -17,12 +17,15 @@ public class UIInventory : MonoBehaviour
     private static UIInventorySlot _dragingItem;
     public static UIInventorySlot SelectedItem { get; private set; }
     private Player _player;
+    private ItemsDB _itemsDB;
+
     public bool IsFull => !RealInventory.FreeSlotAvailable;
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, ItemsDB itemsDB)
     {
         _player = player;
+        _itemsDB = itemsDB;
     }
 
     private void Awake()
@@ -66,7 +69,7 @@ public class UIInventory : MonoBehaviour
                 var result = Recipes.GetResult(slot.Item.Type, _dragingItem.Item.Type);
                 if (result != ItemType.None)
                 {
-                    ShowTooltip(ItemsDB.CreateByType(result), true);
+                    ShowTooltip(_itemsDB.CreateByType(result), true);
                 }
             }
         }
@@ -143,7 +146,7 @@ public class UIInventory : MonoBehaviour
             var resultType = Recipes.GetResult(slot.Item.Type, hoveredSlot.Item.Type);
             if (resultType != ItemType.None)
             {
-                var newItem = ItemsDB.CreateByType(resultType);
+                var newItem = _itemsDB.CreateByType(resultType);
                 hoveredSlot.RemoveFromInventory();
                 slot.RemoveFromInventory();
                 _player.AddItemDirectly(newItem);

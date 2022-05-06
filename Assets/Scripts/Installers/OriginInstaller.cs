@@ -7,5 +7,10 @@ public class OriginInstaller : MonoInstaller
     {
         //Container.Bind<DamageController>().AsSingle().NonLazy();
         //Container.Bind<GameData>().AsSingle().NonLazy();
+
+        Container.Bind<ItemsDB>().AsSingle();
+        Container.Bind<DamageController>().AsSingle().NonLazy();
+        Container.Bind<GameData>().AsSingle().NonLazy();
+        Container.Bind<PerksFactory>().AsSingle();
     }
 }
