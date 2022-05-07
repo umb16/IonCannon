@@ -62,9 +62,9 @@ namespace IonCannon.Tiles
             int xRandom = (int)(Random.value * 100);
             int yRandom = (int)(Random.value * 100);
             var chunk = new Chunk(_mapSize, xRandom, yRandom, perlinFactor);
-            chunk.CreateLayer(.4f, TileType.Standart);
-            chunk.CreateLayer(.55f, TileType.Standart2);
-            chunk.CreateLayer(.7f, TileType.Standart3);
+            chunk.CreateLayer(perlinThreshold1, TileType.Standart);
+            chunk.CreateLayer(perlinThreshold2, TileType.Standart2);
+            chunk.CreateLayer(perlinThreshold3, TileType.Standart3);
             for (int i = 0; i < _mapSize; i++)
             {
                 for (int j = 0; j < _mapSize; j++)

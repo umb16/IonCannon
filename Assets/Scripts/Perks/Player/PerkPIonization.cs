@@ -14,7 +14,7 @@ public class PerkPIonization : WithId,IPerk
 
     private float Damage => _mob.StatsCollection.GetStat(StatType.RayDamage).Value  * .1f;
 
-    public bool IsCommon => false;
+    public bool IsCommon => true;
 
     public void Add(IPerk perk)
     {

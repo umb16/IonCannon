@@ -44,8 +44,20 @@ public class Player : Mob
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
 
+        /*Inventory.Add(_itemsDB.IonizationUnit());
         Inventory.Add(_itemsDB.IonizationUnit());
-        Inventory.Add(_itemsDB.DeliveryDevice());
+        Inventory.Add(_itemsDB.IonizationUnit());
+        Inventory.Add(_itemsDB.IonizationUnit());
+        Inventory.Add(_itemsDB.IonizationUnit());
+        Inventory.Add(_itemsDB.IonizationUnit());
+        
+
+        Stash.Add(_itemsDB.IonizationUnit());
+        Stash.Add(_itemsDB.IonizationUnit());
+        Stash.Add(_itemsDB.IonizationUnit());
+        Stash.Add(_itemsDB.IonizationUnit());
+        Stash.Add(_itemsDB.IonizationUnit());
+        Stash.Add(_itemsDB.IonizationUnit());*/
     }
 
     public bool AddItemDirectly(Item item)

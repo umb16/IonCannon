@@ -15,6 +15,5 @@ public class PerksFactory
     public IPerk Create<T>() where T : IPerk
     {
         return _sceneContextRegistry.SceneContexts.First().Container.Instantiate<T>();
-        return _container.Instantiate<T>();
     }
 }

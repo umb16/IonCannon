@@ -22,6 +22,11 @@ public class TimeUI : MonoBehaviour
         text.gameObject.SetActive(true);
     }
 
+    private void OnDestroy()
+    {
+        _gameData.GameStarted -= GameStarted;
+    }
+
     private void Update()
     {
         if (_gameData.State == GameState.Gameplay)

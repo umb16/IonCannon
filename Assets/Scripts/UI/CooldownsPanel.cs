@@ -18,7 +18,7 @@ public class CooldownsPanel : MonoBehaviour
     public void RemoveIndicator(CooldownIndicator indicator)
     {
         _cooldowns.Remove(indicator);
-        if (indicator == null)
+        if (indicator != null)
             Destroy(indicator.gameObject);
     }
 }

@@ -17,7 +17,7 @@ public class PerkPBarrels : WithId, IPerk
     private float NextSpawnTime => _lastSpawnTime + Cooldown;
     private bool SpawnTimeCome => NextSpawnTime < Time.time;
 
-    public bool IsCommon => false;
+    public bool IsCommon => true;
     private CooldownIndicator _indicator;
 
     private List<IDisposable> _loops = new List<IDisposable>();
