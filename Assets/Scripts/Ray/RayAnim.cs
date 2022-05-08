@@ -9,7 +9,11 @@ public class RayAnim : MonoBehaviour, IRayAnimation
     {
         Debug.Log(size);
         var spriteSize = _spriteRenderer.size;
-        spriteSize.x =  size * 8;
+        if (size < 1)
+            size *= 8;
+        else
+            size = 7 + size;
+        spriteSize.x =  size;
         _spriteRenderer.size = spriteSize;
     }
 }

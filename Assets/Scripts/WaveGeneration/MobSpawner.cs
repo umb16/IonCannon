@@ -62,7 +62,9 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData[] _waves =
     {
-        new WaveData(new[]{(0,15), (2,2)},60),
+        new WaveData(new[]{(0,100), (2,2)},120),
+        new WaveData(new[]{(0,100), (2,2)},120),
+        new WaveData(new[]{(0,100), (2,2)},120),
         new WaveData(new[]{(0,15), (1,3)},60),
         new WaveData(new[]{(0,15), (2, 3),(1,3)},60),
         new WaveData(new[]{(0,25), (2,10)},120),
@@ -119,9 +121,37 @@ public class MobSpawner : MonoBehaviour
         {
             if (!CurrentWave.IsEnd)
             {
-                Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
-                vector.Normalize();
-                vector *= 25f;
+                // Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
+                //vector.Normalize();
+                float ratio = (float)(Screen.width) / Screen.height;
+                float height = 17 + 17 + 5;
+                float width = height * ratio;
+                Vector3 vector = Vector3.zero;
+                if (Random.value < .5f)
+                {
+                    vector.x = (Random.value - .5f) * width * 2;
+                    if (Random.value < .5f)
+                    {
+                        vector.y = -height / 2;
+                    }
+                    else
+                    {
+                        vector.y = height / 2;
+                    }
+                }
+                else
+                {
+                    vector.y = (Random.value - .5f) * height * 2;
+                    if (Random.value < .5f)
+                    {
+                        vector.x = -width / 2;
+                    }
+                    else
+                    {
+                        vector.x = width / 2;
+                    }
+                }
+
                 vector += _player.transform.position;
                 GameObject gameObject = await MobPrafab[GetNextMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
                 //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
@@ -130,11 +160,11 @@ public class MobSpawner : MonoBehaviour
                 mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
             }
-            if (CurrentWave.IsEnd && (Mobs.Count(x =>/* x != null &&*/ x.Type == MobType.Default) < 5 || CurrentWave.TimeIsOver))
+            if (CurrentWave.IsEnd/* && (Mobs.Count(x => x.Type == MobType.Default) < 5 || CurrentWave.TimeIsOver)*/)
                 NextWave();
         }
         //float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
-        Invoke("CreateMob", Random.value + 1f);
+        Invoke("CreateMob", Random.value);
     }
 
     private async UniTask CreateBoss()

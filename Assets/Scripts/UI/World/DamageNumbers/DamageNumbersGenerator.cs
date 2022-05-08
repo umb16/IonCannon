@@ -23,7 +23,7 @@ public class DamageNumbersGenerator : MonoBehaviour
         number.transform.SetParent(transform);
         number.transform.position = msg.Target.Position + Vector3.up - Vector3.forward*1;
         
-        number.SetText(msg.Damage.ToString());
+        number.SetText(msg.Damage.ToString("0.#"));
     }
 
     private void OnDestroy()
