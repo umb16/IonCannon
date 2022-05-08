@@ -25,4 +25,9 @@ public class DamageNumbersGenerator : MonoBehaviour
         
         number.SetText(msg.Damage.ToString());
     }
+
+    private void OnDestroy()
+    {
+        _damageController.Damage -= CreateNumber;
+    }
 }

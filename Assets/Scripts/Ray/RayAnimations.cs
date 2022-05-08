@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RayAnimations : MonoBehaviour, IRayAnimation
 {
-    [SerializeField] RaySpotAnimation[] _animations;
+    [SerializeField] RayAnim[] _animations;
     public void Set(float size)
     {
         foreach (var anim in _animations)

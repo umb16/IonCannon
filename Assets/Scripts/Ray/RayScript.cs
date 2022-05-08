@@ -7,6 +7,7 @@ public class RayScript : WithTimer
     public GameObject MainObj;
 
    [SerializeField] private RayAnimations _rayAnim;
+   [SerializeField] private ParticleSystem _particleSystem;
 
     private float _splash = 1f;
 
@@ -39,7 +40,7 @@ public class RayScript : WithTimer
             });
         _rayAnim.gameObject.SetActive(true);
         //Trail.startWidth = 0.3f * _splash;
-        _timer = CreateTimer(1)
+        _timer = CreateTimer(.2f)
             .SetUpdate((x) =>
             {
                 if (_rayAnim != null)
@@ -58,8 +59,12 @@ public class RayScript : WithTimer
         CreateTimer(.01f)
             .SetEnd(() => GetComponent<AudioSource>().Stop());
         GetComponent<AudioSource>().PlayOneShot(RaySounds[1]);
-        gameObject.GetComponentInChildren<ParticleSystem>().loop = false;
-        CreateTimer(.3f)
+        if (_particleSystem != null)
+        {
+            var main = _particleSystem.main;
+            main.loop = false;
+        }
+        CreateTimer(.2f)
             .SetUpdate((x) =>
             {
                 _rayAnim.Set(_splash - x * _splash);

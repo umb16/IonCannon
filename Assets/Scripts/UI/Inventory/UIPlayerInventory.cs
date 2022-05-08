@@ -21,6 +21,10 @@ public class UIPlayerInventory : MonoBehaviour
         SetInventory(Stash, _uiStash);
         _itemsDB = itemsDB;
     }
+    public void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     public void Show()
     {
         gameObject.SetActive(true);
