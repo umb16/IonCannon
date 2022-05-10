@@ -62,8 +62,8 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData[] _waves =
     {
-        new WaveData(new[]{(0,100), (2,2)},120),
-        new WaveData(new[]{(0,100), (2,2)},120),
+        new WaveData(new[]{(0,100)},120),
+        new WaveData(new[]{(0,100), (2,1)},120),
         new WaveData(new[]{(0,100), (2,2)},120),
         new WaveData(new[]{(0,15), (1,3)},60),
         new WaveData(new[]{(0,15), (2, 3),(1,3)},60),
@@ -116,13 +116,14 @@ public class MobSpawner : MonoBehaviour
     private async UniTask CreateMob()
     {
         if (_gameData.State != GameState.Gameplay)
+        {
+            Invoke("CreateMob", Random.value);
             return;
+        }
         if (!Stop)
         {
             if (!CurrentWave.IsEnd)
             {
-                // Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
-                //vector.Normalize();
                 float ratio = (float)(Screen.width) / Screen.height;
                 float height = 17 + 17 + 5;
                 float width = height * ratio;
@@ -154,9 +155,7 @@ public class MobSpawner : MonoBehaviour
 
                 vector += _player.transform.position;
                 GameObject gameObject = await MobPrafab[GetNextMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-                //GameObject gameObject = Instantiate(MobPrafab[GetRandomMob()], new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity) as GameObject;
                 Mob mob = gameObject.GetComponent<Mob>();
-                //mob.Init();
                 mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
             }

@@ -59,6 +59,8 @@ public class ItemsDB
                 return LensSystem();
             case ItemType.MagneticManipulator:
                 return MagneticManipulator();
+            case ItemType.SpeedDrives:
+                return SpeedDrives();
             default:
                 return Battery();
         }
@@ -239,7 +241,7 @@ public class ItemsDB
             Type = ItemType.PowerController,
             NotForSale = true,
             Name = "Контроллер питания",
-            Description = "Урон +10%\nДлинна пути +20%",
+            Description = "Урон +20%\nДлинна пути +20%",
             Cost = 100,
             Icon = AddressKeys.Ico_PowerController,
             Perks = new IPerk[]
@@ -247,7 +249,7 @@ public class ItemsDB
                 new SimplePerk(new[]
                 {
                     new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
-                    new StatModificator(.1f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                     PerkType.PowerController)
             },
@@ -291,6 +293,26 @@ public class ItemsDB
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius)
                 },
                 PerkType.MagneticManipulator)
+            }
+        };
+    }
+    public Item SpeedDrives()
+    {
+        return new Item()
+        {
+            Type = ItemType.SpeedDrives,
+            Name = "Дополнительные приводы",
+            Description = "Скорость луча +100%\nПогрешность +3 п",
+            Cost = 100,
+            Icon = AddressKeys.Ico_SpeedServo,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed),
+                    new StatModificator(3, StatModificatorType.Additive, StatType.RayError),
+                },
+                PerkType.RaySpeed)
             }
         };
     }

@@ -20,6 +20,7 @@ public class UIPlayerStats : UIBase
         AddString("Длинна пути луча", StatType.RayPathLenght," п");
         AddString("Время наведения луча", StatType.RayDelay," c");
         AddString("Ширина луча", StatType.RayDamageAreaRadius," п");
+        AddString("Погрешность", StatType.RayError," п");
     }
 
     private void AddString(string text, StatType statType, string postfix="", string format="")

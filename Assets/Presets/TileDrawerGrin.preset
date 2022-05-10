@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileDrawerGrin
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 8a4cf5826821ac34ba0728452d2694ad,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: material1
+    value: 
+    objectReference: {fileID: 2100000, guid: 0468cf564c1fac34a9bc02f30dfae724, type: 2}
+  - target: {fileID: 0}
+    propertyPath: material2
+    value: 
+    objectReference: {fileID: 2100000, guid: 83de78274dfaf5c4ca904d44d7fc9b32, type: 2}
+  - target: {fileID: 0}
+    propertyPath: material3
+    value: 
+    objectReference: {fileID: 2100000, guid: 4bed9ac59b4fc25449a039508958fe0f, type: 2}
+  - target: {fileID: 0}
+    propertyPath: _color1.r
+    value: 0.10355108
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color1.g
+    value: 0.10562563
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color1.b
+    value: 0.122641504
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color1.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color2.r
+    value: 0.13541298
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color2.g
+    value: 0.14040586
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color2.b
+    value: 0.16037738
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color2.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color3.r
+    value: 0.18729973
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color3.g
+    value: 0.19224663
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color3.b
+    value: 0.21698111
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color3.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color4.r
+    value: 0.2270826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color4.g
+    value: 0.23103037
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color4.b
+    value: 0.254717
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _color4.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor1.r
+    value: 0.12106919
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor1.g
+    value: 0.09905662
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor1.b
+    value: 0.13207549
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor1.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor2.r
+    value: 0.1488074
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor2.g
+    value: 0.14453542
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor2.b
+    value: 0.1509434
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor2.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor3.r
+    value: 0.17888926
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor3.g
+    value: 0.18095466
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor3.b
+    value: 0.18867922
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _lineColor3.a
+    value: 1
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

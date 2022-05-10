@@ -5,6 +5,7 @@ using System.Linq;
 using Umb16.Extensions;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class RayDrawer : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class RayDrawer : MonoBehaviour
     private LineRenderer _cannonPath;
 
     private Player _player;
+    private ComplexStat _rayError;
     private GameData _gameData;
     private CooldownIndicator _colldownIndicator;
     private float? _cashedLenght;
@@ -38,6 +40,7 @@ public class RayDrawer : MonoBehaviour
     private Timer _stopTimer;
     private float _allRayTime;
     private float _rayPathLenght;
+    private float _errorLenghtRatio;
 
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
@@ -45,6 +48,7 @@ public class RayDrawer : MonoBehaviour
     private void Construct(Player player, GameData gameData, CooldownsPanel cooldownsPanel)
     {
         _player = player;
+        _rayError = _player.StatsCollection.GetStat(StatType.RayError);
         _gameData = gameData;
         _colldownIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
     }
@@ -106,8 +110,14 @@ public class RayDrawer : MonoBehaviour
             _rayDelayTime = 0f;
             _cashedLenght = null;
             _cannonPath.positionCount = 0;
-
             _rayPathLenght = LenghtOfPath(cannonPath);
+            _errorLenghtRatio = 1;
+            if (_rayError.Value > 0)
+            {
+                cannonPath = cannonPath.Select(x => x + new Vector3(Random.value, Random.value).normalized * Random.value * _rayError.Value).ToList();
+                _errorLenghtRatio = LenghtOfPath(cannonPath) / _rayPathLenght;
+            }
+            
         }
         if (cannonPath.Count <= 1 || _currentLineIndex != 0)
         {
@@ -123,8 +133,8 @@ public class RayDrawer : MonoBehaviour
                 _cannonRay = Instantiate(_cannonRayPrefab);
                 _cannonRay.GetComponent<RayScript>().SetSplash(_player.RaySplash);
             }
-            rayTime += Time.deltaTime * _player.RaySpeed;
-            
+            rayTime += Time.deltaTime * _player.RaySpeed * _errorLenghtRatio;
+
             _cannonRay.transform.position = Vector3.Lerp(cannonPath[0], cannonPath[1], rayTime / Vector2.Distance(cannonPath[0], cannonPath[1]));
             if (rayTime > Vector2.Distance(cannonPath[0], cannonPath[1]))
             {

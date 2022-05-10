@@ -12,5 +12,6 @@
     DivergingLens,
     PowerController,
     LensSystem,
-    MagneticManipulator
+    MagneticManipulator,
+    SpeedDrives
 }

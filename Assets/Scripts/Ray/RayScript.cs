@@ -39,13 +39,11 @@ public class RayScript : WithTimer
                 }
             });
         _rayAnim.gameObject.SetActive(true);
-        //Trail.startWidth = 0.3f * _splash;
         _timer = CreateTimer(.2f)
             .SetUpdate((x) =>
             {
                 if (_rayAnim != null)
                 {
-                    //_raySpot.transform.localScale = new Vector3(x * 0.5f * _splash, x * 0.5f * _splash * .7f, 1);
                     _rayAnim.Set(x * _splash);
                 }
             })
@@ -76,7 +74,6 @@ public class RayScript : WithTimer
                 _rayAnim.gameObject.SetActive(false);
             });
         CreateTimer(10)
-            //.SetUpdate((x) => transform.position += Vector3.forward)
             .SetEnd(() => Destroy(gameObject));
     }
 }

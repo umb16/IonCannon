@@ -32,6 +32,7 @@ public class Recipes
         { 
         new Recipe(ItemType.Battery, ItemType.Coprocessor, ItemType.PowerController),
         new Recipe(ItemType.FocusLens, ItemType.DivergingLens, ItemType.LensSystem),
+        new Recipe(ItemType.AdditionalDrives, ItemType.AdditionalDrives, ItemType.SpeedDrives),
     };
     public static IEnumerable<Recipe> GetAllValidRecipes(ItemType type)
     {
