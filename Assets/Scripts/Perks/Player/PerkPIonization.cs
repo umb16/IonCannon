@@ -12,7 +12,8 @@ public class PerkPIonization : WithId,IPerk
     private IMob _mob;
     private DamageController _damageController;
 
-    private float Damage => _mob.StatsCollection.GetStat(StatType.RayDamage).Value  * .1f;
+    private float _damage;  //_mob.StatsCollection.GetStat(StatType.RayDamage).Value  * .1f;
+    private float _duration = 10;
 
     public bool IsCommon => true;
 
@@ -21,11 +22,13 @@ public class PerkPIonization : WithId,IPerk
 
     }
 
-    public PerkPIonization(DamageController damageController)
+    public PerkPIonization(DamageController damageController, float damage, float duration)
     {
         _damageController = damageController;
 
         _damageController.Damage += OnDamage;
+        _damage = damage;
+        _duration = duration;
     }
 
     public void Init(IMob mob)
@@ -35,9 +38,9 @@ public class PerkPIonization : WithId,IPerk
 
     private void OnDamage(DamageMessage message)
     {
-        if (message.DamageSource == DamageSources.Ray && message.Attacker == _mob)
+        if (message.DamageSource == DamageSources.RayInitial && message.Attacker == _mob)
         {
-            message.Target.AddPerk(new PerkUIonizationEffect(_mob, Damage));
+            message.Target.AddPerk(new PerkUIonizationEffect(_mob, _damage, _duration));
         }
     }
 

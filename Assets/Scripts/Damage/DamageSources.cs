@@ -5,4 +5,6 @@ public enum DamageSources
     Melee = 2,
     Explosion = 3,
     Ionization = 4,
+    Heal = 5,
+    RayInitial = 6,
 }

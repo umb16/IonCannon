@@ -14,6 +14,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _costText;
     [SerializeField] private GameObject _darkFront;
+    [SerializeField] private GameObject _upgradeLable;
+    [SerializeField] private TMP_Text _upgradeText;
     public event Action<PointerEventData> BeginDrag;
     public event Action<PointerEventData> Drag;
     public event Action<PointerEventData> EndDrag;
@@ -54,6 +56,11 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _costText.text = item.SellCost.ToString();
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(item.Icon)).Task;
         _image.gameObject.SetActive(true);
+        if (item.UpgradeCount > 0)
+        {
+            _upgradeLable.SetActive(true);
+            _upgradeText.text = new string('+', item.UpgradeCount);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData) => PointerEnter?.Invoke(eventData);

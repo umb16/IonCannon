@@ -27,7 +27,7 @@ public class RayCollider : MonoBehaviour
         if (mob != null)
         {
             _mobs.Add(mob.ID, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
-            mob.ReceiveDamage(new DamageMessage(_player, mob, _player.RayDmg, DamageSources.Ray, .5f));
+            mob.ReceiveDamage(new DamageMessage(_player, mob, _player.RayDmg, DamageSources.RayInitial, .5f));
         }
     }
     private void OnTriggerExit2D(Collider2D col)

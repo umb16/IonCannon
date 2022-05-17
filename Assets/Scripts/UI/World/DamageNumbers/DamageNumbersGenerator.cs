@@ -17,13 +17,20 @@ public class DamageNumbersGenerator : MonoBehaviour
 
     private void CreateNumber(DamageMessage msg)
     {
-        if (msg.Target is Player)
+        if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
             return;
         var number = Instantiate(numberPrefab);
         number.transform.SetParent(transform);
-        number.transform.position = msg.Target.Position + Vector3.up - Vector3.forward*1;
-        
-        number.SetText(msg.Damage.ToString("0.#"));
+        number.transform.position = msg.Target.Position + Vector3.up - Vector3.forward * 1;
+
+        if (msg.DamageSource == DamageSources.Heal)
+            number.SetText("<color=green>" + (-msg.Damage).ToString("0.#") + "</color>");
+        else if (msg.DamageSource == DamageSources.Ionization)
+        {
+            number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#") + "</color>");
+        }
+        else
+            number.SetText(msg.Damage.ToString("0.#"));
     }
 
     private void OnDestroy()

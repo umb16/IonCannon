@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : WithId
 {
     public ItemType Type;
+    public int UpgradeCount = 0;
     public bool NotForSale;
     public bool Unique = false;
     public string Name = "Батарея";

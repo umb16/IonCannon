@@ -61,6 +61,33 @@ public class ItemsDB
                 return MagneticManipulator();
             case ItemType.SpeedDrives:
                 return SpeedDrives();
+            case ItemType.CoprocessorPlus:
+                return CoprocessorPlus();
+            case ItemType.AmplifierPlus:
+                return AmplifierPlus();
+            case ItemType.AmplifierPlusPlus:
+                return AmplifierPlusPlus();
+            case ItemType.LensSystemPlus:
+                return LensSystemPlus();
+            case ItemType.BatteryPlus:
+                return BatteryPlus();
+            case ItemType.BatteryPlusPlus:
+                return BatteryPlusPlus();
+            case ItemType.DeliveryDevicePlus:
+                return DeliveryDevicePlus();
+            case ItemType.DeliveryDevicePlusPlus:
+                return DeliveryDevicePlusPlus();
+            case ItemType.CoprocessorPlusPlus:
+                return CoprocessorPlusPlus();
+            case ItemType.IonizationUnitPlus:
+                return IonizationUnitPlus();
+            case ItemType.IonizationUnitPlusPlus:
+                return IonizationUnitPlusPlus();
+            case ItemType.PowerControllerPlus:
+                return PowerControllerPlus();
+            case ItemType.PowerControllerPlusPlus:
+                return PowerControllerPlusPlus();
+            case ItemType.None:
             default:
                 return Battery();
         }
@@ -79,6 +106,44 @@ public class ItemsDB
                 new SimplePerk(new[]
                 {
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
+                },
+                    PerkType.RayPathLenght)
+            },
+        };
+    }
+    public Item BatteryPlus()
+    {
+        return new Item()
+        {
+            Type = ItemType.BatteryPlus,
+            Name = "Батарея+",
+            Description = "Длинна пути +75%",
+            Cost = 75,
+            Icon = AddressKeys.Ico_Battery,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
+                },
+                    PerkType.RayPathLenght)
+            },
+        };
+    }
+    public Item BatteryPlusPlus()
+    {
+        return new Item()
+        {
+            Type = ItemType.BatteryPlusPlus,
+            Name = "Батарея++",
+            Description = "Длинна пути +150%",
+            Cost = 75,
+            Icon = AddressKeys.Ico_Battery,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
                 },
                     PerkType.RayPathLenght)
             },
@@ -142,7 +207,48 @@ public class ItemsDB
             }
         };
     }
-
+    public Item AmplifierPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.AmplifierPlus,
+            Name = "Усилитель+",
+            Description = "Длинна пути -30%\nУрон луча +40%",
+            Cost = 150,
+            Icon = AddressKeys.Ico_Amplifier,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(-0.3f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(0.4f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                PerkType.Amplifier)
+            }
+        };
+    }
+    public Item AmplifierPlusPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 2,
+            Type = ItemType.AmplifierPlusPlus,
+            Name = "Усилитель+",
+            Description = "Длинна пути -40%\nУрон луча +100%",
+            Cost = 400,
+            Icon = AddressKeys.Ico_Amplifier,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                PerkType.Amplifier)
+            }
+        };
+    }
     public Item FocusLens()
     {
         return new Item()
@@ -170,12 +276,44 @@ public class ItemsDB
         {
             Type = ItemType.IonizationUnit,
             Name = "Блок ионизации",
-            Description = "Поражённые лучом враги получают периодический урон 10% в секунду",
+            Description = "Поражённые лучом враги получают 4 урона в секунду в течение 10 секунд",
             Cost = 60,
             Icon = AddressKeys.Ico_Radiation,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPIonization>()
+                _perksFactory.Create<PerkPIonization>(new object[]{ 4f, 10f })//урон, длительность
+            }
+        };
+    }
+    public Item IonizationUnitPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.IonizationUnitPlus,
+            Name = "Блок ионизации+",
+            Description = "Поражённые лучом враги получают 6 урона в секунду в течение 15 секунд",
+            Cost = 180,
+            Icon = AddressKeys.Ico_Radiation,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPIonization>(new object[]{ 6f, 15f })//урон, длительность
+            }
+        };
+    }
+    public Item IonizationUnitPlusPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 2,
+            Type = ItemType.IonizationUnitPlusPlus,
+            Name = "Блок ионизации++",
+            Description = "Поражённые лучом враги получают 12 урона в секунду в течение 20 секунд",
+            Cost = 480,
+            Icon = AddressKeys.Ico_Radiation,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPIonization>(new object[]{ 12f, 20f })//урон, длительность
             }
         };
     }
@@ -190,7 +328,39 @@ public class ItemsDB
             Icon = AddressKeys.Ico_Box,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPBarrels>(),
+                _perksFactory.Create<PerkPBarrels>(new object[]{ 20f }),//cooldown
+            }
+        };
+    }
+    public Item DeliveryDevicePlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.DeliveryDevicePlus,
+            Name = "Устройство доставки+",
+            Description = "Раз в 15 секунд доставляет с орбиты ящик со взравчаткой",
+            Cost = 150,
+            Icon = AddressKeys.Ico_Box,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPBarrels>(new object[]{ 15f }),//cooldown
+            }
+        };
+    }
+    public Item DeliveryDevicePlusPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.DeliveryDevicePlusPlus,
+            Name = "Устройство доставки++",
+            Description = "Раз в 10 секунд доставляет с орбиты ящик со взравчаткой",
+            Cost = 400,
+            Icon = AddressKeys.Ico_Box,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPBarrels>(new object[]{ 10f }),//cooldown
             }
         };
     }
@@ -200,19 +370,64 @@ public class ItemsDB
         {
             Type = ItemType.Coprocessor,
             Name = "Сопроцессор",
-            Description = "Время наведения -30%",
+            Description = "Время наведения -30%\nПогрешность -1 п",
             Cost = 50,
             Icon = AddressKeys.Ico_Chip,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(-.3f, StatModificatorType.Multiplicative, StatType.RayDelay)
+                    new StatModificator(-.3f, StatModificatorType.Multiplicative, StatType.RayDelay),
+                    new StatModificator(-1f, StatModificatorType.Additive, StatType.RayError),
                 },
                     PerkType.RayDelay)
             },
         };
     }
+    public Item CoprocessorPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.CoprocessorPlus,
+            Name = "Сопроцессор+",
+            Description = "Время наведения -50%\nПогрешность -2 п",
+            Cost = 150,
+            Icon = AddressKeys.Ico_Chip,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.RayDelay),
+                    new StatModificator(-2f, StatModificatorType.Additive, StatType.RayError),
+                },
+                    PerkType.RayDelay)
+            },
+        };
+    }
+
+    public Item CoprocessorPlusPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 2,
+            Type = ItemType.CoprocessorPlusPlus,
+            Name = "Сопроцессор++",
+            Description = "Время наведения -100%\nПогрешность -4 п",
+            Cost = 400,
+            Icon = AddressKeys.Ico_Chip,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(-1, StatModificatorType.Multiplicative, StatType.RayDelay),
+                    new StatModificator(-4f, StatModificatorType.Additive, StatType.RayError),
+                },
+                    PerkType.RayDelay)
+            },
+        };
+    }
+
     public Item DivergingLens()
     {
         return new Item()
@@ -255,6 +470,50 @@ public class ItemsDB
             },
         };
     }
+    public Item PowerControllerPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.PowerControllerPlus,
+            NotForSale = true,
+            Name = "Контроллер питания+",
+            Description = "Урон +30%\nДлинна пути +30%",
+            Cost = 200,
+            Icon = AddressKeys.Ico_PowerController,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                    PerkType.PowerController)
+            },
+        };
+    }
+    public Item PowerControllerPlusPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 2,
+            Type = ItemType.PowerControllerPlusPlus,
+            NotForSale = true,
+            Name = "Контроллер питания+",
+            Description = "Урон +60%\nДлинна пути +60%",
+            Cost = 500,
+            Icon = AddressKeys.Ico_PowerController,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayDamage)
+                },
+                    PerkType.PowerController)
+            },
+        };
+    }
     public Item LensSystem()
     {
         return new Item()
@@ -271,6 +530,28 @@ public class ItemsDB
                 new SimplePerk(new[]
                 {
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)
+                },
+                PerkType.LensSystem)
+            }
+        };
+    }
+    public Item LensSystemPlus()
+    {
+        return new Item()
+        {
+            UpgradeCount = 1,
+            Type = ItemType.LensSystemPlus,
+            NotForSale = true,
+            Unique = false,
+            Name = "Система линз+",
+            Description = "Ширина луча +200%",
+            Cost = 400,
+            Icon = AddressKeys.Ico_Lenses,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)
                 },
                 PerkType.LensSystem)
             }
@@ -301,7 +582,7 @@ public class ItemsDB
         return new Item()
         {
             Type = ItemType.SpeedDrives,
-            Name = "Дополнительные приводы",
+            Name = "Скоростные приводы",
             Description = "Скорость луча +100%\nПогрешность +3 п",
             Cost = 100,
             Icon = AddressKeys.Ico_SpeedServo,

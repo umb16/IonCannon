@@ -44,8 +44,11 @@ public class Player : Mob
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
 
-        /*Inventory.Add(_itemsDB.DeliveryDevice());
-        Inventory.Add(_itemsDB.DeliveryDevice());*/
+       /* Inventory.Add(_itemsDB.Coprocessor());
+        Inventory.Add(_itemsDB.Coprocessor());*/
+        //Inventory.Add(_itemsDB.IonizationUnit());
+        // Inventory.Add(_itemsDB.IonizationUnit());
+        /*Inventory.Add(_itemsDB.DeliveryDevice());*/
         /*Inventory.Add(_itemsDB.DivergingLens());*/
         /*Inventory.Add(_itemsDB.IonizationUnit());
         Inventory.Add(_itemsDB.IonizationUnit());

@@ -16,19 +16,22 @@ public class PerkUIonizationEffect : WithId, IPerk
     private IMob _attacker;
     private IMob _mob;
     private IDisposable _loop;
+    public float Countdown { get; private set; }
     private Fx _fx = new Fx("Fx_Radiation", FxPosition.SpriteMesh);
 
-    public PerkUIonizationEffect(IMob attaker, float damage)
+    public PerkUIonizationEffect(IMob attaker, float damage, float time)
     {
         _attacker = attaker;
         Damage = damage;
+        Countdown = time;
     }
 
     public void Add(IPerk perk)
     {
         PerkUIonizationEffect effect = ((PerkUIonizationEffect)perk);
-        if (effect.Damage > Damage)
-            Damage = effect.Damage;
+        //if (effect.Damage > Damage)
+        Countdown = effect.Countdown;
+        Damage += effect.Damage;
     }
 
     public void Init(IMob mob)
@@ -41,6 +44,9 @@ public class PerkUIonizationEffect : WithId, IPerk
     private void Update(AsyncUnit obj)
     {
         _mob.ReceiveDamage(new DamageMessage(_attacker, _mob, Damage, DamageSources.Ionization));
+        Countdown--;
+        if (Countdown <= 0)
+            _mob.RemovePerk(this);
     }
 
     public void Shutdown()

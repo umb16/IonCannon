@@ -3,15 +3,37 @@
     None,
     AdditionalDrives,
     ExoskeletonSpeedBooster,
-    Battery,
-    Amplifier,
+    
     FocusLens,
-    IonizationUnit,
-    DeliveryDevice,
+
     Coprocessor,
+    CoprocessorPlus,
+    CoprocessorPlusPlus,
+
     DivergingLens,
-    PowerController,
-    LensSystem,
     MagneticManipulator,
-    SpeedDrives
+    SpeedDrives,
+
+    Amplifier,
+    AmplifierPlus,
+    AmplifierPlusPlus,
+
+    LensSystem,
+    LensSystemPlus,
+
+    Battery,
+    BatteryPlus,
+    BatteryPlusPlus,
+
+    DeliveryDevice,
+    DeliveryDevicePlus,
+    DeliveryDevicePlusPlus,
+
+    IonizationUnit,
+    IonizationUnitPlus,
+    IonizationUnitPlusPlus,
+
+    PowerController,
+    PowerControllerPlus,
+    PowerControllerPlusPlus
 }

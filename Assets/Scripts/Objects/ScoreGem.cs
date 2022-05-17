@@ -9,6 +9,7 @@ public class ScoreGem : MonoBehaviour
     [SerializeField] private Animator _animator;
     private Player _player;
     private bool _taken;
+    private Timer _timer;
     [Inject]
     private void Construct(Player player)
     {
@@ -24,7 +25,8 @@ public class ScoreGem : MonoBehaviour
             _taken = true;
             _animator.SetBool("take", true);
             _player.Gold.AddBaseValue(_score);
-            Destroy(gameObject,2);
+            _player.ReceiveDamage(new DamageMessage(null, _player, -.2f, DamageSources.Heal));
+            Destroy(gameObject, 2);
         }
     }
 }

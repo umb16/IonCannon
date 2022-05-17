@@ -12,9 +12,9 @@ public class PerkPBarrels : WithId, IPerk
     private IMob _mob;
 
     public PerkType Type => PerkType.PBarrels;
-    private float Cooldown => 25;
+    private float _cooldown = 20;
     private float _lastSpawnTime;
-    private float NextSpawnTime => _lastSpawnTime + Cooldown;
+    private float NextSpawnTime => _lastSpawnTime + _cooldown;
     private bool SpawnTimeCome => NextSpawnTime < Time.time;
 
     public bool IsCommon => true;
@@ -23,9 +23,10 @@ public class PerkPBarrels : WithId, IPerk
     private List<IDisposable> _loops = new List<IDisposable>();
     private CooldownsPanel _cooldownsPanel;
 
-    public PerkPBarrels(CooldownsPanel cooldownsPanel)
+    public PerkPBarrels(CooldownsPanel cooldownsPanel, float cooldown)
     {
         _cooldownsPanel = cooldownsPanel;
+        _cooldown = cooldown;
     }
     public void Init(IMob mob)
     {
@@ -37,7 +38,7 @@ public class PerkPBarrels : WithId, IPerk
         .Subscribe(async _ => await CreateBarrel()));
         _loops.Add(UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ =>
         {
-            _indicator.SetTime(NextSpawnTime - Time.time, Cooldown);
+            _indicator.SetTime(NextSpawnTime - Time.time, _cooldown);
         }
         ));
     }

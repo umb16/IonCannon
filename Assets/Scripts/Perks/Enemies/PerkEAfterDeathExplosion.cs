@@ -29,7 +29,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                     if ((mob.Position - _mob.Position).SqrMagnetudeXY() < _radius * _radius)
                     {
                         mob.AddForce((1 - (mob.Position - _mob.Position).MagnetudeXY() / _radius) * (mob.Position - _mob.Position).NormalizedXY() * 5, ForceMode2D.Impulse);
-                        mob.ReceiveDamage(new DamageMessage(_mob, mob, 10 * (1 - (mob.Position - _mob.Position).MagnetudeXY() / _radius), _source, .1f));
+                        mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * (1 - (mob.Position - _mob.Position).MagnetudeXY() / _radius), _source, .1f));
                     }
                 }
                 var go = PrefabCreator.Instantiate(_explosion.Key, _mob.GroundCenterPosition);

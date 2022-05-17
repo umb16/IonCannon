@@ -14,6 +14,8 @@ public class ShopShip : MonoBehaviour
     [SerializeField] TMP_Text _countdownText;
     [SerializeField] TMP_Text _hintText;
     [SerializeField] Collider2D _collider;
+    [SerializeField] GameObject _forceField;
+
     private AsyncReactiveProperty<int> _countDown = new AsyncReactiveProperty<int>(99);
     private int _countdownValue = 30;
     private Timer _landingTimer;
@@ -57,7 +59,7 @@ public class ShopShip : MonoBehaviour
     }
     private void StartLanding()
     {
-        _newPosition = (_player.Position+(new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
+        _newPosition = (_player.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
         _startPosition = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
         _landingTimer = new Timer(2)
             .SetUpdate(x => transform.position = Vector3.Lerp(_startPosition, _newPosition, x))
@@ -69,6 +71,7 @@ public class ShopShip : MonoBehaviour
         _collider.enabled = true;
         _countDown.Value = _countdownValue;
         _countdownText.gameObject.SetActive(true);
+        _forceField.SetActive(true);
         _countdownTimer = new Timer(_countdownValue)
             .SetUpdate(x => _countDown.Value = (int)((1 - x) * _countdownValue))
             .SetEnd(OnCountDownEnd);
@@ -76,11 +79,18 @@ public class ShopShip : MonoBehaviour
 
     private void OnCountDownEnd()
     {
+        _forceField.SetActive(false);
         _collider.enabled = false;
+        //_forceField.transform.localScale = Vector3.one * 3;
         _countdownText.gameObject.SetActive(false);
         _landingTimer = new Timer(2)
-            .SetUpdate(x => transform.position = Vector3.Lerp(_newPosition, _startPosition, x));
-            //.SetEnd(() => gameObject.SetActive(false));
+            .SetUpdate(x =>
+            {
+                /*if (x != 0)
+                    _forceField.SetActive(false);*/
+                transform.position = Vector3.Lerp(_newPosition, _startPosition, x);
+            });
+        //.SetEnd(() => gameObject.SetActive(false));
     }
 
     private void OnDestroy()

@@ -90,17 +90,18 @@ MonoBehaviour:
   _groundCenterPoint: {fileID: 2097849084}
   _type: 0
   _destroyType: 2
-  _hp: 1.5
+  _hp: 15
   _speed: 2.4
   _score: 1
   _size: 1
-  _damagePerSecond: 1.5
+  _damagePerSecond: 15
   _noTouchDamage: 0
   _startPerks: 
   _drop:
   - Probability: 0.25
     GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
       type: 3}
+  _fixedAnimSpeed: 0
 --- !u!114 &5588436157411104003
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Zenject;
 
 public class PerksFactory
@@ -15,5 +16,9 @@ public class PerksFactory
     public IPerk Create<T>() where T : IPerk
     {
         return _sceneContextRegistry.SceneContexts.First().Container.Instantiate<T>();
+    }
+    public IPerk Create<T>(IEnumerable<object> extraArgs) where T : IPerk
+    {
+        return _sceneContextRegistry.SceneContexts.First().Container.Instantiate<T>(extraArgs);
     }
 }
