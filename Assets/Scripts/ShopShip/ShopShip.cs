@@ -23,7 +23,7 @@ public class ShopShip : MonoBehaviour
     private Vector3 _newPosition;
     private Vector3 _startPosition;
     private bool _playerInRadius;
-    private UIShop _shop;
+    private UIShopLayer _shop;
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
     private float _lastArrival;
@@ -32,15 +32,16 @@ public class ShopShip : MonoBehaviour
     private float TimeToArrival => _cooldownTime - (Time.time - _lastArrival);
 
     [Inject]
-    private void Construct(UIShop shop, CooldownsPanel cooldownsPanel, GameData gameData, Player player)
+    private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData, Player player)
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
-        _shopIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Ship);
-        _shop = shop;
+        _shop = BaseLayer.ForceGet<UIShopLayer>();
         _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
+        _shopIndicator = await cooldownsManager.AddIndiacator(AddressKeys.Ico_Ship);
+        
     }
 
     public void CountDownForceEnd()

@@ -27,6 +27,10 @@ public enum LocKeys
     ExplosiveBox,
     //Ионизация
     Ionization,
+    //Купить
+    Buy,
+    //Загрузка
+    Loading,
 }
 public static class LocKeyConverter
 {
@@ -60,6 +64,10 @@ public static class LocKeyConverter
                 return "ExplosiveBox";
             case LocKeys.Ionization:
                 return "Ionization";
+            case LocKeys.Buy:
+                return "Buy";
+            case LocKeys.Loading:
+                return "Loading";
                 default: return "";
         }
     }

@@ -8,24 +8,27 @@ public class Controls : MonoBehaviour
     private UIPlayerInventory _playerInventory;
     private UIPlayerStats _playerStats;
     private GameData _gameData;
-    private UIShop _shop;
+    private UIShopLayer _shop;
 
     [Inject]
-    private void Construct(UIPlayerInventory playerInventory, UIPlayerStats playerStats, GameData gameData, UIShop shop)
+    private void Construct(UIPlayerInventory playerInventory, UIPlayerStats playerStats, GameData gameData)
     {
         _playerInventory = playerInventory;
         _playerStats = playerStats;
         _gameData = gameData;
-        _shop = shop;
     }
 
+    private void Awake()
+    {
+        _shop = BaseLayer.ForceGet<UIShopLayer>();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_gameData.State == GameState.InShop)
             {
-                _shop.OnClose();
+                _shop.Close();
             }
             else
             if (_gameData.State == GameState.Gameplay)

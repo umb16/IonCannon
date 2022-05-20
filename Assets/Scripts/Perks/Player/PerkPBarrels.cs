@@ -21,26 +21,29 @@ public class PerkPBarrels : WithId, IPerk
     private CooldownIndicator _indicator;
 
     private List<IDisposable> _loops = new List<IDisposable>();
-    private CooldownsPanel _cooldownsPanel;
+    private UICooldownsManager _cooldownsPanel;
 
-    public PerkPBarrels(CooldownsPanel cooldownsPanel, float cooldown)
+    public PerkPBarrels(UICooldownsManager cooldownsManager, float cooldown)
     {
-        _cooldownsPanel = cooldownsPanel;
+        _cooldownsPanel = cooldownsManager;
         _cooldown = cooldown;
     }
     public void Init(IMob mob)
     {
         _lastSpawnTime = Time.time;
-        _indicator = _cooldownsPanel.AddIndiacator(AddressKeys.Ico_Box);
         _mob = mob;
         _loops.Add(UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
         .Where(x => x == true)
         .Subscribe(async _ => await CreateBarrel()));
-        _loops.Add(UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ =>
+        _cooldownsPanel.AddIndiacator(AddressKeys.Ico_Box).ContinueWith(x=>
         {
-            _indicator.SetTime(NextSpawnTime - Time.time, _cooldown);
-        }
-        ));
+            _indicator = x;
+            _loops.Add(UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ =>
+            {
+                _indicator.SetTime(NextSpawnTime - Time.time, _cooldown);
+            }
+            ));
+        }).Forget();
     }
 
     private async UniTask CreateBarrel()

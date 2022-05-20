@@ -18,6 +18,12 @@ public class SetText : MonoBehaviour
         LocalizationManager.Instance.SubscribeOnChanges(Set, () => _destroyed);
     }
 
+    [EditorButton]
+    private void EditorSet()
+    {
+        _text = GetComponent<TMP_Text>();
+        Set();
+    }
     private void Set()
     {
         _text.text = _pefix + LocalizationManager.Instance.GetPhrase(_key) + _affix;

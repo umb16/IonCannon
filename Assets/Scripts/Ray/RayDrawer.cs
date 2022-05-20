@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,12 +46,12 @@ public class RayDrawer : MonoBehaviour
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
     [Inject]
-    private void Construct(Player player, GameData gameData, CooldownsPanel cooldownsPanel)
+    private async UniTask Construct(Player player, GameData gameData, UICooldownsManager cooldownsPanel)
     {
         _player = player;
         _rayError = _player.StatsCollection.GetStat(StatType.RayError);
         _gameData = gameData;
-        _colldownIndicator = cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
+        _colldownIndicator = await cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
     }
 
     private void Awake()

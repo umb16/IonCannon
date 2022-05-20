@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class EndScreen : MonoBehaviour
+public class EndScreen : BaseLayer
 {
     [SerializeField] private GameObject text;
     private GameData _gameData;
@@ -19,10 +19,11 @@ public class EndScreen : MonoBehaviour
         _damageController = damageController;
         damageController.Die += CheckGameOver;
     }
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         _damageController.Die -= CheckGameOver;
         _gameData.GameStateChanged -= OnGameStateChanged;
+        base.OnDestroy();
     }
 
     private void OnGameStateChanged(GameState gameState)

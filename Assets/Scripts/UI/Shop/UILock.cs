@@ -7,12 +7,12 @@ public class UILock : MonoBehaviour
 {
     [SerializeField] private GameObject _lockImage;
     [SerializeField] private GameObject _unlockImage;
-    private UIShop _shop;
+    private UIShopLayer _shop;
 
     [Inject]
-    private void Construct(UIShop shop)
+    private void Awake()
     {
-        _shop = shop;
+        _shop = BaseLayer.ForceGet<UIShopLayer>();
     }
 
     private void OnEnable()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIPlayerStats : UIBase
+public class UIPlayerStats : BaseLayer
 {
     [SerializeField] GameObject _textPrefab;
     private Player _player;
