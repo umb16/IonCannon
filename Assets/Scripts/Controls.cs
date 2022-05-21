@@ -33,8 +33,8 @@ public class Controls : MonoBehaviour
             else
             if (_gameData.State == GameState.Gameplay)
             {
-                _playerInventory.Show();
-                _playerStats.Show();
+                BaseLayer.Show<UIPlayerInventory>();
+                BaseLayer.Show<UIPlayerStats>();
                 _gameData.State = GameState.Inventory;
             }
             else

@@ -21,17 +21,10 @@ public class UIPlayerInventory : BaseLayer
         SetInventory(Stash, _uiStash);
         _itemsDB = itemsDB;
     }
-    public void Awake()
+
+    protected override void OnFinishHiding()
     {
-        gameObject.SetActive(false);
-    }
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
-    public void Hide()
-    {
-        gameObject.SetActive(false);
+        base.OnFinishHiding();
         TooltipController.Instance.UnassignTooltip();
     }
 

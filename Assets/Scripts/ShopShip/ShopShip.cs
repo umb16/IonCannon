@@ -122,7 +122,7 @@ public class ShopShip : MonoBehaviour
     {
         if (_playerInRadius && Input.GetKeyDown(KeyCode.E))
         {
-            _shop.Show();
+            BaseLayer.Show<UIShopLayer>();
         }
         if (_gameData.State == GameState.Gameplay)
         {

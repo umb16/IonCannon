@@ -37,15 +37,6 @@ public class UIShopLayer : BaseLayer
         _itemsDB = itemsDB;
     }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        _playerInventory.Show();
-        _playerStats.Show();
-        Time.timeScale = 0;
-        _gameData.State = GameState.InShop;
-    }
-
     private void Awake()
     {
         for (int i = 0; i < _itemsCount; i++)
@@ -71,6 +62,11 @@ public class UIShopLayer : BaseLayer
 
     private void OnEnable()
     {
+        Show<UIPlayerInventory>();
+        Show<UIPlayerStats>();
+        Time.timeScale = 0;
+        _gameData.State = GameState.InShop;
+
         _refrashButton.interactable = true;
         if (!Lock)
             Generate();

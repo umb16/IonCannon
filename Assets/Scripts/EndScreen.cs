@@ -29,7 +29,10 @@ public class EndScreen : BaseLayer
     private void OnGameStateChanged(GameState gameState)
     {
         if (gameState == GameState.GameOver)
+        {
+            gameObject.SetActive(true);
             text.SetActive(true);
+        }
     }
 
     private void CheckGameOver(DamageMessage msg)
