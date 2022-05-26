@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Umb16.Extensions;
@@ -10,15 +12,19 @@ public class LifeSupportTower : MonoBehaviour
     [SerializeField] float _supportDrainSpeed = .25f;
     [SerializeField] LineRenderer _lineRenderer;
     private int _vertexCount = 100;
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     ComplexStat _stat;
 
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
         _player = player;
-        _stat = _player.StatsCollection.GetStat(StatType.LifeSupport);
+        _player.Where(x => x != null).ForEachAsync(x =>
+        {
+            _stat = x.StatsCollection.GetStat(StatType.LifeSupport);
+        });
+
         _lineRenderer.positionCount = _vertexCount;
         for (int i = 0; i < _vertexCount; i++)
         {
@@ -31,9 +37,9 @@ public class LifeSupportTower : MonoBehaviour
     }
     void Update()
     {
-        if (_player == null)
+        if (_player.Value == null)
             return;
-        if (_player.Position.SqrMagnetudeXY() > _radius * _radius)
+        if (_player.Value.Position.SqrMagnetudeXY() > _radius * _radius)
         {
             _stat.AddBaseValue(-_supportDrainSpeed * Time.deltaTime);
         }

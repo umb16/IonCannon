@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +12,13 @@ public class LifeSupportIndicator : MonoBehaviour
     private ComplexStat _lifeSupportStat;
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
-        _lifeSupportStat = player.StatsCollection.GetStat(_statType);
-        _progressBar.Set(_lifeSupportStat.Value);
-        _lifeSupportStat.ValueChanged += (x) => _progressBar.Set(x.Value);
+        player.Where(x => x != null).ForEachAsync(x =>
+        {
+            _lifeSupportStat = x.StatsCollection.GetStat(_statType);
+            _progressBar.Set(_lifeSupportStat.Value);
+            _lifeSupportStat.ValueChanged += (x) => _progressBar.Set(x.Value);
+        });
     }
 }

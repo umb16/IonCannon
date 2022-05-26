@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ public class GameData
     public event Action GameStarted;
     public int Wave = 0;
     public float StartGameTime;
+    private GameState _state = GameState.StartMenu;
     public GameState State
     {
         get
@@ -25,8 +27,9 @@ public class GameData
         }
     }
 
-    public void StartGame()
+    public async UniTask StartGame()
     {
+        await PrefabCreator.Instantiate(AddressKeysConverter.Convert(AddressKeys.Char_standart) , Vector3.zero);
         GameStarted?.Invoke();
         StartGameTime = Time.time;
         State = GameState.Gameplay;
@@ -40,8 +43,6 @@ public class GameData
     public void Reset()
     {
         Wave = 0;
-        GameStateChanged = null;
+        //GameStateChanged = null;
     }
-
-    private GameState _state = GameState.StartMenu;
 }

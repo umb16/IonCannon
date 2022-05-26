@@ -283,6 +283,7 @@ public class BaseLayer : MonoBehaviour
         }
         else
         {
+           // Debug.Log(UIprefab.name);
             interfaceObject = Instantiate(UIprefab) as GameObject;
             interfaceComponent = interfaceObject.GetComponent<T>();
         }

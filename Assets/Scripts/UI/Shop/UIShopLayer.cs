@@ -18,7 +18,7 @@ public class UIShopLayer : BaseLayer
     private int _refrashCount = 0;
     private int _itemsCount = 4;
     public List<UIShopItem> _items = new List<UIShopItem>();
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private UIPlayerInventory _playerInventory;
     private GameData _gameData;
     private UIPlayerStats _playerStats;
@@ -27,13 +27,10 @@ public class UIShopLayer : BaseLayer
     public bool Lock { get; private set; } = false;
 
     [Inject]
-    private void Construct(Player player, UIPlayerInventory playerInventory,
-        GameData gameData, UIPlayerStats playerStats, ItemsDB itemsDB)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData,ItemsDB itemsDB)
     {
         _player = player;
-        _playerInventory = playerInventory;
         _gameData = gameData;
-        _playerStats = playerStats;
         _itemsDB = itemsDB;
     }
 
@@ -60,13 +57,13 @@ public class UIShopLayer : BaseLayer
             _playerInventory.HighlightItems(item.Type);
     }
 
-    private void OnEnable()
+    private async UniTask OnEnable()
     {
-        Show<UIPlayerInventory>();
-        Show<UIPlayerStats>();
+        _playerInventory = Show<UIPlayerInventory>();
+        _playerStats = Show<UIPlayerStats>();
         Time.timeScale = 0;
+        await UniTask.WaitUntil(()=>_gameData != null);   
         _gameData.State = GameState.InShop;
-
         _refrashButton.interactable = true;
         if (!Lock)
             Generate();
@@ -85,10 +82,10 @@ public class UIShopLayer : BaseLayer
 
     private void OnBuyButtonClicked(UIShopItem item)
     {
-        if (_player.AddItemDirectly(item.Item))
+        if (_player.Value.AddItemDirectly(item.Item))
         {
             item.gameObject.SetActive(false);
-            _player.Gold.AddBaseValue(-item.Item.Cost);
+            _player.Value.Gold.AddBaseValue(-item.Item.Cost);
             _playerInventory.HighlightItems(ItemType.None);
         }
         else

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -27,15 +28,10 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(DamageController damageController, ItemsDB itemsDB)
+    private void Construct(DamageController damageController, ItemsDB itemsDB, AsyncReactiveProperty<Player> player)
     {
-        StatsCollection = StatsCollectionsDB.StandartPlayer();
         _itemsDB = itemsDB;
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
@@ -43,9 +39,14 @@ public class Player : Mob
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
+        player.Value = this;
+    }
 
-       /* Inventory.Add(_itemsDB.Coprocessor());
-        Inventory.Add(_itemsDB.Coprocessor());*/
+    protected override void Awake()
+    {
+        base.Awake();
+        /* Inventory.Add(_itemsDB.Coprocessor());
+         Inventory.Add(_itemsDB.Coprocessor());*/
         //Inventory.Add(_itemsDB.IonizationUnit());
         // Inventory.Add(_itemsDB.IonizationUnit());
         /*Inventory.Add(_itemsDB.DeliveryDevice());*/

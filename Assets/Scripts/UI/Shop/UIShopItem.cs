@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,20 +21,21 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public event Action<PointerEventData> PointerEnter;
     public event Action<PointerEventData> PointerExit;
 
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
 
     public event Action<UIShopItem> OnBuyButtonClicked;
     public Item Item { get; private set; }
-    
+
     [Inject]
-    private void Construct(Player player)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
         _player = player;
+        _player.Where(x => x != null).ForEachAsync(x => x.Gold.ValueChanged += CheckButtonStatus);
     }
     public async UniTask Set(Item item)
     {
         Item = item;
-       
+
         _nameText.text = item.Name;
         if (item.Unique)
             _text.text = "<color=red>Уникально</color>\n" + item.Description;
@@ -41,8 +43,7 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             _text.text = item.Description;
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(item.Icon)).Task;
         _image.gameObject.SetActive(true);
-        CheckButtonStatus(_player.Gold);
-        _player.Gold.ValueChanged += CheckButtonStatus;
+        CheckButtonStatus(_player.Value.Gold);
     }
 
     private void CheckButtonStatus(ComplexStat stat)
@@ -55,13 +56,13 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         else
         {
             _buyButton.interactable = false;
-            _buyButtonText.text = "Купить <color=red>" + Item.Cost.ToString()+"</color>";
+            _buyButtonText.text = "Купить <color=red>" + Item.Cost.ToString() + "</color>";
         }
     }
 
     private void OnDisable()
     {
-       // _player.Gold.ValueChanged -= CheckButtonStatus;
+        // _player.Gold.ValueChanged -= CheckButtonStatus;
     }
 
     private void Awake()

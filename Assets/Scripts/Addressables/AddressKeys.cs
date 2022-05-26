@@ -28,6 +28,7 @@ public enum AddressKeys
    Ico_PowerController,
    Ico_Lenses,
    Ico_SpeedServo,
+   Char_standart,
 }
 public static class AddressKeysConverter
 {
@@ -89,6 +90,8 @@ public static class AddressKeysConverter
                 return "Ico_Lenses";
             case AddressKeys.Ico_SpeedServo:
                 return "Ico_SpeedServo";
+            case AddressKeys.Char_standart:
+                return "Char_standart";
                 default: return "";
         }
     }

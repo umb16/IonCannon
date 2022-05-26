@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +12,20 @@ public class WarningSound : MonoBehaviour
     private float _oldSupportValue;
     private float _nextPlayTime;
     [Inject]
-    private void Construct(Player player)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
-       _lifeSupport =  player.StatsCollection.GetStat(StatType.LifeSupport);
-        _oldSupportValue = _lifeSupport.Value;
+        player.Where(x => x != null).ForEachAsync(x =>
+        {
+            _lifeSupport = x.StatsCollection.GetStat(StatType.LifeSupport);
+            _oldSupportValue = _lifeSupport.Value;
+        });
+
     }
 
     private void Update()
     {
+        if (_lifeSupport == null)
+            return;
         if (_lifeSupport.Value < _oldSupportValue)
         {
             /*if (_oldSupportValue == 1)

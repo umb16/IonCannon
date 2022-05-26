@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Follow : MonoBehaviour
 {
@@ -11,20 +13,26 @@ public class Follow : MonoBehaviour
     [SerializeField] private float _smoothFactor = 10;
 
     private Vector2 _cameraSize;
+    private AsyncReactiveProperty<Player> _player;
+
+    [Inject]
+    private void Construct(AsyncReactiveProperty<Player> player)
+    {
+        _player = player;
+    }
 
     private void Start()
     {
         float ortSize = Camera.main.orthographicSize;
         _cameraSize.y = ortSize;
         _cameraSize.x = ortSize * Camera.main.aspect;
-
     }
 
     void Update()
     {
-
-        if (_target != null)
+        if (_player?.Value != null)
         {
+            _target = _player.Value.transform;
             Vector2 pos;
             if (_cameraToCursor != 0)
             {

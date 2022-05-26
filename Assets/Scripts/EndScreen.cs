@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,11 @@ public class EndScreen : BaseLayer
 {
     [SerializeField] private GameObject text;
     private GameData _gameData;
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private DamageController _damageController;
 
     [Inject]
-    private void Construct(GameData gameData, Player player, DamageController damageController)
+    private void Construct(GameData gameData, AsyncReactiveProperty<Player> player, DamageController damageController)
     {
         _gameData = gameData;
         _player = player;
@@ -37,7 +38,7 @@ public class EndScreen : BaseLayer
 
     private void CheckGameOver(DamageMessage msg)
     {
-        if (_player.ID == msg.Target.ID)
+        if (_player.Value.ID == msg.Target.ID)
         {
             _gameData.State = GameState.GameOver;
         }
@@ -51,7 +52,10 @@ public class EndScreen : BaseLayer
             {
                 _gameData.Reset();
                 _gameData.State = GameState.Restart;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                Hide();
+                new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
+                //Time.timeScale = 1;
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,11 @@ public class RayCollider : MonoBehaviour
     }
 
     private float tickTime = .5f;
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private Dictionary<int, RayTimer> _mobs = new Dictionary<int, RayTimer>();
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
         _player = player;
     }
@@ -27,7 +28,7 @@ public class RayCollider : MonoBehaviour
         if (mob != null)
         {
             _mobs.Add(mob.ID, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
-            mob.ReceiveDamage(new DamageMessage(_player, mob, _player.RayDmg, DamageSources.RayInitial, .5f));
+            mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
         }
     }
     private void OnTriggerExit2D(Collider2D col)
@@ -47,7 +48,7 @@ public class RayCollider : MonoBehaviour
             if (mob.Value.NextTick < Time.time)
             {
                 mob.Value.NextTick = Time.time + tickTime;
-                mob.Value.Mob.ReceiveDamage(new DamageMessage(_player, mob.Value.Mob, _player.RayDmg * .5f, DamageSources.Ray, .5f));
+                mob.Value.Mob.ReceiveDamage(new DamageMessage(_player.Value, mob.Value.Mob, _player.Value.RayDmg * .5f, DamageSources.Ray, .5f));
             }
         }
     }

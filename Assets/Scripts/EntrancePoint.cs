@@ -9,7 +9,6 @@ public class EntrancePoint : MonoBehaviour
     {
         BaseLayer.Show<MainMenu>();
         BaseLayer.Show<EndScreen>().Hide();
-
     }
 
 }

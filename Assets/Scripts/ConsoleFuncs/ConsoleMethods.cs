@@ -7,16 +7,14 @@ using Zenject;
 
 public class ConsoleMethods : MonoBehaviour
 {
-    private Player _player;
-    private IStatsCollection _statsCollection;
+    private AsyncReactiveProperty<Player> _player;
     private MobSpawner _mobSpawner;
     private GameData _gameData;
 
     [Inject]
-    private void Construct(Player player, MobSpawner mobSpawner, GameData gameData)
+    private void Construct(AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, GameData gameData)
     {
         _player = player;
-        _statsCollection = player.StatsCollection;
         _mobSpawner = mobSpawner;
         _gameData = gameData;
     }
@@ -33,7 +31,7 @@ public class ConsoleMethods : MonoBehaviour
     private void AddStat(StatType type, float value)
     {
         Debug.Log("Add "+type+" "+value);
-        var stat = _statsCollection.GetStat(type);
+        var stat = _player.Value.StatsCollection.GetStat(type);
         stat.SetBaseValue(stat.BaseValue + value);
     }
 
@@ -60,7 +58,7 @@ public class ConsoleMethods : MonoBehaviour
         {
             var mob = hit.transform.GetComponent<IMob>();
             if (mob != null)
-                mob.ReceiveDamage(new DamageMessage(_player, mob,9999, DamageSources.Unknown));
+                mob.ReceiveDamage(new DamageMessage(_player.Value, mob,9999, DamageSources.Unknown));
         }
     }
 }

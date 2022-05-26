@@ -11,15 +11,16 @@ public class Controls : MonoBehaviour
     private UIShopLayer _shop;
 
     [Inject]
-    private void Construct(UIPlayerInventory playerInventory, UIPlayerStats playerStats, GameData gameData)
+    private void Construct(GameData gameData)
     {
-        _playerInventory = playerInventory;
-        _playerStats = playerStats;
         _gameData = gameData;
     }
 
     private void Awake()
     {
+        _playerStats = BaseLayer.ForceGet<UIPlayerStats>();
+        _playerInventory = BaseLayer.ForceGet<UIPlayerInventory>();
+        
         _shop = BaseLayer.ForceGet<UIShopLayer>();
     }
     private void Update()

@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,19 +9,20 @@ public class UIPlayerInventory : BaseLayer
 {
     [SerializeField] UIInventory _uiInventory;
     [SerializeField] UIInventory _uiStash;
-    private Inventory Inventory => _player.Inventory;
-    private Inventory Stash => _player.Stash;
-    private Player _player;
-    private ItemsDB _itemsDB;
+    private Inventory Inventory => _player.Value.Inventory;
+    private Inventory Stash => _player.Value.Stash;
+    private AsyncReactiveProperty<Player> _player;
 
     [Inject]
-    private void Construct(Player player, ItemsDB itemsDB)
+    private void Construct(AsyncReactiveProperty<Player> player)
     {
         _player = player;
-        SetInventory(Inventory, _uiInventory);
-        _uiInventory.IsActiveInventory = true;
-        SetInventory(Stash, _uiStash);
-        _itemsDB = itemsDB;
+        _player.Where(x => x != null).ForEachAsync(x =>
+        {
+            SetInventory(x.Inventory, _uiInventory);
+            _uiInventory.IsActiveInventory = true;
+            SetInventory(x.Stash, _uiStash);
+        });
     }
 
     protected override void OnFinishHiding()
@@ -32,7 +35,7 @@ public class UIPlayerInventory : BaseLayer
     {
         inventory.ItemAdded += uiInventory.AddItem;
         inventory.ItemRemoved += uiInventory.RemoveItem;
-        uiInventory.RealInventory = inventory;
+        uiInventory.SetRealInventory(inventory);
         uiInventory.PlayerInventory = this;
     }
     public void HighlightItems(ItemType itemType, UIInventorySlot exception = null)

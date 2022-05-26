@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TooltipController : MonoBehaviour
+public class TooltipController : MonoBehaviour 
 {
     public static TooltipController Instance;
 

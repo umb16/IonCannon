@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using Zenject;
@@ -5,15 +6,11 @@ using Zenject;
 public class MainMenu : BaseLayer
 {
     private GameData _gameData;
-    private MobSpawner _mobSpawner;
-    private Player _player;
 
     [Inject]
-    private void Construct(GameData gameData, MobSpawner mobSpawner, Player player)
+    private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _mobSpawner = mobSpawner;
-        _player = player;
     }
 
     private void Start()
@@ -27,13 +24,9 @@ public class MainMenu : BaseLayer
 
     private void StartGame()
     {
-        _player.gameObject.SetActive(value: true);
-        new Timer(.1f).SetEnd(() => _gameData.StartGame());
-        _mobSpawner.gameObject.SetActive(true);
-        //gameObject.SetActive(false);
+        new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
         Show<InGameHUDLayer>();
         TryGet<MainMenu>().Hide();
-        //Hide();
     }
 
     private void Update()

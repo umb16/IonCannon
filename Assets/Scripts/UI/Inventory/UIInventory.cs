@@ -10,26 +10,27 @@ using Zenject;
 public class UIInventory : MonoBehaviour
 {
     public bool IsActiveInventory;
-    public Inventory RealInventory;
+    public Inventory RealInventory { private set; get; }
     public UIPlayerInventory PlayerInventory;
     [SerializeField] private GameObject _uiSlotPrefab;
     private List<UIInventorySlot> _slots = new List<UIInventorySlot>();
     private static UIInventorySlot _dragingItem;
     public static UIInventorySlot SelectedItem { get; private set; }
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private ItemsDB _itemsDB;
 
     public bool IsFull => !RealInventory.FreeSlotAvailable;
 
     [Inject]
-    private void Construct(Player player, ItemsDB itemsDB)
+    private void Construct(AsyncReactiveProperty<Player> player, ItemsDB itemsDB)
     {
         _player = player;
         _itemsDB = itemsDB;
     }
 
-    private void Awake()
+    public void SetRealInventory(Inventory inventory)
     {
+        RealInventory = inventory;
         SetSlotsCount(6);
     }
 
@@ -130,7 +131,7 @@ public class UIInventory : MonoBehaviour
         var trash = result.gameObject?.GetComponentInParent<UIInventoryTrashCan>();
         if (trash != null)
         {
-            _player.Gold.AddBaseValue(slot.Item.SellCost);
+            _player.Value.Gold.AddBaseValue(slot.Item.SellCost);
             RealInventory.Remove(slot.Item);
             trash.PlaySound();
             return true;
@@ -149,7 +150,7 @@ public class UIInventory : MonoBehaviour
                 var newItem = _itemsDB.CreateByType(resultType);
                 hoveredSlot.RemoveFromInventory();
                 slot.RemoveFromInventory();
-                _player.AddItemDirectly(newItem);
+                _player.Value.AddItemDirectly(newItem);
                 //hoveredSlot.AddToInventory(newItem);
                 return true;
             }

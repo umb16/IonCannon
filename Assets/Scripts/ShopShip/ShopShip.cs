@@ -27,12 +27,12 @@ public class ShopShip : MonoBehaviour
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
     private float _lastArrival;
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private float _cooldownTime = 60;
     private float TimeToArrival => _cooldownTime - (Time.time - _lastArrival);
 
     [Inject]
-    private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData, Player player)
+    private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData, AsyncReactiveProperty<Player> player)
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
@@ -60,7 +60,7 @@ public class ShopShip : MonoBehaviour
     }
     private void StartLanding()
     {
-        _newPosition = (_player.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
+        _newPosition = (_player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
         _startPosition = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
         _landingTimer = new Timer(2)
             .SetUpdate(x => transform.position = Vector3.Lerp(_startPosition, _newPosition, x))

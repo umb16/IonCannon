@@ -29,17 +29,34 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData CurrentWave => _waves[_currenWave];
 
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private GameData _gameData;
     private DamageController _damageController;
+    private float _mobSpawnTime;
 
     [Inject]
-    private void Construct(DamageController damageController, Player player, GameData gameData)
+    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, GameData gameData)
     {
         _damageController = damageController;
         damageController.Die += OnEnemyDie;
         _player = player;
         _gameData = gameData;
+        _gameData.GameStateChanged += OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Restart)
+        {
+            for (int i = 0; i < Mobs.Count; i++)
+            {
+                IMob mob = Mobs[i];
+                mob.Destroy();
+            }
+            CurrentWave.Reset();
+            _currenWave = 0;
+            Mobs.Clear();
+        }
     }
 
     private void OnEnemyDie(DamageMessage msg)
@@ -65,16 +82,12 @@ public class MobSpawner : MonoBehaviour
             return null;
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
+        go.transform.SetParent(transform);
         Mobs.Add(mob);
         return mob;
     }
     private async UniTask CreateMob()
     {
-        if (_gameData.State != GameState.Gameplay)
-        {
-            Invoke("CreateMob", Random.value);
-            return;
-        }
         if (!Stop)
         {
             if (!CurrentWave.IsEnd)
@@ -108,8 +121,9 @@ public class MobSpawner : MonoBehaviour
                     }
                 }
 
-                vector += _player.transform.position;
+                vector += _player.Value.transform.position;
                 GameObject gameObject = await MobPrafab[GetNextMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
+                gameObject.transform.SetParent(transform);
                 Mob mob = gameObject.GetComponent<Mob>();
                 mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
@@ -118,30 +132,11 @@ public class MobSpawner : MonoBehaviour
                 NextWave();
         }
         //float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
-        Invoke("CreateMob", Random.value);
-    }
-
-    private async UniTask CreateBoss()
-    {
-        GetComponent<AudioSource>().Play();
-        Vector3 vector = new Vector2(Random.value * 2f - 1f, Random.value * 2f - 1f);
-        vector.Normalize();
-        vector *= 25f;
-        vector += _player.transform.position;
-        GameObject gameObject = await MobPrafab[Random.Range(0, 4)].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-        Mob mob = gameObject.GetComponent<Mob>();
-        Mobs.Add(mob);
-        mob.AddPerk(new PerkEBoss());
     }
 
     private int GetNextMob()
     {
         return _waves[_currenWave].GetNext();
-    }
-
-    private void Start()
-    {
-        Invoke("CreateMob", 1f);
     }
 
     private void OnDestroy()
@@ -153,15 +148,21 @@ public class MobSpawner : MonoBehaviour
         if (_gameData.State != GameState.Gameplay)
             return;
 
+        if (_mobSpawnTime < Time.time)
+        {
+            CreateMob().Forget();
+            _mobSpawnTime = Time.time + Random.value;
+        }
+
         //Телепортация мобов
         if (teleportation)
         {
             foreach (var mob in Mobs)
             {
-                Vector3 dir = mob.Position - _player.Position;
+                Vector3 dir = mob.Position - _player.Value.Position;
                 if ((dir).SqrMagnetudeXY() > 60 * 60)
                 {
-                    mob.SetPosition(_player.Position + dir.NormalizedXY() * 25);
+                    mob.SetPosition(_player.Value.Position + dir.NormalizedXY() * 25);
                 }
             }
         }

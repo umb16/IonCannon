@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ public class RayDrawer : MonoBehaviour
 
     private LineRenderer _cannonPath;
 
-    private Player _player;
+    private AsyncReactiveProperty<Player> _player;
     private ComplexStat _rayError;
     private GameData _gameData;
     private CooldownIndicator _colldownIndicator;
@@ -46,10 +47,13 @@ public class RayDrawer : MonoBehaviour
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
     [Inject]
-    private async UniTask Construct(Player player, GameData gameData, UICooldownsManager cooldownsPanel)
+    private async UniTask Construct(AsyncReactiveProperty<Player> player, GameData gameData, UICooldownsManager cooldownsPanel)
     {
         _player = player;
-        _rayError = _player.StatsCollection.GetStat(StatType.RayError);
+        _player.Where(x => x != null).ForEachAsync(x =>
+        {
+            _rayError = x.StatsCollection.GetStat(StatType.RayError);
+        }).Forget();
         _gameData = gameData;
         _colldownIndicator = await cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
     }
@@ -60,12 +64,14 @@ public class RayDrawer : MonoBehaviour
     }
     private void RayLogic()
     {
+        if (_gameData == null)
+            return;
         if (_gameData.State != GameState.Gameplay)
             return;
         if (Input.GetMouseButton(0) && rayIsReady)
         {
             if (_cashedLenght == null)
-                _cashedLenght = _player.MaxPathLength;
+                _cashedLenght = _player.Value.MaxPathLength;
             if (_currentPathLength < _cashedLenght)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
@@ -118,23 +124,23 @@ public class RayDrawer : MonoBehaviour
                 cannonPath = cannonPath.Select(x => x + new Vector3(Random.value, Random.value).normalized * Random.value * _rayError.Value).ToList();
                 _errorLenghtRatio = LenghtOfPath(cannonPath) / _rayPathLenght;
             }
-            
+
         }
         if (cannonPath.Count <= 1 || _currentLineIndex != 0)
         {
             return;
         }
         _rayDelayTime += Time.deltaTime;
-        _allRayTime = _rayPathLenght / _player.RaySpeed + _player.RayDelay;
+        _allRayTime = _rayPathLenght / _player.Value.RaySpeed + _player.Value.RayDelay;
         _colldownIndicator.SetTime(CooldownTime, _allRayTime);
-        if (_rayDelayTime > _player.RayDelay)
+        if (_rayDelayTime > _player.Value.RayDelay)
         {
             if (_cannonRay == null)
             {
                 _cannonRay = Instantiate(_cannonRayPrefab);
-                _cannonRay.GetComponent<RayScript>().SetSplash(_player.RaySplash);
+                _cannonRay.GetComponent<RayScript>().SetSplash(_player.Value.RaySplash);
             }
-            rayTime += Time.deltaTime * _player.RaySpeed * _errorLenghtRatio;
+            rayTime += Time.deltaTime * _player.Value.RaySpeed * _errorLenghtRatio;
 
             _cannonRay.transform.position = Vector3.Lerp(cannonPath[0], cannonPath[1], rayTime / Vector2.Distance(cannonPath[0], cannonPath[1]));
             if (rayTime > Vector2.Distance(cannonPath[0], cannonPath[1]))

@@ -36,4 +36,6 @@ public interface IMob
     void AddForce(Vector2 force, ForceMode2D mode);
     void SetAnimVariable(string name, bool value);
     void RemovePerk(IPerk perk);
+
+    void Destroy();
 }

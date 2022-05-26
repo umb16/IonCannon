@@ -46,7 +46,7 @@ public class Mob : MonoBehaviour, IMob
     public Inventory Inventory { get; private set; } = new Inventory();
 
     [Inject]
-    private void Construct(DamageController damageController, GameData gameData, Player player, MobSpawner mobSpawner)
+    private void Construct(DamageController damageController, GameData gameData, AsyncReactiveProperty<Player> player, MobSpawner mobSpawner)
     {
         GameData = gameData;
         DamageController = damageController;
@@ -262,5 +262,10 @@ public class Mob : MonoBehaviour, IMob
     public void AddForce(Vector2 force, ForceMode2D mode)
     {
         _rigidbody.AddForce(force, mode);
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
