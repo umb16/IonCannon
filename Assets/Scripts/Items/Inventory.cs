@@ -16,6 +16,11 @@ public class Inventory
     {
         SlotsCount = value;
     }
+
+    public Item Get(int index)
+    {
+        return _items[index];
+    }
     public void Add(Item item)
     {
         if (FreeSlotAvailable)
@@ -32,7 +37,7 @@ public class Inventory
 
     public bool ContainsUnique(Item item)
     {
-        if(!item.Unique)
+        if (!item.Unique)
             return false;
         return ContainsByType(item.Type);
     }

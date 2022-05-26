@@ -89,7 +89,8 @@ public class UIShopLayer : BaseLayer
             _playerInventory.HighlightItems(ItemType.None);
         }
         else
-            MessageBox.Show("Нехватает места");
+            BaseLayer.Show<MsgBox>().Set("Нехватает места");
+            //MessageBox.Show("Нехватает места");
     }
 
     public void Close()

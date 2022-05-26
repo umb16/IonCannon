@@ -31,25 +31,44 @@ public class UIInventory : MonoBehaviour
     public void SetRealInventory(Inventory inventory)
     {
         RealInventory = inventory;
-        SetSlotsCount(6);
+        foreach (var slot in _slots)
+        {
+            Destroy(slot.gameObject);
+        }
+        _slots.Clear();
+        SetSlotsCount(inventory.SlotsCount);
     }
 
     public void SetSlotsCount(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            var go = Instantiate(_uiSlotPrefab, transform);
-            go.SetActive(true);
-            var slot = go.GetComponent<UIInventorySlot>();
-            slot.BeginDrag += x => OnBeginDrag(x, slot);
-            slot.Drag += x => OnDrag(x, slot);
-            slot.EndDrag += x => OnEndDrag(x, slot);
-            slot.PointerEnter += x => OnPointerEnter(x, slot);
-            slot.PointerExit += OnPointerExit;
-            slot.RemoveFromInventoryAction = RealInventory.Remove;
-            slot.AddToInventoryAction = RealInventory.Add;
-            _slots.Add(slot);
+            AddSlot();
         }
+    }
+
+    public void RemoveSlot(int index)
+    {
+        Destroy(_slots[index].gameObject);
+        _slots.RemoveAt(index);
+    }
+
+    public void AddSlot()
+    {
+        int index = _slots.Count;
+        var go = Instantiate(_uiSlotPrefab, transform);
+        go.SetActive(true);
+        var slot = go.GetComponent<UIInventorySlot>();
+        slot.BeginDrag += x => OnBeginDrag(x, slot);
+        slot.Drag += x => OnDrag(x, slot);
+        slot.EndDrag += x => OnEndDrag(x, slot);
+        slot.PointerEnter += x => OnPointerEnter(x, slot);
+        slot.PointerExit += OnPointerExit;
+        slot.RemoveFromInventoryAction = RealInventory.Remove;
+        slot.AddToInventoryAction = RealInventory.Add;
+        if (RealInventory.Get(index) != null)
+            slot.Set(RealInventory.Get(index)).Forget();
+        _slots.Add(slot);
     }
 
     private void OnPointerExit(PointerEventData eventData)
@@ -89,12 +108,12 @@ public class UIInventory : MonoBehaviour
             tooltiptext += "<color=green><size=30>–≈«”À‹“¿“</size></color>\n";
         if (item.Unique)
             TooltipController.Instance.
-            AssignTooltip(tooltiptext+@$"<color=yellow><size=30>{item.Name}</size></color>
+            AssignTooltip(tooltiptext + @$"<color=yellow><size=30>{item.Name}</size></color>
 <color=red>”ÌËÍ‡Î¸ÌÓ</color>
 {item.Description}");
         else
             TooltipController.Instance.
-                AssignTooltip(tooltiptext+@$"<color=yellow><size=30>{item.Name}</size></color>
+                AssignTooltip(tooltiptext + @$"<color=yellow><size=30>{item.Name}</size></color>
 {item.Description}");
     }
 
