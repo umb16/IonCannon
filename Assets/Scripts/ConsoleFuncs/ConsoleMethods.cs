@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using MiniScriptSharp.Inject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,40 +18,50 @@ public class ConsoleMethods : MonoBehaviour
         _player = player;
         _mobSpawner = mobSpawner;
         _gameData = gameData;
+        FunctionInjector.AddFunctions(this, Debug.Log);
     }
 
     private void Start()
     {
-        OnGUIConsole.Instance.AddMethod("AddStat", (Action<StatType, float>)AddStat);
-        OnGUIConsole.Instance.AddMethod("SpawnerStop", (Action<int>)SpawnerStop);
+        // OnGUIConsole.Instance.AddMethod("AddStat", (Action<StatType, float>)AddStat);
+        //OnGUIConsole.Instance.AddMethod("SpawnerStop", (Action<int>)SpawnerStop);
         OnGUIConsole.Instance.AddMethod("KillUnderCursor", (Action)KillUnderCursor);
         OnGUIConsole.Instance.AddMethod("SpawnMob", (Action<string>)SpawnMob);
         OnGUIConsole.Instance.AddMethod("AddWave", (Action)AddWave);
     }
 
-    private void AddStat(StatType type, float value)
+
+    public void AddStat(string type, float value)
     {
-        Debug.Log("Add "+type+" "+value);
-        var stat = _player.Value.StatsCollection.GetStat(type);
-        stat.SetBaseValue(stat.BaseValue + value);
+        Debug.Log("Add " + type + " " + value);
+        if (Enum.TryParse<StatType>(type, true, out var sType))
+        {
+            var stat = _player.Value.StatsCollection.GetStat(sType);
+            stat.SetBaseValue(stat.BaseValue + value);
+        }
+        else
+        {
+            Debug.LogWarning("Not valid type");
+        }
     }
 
-    private void SpawnerStop(int stop)
+    public void SpawnerStop(bool stop)
     {
-        _mobSpawner.Stop = stop > 0;
+        _mobSpawner.Stop = stop;
+        Debug.Log("spawnerStop " + stop);
     }
 
-    private void SpawnMob(string name)
+    public void SpawnMob(string name)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mobSpawner.SpawnByName(name, pos).Forget();
     }
-    private void AddWave()
+    public void AddWave()
     {
         _mobSpawner.NextWave();
         //_gameData.AddWave();
     }
-    private void KillUnderCursor()
+    public void KillUnderCursor()
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
@@ -58,7 +69,7 @@ public class ConsoleMethods : MonoBehaviour
         {
             var mob = hit.transform.GetComponent<IMob>();
             if (mob != null)
-                mob.ReceiveDamage(new DamageMessage(_player.Value, mob,9999, DamageSources.Unknown));
+                mob.ReceiveDamage(new DamageMessage(_player.Value, mob, 9999, DamageSources.Unknown));
         }
     }
 }

@@ -55,7 +55,20 @@ public class RayDrawer : MonoBehaviour
             _rayError = x.StatsCollection.GetStat(StatType.RayError);
         }).Forget();
         _gameData = gameData;
+        _gameData.GameStateChanged += GameStateChanged;
         _colldownIndicator = await cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
+    }
+
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.Gameplay)
+        {
+            cannonPath.Clear();
+            rayIsReady = true;
+            _stopTimer?.Stop();
+            _colldownIndicator.SetTime(0, 1);
+            DestroyImmediate(_cannonRay);
+        }
     }
 
     private void Awake()

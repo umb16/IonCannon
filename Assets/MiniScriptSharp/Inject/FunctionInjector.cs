@@ -41,7 +41,7 @@ namespace MiniScriptSharp.Inject {
                     if (!isFirstParam) msg += ", ";
                     isFirstParam = false;
                     msg += $"{GetAlias(parameter.ParameterType)} {parameter.Name}";
-
+         
                     switch (parameter.ParameterType) {
                         case Type d when ReferenceEquals(d, typeof(double)):
                         case Type f when ReferenceEquals(f, typeof(float)):
@@ -87,7 +87,6 @@ namespace MiniScriptSharp.Inject {
                                 function.AddValueParam(parameter.Name, null); // set null!
                             }
                             break;
-
                         default:
                             throw new Exception($"ParameterType: {parameter.ParameterType} not supported!");
                     }

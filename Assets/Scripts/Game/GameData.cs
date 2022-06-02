@@ -33,6 +33,7 @@ public class GameData
         GameStarted?.Invoke();
         StartGameTime = Time.time;
         State = GameState.Gameplay;
+        Time.timeScale = 1;
     }
 
     public void AddWave()

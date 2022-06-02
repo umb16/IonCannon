@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -48,12 +49,13 @@ public class EndScreen : BaseLayer
     {
         if (_gameData.State == GameState.GameOver)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled )
             {
                 _gameData.Reset();
                 _gameData.State = GameState.Restart;
                 Hide();
-                new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
+                UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
+                //new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
                 //Time.timeScale = 1;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }

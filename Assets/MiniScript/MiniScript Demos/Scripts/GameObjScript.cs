@@ -19,24 +19,10 @@ public class GameObjScript : MonoBehaviour {
 	#endregion
 	//--------------------------------------------------------------------------------
 	#region MonoBehaviour Events
-	void Awake() {
-        FunctionInjector.AddFunctions(this, Debug.Log);
+	void Awake()
+	{
         interpreter = new Interpreter();
     }
-
-	public void Printx(string x)
-	{
-		Debug.Log(x);
-		float xx = 1;
-        for (int i = 1; i < 10000000; i++)
-        {
-			if(i%2 == 0)
-				xx += Mathf.Sin(i);
-			else
-                xx -= Mathf.Sin(i);
-        }
-		Debug.Log(xx);
-	}
 
 	void Update() {
 		if (interpreter.Running()) {

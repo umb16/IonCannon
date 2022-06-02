@@ -34,6 +34,7 @@ public class StandartStatsCollection : IStatsCollection
     {
         GetStat(modificator.StatType).RemoveModificator(modificator);
     }
+
     public ComplexStat GetStat(StatType statType)
     {
         if (_stats.TryGetValue(statType, out ComplexStat result))

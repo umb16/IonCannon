@@ -17,10 +17,23 @@ public class Inventory
         SlotsCount = value;
     }
 
-    public Item Get(int index)
+    public bool TryGetItem(int index, out Item item)
+    {
+        if (_items.Count > index)
+        {
+            item = _items[index];
+            return true;
+        }
+        else
+        {
+            item=null;
+            return false;
+        }
+    }
+    /*public Item Get(int index)
     {
         return _items[index];
-    }
+    }*/
     public void Add(Item item)
     {
         if (FreeSlotAvailable)

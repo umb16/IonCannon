@@ -66,8 +66,8 @@ public class UIInventory : MonoBehaviour
         slot.PointerExit += OnPointerExit;
         slot.RemoveFromInventoryAction = RealInventory.Remove;
         slot.AddToInventoryAction = RealInventory.Add;
-        if (RealInventory.Get(index) != null)
-            slot.Set(RealInventory.Get(index)).Forget();
+        if (RealInventory.TryGetItem(index, out Item item))
+            slot.Set(item).Forget();
         _slots.Add(slot);
     }
 

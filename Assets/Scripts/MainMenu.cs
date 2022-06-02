@@ -31,7 +31,7 @@ public class MainMenu : BaseLayer
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled)
         {
             StartGame();
         }

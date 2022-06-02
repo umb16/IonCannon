@@ -25,7 +25,11 @@ public class Controls : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            BaseLayer.Show<CheatPanelLayer>();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && !CheatPanelLayer.Enabled)
         {
             if (_gameData.State == GameState.InShop)
             {
