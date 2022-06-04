@@ -1,0 +1,88 @@
+using Cysharp.Threading.Tasks.Linq;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Umb16.Extensions;
+using UnityEngine;
+
+public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
+{
+    [SerializeField] LineRenderer _lineRenderer;
+    [SerializeField] GameObject _icon;
+    private float _radius = 1;
+    private int _vertexCount = 50;
+    private bool _needUpdate = true;
+    private IDisposable _blinkTimer;
+
+    private void OnEnabled()
+    {
+
+    }
+    private void OnDisable()
+    {
+        _blinkTimer?.Dispose();
+    }
+    public void Hide()
+    {
+        Destroy(gameObject);
+    }
+    public void SetBlink(float value)
+    {
+        _blinkTimer?.Dispose();
+
+        _lineRenderer.enabled = true;
+        _icon.SetActive(true);
+        if (value != 0)
+        {
+            StartBlink(value);
+        }
+    }
+    private void StartBlink(float blinkTime)
+    {
+        _blinkTimer = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(blinkTime), TimeSpan.FromSeconds(blinkTime)).Subscribe(_ =>
+        {
+            if (_lineRenderer.enabled)
+            {
+                _lineRenderer.enabled = false;
+                _icon.SetActive(false);
+            }
+            else
+            {
+                _lineRenderer.enabled = true;
+                _icon.SetActive(true);
+            }
+        });
+    }
+
+    public void SetIcon(AddressKeys addressKey)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+        transform.To2DPos();
+    }
+
+    public void SetRadius(float radius)
+    {
+        _needUpdate = true;
+        _radius = radius;
+    }
+
+    private void Update()
+    {
+        if (_needUpdate)
+        {
+            _needUpdate = false;
+            _lineRenderer.positionCount = _vertexCount;
+            for (int i = 0; i < _vertexCount; i++)
+            {
+                Vector3 newPoint = Vector3.up.DiamondRotateXY(4.0f / _vertexCount * i);
+                newPoint *= _radius;
+                _lineRenderer.SetPosition(i, newPoint.Get2D());
+            }
+        }
+    }
+}

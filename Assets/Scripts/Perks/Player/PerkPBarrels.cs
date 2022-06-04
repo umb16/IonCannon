@@ -59,7 +59,7 @@ public class PerkPBarrels : WithId, IPerk
         {
             loop.Dispose();
         }
-        _indicator.Destroy();
+        _indicator?.Destroy();
     }
 
     public void Add(IPerk perk)

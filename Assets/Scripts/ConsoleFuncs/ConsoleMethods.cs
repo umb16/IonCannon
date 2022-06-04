@@ -11,13 +11,16 @@ public class ConsoleMethods : MonoBehaviour
     private AsyncReactiveProperty<Player> _player;
     private MobSpawner _mobSpawner;
     private GameData _gameData;
+    private ShopShip _shopShip;
 
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, GameData gameData)
+    private void Construct(AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, GameData gameData,
+        ShopShip shopShip)
     {
         _player = player;
         _mobSpawner = mobSpawner;
         _gameData = gameData;
+        _shopShip = shopShip;
         FunctionInjector.AddFunctions(this, Debug.Log);
     }
 
@@ -43,6 +46,11 @@ public class ConsoleMethods : MonoBehaviour
         {
             Debug.LogWarning("Not valid type");
         }
+    }
+
+    public void SetShopShipTime(float shift)
+    {
+        _shopShip.SetLastArrival(shift);
     }
 
     public void SpawnerStop(bool stop)

@@ -3052,12 +3052,12 @@ PrefabInstance:
     - target: {fileID: 9029667034932123509, guid: 779e38dc47cc8a648ad055cada073bee,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClose
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 9029667034932123509, guid: 779e38dc47cc8a648ad055cada073bee,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIShop, Assembly-CSharp
+      value: UIShopLayer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9029667034932123509, guid: 779e38dc47cc8a648ad055cada073bee,
         type: 3}
