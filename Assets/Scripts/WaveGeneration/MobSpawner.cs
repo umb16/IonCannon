@@ -4,6 +4,7 @@ using UnityEngine.AddressableAssets;
 using Zenject;
 using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
+using System.Linq;
 
 public class MobSpawner : MonoBehaviour
 {
@@ -56,6 +57,10 @@ public class MobSpawner : MonoBehaviour
             CurrentWave.Reset();
             _currenWave = 0;
             Mobs.Clear();
+            foreach (var trn in transform.GetComponentsInChildren<Transform>().Skip(1))
+            {
+                Destroy(trn.gameObject);
+            }
         }
     }
 

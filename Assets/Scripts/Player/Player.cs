@@ -97,6 +97,7 @@ public class Player : Mob
     private void Stop()
     {
         Destroy(gameObject);
+        if(Blood!=null)
         Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
     }
 

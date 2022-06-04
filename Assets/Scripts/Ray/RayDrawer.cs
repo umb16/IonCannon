@@ -61,7 +61,7 @@ public class RayDrawer : MonoBehaviour
 
     private void GameStateChanged(GameState state)
     {
-        if (state == GameState.Gameplay)
+        if (state == GameState.Restart)
         {
             cannonPath.Clear();
             rayIsReady = true;

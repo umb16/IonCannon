@@ -45,7 +45,18 @@ public class ShopShip : MonoBehaviour
         _lastArrival = Time.time;
         _player = player;
         _shopIndicator = await cooldownsManager.AddIndiacator(AddressKeys.Ico_Ship);
+        gameData.GameStateChanged += GameStateChanged;
 
+    }
+
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.Restart)
+        {
+            _startPosition = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
+            OnCountDownEnd();
+            _landingTimer.ForceEnd();
+        }
     }
 
     public void SetLastArrival(float shift)

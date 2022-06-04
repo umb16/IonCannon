@@ -97,7 +97,7 @@ public class EnemySimple : Mob
     {
         foreach (var drop in _drop)
         {
-            drop.Release(GroundCenterPosition/*, StatsCollection.GetStat(StatType.Score).Value*/);
+            drop.Release(GroundCenterPosition/*, StatsCollection.GetStat(StatType.Score).Value*/, root: transform.parent);
         }
         Destroy(gameObject);
     }
