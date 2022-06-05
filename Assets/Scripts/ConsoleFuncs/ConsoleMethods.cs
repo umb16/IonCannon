@@ -48,6 +48,16 @@ public class ConsoleMethods : MonoBehaviour
         }
     }
 
+    /*private bool TryParseType<T>(string type, out TEnum sType) where T : TEnum
+    {
+        Enum.TryParse<T>(type, true, out sType)
+    }*/
+
+    public void AddItem(string itemType)
+    {
+        
+    }
+
     public void SetShopShipTime(float shift)
     {
         _shopShip.SetLastArrival(shift);
