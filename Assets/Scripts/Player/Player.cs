@@ -15,7 +15,6 @@ public class Player : Mob
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
-    private ItemsDB _itemsDB;
 
     public float RayDmg => _rayDamage.Value;
 
@@ -28,9 +27,8 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(DamageController damageController, ItemsDB itemsDB, AsyncReactiveProperty<Player> player)
+    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player)
     {
-        _itemsDB = itemsDB;
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);

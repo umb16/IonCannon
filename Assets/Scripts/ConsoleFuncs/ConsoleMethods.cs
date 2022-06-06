@@ -12,15 +12,17 @@ public class ConsoleMethods : MonoBehaviour
     private MobSpawner _mobSpawner;
     private GameData _gameData;
     private ShopShip _shopShip;
+    private ItemsDB _itemsDB;
 
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, GameData gameData,
-        ShopShip shopShip)
+        ShopShip shopShip, ItemsDB itemsDB)
     {
         _player = player;
         _mobSpawner = mobSpawner;
         _gameData = gameData;
         _shopShip = shopShip;
+        _itemsDB = itemsDB;
         FunctionInjector.AddFunctions(this, Debug.Log);
     }
 
@@ -37,25 +39,30 @@ public class ConsoleMethods : MonoBehaviour
     public void AddStat(string type, float value)
     {
         Debug.Log("Add " + type + " " + value);
-        if (Enum.TryParse<StatType>(type, true, out var sType))
+        if (TryParseType<StatType>(type, out var sType))
         {
             var stat = _player.Value.StatsCollection.GetStat(sType);
             stat.SetBaseValue(stat.BaseValue + value);
         }
-        else
-        {
-            Debug.LogWarning("Not valid type");
-        }
     }
 
-    /*private bool TryParseType<T>(string type, out TEnum sType) where T : TEnum
+    private bool TryParseType<T>(string type, out T sType) where T : struct
     {
-        Enum.TryParse<T>(type, true, out sType)
-    }*/
+        if (Enum.TryParse<T>(type, true, out sType))
+        {
+            return true;
+        }
+        Debug.LogWarning("Not valid type: "+ type + " in "+typeof(T).Name);
+        return false;
+    }
 
-    public void AddItem(string itemType)
+    public void AddItem(string type)
     {
-        
+        if (TryParseType<ItemType>(type, out var sType))
+        {
+            var newItem = _itemsDB.CreateByType(sType);
+            _player.Value.AddItemDirectly(newItem);
+        }
     }
 
     public void SetShopShipTime(float shift)

@@ -25,7 +25,6 @@ public class ShopShip : MonoBehaviour
     private Timer _countdownTimer;
     private Vector3 _newPosition;
     private Vector3 _startPosition;
-    private bool _playerInRadius;
     private UIShopLayer _shop;
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
@@ -139,7 +138,6 @@ public class ShopShip : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             //_hintText.gameObject.SetActive(true);
-            _playerInRadius = true;
             BaseLayer.Show<UIShopLayer>();
         }
     }
@@ -148,7 +146,6 @@ public class ShopShip : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             //_hintText.gameObject.SetActive(false);
-            _playerInRadius = false;
         }
     }
 
