@@ -6,15 +6,21 @@ using UnityEngine;
 
 public class Inventory
 {
-    public int SlotsCount { get; private set; } = 6;
+    public int SlotsCount { get; private set; } = 3;
     public bool FreeSlotAvailable => SlotsCount - _items.Count > 0;
     public event Action<Item> ItemAdded;
     public event Action<Item> ItemRemoved;
+    public event Action SlotAdded;
     private List<Item> _items = new List<Item>();
 
-    public void SetSlots(int value)
+    /*public void SetSlots(int value)
     {
         SlotsCount = value;
+    }*/
+    public void AddSlot()
+    {
+        SlotsCount++;
+        SlotAdded?.Invoke();
     }
 
     public bool TryGetItem(int index, out Item item)
@@ -26,7 +32,7 @@ public class Inventory
         }
         else
         {
-            item=null;
+            item = null;
             return false;
         }
     }

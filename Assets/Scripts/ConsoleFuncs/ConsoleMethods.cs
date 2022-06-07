@@ -46,13 +46,18 @@ public class ConsoleMethods : MonoBehaviour
         }
     }
 
+    public void AddGold(float value)
+    {
+        var stat = _player.Value.Gold;
+        stat.SetBaseValue(stat.BaseValue + value);
+    }
     private bool TryParseType<T>(string type, out T sType) where T : struct
     {
         if (Enum.TryParse<T>(type, true, out sType))
         {
             return true;
         }
-        Debug.LogWarning("Not valid type: "+ type + " in "+typeof(T).Name);
+        Debug.LogWarning("Not valid type: " + type + " in " + typeof(T).Name);
         return false;
     }
 

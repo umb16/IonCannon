@@ -21,24 +21,34 @@ namespace SPVD.LifeSupport
         [SerializeField] float _supportDrainSpeed = .25f;
         [SerializeField] LineRenderer _lineRenderer;
         private List<Circle> _circles = new List<Circle>();
-        private int _vertexCount = 1000;
         private AsyncReactiveProperty<Player> _player;
         ComplexStat _stat;
-        [SerializeField] float _stepValue = 10;
         private List<Vector2> _points = new List<Vector2>();
         [Inject]
-        private void Construct(AsyncReactiveProperty<Player> player)
+        private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
         {
             // _circles.Add(new Circle(Vector2.zero, 30));
             //_circles.Add(new Circle(new Vector2(0, 0), 25));
             //_circles.Add(new Circle(new Vector2(-10, 10), 25));
-
+            gameData.GameStateChanged += GameStateChanged; ;
             _player = player;
             _player.Where(x => x != null).ForEachAsync(x =>
             {
                 _stat = x.StatsCollection.GetStat(StatType.LifeSupport);
             });
             //Test();
+            AddCircle(Vector3.zero, 30);
+        }
+
+        private void GameStateChanged(GameState state)
+        {
+            if (state == GameState.Restart)
+                Reset();
+        }
+
+        private void Reset()
+        {
+            _circles.Clear();
             AddCircle(Vector3.zero, 30);
         }
 
@@ -51,7 +61,7 @@ namespace SPVD.LifeSupport
         {
             for (int i = 0; i < 50; i++)
             {
-                _circles.Add(new Circle(new Vector2(30 * (Random.value - .5f), 30 * (Random.value - .5f)), Random.Range(10, 20)));
+                _circles.Add(new Circle(new Vector2(100 * (Random.value - .5f), 100 * (Random.value - .5f)), Random.Range(10, 30)));
             }
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

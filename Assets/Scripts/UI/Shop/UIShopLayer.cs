@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Zenject;
 using Button = UnityEngine.UI.Button;
+using SPVD.LifeSupport;
 
 public class UIShopLayer : BaseLayer
 {
@@ -17,6 +18,7 @@ public class UIShopLayer : BaseLayer
     private int _refrashCount = 0;
     private int _itemsCount = 4;
     public List<UIShopItem> _items = new List<UIShopItem>();
+    private ShopShip _ship;
     private AsyncReactiveProperty<Player> _player;
     private UIPlayerInventory _playerInventory;
     private GameData _gameData;
@@ -26,7 +28,8 @@ public class UIShopLayer : BaseLayer
     public bool Lock { get; private set; } = false;
 
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData,ItemsDB itemsDB)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData,
+        ItemsDB itemsDB)
     {
         _player = player;
         _gameData = gameData;

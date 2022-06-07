@@ -35,6 +35,7 @@ public class UIPlayerInventory : BaseLayer
     {
         inventory.ItemAdded += uiInventory.AddItem;
         inventory.ItemRemoved += uiInventory.RemoveItem;
+        inventory.SlotAdded += uiInventory.AddSlot;
         uiInventory.SetRealInventory(inventory);
         uiInventory.PlayerInventory = this;
     }
