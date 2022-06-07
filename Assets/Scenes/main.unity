@@ -1155,6 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobSpawner: {fileID: 309}
   _shopShip: {fileID: 2056462216}
+  _lifeSupportTower: {fileID: 1934586666}
 --- !u!114 &1111731683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,9 +2187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb3476f40460bc4aa62950eb3160de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 30
   _supportDrainSpeed: 0.25
   _lineRenderer: {fileID: 1934586669}
+  _stepValue: 2
 --- !u!4 &1934586668
 Transform:
   m_ObjectHideFlags: 0
