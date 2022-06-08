@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EnemyPerksDB
+public class EnemyPerksDB
 {
-    public static IPerk Create(PerkType perkType)
+    public IPerk Create(PerkType perkType)
     {
         switch (perkType)
         {

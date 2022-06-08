@@ -126,9 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainObj: {fileID: 1328156946685216}
   _rayAnim: {fileID: 455661868669097772}
+  _particleSystem: {fileID: 0}
   RaySounds:
-  - {fileID: 8300000, guid: dabbadc1906ac70409cda4d34de47c28, type: 3}
-  - {fileID: 8300000, guid: 9194072317ea321458b235f979b9a6b3, type: 3}
+  - {fileID: 8300000, guid: 6394941388670a24e8fb7723ac9ff1a2, type: 3}
+  - {fileID: 8300000, guid: 4d2454152d339db418a67e53002712e0, type: 3}
 --- !u!82 &82091141565201154
 AudioSource:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1e4c7f862e277114fba247dedec7df86, type: 3}
+  m_audioClip: {fileID: 8300000, guid: eb15b4c527f33dc49bbfef67b1d7659b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 0.7

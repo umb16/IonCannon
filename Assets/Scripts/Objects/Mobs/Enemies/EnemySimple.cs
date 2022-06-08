@@ -50,7 +50,7 @@ public class EnemySimple : Mob
         base.Start();
         foreach (var perk in _startPerks)
         {
-            AddPerk(EnemyPerksDB.Create(perk));
+            AddPerk(_enemyPerksDB.Create(perk));
         }
     }
 

@@ -26,6 +26,9 @@ public class Mob : MonoBehaviour, IMob
     private Dictionary<PerkType, List<IPerk>> _perks = new Dictionary<PerkType, List<IPerk>>();
     public StandartStatsCollection StatsCollection { get; protected set; }
     public DamageController DamageController { get; private set; }
+
+    protected EnemyPerksDB _enemyPerksDB;
+
     public GameData GameData { get; private set; }
     public Player Player { get; private set; }
     public bool IsReady { get; private set; }
@@ -46,8 +49,10 @@ public class Mob : MonoBehaviour, IMob
     public Inventory Inventory { get; private set; } = new Inventory();
 
     [Inject]
-    private void Construct(DamageController damageController, GameData gameData, AsyncReactiveProperty<Player> player, MobSpawner mobSpawner)
+    private void Construct(DamageController damageController, GameData gameData, 
+        AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, EnemyPerksDB enemyPerksDB)
     {
+        _enemyPerksDB = enemyPerksDB;
         GameData = gameData;
         DamageController = damageController;
         Player = player;
