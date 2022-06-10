@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ public class EnemySimple : Mob
     [SerializeField] bool _fixedAnimSpeed;
     private Timer _damageTimer;
     private Timer _dieTimer;
+    private Action BehaviourMethod;
     protected override void Awake()
     {
         base.Awake();
@@ -120,12 +122,21 @@ public class EnemySimple : Mob
         }
     }
 
-    protected override void Update()
+    private void StandartBehaviour()
     {
-        base.Update();
         if (Player != null && Player.transform != null)
         {
             MoveTo(Player.transform.position);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (BehaviourMethod == null)
+            StandartBehaviour();
+        else
+            BehaviourMethod.Invoke();
+        
     }
 }

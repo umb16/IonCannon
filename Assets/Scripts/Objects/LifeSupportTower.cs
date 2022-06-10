@@ -52,6 +52,11 @@ namespace SPVD.LifeSupport
             AddCircle(Vector3.zero, 30);
         }
 
+        public bool InRadius(Vector2 point)
+        {
+           return _circles.Any(x => (point - x.pos).sqrMagnitude < x.radius * x.radius);
+        }
+
         public void AddCircle(Vector2 center, float radius)
         {
             _circles.Add(new Circle(center, radius));

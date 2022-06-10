@@ -119,8 +119,6 @@ public class ShopShip : MonoBehaviour
         _landingTimer = new Timer(2)
             .SetUpdate(x =>
             {
-                /*if (x != 0)
-                    _forceField.SetActive(false);*/
                 transform.position = Vector3.Lerp(_newPosition, _startPosition, x);
             });
         //.SetEnd(() => gameObject.SetActive(false));

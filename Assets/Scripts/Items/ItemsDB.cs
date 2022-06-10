@@ -117,6 +117,7 @@ public class ItemsDB
         {
             Type = ItemType.BatteryPlus,
             Name = "Батарея+",
+            UpgradeCount = 1,
             Description = "Длинна пути +75%",
             Cost = 75,
             Icon = AddressKeys.Ico_Battery,
@@ -136,6 +137,7 @@ public class ItemsDB
         {
             Type = ItemType.BatteryPlusPlus,
             Name = "Батарея++",
+            UpgradeCount = 2,
             Description = "Длинна пути +150%",
             Cost = 75,
             Icon = AddressKeys.Ico_Battery,
@@ -352,7 +354,7 @@ public class ItemsDB
     {
         return new Item()
         {
-            UpgradeCount = 1,
+            UpgradeCount = 2,
             Type = ItemType.DeliveryDevicePlusPlus,
             Name = "Устройство доставки++",
             Description = "Раз в 10 секунд доставляет с орбиты ящик со взравчаткой",
@@ -499,7 +501,7 @@ public class ItemsDB
             UpgradeCount = 2,
             Type = ItemType.PowerControllerPlusPlus,
             NotForSale = true,
-            Name = "Контроллер питания+",
+            Name = "Контроллер питания++",
             Description = "Урон +60%\nДлинна пути +60%",
             Cost = 500,
             Icon = AddressKeys.Ico_PowerController,
