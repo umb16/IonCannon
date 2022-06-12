@@ -5,6 +5,11 @@ namespace Umb16.Extensions
     public static class Vector3Extensions
     {
 
+        public static Vector3 GetRandomPointInRadius(this Vector3 v, float radius)
+        {
+            return (new Vector3(Random.value - .5f, Random.value - .5f)).normalized * radius * Random.value + v;
+        }
+
         public static Vector3 Get2D(this Vector3 v)
         {
             return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor);

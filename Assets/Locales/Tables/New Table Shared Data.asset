@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: New Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: New Table
+  m_TableCollectionNameGuidString: 27da57023589cab4f890659cf2deba50
+  m_Entries:
+  - m_Id: 2849082470400
+    m_Key: DELIVERY_DEVICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278549534371840
+    m_Key: PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278631763701760
+    m_Key: NONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278701330427904
+    m_Key: MOVE_SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278831106387968
+    m_Key: RAY_SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278939885662208
+    m_Key: RAY_PATH_LENGHT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279187295072256
+    m_Key: RAY_CHARGE_DELAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279477872259072
+    m_Key: RAY_DAMAGE_AREA_RADIUS
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2931137736370552856
+  references:
+    version: 2
+    RefIds:
+    - rid: 2931137736370552856
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1654967919055

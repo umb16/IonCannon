@@ -38,6 +38,7 @@ public static class StatsCollectionsDB
             (StatType.Score, new ComplexStat(1)),
             (StatType.Size, new ComplexStat(1)),
             (StatType.Damage, new ComplexStat(0)),
+            (StatType.Defence, new ComplexStat(0)),
          });
     }
 }

@@ -4,12 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Umb16.Extensions;
 using UnityEngine;
-
+[SerializeField]
 public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
 {
     [SerializeField] LineRenderer _lineRenderer;
     [SerializeField] GameObject _icon;
-    private float _radius = 1;
+    private float _radius = 3;
     private int _vertexCount = 50;
     private bool _needUpdate = true;
     private IDisposable _blinkTimer;
@@ -64,7 +64,10 @@ public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
         transform.position = position;
         transform.To2DPos();
     }
-
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
     public void SetRadius(float radius)
     {
         _needUpdate = true;

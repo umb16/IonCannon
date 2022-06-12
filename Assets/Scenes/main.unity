@@ -390,7 +390,7 @@ MonoBehaviour:
   teleportation: 0
   Stop: 0
   MobPrafab:
-  - m_AssetGUID: 1ee326539f9f0634dadb466b9864bd73
+  - m_AssetGUID: b917e65c83d734245a1f8c6a1bb17a4f
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

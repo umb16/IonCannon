@@ -8,6 +8,7 @@ public class EnemySimple : Mob
     [SerializeField] private DestroyType _destroyType = DestroyType.FadeOut;
     [SerializeField] private float _hp = 1;
     [SerializeField] private float _speed = 1;
+    [SerializeField] private float _defence = 0;
     [SerializeField] private float _score = 1;
     [SerializeField] private float _size = 1;
     [SerializeField] private float _damagePerSecond = 1;
@@ -28,6 +29,7 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
         StatsCollection.SetStat(StatType.Damage, _damagePerSecond);
+        StatsCollection.SetStat(StatType.Defence, _defence);
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) =>
         {
@@ -35,7 +37,10 @@ public class EnemySimple : Mob
                 _animator.speed = x.Ratio;
         };
     }
-
+    public void SetBehaviour(Action action)
+    {
+        BehaviourMethod = action;
+    }
     public override void ReceiveDamage(DamageMessage message)
     {
         OnReceiveamage();

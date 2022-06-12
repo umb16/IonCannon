@@ -121,6 +121,7 @@ MonoBehaviour:
   _destroyType: 2
   _hp: 10
   _speed: 1.5
+  _defence: 0
   _score: 1
   _size: 1
   _damagePerSecond: 10

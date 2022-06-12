@@ -20,6 +20,7 @@ public class Mob : MonoBehaviour, IMob
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
+    public ComplexStat Defence { get; protected set; }
 
     public bool IsDead => HP == null || HP.Value <= 0;
 
@@ -33,7 +34,7 @@ public class Mob : MonoBehaviour, IMob
     public Player Player { get; private set; }
     public bool IsReady { get; private set; }
 
-    public Vector3 Position => transform.position;
+    public Vector3 Position => transform?.position??Vector3.zero;
     public Vector3 GroundCenterPosition => _groundCenterPoint.position;
     public List<IMob> AllMobs => Spawner.Mobs;
 
@@ -133,6 +134,10 @@ public class Mob : MonoBehaviour, IMob
         if (IsDead)
             return;
         _stunEndTime = message.StunTime + Time.time;
+        if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)
+        {
+            message.Damage = Mathf.Max(1, message.Damage - Defence.Value);
+        }
         DamageController.SendDamage(message);
         HP.AddBaseValue(-message.Damage);
         if (IsDead)
@@ -151,6 +156,11 @@ public class Mob : MonoBehaviour, IMob
     {
         _moveTarget = target;
         _stopped = false;
+    }
+
+    public void StopMove()
+    {
+        _stopped = true;
     }
 
     public void OnDie()
@@ -179,6 +189,7 @@ public class Mob : MonoBehaviour, IMob
     {
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
+        Defence = StatsCollection.GetStat(StatType.Defence);
         var size = StatsCollection.GetStat(StatType.Size);
         transform.localScale = Vector3.one * size.Value;
         transform.To2DPos();

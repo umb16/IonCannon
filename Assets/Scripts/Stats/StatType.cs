@@ -16,4 +16,6 @@ public enum StatType
     Damage = 11,
     PickupRadius = 12,
     RayError = 13,
+
+    Defence = 14,
 }
