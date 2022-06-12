@@ -44,7 +44,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 279477872259072
-    m_Key: RAY_DAMAGE_AREA_RADIUS
+    m_Key: RAY_WIDTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280054408704000
+    m_Key: RAY_DAMAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280148335947776
+    m_Key: LVL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280234981879808
+    m_Key: PRESS_SPACE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280394986188800
+    m_Key: COMBO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280452855001088
+    m_Key: IONIZATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280573957140480
+    m_Key: BUY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280655330832384
+    m_Key: LOADING
     m_Metadata:
       m_Items: []
   m_Metadata:

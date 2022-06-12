@@ -46,6 +46,14 @@ MonoBehaviour:
     m_Localized: Ray charge delay
     m_Metadata:
       m_Items: []
+  - m_Id: 279477872259072
+    m_Localized: Ray width
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280655330832384
+    m_Localized: Loading
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
