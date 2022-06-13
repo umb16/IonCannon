@@ -8,16 +8,17 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class ShopShip : MonoBehaviour
 {
-    [SerializeField] TMP_Text _countdownText;
-    [SerializeField] TMP_Text _hintText;
-    [SerializeField] Collider2D _collider;
-    [SerializeField] GameObject _forceField;
-    [SerializeField] StandartZoneIndicator _zoneIndiacator;
-    [SerializeField] Animator _animator;
-    [SerializeField] GameObject _dust;
+    [SerializeField] private TMP_Text _countdownText;
+    [SerializeField] private TMP_Text _hintText;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private GameObject _forceField;
+    [SerializeField] private StandartZoneIndicator _zoneIndiacator;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _dust;
 
     private AsyncReactiveProperty<int> _countDown = new AsyncReactiveProperty<int>(99);
     private int _countdownValue = 30;
