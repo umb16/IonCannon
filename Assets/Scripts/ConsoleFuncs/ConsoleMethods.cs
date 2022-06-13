@@ -30,9 +30,6 @@ public class ConsoleMethods : MonoBehaviour
     {
         // OnGUIConsole.Instance.AddMethod("AddStat", (Action<StatType, float>)AddStat);
         //OnGUIConsole.Instance.AddMethod("SpawnerStop", (Action<int>)SpawnerStop);
-        OnGUIConsole.Instance.AddMethod("KillUnderCursor", (Action)KillUnderCursor);
-        OnGUIConsole.Instance.AddMethod("SpawnMob", (Action<string>)SpawnMob);
-        OnGUIConsole.Instance.AddMethod("AddWave", (Action)AddWave);
     }
 
 
