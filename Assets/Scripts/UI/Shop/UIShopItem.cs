@@ -77,5 +77,9 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData) => PointerEnter?.Invoke(eventData);
 
-    public void OnPointerExit(PointerEventData eventData) => PointerExit?.Invoke(eventData);
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!eventData.fullyExited) return;
+        PointerExit?.Invoke(eventData);
+    }
 }

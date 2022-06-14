@@ -157,8 +157,9 @@ public class ShopShip : MonoBehaviour
             {
                 _zoneIndiacator.SetBlink(.5f);
                 _targetZoneSetted = true;
-                _newPosition = _player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value);
-                _newPosition.z = 1;
+                _newPosition = _newPosition = (_player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
+                //Vector3 indicatorPosition = _newPosition;
+                //indicatorPosition.z = 1;
                 _zoneIndiacator.gameObject.SetActive(true);
                 _zoneIndiacator.SetPosition(_newPosition);
 

@@ -23,7 +23,12 @@ public class ExpandInventoryButton : MonoBehaviour
         player.Where(x => x != null).ForEachAsync(x => x.Gold.ValueChanged += CheckButtonStatus);
         _button.onClick.AddListener(OnExpandButtonClick);
         gameData.GameStateChanged += GameStateChanged;
-    }   
+    }
+
+    private void OnEnable()
+    {
+        CheckButtonStatus(_player.Value.Gold);
+    }
 
     private void GameStateChanged(GameState state)
     {

@@ -79,7 +79,7 @@ public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
             {
                 Vector3 newPoint = Vector3.up.DiamondRotateXY(4.0f / _vertexCount * i);
                 newPoint *= _radius;
-                _lineRenderer.SetPosition(i, newPoint.Get2D());
+                _lineRenderer.SetPosition(i, newPoint.Get2D(1));
             }
         }
     }
