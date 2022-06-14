@@ -7,6 +7,7 @@ public class Controls : MonoBehaviour
 {
     private UIPlayerInventory _playerInventory;
     private UIPlayerStats _playerStats;
+    private SoundsMenuLayer _soundsMenu;
     private GameData _gameData;
     private UIShopLayer _shop;
 
@@ -20,6 +21,7 @@ public class Controls : MonoBehaviour
     {
         _playerStats = BaseLayer.ForceGet<UIPlayerStats>();
         _playerInventory = BaseLayer.ForceGet<UIPlayerInventory>();
+        _soundsMenu = BaseLayer.ForceGet<SoundsMenuLayer>();
         
         _shop = BaseLayer.ForceGet<UIShopLayer>();
     }
@@ -40,6 +42,7 @@ public class Controls : MonoBehaviour
             {
                 BaseLayer.Show<UIPlayerInventory>();
                 BaseLayer.Show<UIPlayerStats>();
+                BaseLayer.Show<SoundsMenuLayer>();
                 _gameData.State = GameState.Inventory;
             }
             else
@@ -47,6 +50,7 @@ public class Controls : MonoBehaviour
             {
                 _playerInventory.Hide();
                 _playerStats.Hide();
+                _soundsMenu.Hide();
                 _gameData.State = GameState.Gameplay;
             }
         }

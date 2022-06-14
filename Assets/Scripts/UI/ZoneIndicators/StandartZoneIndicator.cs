@@ -59,11 +59,6 @@ public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
         throw new System.NotImplementedException();
     }
 
-    public void SetPosition(Vector2 position)
-    {
-        transform.position = position;
-        transform.To2DPos();
-    }
     public void SetPosition(Vector3 position)
     {
         transform.position = position;

@@ -10,9 +10,9 @@ namespace Umb16.Extensions
             return (new Vector3(Random.value - .5f, Random.value - .5f)).normalized * radius * Random.value + v;
         }
 
-        public static Vector3 Get2D(this Vector3 v)
+        public static Vector3 Get2D(this Vector3 v, float zShift = 0)
         {
-            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor);
+            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor + zShift);
         }
         public static bool EqualsWithThreshold(this Vector3 v1, Vector3 v2, float threshold)
         {
