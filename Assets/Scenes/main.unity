@@ -2656,7 +2656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8febc94ca96be84392bb566a7f25cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoExecPath: OnGuiConsoleConfigs
 --- !u!4 &2014648523
 Transform:
   m_ObjectHideFlags: 0
