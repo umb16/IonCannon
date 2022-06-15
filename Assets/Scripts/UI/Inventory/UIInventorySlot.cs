@@ -61,6 +61,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             _upgradeLable.SetActive(true);
             _upgradeText.text = new string('+', item.UpgradeCount);
         }
+        else
+        {
+            _upgradeLable.SetActive(false);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData) => PointerEnter?.Invoke(eventData);

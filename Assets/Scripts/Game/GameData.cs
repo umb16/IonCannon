@@ -19,9 +19,15 @@ public class GameData
         set
         {
             if (value == GameState.Gameplay)
+            {
                 Time.timeScale = 1;
+                AudioListener.pause = false;
+            }
             else
+            {
                 Time.timeScale = 0;
+                AudioListener.pause = true;
+            }
             GameStateChanged?.Invoke(value);
             _state = value;
         }

@@ -1,82 +1,7 @@
 fileFormatVersion: 2
-guid: 0f68e262ae4de254082bb83858297dbe
+guid: f9fe9cf3f0b05464395ef60d5d10976d
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6446881467628614620
-    second: Enemies_05000
-  - first:
-      213: 4586219361235470681
-    second: Enemies_05001
-  - first:
-      213: 5517896319435232203
-    second: Enemies_05002
-  - first:
-      213: 1152856311272408405
-    second: Enemies_05003
-  - first:
-      213: -6188069433652805051
-    second: Enemies_05004
-  - first:
-      213: 1250740904644143081
-    second: Enemies_05005
-  - first:
-      213: 8594066287472613415
-    second: Enemies_05006
-  - first:
-      213: 4269323613427803372
-    second: Enemies_05007
-  - first:
-      213: 2263138834845435231
-    second: Enemies_05008
-  - first:
-      213: 9057437713414165114
-    second: Enemies_05009
-  - first:
-      213: 2221327775581115700
-    second: Enemies_05010
-  - first:
-      213: -3171157382904699065
-    second: Enemies_05011
-  - first:
-      213: -4739860728365608220
-    second: Enemies_05012
-  - first:
-      213: -5947061682001085305
-    second: Enemies_05013
-  - first:
-      213: 5843064039215071460
-    second: Enemies_05014
-  - first:
-      213: -3818843209091266020
-    second: Enemies_05015
-  - first:
-      213: -7113641730361516598
-    second: Enemies_05016
-  - first:
-      213: -7489967615922789375
-    second: Enemies_05017
-  - first:
-      213: -4330355343993546379
-    second: Enemies_05018
-  - first:
-      213: 6801151029050127681
-    second: Enemies_05019
-  - first:
-      213: -7606765809755207780
-    second: Enemies_05020
-  - first:
-      213: 483568939437870178
-    second: Enemies_05021
-  - first:
-      213: -249805792339817445
-    second: Enemies_05022
-  - first:
-      213: -9102008535629349266
-    second: Enemies_05023
-  - first:
-      213: -8959282455883456632
-    second: Enemies_05024
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -155,7 +80,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemies_05000
+      name: Enemy_05000
       rect:
         serializedVersion: 2
         x: 1
@@ -169,14 +94,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd37d0ba98ce77950800000000000000
-      internalID: 6446881467628614620
+      spriteID: 6cbbe95e6318ca7d0800000000000000
+      internalID: -2905805586780210234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05001
+      name: Enemy_05001
       rect:
         serializedVersion: 2
         x: 259
@@ -190,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9598570d53685af30800000000000000
-      internalID: 4586219361235470681
+      spriteID: 85da7cf728c4d7310800000000000000
+      internalID: 1404362782182714712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05002
+      name: Enemy_05002
       rect:
         serializedVersion: 2
         x: 517
@@ -211,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc35f5ba771839c40800000000000000
-      internalID: 5517896319435232203
+      spriteID: c392cc7fde6ae3540800000000000000
+      internalID: 4989608978167900476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05003
+      name: Enemy_05003
       rect:
         serializedVersion: 2
         x: 775
@@ -232,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 555857ef4b4cfff00800000000000000
-      internalID: 1152856311272408405
+      spriteID: af8a65f5a4ca6a0b0800000000000000
+      internalID: -5717693241473193734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05004
+      name: Enemy_05004
       rect:
         serializedVersion: 2
         x: 1033
@@ -253,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5420ca9c2af8f1aa0800000000000000
-      internalID: -6188069433652805051
+      spriteID: a93c9dfde5e2058c0800000000000000
+      internalID: -4012656282969717862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05005
+      name: Enemy_05005
       rect:
         serializedVersion: 2
         x: 1
@@ -274,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e76d5fd9368b5110800000000000000
-      internalID: 1250740904644143081
+      spriteID: f1d4a5e36d4d8ed00800000000000000
+      internalID: 1002284933724130591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05006
+      name: Enemy_05006
       rect:
         serializedVersion: 2
         x: 259
@@ -295,14 +220,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72817f051c1444770800000000000000
-      internalID: 8594066287472613415
+      spriteID: 5023b4cd99054f440800000000000000
+      internalID: 4968684910652633605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05007
+      name: Enemy_05007
       rect:
         serializedVersion: 2
         x: 517
@@ -316,14 +241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce42d81e43faf3b30800000000000000
-      internalID: 4269323613427803372
+      spriteID: 175916dabb445a920800000000000000
+      internalID: 3000880299570730353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05008
+      name: Enemy_05008
       rect:
         serializedVersion: 2
         x: 775
@@ -337,14 +262,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f558a5897c8486f10800000000000000
-      internalID: 2263138834845435231
+      spriteID: 023afa7d84ffc28e0800000000000000
+      internalID: -1716716669613661408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05009
+      name: Enemy_05009
       rect:
         serializedVersion: 2
         x: 1033
@@ -358,14 +283,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a72174bac9b72bd70800000000000000
-      internalID: 9057437713414165114
+      spriteID: fbab242d77b7eba60800000000000000
+      internalID: 7691720968154299071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05010
+      name: Enemy_05010
       rect:
         serializedVersion: 2
         x: 1
@@ -379,14 +304,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4359831c7ddb3de10800000000000000
-      internalID: 2221327775581115700
+      spriteID: 10c193450d01ae280800000000000000
+      internalID: -9013373217276355583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05011
+      name: Enemy_05011
       rect:
         serializedVersion: 2
         x: 259
@@ -400,14 +325,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 747ab196929cdf3d0800000000000000
-      internalID: -3171157382904699065
+      spriteID: c25538083d9684c50800000000000000
+      internalID: 6649681206927643948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05012
+      name: Enemy_05012
       rect:
         serializedVersion: 2
         x: 517
@@ -421,14 +346,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e291f8c7c1a83eb0800000000000000
-      internalID: -4739860728365608220
+      spriteID: e3a246cb7218486d0800000000000000
+      internalID: -2989122245002778050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05013
+      name: Enemy_05013
       rect:
         serializedVersion: 2
         x: 775
@@ -442,14 +367,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78cfcfab8eac77da0800000000000000
-      internalID: -5947061682001085305
+      spriteID: 631de6893529d4a60800000000000000
+      internalID: 7659939428964421942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05014
+      name: Enemy_05014
       rect:
         serializedVersion: 2
         x: 1033
@@ -463,14 +388,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e0064929cbb61150800000000000000
-      internalID: 5843064039215071460
+      spriteID: 249f5ebe5dce4d6d0800000000000000
+      internalID: -2966485851000407742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05015
+      name: Enemy_05015
       rect:
         serializedVersion: 2
         x: 1
@@ -484,14 +409,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1ac33d955eb00bc0800000000000000
-      internalID: -3818843209091266020
+      spriteID: ead68f98e38e9fde0800000000000000
+      internalID: -1298751662219301458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05016
+      name: Enemy_05016
       rect:
         serializedVersion: 2
         x: 259
@@ -505,14 +430,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: acd18623984474d90800000000000000
-      internalID: -7113641730361516598
+      spriteID: 1fa822173d0c1fd30800000000000000
+      internalID: 4463560720069593841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05017
+      name: Enemy_05017
       rect:
         serializedVersion: 2
         x: 517
@@ -526,14 +451,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1042eb9032a4e0890800000000000000
-      internalID: -7489967615922789375
+      spriteID: 899a5c999ea527370800000000000000
+      internalID: 8318811421060475288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05018
+      name: Enemy_05018
       rect:
         serializedVersion: 2
         x: 775
@@ -547,14 +472,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 579dc0202cc77e3c0800000000000000
-      internalID: -4330355343993546379
+      spriteID: 0f0e9e99929c42400800000000000000
+      internalID: 298584655826378992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05019
+      name: Enemy_05019
       rect:
         serializedVersion: 2
         x: 1033
@@ -568,14 +493,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 145b05ea3da826e50800000000000000
-      internalID: 6801151029050127681
+      spriteID: 65384454bc6f607b0800000000000000
+      internalID: -5258244162007563434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05020
+      name: Enemy_05020
       rect:
         serializedVersion: 2
         x: 1
@@ -589,14 +514,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9744f36cc65f6690800000000000000
-      internalID: -7606765809755207780
+      spriteID: 08e0460635c4ec070800000000000000
+      internalID: 8128518298433490560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05021
+      name: Enemy_05021
       rect:
         serializedVersion: 2
         x: 259
@@ -610,14 +535,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26c4b9b636bf5b600800000000000000
-      internalID: 483568939437870178
+      spriteID: b27aef66c107592c0800000000000000
+      internalID: -4425507791532284117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05022
+      name: Enemy_05022
       rect:
         serializedVersion: 2
         x: 517
@@ -631,14 +556,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1c00c494f2888cf0800000000000000
-      internalID: -249805792339817445
+      spriteID: 4759a1c2e8e7e0a80800000000000000
+      internalID: -8498716297711151756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05023
+      name: Enemy_05023
       rect:
         serializedVersion: 2
         x: 775
@@ -652,14 +577,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6e3d3b167b2fa180800000000000000
-      internalID: -9102008535629349266
+      spriteID: 697b05e8967462a70800000000000000
+      internalID: 8801801040427005846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemies_05024
+      name: Enemy_05024
       rect:
         serializedVersion: 2
         x: 1033
@@ -673,8 +598,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88f5dae131c3aa380800000000000000
-      internalID: -8959282455883456632
+      spriteID: 5435c0489b4a23e60800000000000000
+      internalID: 7940590209698911045
       vertices: []
       indices: 
       edges: []
@@ -690,31 +615,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemies_05017: -7489967615922789375
-      Enemies_05001: 4586219361235470681
-      Enemies_05002: 5517896319435232203
-      Enemies_05010: 2221327775581115700
-      Enemies_05005: 1250740904644143081
-      Enemies_05019: 6801151029050127681
-      Enemies_05008: 2263138834845435231
-      Enemies_05022: -249805792339817445
-      Enemies_05021: 483568939437870178
-      Enemies_05007: 4269323613427803372
-      Enemies_05014: 5843064039215071460
-      Enemies_05024: -8959282455883456632
-      Enemies_05003: 1152856311272408405
-      Enemies_05015: -3818843209091266020
-      Enemies_05006: 8594066287472613415
-      Enemies_05000: 6446881467628614620
-      Enemies_05004: -6188069433652805051
-      Enemies_05012: -4739860728365608220
-      Enemies_05009: 9057437713414165114
-      Enemies_05011: -3171157382904699065
-      Enemies_05013: -5947061682001085305
-      Enemies_05023: -9102008535629349266
-      Enemies_05016: -7113641730361516598
-      Enemies_05020: -7606765809755207780
-      Enemies_05018: -4330355343993546379
+      Enemy_05021: -4425507791532284117
+      Enemy_05005: 1002284933724130591
+      Enemy_05007: 3000880299570730353
+      Enemy_05015: -1298751662219301458
+      Enemy_05012: -2989122245002778050
+      Enemy_05001: 1404362782182714712
+      Enemy_05020: 8128518298433490560
+      Enemy_05017: 8318811421060475288
+      Enemy_05010: -9013373217276355583
+      Enemy_05024: 7940590209698911045
+      Enemy_05018: 298584655826378992
+      Enemy_05016: 4463560720069593841
+      Enemy_05000: -2905805586780210234
+      Enemy_05003: -5717693241473193734
+      Enemy_05011: 6649681206927643948
+      Enemy_05023: 8801801040427005846
+      Enemy_05022: -8498716297711151756
+      Enemy_05004: -4012656282969717862
+      Enemy_05013: 7659939428964421942
+      Enemy_05019: -5258244162007563434
+      Enemy_05009: 7691720968154299071
+      Enemy_05002: 4989608978167900476
+      Enemy_05006: 4968684910652633605
+      Enemy_05014: -2966485851000407742
+      Enemy_05008: -1716716669613661408
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

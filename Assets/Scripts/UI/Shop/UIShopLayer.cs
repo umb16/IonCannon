@@ -63,7 +63,6 @@ public class UIShopLayer : BaseLayer
     {
         _playerInventory = Show<UIPlayerInventory>();
         _playerStats = Show<UIPlayerStats>();
-        Time.timeScale = 0;
         await UniTask.WaitUntil(()=>_gameData != null);   
         _gameData.State = GameState.InShop;
         _refrashButton.interactable = true;
@@ -98,10 +97,10 @@ public class UIShopLayer : BaseLayer
     public void Close()
     {
         OnClosed?.Invoke();
-        Time.timeScale = 1;
         Hide();
         _playerInventory.Hide();
         _playerStats.Hide();
+        Time.timeScale = 1;
         new Timer(.1f).SetEnd(() => _gameData.State = GameState.Gameplay);
     }
 
