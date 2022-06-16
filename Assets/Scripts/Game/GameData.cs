@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public event Action<GameState> GameStateChanged;
+    public event Action<int> WaveChanged;
     public event Action GameStarted;
     public int Wave = 0;
     public float StartGameTime;
@@ -45,11 +46,13 @@ public class GameData
     public void AddWave()
     {
         Wave++;
+        WaveChanged?.Invoke(Wave);
     }
 
     public void Reset()
     {
         Wave = 0;
+        WaveChanged?.Invoke(Wave);
         //GameStateChanged = null;
     }
 }

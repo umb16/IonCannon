@@ -30,6 +30,7 @@ public class WaveData
     public void Reset()
     {
         _currentIndex = 0;
+        IsEnd = false;
     }
 
     public int GetNext()

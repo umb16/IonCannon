@@ -11,11 +11,6 @@ using Debug = UnityEngine.Debug;
 
 namespace SPVD.LifeSupport
 {
-    public record Circle(Vector2 pos, float radius)
-    {
-        public List<Vector2> Points;
-        public float MedianDistance;
-    }
     public class LifeSupportTower : MonoBehaviour
     {
         [SerializeField] float _supportDrainSpeed = .25f;
@@ -50,6 +45,22 @@ namespace SPVD.LifeSupport
         {
             _circles.Clear();
             AddCircle(Vector3.zero, 30);
+        }
+
+        public Vector2 GetNerestPoint(Vector2 point)
+        {
+            float bestDistance = float.PositiveInfinity;
+            Vector2 bestPoint = Vector2.zero;
+            foreach (var point2 in _points)
+            {
+                var distance = (point - point2).sqrMagnitude;
+                if(distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestPoint = point2;
+                }    
+            }
+            return bestPoint;
         }
 
         public bool InRadius(Vector2 point)
@@ -195,6 +206,8 @@ namespace SPVD.LifeSupport
 
             
         }
+
+        
 
         void Update()
         {

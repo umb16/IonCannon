@@ -9,6 +9,7 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 using UnityEngine.Localization;
+using SPVD.LifeSupport;
 
 public class ShopShip : MonoBehaviour
 {
@@ -31,12 +32,14 @@ public class ShopShip : MonoBehaviour
     private CooldownIndicator _shopIndicator;
     private float _lastArrival;
     private AsyncReactiveProperty<Player> _player;
+    private LifeSupportTower _lifeSupportTower;
     private float _cooldownTime = 60;
     private float TimeToArrival => _cooldownTime - (Time.time - _lastArrival);
     private bool _targetZoneSetted = false;
 
     [Inject]
-    private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData, AsyncReactiveProperty<Player> player)
+    private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData,
+        AsyncReactiveProperty<Player> player, LifeSupportTower lifeSupportTower)
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
@@ -44,6 +47,7 @@ public class ShopShip : MonoBehaviour
         _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
+        _lifeSupportTower = lifeSupportTower;
         _shopIndicator = await cooldownsManager.AddIndiacator(AddressKeys.Ico_Ship);
         gameData.GameStateChanged += GameStateChanged;
 
@@ -158,8 +162,6 @@ public class ShopShip : MonoBehaviour
                 _zoneIndiacator.SetBlink(.5f);
                 _targetZoneSetted = true;
                 _newPosition = _newPosition = (_player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
-                //Vector3 indicatorPosition = _newPosition;
-                //indicatorPosition.z = 1;
                 _zoneIndiacator.gameObject.SetActive(true);
                 _zoneIndiacator.SetPosition(_newPosition);
 
