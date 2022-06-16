@@ -125,7 +125,6 @@ MonoBehaviour:
   _hp: 90
   _speed: 0.8
   _defence: 0
-  _score: 1
   _size: 1
   _damagePerSecond: 10
   _noTouchDamage: 0
@@ -135,6 +134,7 @@ MonoBehaviour:
     GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
       type: 3}
   _fixedAnimSpeed: 0
+  _playOnDie: {fileID: 8300000, guid: 2c25dfc06f44de247a1e953b149c3fdb, type: 3}
   _firePoint: {fileID: 1958498790453295816}
   _projectileInstance: {fileID: 8222411617839267089, guid: 0bbb335db78e97d4f95588f58a57ba30,
     type: 3}

@@ -12,10 +12,12 @@ public class WaveData
     public int UnitsLeft => _units.Length - _currentIndex;
     public int UnitsCount => _units.Length;
     public bool IsEnd { get; private set; }
+    public Vector2? SpawnDelay { get; private set; }
 
-    public WaveData((int id, int count)[] units, float waveTime, bool shuffle = true)
+    public WaveData((int id, int count)[] units, bool shuffle = true, Vector2? spawnDelay = null)
     {
-        WaveTime = waveTime;
+        //WaveTime = waveTime;
+        SpawnDelay = spawnDelay;
         System.Random rnd = new System.Random();
         List<int> newUnitsList = new List<int>();
         foreach (var unit in units)

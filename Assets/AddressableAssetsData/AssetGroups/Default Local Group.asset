@@ -131,7 +131,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: b917e65c83d734245a1f8c6a1bb17a4f
-    m_Address: Assets/Res/Prefabs/Mobs/Artillery.prefab
+    m_Address: Mob_Artillery
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 248eee0d1f895a84e9476c3408574ea3

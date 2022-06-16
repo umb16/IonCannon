@@ -93,7 +93,6 @@ MonoBehaviour:
   _hp: 15
   _speed: 2.4
   _defence: 0
-  _score: 1
   _size: 1
   _damagePerSecond: 15
   _noTouchDamage: 0
@@ -103,6 +102,7 @@ MonoBehaviour:
     GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
       type: 3}
   _fixedAnimSpeed: 0
+  _playOnDie: {fileID: 8300000, guid: 94e3be832fdf3fd4eba526380bc68606, type: 3}
 --- !u!114 &5588436157411104003
 MonoBehaviour:
   m_ObjectHideFlags: 0
