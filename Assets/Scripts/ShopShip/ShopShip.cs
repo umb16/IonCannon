@@ -36,6 +36,9 @@ public class ShopShip : MonoBehaviour
     private float _cooldownTime = 60;
     private float TimeToArrival => _cooldownTime - (Time.time - _lastArrival);
     private bool _targetZoneSetted = false;
+    private bool _targetZoneShearchStart = false;
+
+    public bool Landed => _collider.enabled;
 
     [Inject]
     private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData,
@@ -117,6 +120,7 @@ public class ShopShip : MonoBehaviour
         _forceField.SetActive(false);
         _collider.enabled = false;
         _targetZoneSetted = false;
+        _targetZoneShearchStart = false;
         _zoneIndiacator.gameObject.SetActive(false);
         //_forceField.transform.localScale = Vector3.one * 3;
         _countdownText.gameObject.SetActive(false);
@@ -157,15 +161,36 @@ public class ShopShip : MonoBehaviour
         if (_gameData.State == GameState.Gameplay)
         {
             _shopIndicator.SetTime(TimeToArrival, _cooldownTime);
-            if (TimeToArrival <= 5 && _targetZoneSetted == false)
+            if (TimeToArrival <= 10 && !_targetZoneSetted)
             {
-                _zoneIndiacator.SetBlink(.5f);
-                _targetZoneSetted = true;
-                _newPosition = _newPosition = (_player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
-                _zoneIndiacator.gameObject.SetActive(true);
-                _zoneIndiacator.SetPosition(_newPosition);
+                Vector3 specialPos;
+                if (!_targetZoneShearchStart)
+                {
+                    //_zoneIndiacator.SetBlink(.5f);
+                    _zoneIndiacator.SetRadius(2);
+                    _zoneIndiacator.gameObject.SetActive(true);
+                    _targetZoneShearchStart = true;
+                    specialPos = ((Vector3)_lifeSupportTower.GetNerestPoint(_player.Value.Position)).Get2D();
 
+                }
+                else
+                {
+                    specialPos = Vector3.Lerp(_zoneIndiacator.transform.position, ((Vector3)_lifeSupportTower.GetNerestPoint(_player.Value.Position)).Get2D(), Time.deltaTime*2);
+                }
+                _zoneIndiacator.SetPosition(specialPos);
+                if (TimeToArrival <= 5 && _targetZoneSetted == false)
+                {
+                    _zoneIndiacator.SetRadius(5);
+                    _zoneIndiacator.SetBlink(.5f);
+                    _targetZoneSetted = true;
+                    //_newPosition = _newPosition = (_player.Value.Position + (new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 5 * Random.value)).Get2D();
+                    _newPosition = specialPos;
+                    //_zoneIndiacator.gameObject.SetActive(true);
+                    _zoneIndiacator.SetPosition(_newPosition);
+
+                }
             }
+            
             if (TimeToArrival <= 0)
             {
                 _lastArrival = Time.time;

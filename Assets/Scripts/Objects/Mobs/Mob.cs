@@ -222,7 +222,7 @@ public class Mob : MonoBehaviour, IMob
         {
             scale.x = -1;
         }
-        else
+        else if(_moveTarget.x - transform.position.x > 0)
         {
             scale.x = 1;
         }

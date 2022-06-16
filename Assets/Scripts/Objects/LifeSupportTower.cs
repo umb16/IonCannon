@@ -18,7 +18,6 @@ namespace SPVD.LifeSupport
         private List<Circle> _circles = new List<Circle>();
         private AsyncReactiveProperty<Player> _player;
         ComplexStat _stat;
-        private List<Vector2> _points = new List<Vector2>();
         [Inject]
         private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
         {
@@ -51,14 +50,17 @@ namespace SPVD.LifeSupport
         {
             float bestDistance = float.PositiveInfinity;
             Vector2 bestPoint = Vector2.zero;
-            foreach (var point2 in _points)
+            foreach (var circle in _circles)
             {
-                var distance = (point - point2).sqrMagnitude;
-                if(distance < bestDistance)
+                foreach (var point2 in circle.Points)
                 {
-                    bestDistance = distance;
-                    bestPoint = point2;
-                }    
+                    var distance = (point - point2).sqrMagnitude;
+                    if (distance < bestDistance)
+                    {
+                        bestDistance = distance;
+                        bestPoint = point2;
+                    }
+                }
             }
             return bestPoint;
         }
@@ -88,7 +90,6 @@ namespace SPVD.LifeSupport
 
         private void UpdateVisual()
         {
-            _points.Clear();
             foreach (var circle in _circles)
             {
 
