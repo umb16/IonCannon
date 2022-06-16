@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: LOADING
     m_Metadata:
       m_Items: []
+  - m_Id: 1680693772709888
+    m_Key: WAVE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
