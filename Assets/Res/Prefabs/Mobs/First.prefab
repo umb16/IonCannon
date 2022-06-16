@@ -93,7 +93,6 @@ MonoBehaviour:
   _hp: 15
   _speed: 2.4
   _defence: 0
-  _score: 1
   _size: 1
   _damagePerSecond: 15
   _noTouchDamage: 0

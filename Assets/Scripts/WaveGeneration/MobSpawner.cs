@@ -18,7 +18,7 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData[] _waves =
     {
-        new WaveData(new[]{(3,100)}),
+        new WaveData(new[]{(0,100)}),
         new WaveData(new[]{(0,100), (2,1)}),
         new WaveData(new[]{(0,100), (2,2)}),
         new WaveData(new[]{(0,100), (1,3)}),
