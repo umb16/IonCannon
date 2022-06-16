@@ -140,6 +140,7 @@ public class UIInventory : MonoBehaviour
         {
             inventory.RealInventory.Add(slot.Item);
             RealInventory.Remove(slot.Item);
+            SoundManager.Instance.PlayChangeSlot();
             return true;
         }
         return false;
@@ -170,6 +171,7 @@ public class UIInventory : MonoBehaviour
                 hoveredSlot.RemoveFromInventory();
                 slot.RemoveFromInventory();
                 _player.Value.AddItemDirectly(newItem);
+                SoundManager.Instance.PlayTransmutate();
                 //hoveredSlot.AddToInventory(newItem);
                 return true;
             }

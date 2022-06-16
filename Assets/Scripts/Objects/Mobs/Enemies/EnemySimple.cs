@@ -15,6 +15,7 @@ public class EnemySimple : Mob
     [SerializeField] private PerkType[] _startPerks;
     [SerializeField] private Drop[] _drop;
     [SerializeField] bool _fixedAnimSpeed;
+    [SerializeField] AudioClip _playOnDie;
     private Timer _damageTimer;
     private Timer _dieTimer;
     private Action BehaviourMethod;
@@ -47,6 +48,7 @@ public class EnemySimple : Mob
 
     public override void Die(DamageMessage message)
     {
+        SoundManager.Instance.Play(_playOnDie);
         base.Die(message);
         Stop();
     }

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class IgnoreListenerPause : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
-        GetComponent<AudioSource>().ignoreListenerPause = true;
+        if (_audioSource != null)
+            _audioSource.ignoreListenerPause = true;
     }
 }

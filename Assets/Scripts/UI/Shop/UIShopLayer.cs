@@ -63,7 +63,8 @@ public class UIShopLayer : BaseLayer
     {
         _playerInventory = Show<UIPlayerInventory>();
         _playerStats = Show<UIPlayerStats>();
-        await UniTask.WaitUntil(()=>_gameData != null);   
+        SoundManager.Instance.PlayShopOpen();
+        await UniTask.WaitUntil(()=>_gameData != null);
         _gameData.State = GameState.InShop;
         _refrashButton.interactable = true;
         if (!Lock)
@@ -97,6 +98,7 @@ public class UIShopLayer : BaseLayer
     public void Close()
     {
         OnClosed?.Invoke();
+        SoundManager.Instance.PlayShopClose();
         Hide();
         _playerInventory.Hide();
         _playerStats.Hide();
