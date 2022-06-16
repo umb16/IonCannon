@@ -18,14 +18,14 @@ public class MobSpawner : MonoBehaviour
 
     private WaveData[] _waves =
     {
-        new WaveData(new[]{(0,100)},120),
-        new WaveData(new[]{(0,100), (2,1)},120),
-        new WaveData(new[]{(0,100), (2,2)},120),
-        new WaveData(new[]{(0, 100), (1,3)},60),
-        new WaveData(new[]{(0, 100), (2, 3),(1,3)},60),
-        new WaveData(new[]{(0, 100), (2,10)},120),
-        new WaveData(new[]{(1,10)},120),
-        new WaveData(new[]{(1,10),(2,10)},120),
+        new WaveData(new[]{(3,100)}),
+        new WaveData(new[]{(0,100), (2,1)}),
+        new WaveData(new[]{(0,100), (2,2)}),
+        new WaveData(new[]{(0,100), (1,3)}),
+        new WaveData(new[]{(0,100), (2,3),(1,3)}),
+        new WaveData(new[]{(0,100), (2,10)}),
+        new WaveData(new[]{(1,10)}),
+        new WaveData(new[]{(1,10),(2,10)}),
     };
 
     private WaveData CurrentWave => _waves[_currenWave];
@@ -130,7 +130,7 @@ public class MobSpawner : MonoBehaviour
                 GameObject gameObject = await MobPrafab[GetNextMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
                 gameObject.transform.SetParent(transform);
                 Mob mob = gameObject.GetComponent<Mob>();
-                mob.AddPerk(new PerkEWave());
+                //mob.AddPerk(new PerkEWave());
                 Mobs.Add(mob);
             }
             if (CurrentWave.IsEnd/* && (Mobs.Count(x => x.Type == MobType.Default) < 5 || CurrentWave.TimeIsOver)*/)
@@ -156,7 +156,14 @@ public class MobSpawner : MonoBehaviour
         if (_mobSpawnTime < Time.time)
         {
             CreateMob().Forget();
-            _mobSpawnTime = Time.time + Random.value;
+            if (CurrentWave.SpawnDelay == null)
+            {
+                _mobSpawnTime = Time.time + Random.value;
+            }
+            else
+            {
+                _mobSpawnTime = Time.time + Random.Range(CurrentWave.SpawnDelay.Value.x, CurrentWave.SpawnDelay.Value.y);
+            }
         }
 
         //Телепортация мобов

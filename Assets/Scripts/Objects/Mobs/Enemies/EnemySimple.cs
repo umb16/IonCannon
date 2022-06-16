@@ -9,7 +9,6 @@ public class EnemySimple : Mob
     [SerializeField] private float _hp = 1;
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _defence = 0;
-    [SerializeField] private float _score = 1;
     [SerializeField] private float _size = 1;
     [SerializeField] private float _damagePerSecond = 1;
     [SerializeField] private bool _noTouchDamage;
@@ -26,7 +25,6 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.MaxHP, _hp);
         StatsCollection.SetStat(StatType.HP, _hp);
         StatsCollection.SetStat(StatType.MovementSpeed, _speed);
-        StatsCollection.SetStat(StatType.Score, _score);
         StatsCollection.SetStat(StatType.Size, _size);
         StatsCollection.SetStat(StatType.Damage, _damagePerSecond);
         StatsCollection.SetStat(StatType.Defence, _defence);
