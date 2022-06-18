@@ -8,6 +8,7 @@ public class ArtilleryProjectile : MonoBehaviour
 {
     [SerializeField] private GameObject _startEffect;
     [SerializeField] private GameObject _endEffect;
+    [SerializeField] private GameObject _explosion;
     [SerializeField] private StandartZoneIndicator _zone;
     [SerializeField] private float _splashRadius;
     [SerializeField] private float _damage;
@@ -30,6 +31,7 @@ public class ArtilleryProjectile : MonoBehaviour
         _zone.SetRadius(_splashRadius);
         //_zone.SetBlink(.2f);
         _endEffect.transform.position = landingPosition.Get2D() + Vector3.up * 100;
+        _explosion.transform.position = landingPosition.Get2D();
         _timer = new Timer(_fallDelay)
             .SetEnd(() =>
             {
@@ -37,6 +39,7 @@ public class ArtilleryProjectile : MonoBehaviour
                 _timer = new Timer(1)
                 .SetEnd(() =>
                 {
+                    Instantiate(_explosion, landingPosition.Get2D(), Quaternion.identity, transform.parent);
                     if ((_player.Position - landingPosition).MagnetudeXY() < _splashRadius)
                     {
                         _player.ReceiveDamage(new DamageMessage(null, _player, _damage, DamageSources.Explosion, .1f));

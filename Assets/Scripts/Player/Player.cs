@@ -63,6 +63,20 @@ public class Player : Mob
         Stash.Add(_itemsDB.IonizationUnit());*/
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        GameData.GameStateChanged += GameStateChanged;
+    }
+
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.Restart)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public bool AddItemDirectly(Item item)
     {
         if (Inventory.FreeSlotAvailable && !Inventory.ContainsUnique(item))
@@ -94,11 +108,17 @@ public class Player : Mob
 
     private void Stop()
     {
-        Destroy(gameObject);
+        _spriteRenderer.enabled = false;
+        //Destroy(gameObject);
         if(Blood!=null)
         Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
     }
 
+    protected override void OnDestroy()
+    {
+        GameData.GameStateChanged -= GameStateChanged;
+        base.OnDestroy();
+    }
     protected override void Update()
     {
         base.Update();
@@ -129,8 +149,4 @@ public class Player : Mob
         }
         MoveTo(transform.position + dir * 10);
     }
-
-    /*private void OnLvlup()
-    {        
-    }*/
 }
