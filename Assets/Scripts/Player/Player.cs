@@ -37,6 +37,7 @@ public class Player : Mob
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
+        _stopped = false;
         player.Value = this;
     }
 
@@ -66,16 +67,17 @@ public class Player : Mob
     protected override void Start()
     {
         base.Start();
-        GameData.GameStateChanged += GameStateChanged;
+        AddPerk(new PerkEAfterDeathExplosion() { Delay = 0 });
+        // GameData.GameStateChanged += GameStateChanged;
     }
 
-    private void GameStateChanged(GameState state)
+    /*private void GameStateChanged(GameState state)
     {
         if (state == GameState.Restart)
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public bool AddItemDirectly(Item item)
     {
@@ -96,7 +98,7 @@ public class Player : Mob
     {
         if (stat.Value <= 0)
         {
-            Die(new DamageMessage(this, this, 1000, DamageSources.Unknown));
+            ReceiveDamage(new DamageMessage(this, this, 1000, DamageSources.Unknown));
         }
     }
 
@@ -110,18 +112,21 @@ public class Player : Mob
     {
         _spriteRenderer.enabled = false;
         //Destroy(gameObject);
-        if(Blood!=null)
-        Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+        _stopped = true;
+        if (Blood != null)
+            Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
     }
 
     protected override void OnDestroy()
     {
-        GameData.GameStateChanged -= GameStateChanged;
+        //GameData.GameStateChanged -= GameStateChanged;
         base.OnDestroy();
     }
     protected override void Update()
     {
         base.Update();
+        if (_stopped)
+            return;
         Movement();
     }
 

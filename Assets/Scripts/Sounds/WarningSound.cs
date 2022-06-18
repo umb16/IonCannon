@@ -20,14 +20,26 @@ public class WarningSound : MonoBehaviour
     private bool _outOfRange = false;
     private Timer _timer;
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
     {
         player.Where(x => x != null).ForEachAsync(x =>
         {
             _lifeSupport = x.StatsCollection.GetStat(StatType.LifeSupport);
             _oldSupportValue = _lifeSupport.Value;
         });
+        gameData.GameStateChanged += GameStateChanged;
+    }
 
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.GameOver)
+        {
+            _mixer.SetFloat("Lowpass", _lowpassSoftMin);
+        }
+        if (state == GameState.Restart)
+        {
+            _mixer.SetFloat("Lowpass", _lowpassMax);
+        }
     }
 
     private void OnInZone()

@@ -101,7 +101,7 @@ MonoBehaviour:
     GameObject: {fileID: 8007996172826201484, guid: 248eee0d1f895a84e9476c3408574ea3,
       type: 3}
   _fixedAnimSpeed: 0
-  _playOnDie: {fileID: 8300000, guid: 94e3be832fdf3fd4eba526380bc68606, type: 3}
+  _playOnDie: {fileID: 8300000, guid: 2c25dfc06f44de247a1e953b149c3fdb, type: 3}
 --- !u!114 &5588436157411104003
 MonoBehaviour:
   m_ObjectHideFlags: 0

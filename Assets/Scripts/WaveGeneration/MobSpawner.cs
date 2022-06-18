@@ -49,17 +49,18 @@ public class MobSpawner : MonoBehaviour
     {
         if (state == GameState.Restart)
         {
-            for (int i = 0; i < Mobs.Count; i++)
+            /*for (int i = 0; i < Mobs.Count; i++)
             {
                 IMob mob = Mobs[i];
                 mob.Destroy();
-            }
+            }*/
             CurrentWave.Reset();
             _currenWave = 0;
             Mobs.Clear();
             foreach (var trn in transform.GetComponentsInChildren<Transform>().Skip(1))
             {
-                Destroy(trn.gameObject);
+                if (trn.GetComponent<IMob>() == null)
+                    Destroy(trn.gameObject);
             }
         }
     }
