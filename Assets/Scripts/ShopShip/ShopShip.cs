@@ -25,6 +25,7 @@ public class ShopShip : MonoBehaviour
     private int _countdownValue = 30;
     private Timer _landingTimer;
     private Timer _countdownTimer;
+    private Timer _interactionTimer;
     private Vector3 _newPosition;
     private Vector3 _startPosition;
     private UIShopLayer _shop;
@@ -60,9 +61,12 @@ public class ShopShip : MonoBehaviour
     {
         if (state == GameState.Restart)
         {
-            _startPosition = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
-            OnCountDownEnd();
-            _landingTimer.ForceEnd();
+            _countdownTimer?.ForceEnd();
+            _landingTimer?.ForceEnd();
+            DisableLandingState();
+            transform.position = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
+            //OnCountDownEnd();
+            
         }
     }
 
@@ -105,10 +109,12 @@ public class ShopShip : MonoBehaviour
         _animator.SetBool("Idle", true);
         _dust.SetActive(true);
         _zoneIndiacator.SetBlink(0);
-        _collider.enabled = true;
+        
         _countDown.Value = _countdownValue;
         _countdownText.gameObject.SetActive(true);
         _forceField.SetActive(true);
+
+        _interactionTimer = new Timer(.1f).SetEnd(()=> _collider.enabled = true);
         _countdownTimer = new Timer(_countdownValue)
             .SetUpdate(x => _countDown.Value = (int)((1 - x) * _countdownValue))
             .SetEnd(OnCountDownEnd);
@@ -116,8 +122,20 @@ public class ShopShip : MonoBehaviour
 
     private void OnCountDownEnd()
     {
+        DisableLandingState();
+        _landingTimer = new Timer(2)
+            .SetUpdate(x =>
+            {
+                transform.position = Vector3.Lerp(_newPosition, _startPosition, x);
+            });
+        //.SetEnd(() => gameObject.SetActive(false));
+    }
+
+    private void DisableLandingState()
+    {
         _dust.SetActive(false);
         _forceField.SetActive(false);
+        _interactionTimer?.Stop();
         _collider.enabled = false;
         _targetZoneSetted = false;
         _targetZoneShearchStart = false;
@@ -125,12 +143,6 @@ public class ShopShip : MonoBehaviour
         //_forceField.transform.localScale = Vector3.one * 3;
         _countdownText.gameObject.SetActive(false);
         _animator.SetBool("Idle", false);
-        _landingTimer = new Timer(2)
-            .SetUpdate(x =>
-            {
-                transform.position = Vector3.Lerp(_newPosition, _startPosition, x);
-            });
-        //.SetEnd(() => gameObject.SetActive(false));
     }
 
     private void OnDestroy()
