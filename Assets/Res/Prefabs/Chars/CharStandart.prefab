@@ -219,6 +219,7 @@ MonoBehaviour:
   _mirroringOnMove: 1
   _groundCenterPoint: {fileID: 0}
   _type: 0
+  _spriteRenderer: {fileID: 1916824526990639786}
   Blood: {fileID: 0}
 --- !u!212 &1916824526990639786
 SpriteRenderer:

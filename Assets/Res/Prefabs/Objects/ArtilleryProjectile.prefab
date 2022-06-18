@@ -9937,6 +9937,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startEffect: {fileID: 8222411617526634104}
   _endEffect: {fileID: 8222411616293191555}
+  _explosion: {fileID: 7871315174015185727, guid: 2d0cce3c2f13aca448a707ee3507fc41,
+    type: 3}
   _zone: {fileID: 8222411616737769525}
   _splashRadius: 3
   _damage: 10

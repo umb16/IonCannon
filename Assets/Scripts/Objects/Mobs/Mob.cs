@@ -34,7 +34,7 @@ public class Mob : MonoBehaviour, IMob
     public Player Player { get; private set; }
     public bool IsReady { get; private set; }
 
-    public Vector3 Position => transform?.position??Vector3.zero;
+    public Vector3 Position => transform.position;
     public Vector3 GroundCenterPosition => _groundCenterPoint.position;
     public List<IMob> AllMobs => Spawner.Mobs;
 
