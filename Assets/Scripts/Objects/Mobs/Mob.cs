@@ -11,6 +11,7 @@ public class Mob : MonoBehaviour, IMob
 {
     private static int idIndex;
     [SerializeField] bool _mirroringOnMove = true;
+    [SerializeField] bool _reverseMirroring = false;
     [SerializeField] private Transform _groundCenterPoint;
     [SerializeField] private MobType _type;
     protected SpriteRenderer _spriteRenderer;
@@ -220,11 +221,13 @@ public class Mob : MonoBehaviour, IMob
         var scale = transform.localScale;
         if (_moveTarget.x - transform.position.x < 0)
         {
-            scale.x = -1;
+            _spriteRenderer.flipX = !_reverseMirroring;
+            //scale.x = -1;
         }
         else if(_moveTarget.x - transform.position.x > 0)
         {
-            scale.x = 1;
+            _spriteRenderer.flipX = _reverseMirroring;
+            //scale.x = 1;
         }
         transform.localScale = scale;
     }
