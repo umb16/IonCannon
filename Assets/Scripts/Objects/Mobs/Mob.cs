@@ -11,6 +11,7 @@ public class Mob : MonoBehaviour, IMob
 {
     private static int idIndex;
     [SerializeField] bool _mirroringOnMove = true;
+    [SerializeField] bool _reverseMirroring = false;
     [SerializeField] private Transform _groundCenterPoint;
     [SerializeField] private MobType _type;
     protected SpriteRenderer _spriteRenderer;
@@ -43,20 +44,19 @@ public class Mob : MonoBehaviour, IMob
     public MobType Type => _type;
 
     private Vector3 _moveTarget;
-    private bool _stopped = true;
+    protected bool _stopped = true;
 
     private MobFxes _mobFxes = new MobFxes();
     private float _stunEndTime;
     public Inventory Inventory { get; private set; } = new Inventory();
 
     [Inject]
-    private void Construct(DamageController damageController, GameData gameData, 
+    private async UniTask Construct(DamageController damageController, GameData gameData,
         AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, EnemyPerksDB enemyPerksDB)
     {
         _enemyPerksDB = enemyPerksDB;
         GameData = gameData;
         DamageController = damageController;
-        Player = player;
         IsReady = true;
         ID = ++idIndex;
         Spawner = mobSpawner;
@@ -64,6 +64,15 @@ public class Mob : MonoBehaviour, IMob
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
         Inventory.ItemAdded += AddItem;
         Inventory.ItemRemoved += RemoveItem;
+        GameData.GameStateChanged += GameStateChanged;
+        await UniTask.WaitUntil(()=>player.Value!=null);
+        Player = player;
+    }
+
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.Restart)
+            Destroy();
     }
 
     public void SetAnimVariable(string name, bool value)
@@ -88,7 +97,7 @@ public class Mob : MonoBehaviour, IMob
         else
         {
             perk.Init(this);
-            _perks.Add(perk.Type, new List<IPerk>(new[]{ perk }));
+            _perks.Add(perk.Type, new List<IPerk>(new[] { perk }));
         }
     }
 
@@ -220,11 +229,13 @@ public class Mob : MonoBehaviour, IMob
         var scale = transform.localScale;
         if (_moveTarget.x - transform.position.x < 0)
         {
-            scale.x = -1;
+            _spriteRenderer.flipX = !_reverseMirroring;
+            //scale.x = -1;
         }
-        else if(_moveTarget.x - transform.position.x > 0)
+        else if (_moveTarget.x - transform.position.x > 0)
         {
-            scale.x = 1;
+            _spriteRenderer.flipX = _reverseMirroring;
+            //scale.x = 1;
         }
         transform.localScale = scale;
     }
@@ -267,12 +278,13 @@ public class Mob : MonoBehaviour, IMob
         _mobFxes.Remove(fx);
     }
 
-    
+
 
     protected virtual void OnDestroy()
     {
         if (!IsDead)
             ShutdownPerks();
+        GameData.GameStateChanged -= GameStateChanged;
     }
 
     public void AddForce(Vector2 force, ForceMode2D mode)

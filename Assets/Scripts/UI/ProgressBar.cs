@@ -11,6 +11,6 @@ public class ProgressBar : MonoBehaviour
         if (InvisibleOnFull && value == 1)
             transform.localScale = new Vector3(0, 1, 1);
         else
-            transform.localScale = new Vector3(value, 1, 1);
+            transform.localScale = new Vector3(Mathf.Max(0, value), 1, 1);
     }
 }

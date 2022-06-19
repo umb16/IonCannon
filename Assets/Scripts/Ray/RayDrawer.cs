@@ -43,6 +43,8 @@ public class RayDrawer : MonoBehaviour
     private float _allRayTime;
     private float _rayPathLenght;
     private float _errorLenghtRatio;
+    private bool _startDrawIsValid;
+
 
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
@@ -81,7 +83,11 @@ public class RayDrawer : MonoBehaviour
             return;
         if (_gameData.State != GameState.Gameplay)
             return;
-        if (Input.GetMouseButton(0) && rayIsReady)
+        if (Input.GetMouseButtonDown(0) && rayIsReady)
+        {
+            _startDrawIsValid = true;
+        }
+            if (Input.GetMouseButton(0) && rayIsReady && _startDrawIsValid)
         {
             if (_cashedLenght == null)
                 _cashedLenght = _player.Value.MaxPathLength;
@@ -114,7 +120,7 @@ public class RayDrawer : MonoBehaviour
                 _currentLineIndex++;
             }
         }
-        if (Input.GetMouseButtonUp(0) && rayIsReady)
+        if (Input.GetMouseButtonUp(0) && rayIsReady && _startDrawIsValid)
         {
             if (cannonPath.Count != 0)
             {
@@ -129,7 +135,7 @@ public class RayDrawer : MonoBehaviour
             rayTime = 0f;
             _rayDelayTime = 0f;
             _cashedLenght = null;
-            //_cannonPath.positionCount = 0;
+            _cannonPath.positionCount = 0;
             _rayPathLenght = LenghtOfPath(cannonPath);
             _errorLenghtRatio = 1;
             if (_rayError.Value > 0)
@@ -150,7 +156,7 @@ public class RayDrawer : MonoBehaviour
         {
             if (_cannonRay == null)
             {
-                _cannonPath.positionCount = 0;
+                //_cannonPath.positionCount = 0;
                 _cannonRay = Instantiate(_cannonRayPrefab);
                 _cannonRay.GetComponent<RayScript>().SetSplash(_player.Value.RaySplash);
             }
@@ -184,6 +190,8 @@ public class RayDrawer : MonoBehaviour
         _cannonRay.GetComponent<RayScript>().Stop();
         _cannonRay = null;
         rayIsReady = true;
+        _startDrawIsValid = false;
+        SoundManager.Instance.PlayRayReady();
     }
 
     private void OnDestroy()

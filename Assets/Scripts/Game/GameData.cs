@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class GameData
     public int Wave = 0;
     public float StartGameTime;
     private GameState _state = GameState.StartMenu;
+    private Timer _timer = null;
     public GameState State
     {
         get
@@ -19,24 +21,36 @@ public class GameData
         }
         set
         {
-            if (value == GameState.Gameplay)
+            if (value == GameState.GameOver)
             {
-                Time.timeScale = 1;
-                AudioListener.pause = false;
+                _timer?.Stop();
+                _timer = new Timer(.5f).SetUpdate(x => Time.timeScale = 1 - x);
+                //AudioListener.pause = true;
             }
             else
             {
-                Time.timeScale = 0;
-                AudioListener.pause = true;
+                _timer?.Stop();
+                if (value == GameState.Gameplay)
+                {
+                    Time.timeScale = 1;
+                    AudioListener.pause = false;
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    AudioListener.pause = true;
+                }
             }
             GameStateChanged?.Invoke(value);
             _state = value;
         }
     }
 
+    int charIndexer = 0;
     public async UniTask StartGame()
     {
-        await PrefabCreator.Instantiate(AddressKeysConverter.Convert(AddressKeys.Char_standart) , Vector3.zero);
+        var Char = await PrefabCreator.Instantiate(AddressKeysConverter.Convert(AddressKeys.Char_standart), Vector3.zero);
+        Char.name = "char " + (charIndexer++);
         GameStarted?.Invoke();
         StartGameTime = Time.time;
         State = GameState.Gameplay;
