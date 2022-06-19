@@ -14,11 +14,11 @@ public class PerkEMother : PerkEStandart
     private int _maxCount = 5;
     private MobSpawner _spawner;
     private List<IMob> _spawnedMobs = new List<IMob>();
-    private AddressKeys _mobSpawnKey = AddressKeys.Mob_Child;
+    private string _mobSpawnKey = Addresses.Mob_Child;
 
     private IDisposable _updateDisposible;
 
-    public PerkEMother(int maxCount, AddressKeys mobSpawnKey)
+    public PerkEMother(int maxCount, string mobSpawnKey)
     {
         _maxCount = maxCount;
         _mobSpawnKey = mobSpawnKey;
@@ -53,7 +53,7 @@ public class PerkEMother : PerkEStandart
         if (_maxCount > Count)
         {
             Vector3 pos = Vector3.up.DiamondRotateXY(4.0f/_maxCount* _spawnedMobs.Count);
-            IMob mob = await _spawner.SpawnByName(AddressKeysConverter.Convert(_mobSpawnKey), _mob.Position + pos);
+            IMob mob = await _spawner.SpawnByName(_mobSpawnKey, _mob.Position + pos);
             _spawnedMobs.Add(mob);
         }
     }

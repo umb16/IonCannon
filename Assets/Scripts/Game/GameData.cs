@@ -13,6 +13,7 @@ public class GameData
     public float StartGameTime;
     private GameState _state = GameState.StartMenu;
     private Timer _timer = null;
+    public float GameTime => Time.time - StartGameTime;
     public GameState State
     {
         get
@@ -49,7 +50,7 @@ public class GameData
     int charIndexer = 0;
     public async UniTask StartGame()
     {
-        var Char = await PrefabCreator.Instantiate(AddressKeysConverter.Convert(AddressKeys.Char_standart), Vector3.zero);
+        var Char = await PrefabCreator.Instantiate(Addresses.Char_standart, Vector3.zero);
         Char.name = "char " + (charIndexer++);
         GameStarted?.Invoke();
         StartGameTime = Time.time;

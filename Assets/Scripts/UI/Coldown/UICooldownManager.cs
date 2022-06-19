@@ -13,7 +13,7 @@ public class UICooldownsManager
         _panel = panel;
     }
 
-    internal async UniTask<CooldownIndicator> AddIndiacator(AddressKeys icon)
+    internal async UniTask<CooldownIndicator> AddIndiacator(string icon)
     {
         await UniTask.WaitUntil(()=>_panel.Value != null);
         return _panel.Value.AddIndiacator(icon);

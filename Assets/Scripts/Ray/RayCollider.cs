@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Umb16.Extensions;
 
 public class RayCollider : MonoBehaviour
 {
@@ -25,8 +26,10 @@ public class RayCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         var mob = col.gameObject.GetComponent<IMob>();
+        Debug.Log(col.gameObject.name);
         if (mob != null)
         {
+            
             _mobs.Add(mob.ID, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
             mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
         }
@@ -43,6 +46,13 @@ public class RayCollider : MonoBehaviour
 
     private void Update()
     {
+        foreach (var item in Liquid._liquidsList)
+        {
+            if ((item.Position - transform.position).SqrMagnetudeXY() < item._colliderRadius * item._colliderRadius)
+            {
+                item.ReceiveDamage(new DamageMessage(_player.Value, item, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
+            }
+        }
         foreach (var mob in _mobs)
         {
             if (mob.Value.NextTick < Time.time)

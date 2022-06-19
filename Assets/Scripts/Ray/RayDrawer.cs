@@ -58,7 +58,7 @@ public class RayDrawer : MonoBehaviour
         }).Forget();
         _gameData = gameData;
         _gameData.GameStateChanged += GameStateChanged;
-        _colldownIndicator = await cooldownsPanel.AddIndiacator(AddressKeys.Ico_Laser);
+        _colldownIndicator = await cooldownsPanel.AddIndiacator(Addresses.Ico_Laser);
     }
 
     private void GameStateChanged(GameState state)

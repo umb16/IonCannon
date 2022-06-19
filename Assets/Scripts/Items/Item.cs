@@ -13,5 +13,5 @@ public class Item : WithId
     public int Cost = 10;
     public int SellCost => Cost / 2;
     public IPerk[] Perks = { PlayerPerksDB.RayPathLenghtPerk() };
-    public AddressKeys Icon = AddressKeys.Ico_Battery;
+    public string Icon = Addresses.Ico_Battery;
 }

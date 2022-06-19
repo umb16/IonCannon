@@ -35,7 +35,7 @@ public class PerkPBarrels : WithId, IPerk
         _loops.Add(UniTaskAsyncEnumerable.EveryValueChanged(this, x => x.SpawnTimeCome)
         .Where(x => x == true)
         .Subscribe(async _ => await CreateBarrel()));
-        _cooldownsPanel.AddIndiacator(AddressKeys.Ico_Box).ContinueWith(x=>
+        _cooldownsPanel.AddIndiacator(Addresses.Ico_Box).ContinueWith(x=>
         {
             _indicator = x;
             _loops.Add(UniTaskAsyncEnumerable.EveryUpdate().Subscribe(_ =>

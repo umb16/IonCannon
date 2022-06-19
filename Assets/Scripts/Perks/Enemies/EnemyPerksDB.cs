@@ -30,12 +30,14 @@ public class EnemyPerksDB
                 return new PerkESpeedAura();
             case PerkType.ESpeedAuraEffect:
                 return new PerkESpeedAuraEffect();
+            case PerkType.ESlowAuraEffect:
+                return new PerkESlowAuraEffect();
             case PerkType.EAfterDeathExplosion:
                 return new PerkEAfterDeathExplosion();
             case PerkType.EHunter:
                 return new PerkEHunter();
             case PerkType.EMother:
-                return new PerkEMother(5, AddressKeys.Mob_Child);
+                return new PerkEMother(5, Addresses.Mob_Child);
             default:
                 return null;
         }
