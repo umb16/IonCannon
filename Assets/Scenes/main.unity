@@ -1316,15 +1316,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81df9dd84479ee4da619b8eef3fe061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mirroringOnMove: 1
+  _mirroringOnMove: 0
   _reverseMirroring: 0
   _groundCenterPoint: {fileID: 0}
   _type: 2
-  _colliderRadius: 1
+  _colliderRadius: 4
   _bigRadius: 8
-  _gravityK: 2
-  _smallRadius: 4
+  _gravityK: 4
+  _repulsionMinRadius: 2
+  _repulsionMaxRadius: 4
   _repulsionK: 1
+  _repulsionCurrentRadius: 0
+  Position: {x: 0, y: 0}
 --- !u!212 &742518492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1386,7 +1389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742518490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.76, y: 10.04, z: -0.4130454}
+  m_LocalPosition: {x: 0, y: 0, z: -0.4130454}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []

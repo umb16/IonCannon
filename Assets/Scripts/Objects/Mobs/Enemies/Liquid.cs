@@ -8,8 +8,11 @@ public class Liquid : Mob
     [SerializeField] public float _colliderRadius;
     [SerializeField] private float _bigRadius;
     [SerializeField] private float _gravityK = 1;
-    [SerializeField] private float _smallRadius;
+    [SerializeField] private float _repulsionMinRadius;
+    [SerializeField] private float _repulsionMaxRadius;
     [SerializeField] private float _repulsionK = 1;
+    [SerializeField]private float _repulsionCurrentRadius;
+    public Vector2 Position;
     private Timer _deathTimer;
     public static List<Liquid> _liquidsList = new List<Liquid>();
     protected override void Start()
@@ -25,20 +28,24 @@ public class Liquid : Mob
         Vector3 vector = transform.position;
         vector.z = 100;
         transform.position = vector;
-        AddPerk(new PerkESlowAura());  
+        AddPerk(new PerkAura(PerkType.ESlowAura, PerkType.ESlowAuraEffect,
+            new[] { new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.MovementSpeed) },
+            3, true));
+        _repulsionCurrentRadius = _repulsionMinRadius;
     }
 
     protected override void Update()
     {
+        Position = transform.position;
         Vector2 gravity = Vector2.zero;
         Vector2 repulsion = Vector2.zero;
         float countG = 0;
         float countR = 0;
         foreach (var item in _liquidsList)
         {
-            if (item != this)
+            if (item.ID != ID)
             {
-                Vector2 vector = (item.transform.position - transform.position);
+                Vector2 vector = (item.Position - Position);
                 var sqrDistance = vector.sqrMagnitude;
                 if (sqrDistance == 0)
                 {
@@ -47,9 +54,9 @@ public class Liquid : Mob
                 }
                 if (sqrDistance < _bigRadius * _bigRadius)
                 {
-                    if (sqrDistance < _smallRadius * _smallRadius)
+                    if (sqrDistance < _repulsionCurrentRadius * _repulsionCurrentRadius)
                     {
-                        float k = sqrDistance / (_smallRadius * _smallRadius);
+                        float k = sqrDistance / (_repulsionCurrentRadius * _repulsionCurrentRadius);
                         countR++;
                         repulsion += vector * -1 / sqrDistance * (1 - k);
                     }
@@ -61,6 +68,13 @@ public class Liquid : Mob
                 }
             }
         }
+        _repulsionCurrentRadius = Mathf.Lerp(_repulsionMinRadius, _repulsionMaxRadius, countR * .333f);
+        // if (countR > 1)
+        //     _repulsionCurrentRadius += Time.deltaTime * countR;// 
+        // else
+        //     _repulsionCurrentRadius -= Time.deltaTime;
+        // _repulsionCurrentRadius = Mathf.Clamp(_repulsionCurrentRadius, _repulsionMinRadius, _repulsionMaxRadius);
+        //Debug.Log(_repulsionCurrentRadius);
         if (countR > 0)
             gravity /= countR;
         /*if (countG > 0)
@@ -81,7 +95,7 @@ public class Liquid : Mob
         base.Die(message);
         _deathTimer = new Timer(.5f)
             .SetUpdate(x => _spriteRenderer.color *= new Color(1, 1, 1, 1 - x))
-            .SetEnd(()=>Destroy(gameObject));
+            .SetEnd(() => Destroy(gameObject));
     }
     protected override void OnDestroy()
     {

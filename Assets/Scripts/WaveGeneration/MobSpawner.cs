@@ -19,7 +19,7 @@ public class MobSpawner : MonoBehaviour
     private DamageController _damageController;
 
     LevelEvent[] _levelEvents = { 
-        new SpawnEvent(0,10, Addresses.Mob_First,.1f),
+        new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(500),
         //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
         //new SpawnEvent(6, Addresses.Mob_Second),
     };
