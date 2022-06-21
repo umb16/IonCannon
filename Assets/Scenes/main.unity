@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 299}
   - component: {fileID: 300}
   - component: {fileID: 301}
+  - component: {fileID: 302}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -330,6 +331,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: 888815518065f8446963f4fdf081e0cd, type: 2}
+--- !u!114 &302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249a28aa14eae71448f35eaaa4faaa0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedFactor: 2
 --- !u!157 &303
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1296,7 +1310,7 @@ GameObject:
   - component: {fileID: 742518493}
   - component: {fileID: 742518492}
   - component: {fileID: 742518491}
-  - component: {fileID: 742518494}
+  - component: {fileID: 742518495}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -1322,12 +1336,14 @@ MonoBehaviour:
   _type: 2
   _colliderRadius: 4
   _bigRadius: 8
-  _gravityK: 4
+  _gravityK: 1
   _repulsionMinRadius: 2
-  _repulsionMaxRadius: 4
+  _repulsionMaxRadius: 5
   _repulsionK: 1
   _repulsionCurrentRadius: 0
-  Position: {x: 0, y: 0}
+  BackedPosition: {x: 0, y: 0}
+  BackedTarget: {x: 0, y: 0}
+  Target: {x: 0, y: 0}
 --- !u!212 &742518492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1389,33 +1405,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742518490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4130454}
+  m_LocalPosition: {x: -16.62, y: 1.66, z: -0.4130454}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &742518494
-Animator:
-  serializedVersion: 4
+--- !u!114 &742518495
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742518490}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd70becf8b15738438d2ad8e40dd1f6e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6f9c3c2910f5542b5004544d8a1d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 742518492}
+  Animations:
+  - {fileID: 11400000, guid: a4821c12a6d46ad4b9f75b8df107d794, type: 2}
+  _currentAnimation: {fileID: 11400000, guid: a4821c12a6d46ad4b9f75b8df107d794, type: 2}
 --- !u!1 &866231502
 GameObject:
   m_ObjectHideFlags: 0

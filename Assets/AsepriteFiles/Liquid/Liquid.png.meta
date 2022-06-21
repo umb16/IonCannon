@@ -247,27 +247,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Liquid008
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 1
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63135fa6ba826b980800000000000000
-      internalID: -8523580528053112522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -282,7 +261,6 @@ TextureImporter:
       Liquid005: 8220066423014280292
       Liquid000: -2934121358155701748
       Liquid001: -384904695013871976
-      Liquid008: -8523580528053112522
       Liquid004: -5469232638804518223
       Liquid006: 8945720942861257405
       Liquid007: 895978606059327146

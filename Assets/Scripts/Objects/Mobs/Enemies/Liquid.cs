@@ -2,23 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Umb16.Extensions;
+using System;
 
 public class Liquid : Mob
 {
     [SerializeField] public float _colliderRadius;
     [SerializeField] private float _bigRadius;
-    [SerializeField] private float _gravityK = 1;
-    [SerializeField] private float _repulsionMinRadius;
-    [SerializeField] private float _repulsionMaxRadius;
+    [SerializeField] public float _gravityK = 1;
+    [SerializeField] public float _repulsionMinRadius;
+    [SerializeField] public float _repulsionMaxRadius;
     [SerializeField] private float _repulsionK = 1;
-    [SerializeField]private float _repulsionCurrentRadius;
-    public Vector2 Position;
+    [SerializeField] public float _repulsionCurrentRadius;
+    public Vector2 BackedPosition;
+    public Vector2 BackedTarget;
+    public Vector2 Target;
     private Timer _deathTimer;
-    public static List<Liquid> _liquidsList = new List<Liquid>();
+
+    internal void Move()
+    {
+        //transform.position = Vector3.Lerp(transform.position, (Vector3)Target + Vector3.forward * 100, Time.deltaTime);
+        transform.position += (Vector3)Target * Time.deltaTime;
+    }
+
     protected override void Start()
     {
-        _liquidsList.Add(this);
-        new Timer(Random.value * 2).SetEnd(() => _animator.enabled = true);
+        LiquidsControl.Add(this);
+        //new Timer(Random.value * 2).SetEnd(() => _animator.enabled = true);
         HP = new ComplexStat(10);
         StatsCollection = new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
         {
@@ -34,10 +43,22 @@ public class Liquid : Mob
         _repulsionCurrentRadius = _repulsionMinRadius;
     }
 
+    public void BakePosition()
+    {
+        BackedPosition = transform.position;
+    }
+    public void UnbakeDirection()
+    {
+        Target = BackedTarget;
+       // Debug.Log(Target + " "+name);
+    }
+
     protected override void Update()
     {
-        Position = transform.position;
-        Vector2 gravity = Vector2.zero;
+
+        //transform.position = Vector3.Lerp(transform.position,(Vector3)Target+Vector3.forward*100, Time.deltaTime);
+        //transform.position += (Vector3)Target*Time.deltaTime;
+        /*Vector2 gravity = Vector2.zero;
         Vector2 repulsion = Vector2.zero;
         float countG = 0;
         float countR = 0;
@@ -45,7 +66,7 @@ public class Liquid : Mob
         {
             if (item.ID != ID)
             {
-                Vector2 vector = (item.Position - Position);
+                Vector2 vector = (item.BackedPosition - BackedPosition);
                 var sqrDistance = vector.sqrMagnitude;
                 if (sqrDistance == 0)
                 {
@@ -69,21 +90,11 @@ public class Liquid : Mob
             }
         }
         _repulsionCurrentRadius = Mathf.Lerp(_repulsionMinRadius, _repulsionMaxRadius, countR * .333f);
-        // if (countR > 1)
-        //     _repulsionCurrentRadius += Time.deltaTime * countR;// 
-        // else
-        //     _repulsionCurrentRadius -= Time.deltaTime;
-        // _repulsionCurrentRadius = Mathf.Clamp(_repulsionCurrentRadius, _repulsionMinRadius, _repulsionMaxRadius);
-        //Debug.Log(_repulsionCurrentRadius);
+
         if (countR > 0)
             gravity /= countR;
-        /*if (countG > 0)
-            gravity /= countG;*/
         if (!((Vector3)(gravity + repulsion)).EqualsWithThreshold(Vector3.zero, .1f))
-            transform.position += ((Vector3)(gravity + repulsion)) * Time.deltaTime;
-        //base.Update();
-        // transform.To2DPos(100);
-
+            transform.position += ((Vector3)(gravity + repulsion)) * Time.deltaTime;      */
     }
 
     public override void ReceiveDamage(DamageMessage message)
@@ -100,7 +111,7 @@ public class Liquid : Mob
     protected override void OnDestroy()
     {
         _deathTimer?.Stop();
-        _liquidsList.Remove(this);
+        LiquidsControl.Remove(this);
         base.OnDestroy();
     }
 }
