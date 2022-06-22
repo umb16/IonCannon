@@ -18,9 +18,24 @@ public class MobSpawner : MonoBehaviour
     public GameData GameData { get; private set; }
     private DamageController _damageController;
 
-    LevelEvent[] _levelEvents = { 
-        new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(500),
-        //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
+    //LevelEvent[] _levelEvents = { 
+    //    new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(500),
+    //    //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
+    //    //new SpawnEvent(6, Addresses.Mob_Second),
+    //};
+    LevelEvent[] _levelEvents = {
+        new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(100).SetDirection(0,360),
+        //new SpawnEvent(0, 20, Addresses.Mob_First, 2),
+        //new SpawnEvent(21, 240, Addresses.Mob_First, 1),
+        //new SpawnEvent(50, Addresses.Mob_SpdBuff),
+        //new SpawnEvent(80, Addresses.Mob_SpdBuff),
+        //new SpawnEvent(100, 190, Addresses.Mob_SpdBuff, 15),
+        //new SpawnEvent(190, 240, Addresses.Mob_SpdBuff, 10),
+
+
+        //new SpawnEvent(190, Addresses.Mob_First).SetFixedCount(70),
+        //new SpawnEvent(200, 360, Addresses.Mob_First, 1.5f),
+        //new SpawnEvent(200, 360, Addresses.Mob_Artillery, 20),
         //new SpawnEvent(6, Addresses.Mob_Second),
     };
     private float _screenRatio;
@@ -92,7 +107,10 @@ public class MobSpawner : MonoBehaviour
     }
     public Vector3 GetSpawnPointFromDirection(float direction)
     {
-
+        if(direction < 0)
+        {
+            direction = 360 + direction;
+        }
         Vector3 vector = Vector3.down;
         vector = vector.DiamondRotateXY(direction / 90);
         vector *= _screenDiagonal*.5f;
