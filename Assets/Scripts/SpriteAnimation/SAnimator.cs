@@ -45,6 +45,8 @@ public class SAnimator : MonoBehaviour
         else
             _currentFrame = 0;
         ShowFrame(_currentFrame);
+        if (_currentAnimation.NotAnimation)
+            _isStopped = true;
     }
 
     public void NextFrame()
