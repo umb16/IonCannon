@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 300}
   - component: {fileID: 301}
   - component: {fileID: 302}
+  - component: {fileID: 304}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -216,7 +217,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0040227682, g: 0.00021961077, b: 0.000000053489103,
+  m_IndirectSpecularColor: {r: 0.004022764, g: 0.00021961045, b: 0.000000053489103,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!108 &295
@@ -403,6 +404,18 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 1210374100}
+--- !u!114 &304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa4c1729c47aaa44bcfe1478efbfd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3134,7 +3147,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.101960786, g: 0.09411765, b: 0.09019608, a: 1}
+  m_BackGroundColor: {r: 0.10196079, g: 0.10588236, b: 0.121568635, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
