@@ -416,6 +416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa4c1729c47aaa44bcfe1478efbfd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _RRadiusMin: 0.5
+  _RRadiusMax: 4
+  _GRadius: 6
+  _count: 5120
 --- !u!114 &309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3129,7 +3133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material1: {fileID: 2100000, guid: 0468cf564c1fac34a9bc02f30dfae724, type: 2}
   material2: {fileID: 2100000, guid: 83de78274dfaf5c4ca904d44d7fc9b32, type: 2}
-  material3: {fileID: 2100000, guid: 4bed9ac59b4fc25449a039508958fe0f, type: 2}
+  material3: {fileID: 2100000, guid: 83de78274dfaf5c4ca904d44d7fc9b32, type: 2}
+  material4: {fileID: 2100000, guid: 4bed9ac59b4fc25449a039508958fe0f, type: 2}
   _color1: {r: 0.10355108, g: 0.10562563, b: 0.122641504, a: 1}
   _color2: {r: 0.13541298, g: 0.14040586, b: 0.16037738, a: 1}
   _color3: {r: 0.18729973, g: 0.19224663, b: 0.21698111, a: 1}
@@ -3137,6 +3142,7 @@ MonoBehaviour:
   _lineColor1: {r: 0.12106919, g: 0.09905662, b: 0.13207549, a: 1}
   _lineColor2: {r: 0.1488074, g: 0.14453542, b: 0.1509434, a: 1}
   _lineColor3: {r: 0.17888926, g: 0.18095466, b: 0.18867922, a: 1}
+  _liquidDropSize: 3
 --- !u!20 &2135085147
 Camera:
   m_ObjectHideFlags: 0
