@@ -22,82 +22,74 @@ public class LiquidTest : MonoBehaviour
         [ReadOnly] public NativeArray<float2> Positions;
         [WriteOnly] public NativeArray<float2> Results;
         public NativeArray<float> CurrentRadius;
-        //public NativeArray<bool> Sleep;
+        public NativeArray<byte> Sleep;
         public float _GRadius;
         public float _RRadiusMin;
         public float _RRadiusMax;
         public Random rand;
         public void Execute(int i)
         {
-            //Random rand = new Random(234234);
-            //for (int i = 0; i < Positions.Length; i++)
+            if (Sleep[i]>0)
             {
-                //if (Sleep[i])
-               //     return;
-                if (Positions[i].x == float.PositiveInfinity)
-                {
-                    //Results[i] = Positions[i];
-                    return;
-                }
-                float2 gravity = float2.zero;
-                float2 repulsion = float2.zero;
-                float countG = 0;
-                float countR = 0;
-                var currentPos = Positions[i];
-                for (int j = 0; j < Positions.Length; j++)
-                {
+                Sleep[i]--;
+                return;
+            }
+            if (Positions[i].x == float.PositiveInfinity)
+            {
+                //Results[i] = Positions[i];
+                return;
+            }
+            float2 gravity = float2.zero;
+            float2 repulsion = float2.zero;
+            float countG = 0;
+            float countR = 0;
+            var currentPos = Positions[i];
+            for (int j = 0; j < Positions.Length; j++)
+            {
 
-                    var secondPos = Positions[j];
-                    if (i != j)
+                var secondPos = Positions[j];
+                if (i != j)
+                {
+                    float2 vector = (secondPos - currentPos);
+                    var sqrDistance = math.lengthsq(vector);
+                    if (sqrDistance == 0)
                     {
-                        float2 vector = (secondPos - currentPos);
-                        var sqrDistance = math.lengthsq(vector);
-                        if (sqrDistance == 0)
-                        {
-                            vector = rand.NextFloat2() + new float2(-.5f, -.5f);
-                            sqrDistance = CurrentRadius[i] * CurrentRadius[i]-1;
-                            //continue;
-                        }
-                        //var r = math.lerp(_RRadiusMin, _RRadiusMax, countR * .333f);
-                        if (sqrDistance < _GRadius * _GRadius)
-                        {
-                            if (sqrDistance < CurrentRadius[i] * CurrentRadius[i])
-                            {
-                                float k = sqrDistance / (CurrentRadius[i] * CurrentRadius[i]);
-                                countR++;
-                                repulsion += vector * -1 / sqrDistance * (1 - k);
-                                //Sleep[j] = false;
-                            }
-                            else
-                            {
-                                countG++;
-                                //gravity += vector / sqrDistance * .1f;
-                            }
-                        }
+                        vector = rand.NextFloat2() + new float2(-.5f, -.5f);
+                        sqrDistance = CurrentRadius[i] * CurrentRadius[i] - 1;
                     }
 
-
+                    if (sqrDistance < _GRadius * _GRadius)
+                    {
+                        if (sqrDistance < CurrentRadius[i] * CurrentRadius[i])
+                        {
+                            float k = sqrDistance / (CurrentRadius[i] * CurrentRadius[i]);
+                            countR++;
+                            repulsion += vector * -1 / sqrDistance * (1 - k);
+                            //Sleep[j] = false;
+                        }
+                        else
+                        {
+                            countG++;
+                            //gravity += vector / sqrDistance * .1f;
+                        }
+                    }
                 }
-                CurrentRadius[i] = math.lerp(_RRadiusMin, _RRadiusMax, countG * .05f);
-                if (countR > 0)
-                    gravity /= countR;
-                float2 force = gravity + repulsion;
-                if (math.lengthsq(force) > 1)
-                    force = math.normalize(force);
-                if (math.lengthsq(force) > .01f)
-                    Results[i] = Positions[i] + force;
-                /*else
-                    Sleep[i] = true;*/
-                //else
-                //    Results[i] = Positions[i];
+
 
             }
-
-
-            /* for (int i = 0; i < A.Length; ++i)
-             {
-                 C[i] = A[i] + B[i];
-             }*/
+            CurrentRadius[i] = math.lerp(_RRadiusMin, _RRadiusMax, countG * .05f);
+            if (countR > 0)
+                gravity /= countR;
+            float2 force = gravity + repulsion;
+            if (math.lengthsq(force) > 1)
+                force = math.normalize(force);
+            if (math.lengthsq(force) < .01f)
+                Sleep[i] = 10;
+            Results[i] = Positions[i] + force;
+             //if (!Sleep[i] && math.lengthsq(force) < .0001f)
+                
+            //else
+            //    Results[i] = Positions[i];
         }
     }
     // Start is called before the first frame update
@@ -107,7 +99,7 @@ public class LiquidTest : MonoBehaviour
     NativeArray<float2> x;
     NativeArray<float2> res;
     NativeArray<float> radiuses;
-    NativeArray<bool> sleep;
+    NativeArray<byte> sleep;
     private void OnEnable()
     {
         size = _count;
@@ -115,7 +107,7 @@ public class LiquidTest : MonoBehaviour
         x = new NativeArray<float2>(size, alloc);
         res = new NativeArray<float2>(size, alloc);
         radiuses = new NativeArray<float>(size, alloc);
-        sleep = new NativeArray<bool>(size, alloc);
+        sleep = new NativeArray<byte>(size, alloc);
         for (int i = 0; i < x.Length; i++)
         {
             //x[i] = math.normalize(rand.NextFloat2(-1, 1))* (100 - math.pow(rand.NextFloat(10),2));
@@ -125,8 +117,17 @@ public class LiquidTest : MonoBehaviour
 
 
 
-        xxxx = new CalcLiquidForcesJob() { Positions = x, Results = res, CurrentRadius = radiuses,// Sleep = sleep,
-            _GRadius = _GRadius, rand = rand, _RRadiusMax = _RRadiusMax, _RRadiusMin = _RRadiusMin };
+        xxxx = new CalcLiquidForcesJob()
+        {
+            Positions = x,
+            Results = res,
+            CurrentRadius = radiuses,
+            Sleep = sleep,
+            _GRadius = _GRadius,
+            rand = rand,
+            _RRadiusMax = _RRadiusMax,
+            _RRadiusMin = _RRadiusMin
+        };
         var stop = new Stopwatch();
         stop.Start();
         xxxx.Schedule(size, 64).Complete();

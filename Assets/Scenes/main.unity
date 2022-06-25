@@ -419,7 +419,7 @@ MonoBehaviour:
   _RRadiusMin: 0.5
   _RRadiusMax: 4
   _GRadius: 6
-  _count: 5120
+  _count: 2048
 --- !u!114 &309
 MonoBehaviour:
   m_ObjectHideFlags: 0
