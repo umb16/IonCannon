@@ -100,7 +100,7 @@ public class ItemsDB
             Name = "Батарея",
             Description = "Длинна пути +50%",
             Cost = 30,
-            Icon = AddressKeys.Ico_Battery,
+            Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -120,7 +120,7 @@ public class ItemsDB
             UpgradeCount = 1,
             Description = "Длинна пути +75%",
             Cost = 75,
-            Icon = AddressKeys.Ico_Battery,
+            Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -140,7 +140,7 @@ public class ItemsDB
             UpgradeCount = 2,
             Description = "Длинна пути +150%",
             Cost = 75,
-            Icon = AddressKeys.Ico_Battery,
+            Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -159,7 +159,7 @@ public class ItemsDB
             Name = "Дополнительные приводы",
             Description = "Скорость луча +50%",
             Cost = 50,
-            Icon = AddressKeys.Ico_Servo,
+            Icon = Addresses.Ico_Servo,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -178,7 +178,7 @@ public class ItemsDB
             Name = "Ускоритель экзоскелета",
             Description = "Скорость бега +0.5 п/с",
             Cost = 60,
-            Icon = AddressKeys.Ico_SpeedBoost,
+            Icon = Addresses.Ico_SpeedBoost,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -197,7 +197,7 @@ public class ItemsDB
             Name = "Усилитель",
             Description = "Длинна пути -20%\nУрон луча +20%",
             Cost = 50,
-            Icon = AddressKeys.Ico_Amplifier,
+            Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -218,7 +218,7 @@ public class ItemsDB
             Name = "Усилитель+",
             Description = "Длинна пути -30%\nУрон луча +40%",
             Cost = 150,
-            Icon = AddressKeys.Ico_Amplifier,
+            Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -239,7 +239,7 @@ public class ItemsDB
             Name = "Усилитель+",
             Description = "Длинна пути -40%\nУрон луча +100%",
             Cost = 400,
-            Icon = AddressKeys.Ico_Amplifier,
+            Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -260,7 +260,7 @@ public class ItemsDB
             Name = "Фокусирующая линза",
             Description = "Урон луча +50%\nШирина луча -90%",
             Cost = 70,
-            Icon = AddressKeys.Ico_Lens,
+            Icon = Addresses.Ico_Lens,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -280,7 +280,7 @@ public class ItemsDB
             Name = "Блок ионизации",
             Description = "Поражённые лучом враги получают 4 урона в секунду в течение 10 секунд",
             Cost = 60,
-            Icon = AddressKeys.Ico_Radiation,
+            Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPIonization>(new object[]{ 4f, 10f })//урон, длительность
@@ -296,7 +296,7 @@ public class ItemsDB
             Name = "Блок ионизации+",
             Description = "Поражённые лучом враги получают 6 урона в секунду в течение 15 секунд",
             Cost = 180,
-            Icon = AddressKeys.Ico_Radiation,
+            Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPIonization>(new object[]{ 6f, 15f })//урон, длительность
@@ -312,7 +312,7 @@ public class ItemsDB
             Name = "Блок ионизации++",
             Description = "Поражённые лучом враги получают 12 урона в секунду в течение 20 секунд",
             Cost = 480,
-            Icon = AddressKeys.Ico_Radiation,
+            Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPIonization>(new object[]{ 12f, 20f })//урон, длительность
@@ -327,7 +327,7 @@ public class ItemsDB
             Name = "Устройство доставки",
             Description = "Раз в 20 секунд доставляет с орбиты ящик со взравчаткой",
             Cost = 50,
-            Icon = AddressKeys.Ico_Box,
+            Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPBarrels>(new object[]{ 20f }),//cooldown
@@ -343,7 +343,7 @@ public class ItemsDB
             Name = "Устройство доставки+",
             Description = "Раз в 15 секунд доставляет с орбиты ящик со взравчаткой",
             Cost = 150,
-            Icon = AddressKeys.Ico_Box,
+            Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPBarrels>(new object[]{ 15f }),//cooldown
@@ -359,7 +359,7 @@ public class ItemsDB
             Name = "Устройство доставки++",
             Description = "Раз в 10 секунд доставляет с орбиты ящик со взравчаткой",
             Cost = 400,
-            Icon = AddressKeys.Ico_Box,
+            Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPBarrels>(new object[]{ 10f }),//cooldown
@@ -374,7 +374,7 @@ public class ItemsDB
             Name = "Сопроцессор",
             Description = "Время наведения -30%\nПогрешность -1 п",
             Cost = 50,
-            Icon = AddressKeys.Ico_Chip,
+            Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -395,7 +395,7 @@ public class ItemsDB
             Name = "Сопроцессор+",
             Description = "Время наведения -50%\nПогрешность -2 п",
             Cost = 150,
-            Icon = AddressKeys.Ico_Chip,
+            Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -417,7 +417,7 @@ public class ItemsDB
             Name = "Сопроцессор++",
             Description = "Время наведения -100%\nПогрешность -4 п",
             Cost = 400,
-            Icon = AddressKeys.Ico_Chip,
+            Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -439,7 +439,7 @@ public class ItemsDB
             Name = "Рассеивающая линза",
             Description = "Урон луча -50%\nШирина луча +200%",
             Cost = 60,
-            Icon = AddressKeys.Ico_DivergingLens,
+            Icon = Addresses.Ico_DivergingLens,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -460,7 +460,7 @@ public class ItemsDB
             Name = "Контроллер питания",
             Description = "Урон +20%\nДлинна пути +20%",
             Cost = 100,
-            Icon = AddressKeys.Ico_PowerController,
+            Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -482,7 +482,7 @@ public class ItemsDB
             Name = "Контроллер питания+",
             Description = "Урон +30%\nДлинна пути +30%",
             Cost = 200,
-            Icon = AddressKeys.Ico_PowerController,
+            Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -504,7 +504,7 @@ public class ItemsDB
             Name = "Контроллер питания++",
             Description = "Урон +60%\nДлинна пути +60%",
             Cost = 500,
-            Icon = AddressKeys.Ico_PowerController,
+            Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -526,7 +526,7 @@ public class ItemsDB
             Name = "Система линз",
             Description = "Ширина луча +100%",
             Cost = 150,
-            Icon = AddressKeys.Ico_Lenses,
+            Icon = Addresses.Ico_Lenses,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -548,7 +548,7 @@ public class ItemsDB
             Name = "Система линз+",
             Description = "Ширина луча +200%",
             Cost = 400,
-            Icon = AddressKeys.Ico_Lenses,
+            Icon = Addresses.Ico_Lenses,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -568,7 +568,7 @@ public class ItemsDB
             Name = "Магнитный манипулятор",
             Description = "Радиус сбора + 100%",
             Cost = 40,
-            Icon = AddressKeys.Ico_Magnet,
+            Icon = Addresses.Ico_Magnet,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -587,7 +587,7 @@ public class ItemsDB
             Name = "Скоростные приводы",
             Description = "Скорость луча +100%\nПогрешность +3 п",
             Cost = 100,
-            Icon = AddressKeys.Ico_SpeedServo,
+            Icon = Addresses.Ico_SpeedServo,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]

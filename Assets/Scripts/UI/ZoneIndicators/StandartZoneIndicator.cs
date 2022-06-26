@@ -54,7 +54,7 @@ public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
         });
     }
 
-    public void SetIcon(AddressKeys addressKey)
+    public void SetIcon(string address)
     {
         throw new System.NotImplementedException();
     }

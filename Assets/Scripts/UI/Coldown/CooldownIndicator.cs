@@ -13,10 +13,10 @@ public class CooldownIndicator : MonoBehaviour
     [SerializeField] private Image _iconImage;
     private CooldownsPanel _panel;
 
-    public async UniTask Init(AddressKeys address, CooldownsPanel panel)
+    public async UniTask Init(string address, CooldownsPanel panel)
     {
         _panel = panel;
-        _iconImage.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(address)).Task;
+        _iconImage.sprite = await Addressables.LoadAssetAsync<Sprite>(address).Task;
     }
     //[EditorButton]
     public void SetTime(float time, float maxTime)

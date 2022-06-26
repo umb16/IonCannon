@@ -1,5 +1,6 @@
 ﻿public enum MobType
 {
     Default,
-    Object
+    Object,
+    Liquid
 }

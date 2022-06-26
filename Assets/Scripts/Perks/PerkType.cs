@@ -24,4 +24,6 @@ public enum PerkType
     PowerController = 20,
     LensSystem = 21,
     MagneticManipulator = 22,
+    ESlowAuraEffect = 23,
+    ESlowAura = 24,
 }

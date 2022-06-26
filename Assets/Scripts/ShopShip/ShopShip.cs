@@ -52,7 +52,7 @@ public class ShopShip : MonoBehaviour
         _lastArrival = Time.time;
         _player = player;
         _lifeSupportTower = lifeSupportTower;
-        _shopIndicator = await cooldownsManager.AddIndiacator(AddressKeys.Ico_Ship);
+        _shopIndicator = await cooldownsManager.AddIndiacator(Addresses.Ico_Ship);
         gameData.GameStateChanged += GameStateChanged;
 
     }

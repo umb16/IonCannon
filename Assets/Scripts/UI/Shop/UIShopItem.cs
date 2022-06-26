@@ -41,7 +41,7 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             _text.text = "<color=red>”никально</color>\n" + item.Description;
         else
             _text.text = item.Description;
-        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(AddressKeysConverter.Convert(item.Icon)).Task;
+        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.Icon).Task;
         _image.gameObject.SetActive(true);
         CheckButtonStatus(_player.Value.Gold);
     }

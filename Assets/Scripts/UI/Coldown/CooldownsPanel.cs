@@ -14,7 +14,7 @@ public class CooldownsPanel : MonoBehaviour
     {
         cooldownsPanel.Value = this;
     }
-    public CooldownIndicator AddIndiacator(AddressKeys address)
+    public CooldownIndicator AddIndiacator(string address)
     {
         var go = Instantiate(_cooldownIndicatorPrefab, transform);
         var indicator = go.GetComponent<CooldownIndicator>();

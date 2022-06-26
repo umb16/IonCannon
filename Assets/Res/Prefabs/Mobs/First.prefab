@@ -91,7 +91,7 @@ MonoBehaviour:
   _groundCenterPoint: {fileID: 2097849084}
   _type: 0
   _destroyType: 2
-  _hp: 15
+  _hp: 20
   _speed: 2.4
   _defence: 0
   _size: 1

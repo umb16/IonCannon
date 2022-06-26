@@ -35,7 +35,7 @@ public class EnemyPerksDB
             case PerkType.EHunter:
                 return new PerkEHunter();
             case PerkType.EMother:
-                return new PerkEMother(5, AddressKeys.Mob_Child);
+                return new PerkEMother(5, Addresses.Mob_Child);
             default:
                 return null;
         }

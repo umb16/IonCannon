@@ -14,26 +14,48 @@ public class MobSpawner : MonoBehaviour
 
     public AssetReference[] MobPrafab;
 
-    private int _currenWave;
+    private AsyncReactiveProperty<Player> _player;
+    public GameData GameData { get; private set; }
+    private DamageController _damageController;
 
-    private WaveData[] _waves =
-    {
-        new WaveData(new[]{(0,100)}),
-        new WaveData(new[]{(0,100), (2,1)}),
-        new WaveData(new[]{(0,100), (2,2)}),
-        new WaveData(new[]{(0,100), (1,3)}),
-        new WaveData(new[]{(0,100), (2,3),(1,3)}),
-        new WaveData(new[]{(0,100), (2,10)}),
-        new WaveData(new[]{(1,10)}),
-        new WaveData(new[]{(1,10),(2,10)}),
+    LevelEvent[] _levelEvents = {
+
+        new SpawnEvent(0, 20, Addresses.Mob_First, 2).SetDirection(0,360),
+        new SpawnEvent(21, 240, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(45, 105, Addresses.Mob_SpdBuff, 30).SetDirection(0,360),
+        new SpawnEvent(120, 200, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
+        new SpawnEvent(210, 240, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
+
+        new SpawnEvent(90, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(150, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(210, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+       
+        //после 4 минуты
+
+        new SpawnEvent(241, 300, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(300, 480, Addresses.Mob_First, 0.6f).SetDirection(0,360),
+        new SpawnEvent(261, 480, Addresses.Mob_Child, 7).SetDirection(0,360),
+        new SpawnEvent(260, 480, Addresses.Mob_Artillery, 10).SetDirection(0,360),
+
+        new SpawnEvent(330, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(390, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(450, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+
+        //после 8 минуты
+
+        new SpawnEvent(481, 720, Addresses.Mob_Child, 2).SetDirection(0,360),
+        new SpawnEvent(500, 720, Addresses.Mob_Second, 6).SetDirection(0,360),
+
+        new SpawnEvent(540, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(600, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(660, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
     };
 
-    private WaveData CurrentWave => _waves[_currenWave];
-
-    private AsyncReactiveProperty<Player> _player;
-    private GameData _gameData;
-    private DamageController _damageController;
-    private float _mobSpawnTime;
+    
+    private float _screenRatio;
+    private int _screenHeight;
+    private float _screenWidth;
+    private float _screenDiagonal;
 
     [Inject]
     private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, GameData gameData)
@@ -41,22 +63,26 @@ public class MobSpawner : MonoBehaviour
         _damageController = damageController;
         damageController.Die += OnEnemyDie;
         _player = player;
-        _gameData = gameData;
-        _gameData.GameStateChanged += OnGameStateChanged;
+        GameData = gameData;
+        GameData.GameStateChanged += OnGameStateChanged;
     }
-
+    private void Start()
+    {
+        CalcScreenSpawnParams();
+        foreach (var eventItem in _levelEvents)
+        {
+            eventItem.SetSpawner(this);
+        }
+    }
     private void OnGameStateChanged(GameState state)
     {
         if (state == GameState.Restart)
         {
-            /*for (int i = 0; i < Mobs.Count; i++)
-            {
-                IMob mob = Mobs[i];
-                mob.Destroy();
-            }*/
-            CurrentWave.Reset();
-            _currenWave = 0;
             Mobs.Clear();
+            foreach (var eventItem in _levelEvents)
+            {
+                eventItem.Reset();
+            }
             foreach (var trn in transform.GetComponentsInChildren<Transform>().Skip(1))
             {
                 if (trn.GetComponent<IMob>() == null)
@@ -72,19 +98,12 @@ public class MobSpawner : MonoBehaviour
 
     public void NextWave()
     {
-        CurrentWave.Reset();
-        _currenWave++;
-        _gameData.AddWave();
-        Debug.Log("Current wave " + _currenWave);
-        if (_currenWave >= _waves.Length)
-        {
-            _currenWave = 0;
-        }
+        GameData.AddWave();
     }
 
     public async UniTask<IMob> SpawnByName(string key, Vector3 position)
     {
-        if (_gameData.State != GameState.Gameplay)
+        if (GameData.State != GameState.Gameplay)
             return null;
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
@@ -92,57 +111,57 @@ public class MobSpawner : MonoBehaviour
         Mobs.Add(mob);
         return mob;
     }
-    private async UniTask CreateMob()
-    {
-        if (!Stop)
-        {
-            if (!CurrentWave.IsEnd)
-            {
-                float ratio = (float)(Screen.width) / Screen.height;
-                float height = 17 + 17 + 5;
-                float width = height * ratio;
-                Vector3 vector = Vector3.zero;
-                if (Random.value < .5f)
-                {
-                    vector.x = (Random.value - .5f) * width * 2;
-                    if (Random.value < .5f)
-                    {
-                        vector.y = -height / 2;
-                    }
-                    else
-                    {
-                        vector.y = height / 2;
-                    }
-                }
-                else
-                {
-                    vector.y = (Random.value - .5f) * height * 2;
-                    if (Random.value < .5f)
-                    {
-                        vector.x = -width / 2;
-                    }
-                    else
-                    {
-                        vector.x = width / 2;
-                    }
-                }
 
-                vector += _player.Value.transform.position;
-                GameObject gameObject = await MobPrafab[GetNextMob()].InstantiateAsync(new Vector3(vector.x, vector.y, -0.5f), Quaternion.identity).Task;
-                gameObject.transform.SetParent(transform);
-                Mob mob = gameObject.GetComponent<Mob>();
-                //mob.AddPerk(new PerkEWave());
-                Mobs.Add(mob);
-            }
-            if (CurrentWave.IsEnd/* && (Mobs.Count(x => x.Type == MobType.Default) < 5 || CurrentWave.TimeIsOver)*/)
-                NextWave();
-        }
-        //float delay = (Random.value + 2f) / (Mathf.Abs(Mathf.Sin(((float)_player.Exp.Value + _time) / 100f)) + 1f);
+    private void CalcScreenSpawnParams()
+    {
+        _screenRatio = (float)(Screen.width) / Screen.height;
+        _screenHeight = 17 + 17 + 5;
+        _screenWidth = _screenHeight * _screenRatio;
+        _screenDiagonal = Mathf.Sqrt(_screenHeight * _screenHeight + _screenWidth * _screenWidth);
     }
-
-    private int GetNextMob()
+    public Vector3 GetSpawnPointFromDirection(float direction)
     {
-        return _waves[_currenWave].GetNext();
+        if(direction < 0)
+        {
+            direction = 360 + direction;
+        }
+        Vector3 vector = Vector3.down;
+        vector = vector.DiamondRotateXY(direction / 90);
+        vector *= _screenDiagonal*.5f;
+        vector += _player.Value.transform.position;
+        return vector;
+    }
+    public Vector3 GetRandomSpawnPoint()
+    {
+        
+        Vector3 vector = Vector3.zero;
+        if (Random.value < .5f)
+        {
+            vector.x = (Random.value - .5f) * _screenWidth * 2;
+            if (Random.value < .5f)
+            {
+                vector.y = -_screenHeight / 2;
+            }
+            else
+            {
+                vector.y = _screenHeight / 2;
+            }
+        }
+        else
+        {
+            vector.y = (Random.value - .5f) * _screenHeight * 2;
+            if (Random.value < .5f)
+            {
+                vector.x = -_screenWidth / 2;
+            }
+            else
+            {
+                vector.x = _screenWidth / 2;
+            }
+        }
+
+        vector += _player.Value.transform.position;
+        return vector;
     }
 
     private void OnDestroy()
@@ -151,20 +170,12 @@ public class MobSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (_gameData.State != GameState.Gameplay)
+        if (GameData.State != GameState.Gameplay)
             return;
 
-        if (_mobSpawnTime < Time.time)
+        foreach (var item in _levelEvents)
         {
-            CreateMob().Forget();
-            if (CurrentWave.SpawnDelay == null)
-            {
-                _mobSpawnTime = Time.time + Random.value;
-            }
-            else
-            {
-                _mobSpawnTime = Time.time + Random.Range(CurrentWave.SpawnDelay.Value.x, CurrentWave.SpawnDelay.Value.y);
-            }
+            item.Update();
         }
 
         //“елепортаци€ мобов

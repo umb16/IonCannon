@@ -7,6 +7,6 @@ public interface IZoneIndicator
 {
     void SetPosition(Vector3 position);
     void SetRadius(float radius);
-    void SetIcon(AddressKeys addressKey);
+    void SetIcon(string addressKey);
     void Hide();
 }

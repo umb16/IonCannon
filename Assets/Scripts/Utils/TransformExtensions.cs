@@ -8,8 +8,8 @@ public static class TransformExtensions
     {
         t.position = new Vector3(x, y, y * Constants.ZShiftFactor);
     }
-    public static void To2DPos(this Transform t)
+    public static void To2DPos(this Transform t, float shift = 0)
     {
-        t.position = new Vector3(t.position.x, t.position.y, t.position.y * Constants.ZShiftFactor);
+        t.position = new Vector3(t.position.x, t.position.y, t.position.y * Constants.ZShiftFactor + shift);
     }
 }
