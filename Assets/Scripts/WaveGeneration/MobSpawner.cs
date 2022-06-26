@@ -16,11 +16,40 @@ public class MobSpawner : MonoBehaviour
     public GameData GameData { get; private set; }
     private DamageController _damageController;
 
-    LevelEvent[] _levelEvents = { 
-        new SpawnEvent(0, Addresses.Mob_Slowdowner).SetFixedCount(10),
-        //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
-        //new SpawnEvent(6, Addresses.Mob_Second),
+    LevelEvent[] _levelEvents = {
+
+        new SpawnEvent(0, 20, Addresses.Mob_First, 2).SetDirection(0,360),
+        new SpawnEvent(21, 240, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(45, 105, Addresses.Mob_SpdBuff, 30).SetDirection(0,360),
+        new SpawnEvent(120, 200, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
+        new SpawnEvent(210, 240, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
+
+        new SpawnEvent(90, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(150, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(210, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+       
+        //пїЅпїЅпїЅпїЅпїЅ 4 пїЅпїЅпїЅпїЅпїЅпїЅ
+
+        new SpawnEvent(241, 300, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(300, 480, Addresses.Mob_First, 0.6f).SetDirection(0,360),
+        new SpawnEvent(261, 480, Addresses.Mob_Child, 7).SetDirection(0,360),
+        new SpawnEvent(260, 480, Addresses.Mob_Artillery, 10).SetDirection(0,360),
+
+        new SpawnEvent(330, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(390, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(450, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+
+        //пїЅпїЅпїЅпїЅпїЅ 8 пїЅпїЅпїЅпїЅпїЅпїЅ
+
+        new SpawnEvent(481, 720, Addresses.Mob_Child, 2).SetDirection(0,360),
+        new SpawnEvent(500, 720, Addresses.Mob_Second, 6).SetDirection(0,360),
+
+        new SpawnEvent(540, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(600, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(660, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
     };
+
+    
     private float _screenRatio;
     private int _screenHeight;
     private float _screenWidth;
@@ -144,7 +173,7 @@ public class MobSpawner : MonoBehaviour
             item.Update();
         }
 
-        //Телепортация мобов
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         if (teleportation)
         {
             foreach (var mob in Mobs)
