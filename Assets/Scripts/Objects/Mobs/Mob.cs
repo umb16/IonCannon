@@ -58,7 +58,6 @@ public class Mob : MonoBehaviour, IMob
         GameData = gameData;
         DamageController = damageController;
         IsReady = true;
-        ID = ++idIndex;
         Spawner = mobSpawner;
         _animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
@@ -191,6 +190,7 @@ public class Mob : MonoBehaviour, IMob
 
     protected virtual void Awake()
     {
+        ID = ++idIndex;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
