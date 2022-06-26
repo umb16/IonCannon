@@ -19,7 +19,7 @@ namespace IonCannon.Tiles
         [SerializeField] private Color _lineColor1;
         [SerializeField] private Color _lineColor2;
         [SerializeField] private Color _lineColor3;
-        [SerializeField] private float _liquidDropSize = 2;
+       // [SerializeField] private float _liquidDropSize = 2;
         private Camera _camera;
         public static Dictionary<TileType, List<GLTile>> _tiles = new Dictionary<TileType, List<GLTile>>();
 
@@ -80,9 +80,9 @@ namespace IonCannon.Tiles
             }
             //Quad(Vector3.zero, 2, false, false);
             GL.End();
-            material4.SetPass(0);
+            /*material4.SetPass(0);
             GL.Begin(GL.QUADS);
-            foreach (var pos in LiquidTest.xxxx.Results)
+            foreach (var pos in LiquidTest.Instance.xxxx.Results)
             {
                 if (pos.x == float.PositiveInfinity)
                     continue;
@@ -95,7 +95,7 @@ namespace IonCannon.Tiles
                  GL.TexCoord2(1,0);
                 GL.Vertex3(pos.x + _liquidDropSize, pos.y - _liquidDropSize, 0);
             }
-            GL.End();
+            GL.End();*/
         }
     }
 }

@@ -10,5 +10,6 @@ public enum DamageSources
     Ionization = 8,
     Heal = 16,
     RayInitial = 32,
-    RayAll = RayInitial + Ray
+    RayAll = RayInitial + Ray,
+    Self = 34
 }

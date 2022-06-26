@@ -15,7 +15,7 @@ public class WarningSound : MonoBehaviour
     private float _nextPlayTime;
     private float _lowpassMax = 22000;
     private float _lowpassSoftMin = 300;
-    private float _lowpassMin = 100;
+    //private float _lowpassMin = 100;
     private float _currentLowpass = 0;
     private bool _outOfRange = false;
     private Timer _timer;

@@ -46,9 +46,9 @@ public class RayCollider : MonoBehaviour
 
     private void Update()
     {
-        foreach (var item in LiquidsControl._liquidsList)
+        foreach (var item in LiquidTest.Instance.LiquidsList)
         {
-            if (((Vector3)item.BackedPosition - transform.position).SqrMagnetudeXY() < item._colliderRadius * item._colliderRadius)
+            if ((item.Position - transform.position).SqrMagnetudeXY() < item._colliderRadius * item._colliderRadius)
             {
                 item.ReceiveDamage(new DamageMessage(_player.Value, item, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
             }

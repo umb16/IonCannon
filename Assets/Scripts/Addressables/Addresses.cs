@@ -31,6 +31,7 @@ public static class Addresses
    public static string Char_standart = "Char_standart";
    public static string Mob_Artillery = "Mob_Artillery";
    public static string Obj_Heart = "Obj_Heart";
+   public static string Mob_Slowdowner = "Mob_Slowdowner";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }

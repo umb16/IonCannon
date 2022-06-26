@@ -47,3 +47,4 @@ MonoBehaviour:
   RandomStart: 1
   RandomStartTime: 0
   Loop: 1
+  Stopped: 1

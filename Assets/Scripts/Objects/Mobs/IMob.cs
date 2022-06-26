@@ -28,7 +28,7 @@ public interface IMob
     bool ContainPerk(PerkType perkType);
     public void ReceiveDamage(DamageMessage message);
     void Die(DamageMessage message);
-    void MoveTo(Vector3 target);
+    void MoveTo(Vector2 target);
     void OnDie();
     UniTask AddFx(Fx fx);
     void RemoveFx(Fx fx);

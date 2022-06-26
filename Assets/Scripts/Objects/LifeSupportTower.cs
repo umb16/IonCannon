@@ -70,6 +70,12 @@ namespace SPVD.LifeSupport
            return _circles.Any(x => (point - x.pos).sqrMagnitude < x.radius * x.radius);
         }
 
+        public Vector2 GetRandomPoint()
+        {
+            var currentCircle = _circles[Random.Range(0, _circles.Count)];
+            return currentCircle.pos + new Vector2(Random.value - .5f, Random.value - .5f).normalized * currentCircle.radius*Random.value;
+        }
+
         public void AddCircle(Vector2 center, float radius)
         {
             _circles.Add(new Circle(center, radius));

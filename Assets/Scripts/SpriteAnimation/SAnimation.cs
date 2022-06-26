@@ -9,5 +9,6 @@ public class SAnimation : ScriptableObject
     public bool RandomStart;
     public bool RandomStartTime;
     public bool Loop;
+    public bool Stopped;
     public int FrameCount => Frames.Count;
 }

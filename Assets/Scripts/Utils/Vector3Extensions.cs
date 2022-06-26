@@ -14,6 +14,10 @@ namespace Umb16.Extensions
         {
             return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor + zShift);
         }
+        public static Vector2 Get2D(this Vector2 v, float zShift = 0)
+        {
+            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor + zShift);
+        }
         public static bool EqualsWithThreshold(this Vector3 v1, Vector3 v2, float threshold)
         {
             return Mathf.Abs(v1.x - v2.x) < threshold && Mathf.Abs(v1.y - v2.y) < threshold &&

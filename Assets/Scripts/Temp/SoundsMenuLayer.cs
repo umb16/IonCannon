@@ -17,13 +17,13 @@ public class SoundsMenuLayer : BaseLayer
     }
     public void OnMusicVolumeChanged(float volume)
     {
-        _mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+        _mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20 - 9);
         PlayerPrefs.SetFloat("music", volume);
     }
     public void OnSoundVolumeChanged(float volume)
     {
-        _mixer.SetFloat("SoundVolume", Mathf.Log10(volume) * 20);
-        _mixer.SetFloat("OtherSoundsVolume", Mathf.Log10(volume) * 20);
+        _mixer.SetFloat("SoundVolume", Mathf.Log10(volume) * 20 - 6);
+        _mixer.SetFloat("OtherSoundsVolume", Mathf.Log10(volume) * 20 - 6);
         PlayerPrefs.SetFloat("sound", volume);
     }
 }

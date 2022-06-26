@@ -17,6 +17,8 @@ public class DamageNumbersGenerator : MonoBehaviour
 
     private void CreateNumber(DamageMessage msg)
     {
+        if (msg.Target.Type == MobType.Liquid)
+            return;
         if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
             return;
         var number = Instantiate(numberPrefab);

@@ -43,7 +43,7 @@ public class Mob : MonoBehaviour, IMob
 
     public MobType Type => _type;
 
-    private Vector3 _moveTarget;
+    protected Vector2 _moveTarget;
     protected bool _stopped = true;
 
     private MobFxes _mobFxes = new MobFxes();
@@ -161,7 +161,7 @@ public class Mob : MonoBehaviour, IMob
         DamageController.SendDie(message);
     }
 
-    public void MoveTo(Vector3 target)
+    public void MoveTo(Vector2 target)
     {
         _moveTarget = target;
         _stopped = false;
@@ -214,7 +214,7 @@ public class Mob : MonoBehaviour, IMob
                 if (_mirroringOnMove)
                     Flip();
 
-                Vector3 pos = transform.position;
+                Vector2 pos = transform.position;
                 pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - pos).normalized;
                 transform.position = pos.Get2D();
             }

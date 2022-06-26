@@ -12,14 +12,12 @@ public class MobSpawner : MonoBehaviour
     public bool Stop;
     public readonly List<IMob> Mobs = new List<IMob>();
 
-    public AssetReference[] MobPrafab;
-
     private AsyncReactiveProperty<Player> _player;
     public GameData GameData { get; private set; }
     private DamageController _damageController;
 
     LevelEvent[] _levelEvents = { 
-        new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(500),
+        new SpawnEvent(0, Addresses.Mob_Slowdowner).SetFixedCount(10),
         //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
         //new SpawnEvent(6, Addresses.Mob_Second),
     };

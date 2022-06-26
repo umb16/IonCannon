@@ -15,6 +15,8 @@ public class LiquidTest : MonoBehaviour
     [SerializeField] private float _RRadiusMax = 6;
     [SerializeField] private float _GRadius = 8;
     [SerializeField] private int _count = 1000;
+    public List<Liquid> LiquidsList = new List<Liquid>();
+    private bool _destroyed;
     Random rand = new Random();
     [BurstCompile/*(FloatMode = FloatMode.Fast)*/]
     public struct CalcLiquidForcesJob : IJobParallelFor
@@ -36,7 +38,6 @@ public class LiquidTest : MonoBehaviour
             }
             if (Positions[i].x == float.PositiveInfinity)
             {
-                //Results[i] = Positions[i];
                 return;
             }
             float2 gravity = float2.zero;
@@ -84,7 +85,7 @@ public class LiquidTest : MonoBehaviour
             if (math.lengthsq(force) > 1)
                 force = math.normalize(force);
             if (math.lengthsq(force) < .01f)
-                Sleep[i] = 10;
+                Sleep[i] = 5;
             Results[i] = Positions[i] + force;
              //if (!Sleep[i] && math.lengthsq(force) < .0001f)
                 
@@ -92,35 +93,37 @@ public class LiquidTest : MonoBehaviour
             //    Results[i] = Positions[i];
         }
     }
-    // Start is called before the first frame update
-    public static CalcLiquidForcesJob xxxx;
+    public static LiquidTest Instance;
+
+    public CalcLiquidForcesJob xxxx;
     int size = 1024;
     const Allocator alloc = Allocator.Persistent;
-    NativeArray<float2> x;
-    NativeArray<float2> res;
+    NativeArray<float2> positions;
+    NativeArray<float2> result;
     NativeArray<float> radiuses;
     NativeArray<byte> sleep;
     private void OnEnable()
     {
+        Instance = this;
         size = _count;
         rand.InitState((uint)(Time.deltaTime * 100000));
-        x = new NativeArray<float2>(size, alloc);
-        res = new NativeArray<float2>(size, alloc);
+        positions = new NativeArray<float2>(size, alloc);
+        result = new NativeArray<float2>(size, alloc);
         radiuses = new NativeArray<float>(size, alloc);
         sleep = new NativeArray<byte>(size, alloc);
-        for (int i = 0; i < x.Length; i++)
+        for (int i = 0; i < positions.Length; i++)
         {
             //x[i] = math.normalize(rand.NextFloat2(-1, 1))* (100 - math.pow(rand.NextFloat(10),2));
             radiuses[i] = _RRadiusMin;
-            //x[i] = new float2(float.PositiveInfinity, float.PositiveInfinity);
+            positions[i] = new float2(float.PositiveInfinity, float.PositiveInfinity);
         }
 
 
 
         xxxx = new CalcLiquidForcesJob()
         {
-            Positions = x,
-            Results = res,
+            Positions = positions,
+            Results = result,
             CurrentRadius = radiuses,
             Sleep = sleep,
             _GRadius = _GRadius,
@@ -136,31 +139,50 @@ public class LiquidTest : MonoBehaviour
 
     private void OnDisable()
     {
-        x.Dispose();
-        res.Dispose();
+        positions.Dispose();
+        result.Dispose();
         radiuses.Dispose();
         sleep.Dispose();
+        _destroyed = true;
     }
 
-    int index = 0;
-    // Update is called once per frame
     void FixedUpdate()
     {
         xxxx.Schedule(size, 64).Complete();
 
         for (int i = 0; i < xxxx.Positions.Length; i++)
         {
-            if (xxxx.Results[i].x == float.PositiveInfinity)
+            if (xxxx.Positions[i].x == float.PositiveInfinity)
                 continue;
             Debug.DrawLine((Vector2)xxxx.Results[i] - Vector2.up, (Vector2)xxxx.Results[i] + Vector2.up, Color.red);
             Debug.DrawLine((Vector2)xxxx.Results[i] - Vector2.left, (Vector2)xxxx.Results[i] + Vector2.left, Color.red);
             Debug.DrawLine((Vector2)xxxx.Positions[i], (Vector2)xxxx.Results[i], Color.white, 1);
             xxxx.Positions[i] = xxxx.Results[i];
         }
-        //index++;
-        /*if(rand.NextFloat()<.5f)
-            xxxx.Positions[index % size] = rand.NextFloat2(-50, 50);
-        else
-            xxxx.Positions[index % size] = new float2(float.PositiveInfinity,float.PositiveInfinity);*/
+    }
+
+    public void Remove(Liquid liquid)
+    {
+        if (!_destroyed)
+        {
+            xxxx.Positions[liquid.Index] = new float2(float.PositiveInfinity, float.PositiveInfinity);
+            LiquidsList.Remove(liquid);
+        }
+    }
+
+    public int Add(Liquid liquid)
+    {
+        LiquidsList.Add(liquid);
+        for (int i = 0; i < xxxx.Positions.Length; i++)
+        {
+            if (xxxx.Positions[i].x == float.PositiveInfinity)
+            {
+                xxxx.Positions[i] = (Vector2) liquid.Position;
+                xxxx.CurrentRadius[i] = _RRadiusMin;
+                xxxx.Sleep[i] = 0;
+                return i;
+            }
+        }
+        return -1;
     }
 }

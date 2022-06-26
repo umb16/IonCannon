@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,11 +62,11 @@ public class SpawnEvent : LevelEvent
                 _nextSpawnTime += Random.Range(_minSpawnDelay, _maxSpawnDelay);
                 if (_direction == null)
                 {
-                    _mobSpawner.SpawnByName(_address, _mobSpawner.GetRandomSpawnPoint());
+                    _mobSpawner.SpawnByName(_address, _mobSpawner.GetRandomSpawnPoint()).Forget();
                 }
                 else
                 {
-                    _mobSpawner.SpawnByName(_address, _mobSpawner.GetSpawnPointFromDirection(_direction.Value + _directionError * (Random.value - .5f)));
+                    _mobSpawner.SpawnByName(_address, _mobSpawner.GetSpawnPointFromDirection(_direction.Value + _directionError * (Random.value - .5f))).Forget();
                 }
                 _count++;
             }

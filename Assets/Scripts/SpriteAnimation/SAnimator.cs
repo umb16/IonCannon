@@ -38,7 +38,7 @@ public class SAnimator : MonoBehaviour
     }
     public void PlayAnim(SAnimation anim)
     {
-        _isStopped = false;
+        _isStopped = anim.Stopped;
         _currentAnimation = anim;
         if (_currentAnimation.RandomStart)
             _currentFrame = Random.Range(0, _currentAnimation.FrameCount);

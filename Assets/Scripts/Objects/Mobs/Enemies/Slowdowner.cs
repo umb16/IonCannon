@@ -1,56 +1,56 @@
 ﻿using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using SPVD.LifeSupport;
+using System;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Objects.Mobs.Enemies
 {
     internal class Slowdowner : EnemySimple
     {
-        [SerializeField] private Transform _firePoint;
+        [SerializeField] private Transform[] _palantedPoints;
         [SerializeField] private GameObject _projectileInstance;
         bool _attack = false;
-        bool _canMove = true;
         private LifeSupportTower _lifeSupportTower;
-        private float DistanceToPlayer => ((Player?.Position - Position) ?? Vector3.zero).magnitude;
-        private bool AttackIsAvaliable => (DistanceToPlayer < (_attack ? 20 : 20)) && (_lifeSupportTower.InRadius(Position) || DistanceToPlayer < 10);
-
+        //private float DistanceToPlayer => ((Player?.Position - Position) ?? Vector3.zero).magnitude;
+        //private bool AttackIsAvaliable => _lifeSupportTower.InRadius(Position);
         [Inject]
         private void Construct(LifeSupportTower lifeSupportTower)
         {
             _lifeSupportTower = lifeSupportTower;
-            UniTaskAsyncEnumerable.EveryValueChanged(this, _ => AttackIsAvaliable).Subscribe(OnChangeState, this.GetCancellationTokenOnDestroy());
+            //UniTaskAsyncEnumerable.EveryValueChanged(this, _ => AttackIsAvaliable).Subscribe(OnChangeState, this.GetCancellationTokenOnDestroy());
+            //_moveTarget = _lifeSupportTower.GetRandomPoint();
+            MoveTo(_lifeSupportTower.GetRandomPoint());
             SetBehaviour(BehaviorMethod);
         }
 
         private void OnShootFromAnim()
         {
-            Instantiate(_projectileInstance, _firePoint.position, Quaternion.identity,  transform.parent);
-
-            if (!_attack)
+            foreach (var point in _palantedPoints)
             {
-                _canMove = true;
+                Instantiate(_projectileInstance, point.position+new Vector3(Random.value-.5f, Random.value - .5f,0), Quaternion.identity, transform.parent);
             }
         }
 
-        private void OnChangeState(bool attack)
+        private void StartAttack()
         {
-            _attack = attack;
-            _animator.SetBool("attack", attack);
-            if (attack)
-            {
-                _canMove = false;
-                StopMove();
-            }
+            _attack = true;
+            _animator.SetBool("planting", true);
+            StopMove();
         }
 
         private void BehaviorMethod()
         {
-            if (!_attack && _canMove)
+            if (!_attack)
             {
-                if (Player != null)
-                    MoveTo(Player.Position+ new Vector3((1-Random.value*.5f)*2, (1 - Random.value * .5f)*2, 0));
+                if (((Vector2)Position - _moveTarget).sqrMagnitude < 1)
+                    StartAttack();
+                //else
+                //    MoveTo(_moveTarget);
+                //if (Player != null)
+                //    MoveTo(Player.Position+ new Vector3((1-Random.value*.5f)*2, (1 - Random.value * .5f)*2, 0));
             }
         }
 
