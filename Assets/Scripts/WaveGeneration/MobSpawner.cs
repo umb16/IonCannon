@@ -18,26 +18,40 @@ public class MobSpawner : MonoBehaviour
     public GameData GameData { get; private set; }
     private DamageController _damageController;
 
-    //LevelEvent[] _levelEvents = { 
-    //    new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(500),
-    //    //new SpawnEvent(0, 5, Addresses.Mob_Child, 2),
-    //    //new SpawnEvent(6, Addresses.Mob_Second),
-    //};
     LevelEvent[] _levelEvents = {
-        new SpawnEvent(0, Addresses.Mob_First).SetFixedCount(100).SetDirection(0,360),
-        //new SpawnEvent(0, 20, Addresses.Mob_First, 2),
-        //new SpawnEvent(21, 240, Addresses.Mob_First, 1),
-        //new SpawnEvent(50, Addresses.Mob_SpdBuff),
-        //new SpawnEvent(80, Addresses.Mob_SpdBuff),
-        //new SpawnEvent(100, 190, Addresses.Mob_SpdBuff, 15),
-        //new SpawnEvent(190, 240, Addresses.Mob_SpdBuff, 10),
 
+        new SpawnEvent(0, 20, Addresses.Mob_First, 2).SetDirection(0,360),
+        new SpawnEvent(21, 240, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(45, 105, Addresses.Mob_SpdBuff, 30).SetDirection(0,360),
+        new SpawnEvent(120, 200, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
+        new SpawnEvent(210, 240, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
 
-        //new SpawnEvent(190, Addresses.Mob_First).SetFixedCount(70),
-        //new SpawnEvent(200, 360, Addresses.Mob_First, 1.5f),
-        //new SpawnEvent(200, 360, Addresses.Mob_Artillery, 20),
-        //new SpawnEvent(6, Addresses.Mob_Second),
+        new SpawnEvent(90, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(150, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(210, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+       
+        //после 4 минуты
+
+        new SpawnEvent(241, 300, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(300, 480, Addresses.Mob_First, 0.6f).SetDirection(0,360),
+        new SpawnEvent(261, 480, Addresses.Mob_Child, 7).SetDirection(0,360),
+        new SpawnEvent(260, 480, Addresses.Mob_Artillery, 10).SetDirection(0,360),
+
+        new SpawnEvent(330, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(390, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(450, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+
+        //после 8 минуты
+
+        new SpawnEvent(481, 720, Addresses.Mob_Child, 2).SetDirection(0,360),
+        new SpawnEvent(500, 720, Addresses.Mob_Second, 6).SetDirection(0,360),
+
+        new SpawnEvent(540, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(600, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
+        new SpawnEvent(660, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
     };
+
+    
     private float _screenRatio;
     private int _screenHeight;
     private float _screenWidth;

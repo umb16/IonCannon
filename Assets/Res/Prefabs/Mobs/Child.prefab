@@ -116,10 +116,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mirroringOnMove: 1
+  _reverseMirroring: 0
   _groundCenterPoint: {fileID: 1952787526251375432}
   _type: 0
   _destroyType: 2
-  _hp: 10
+  _hp: 20
   _speed: 1.5
   _defence: 0
   _size: 1
