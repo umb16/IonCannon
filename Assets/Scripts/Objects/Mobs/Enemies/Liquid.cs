@@ -26,7 +26,7 @@ public class Liquid : Mob
         });
         Defence = StatsCollection.GetStat(StatType.Defence);
         Vector3 vector = transform.position;
-        vector.z = 100;
+        vector.z = 0;
         transform.position = vector;
         _arrivalTimer = new Timer(.2f)
             .SetUpdate(x => transform.localScale = new Vector3(1.5f, x+.5f, 1));
@@ -39,7 +39,7 @@ public class Liquid : Mob
 
     private void FixedUpdate()
     {
-        TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index] + Vector3.forward * 100;
+        TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index] /*+ Vector3.forward * 100*/;
     }
 
     protected override void Update()
