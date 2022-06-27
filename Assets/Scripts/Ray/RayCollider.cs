@@ -26,7 +26,7 @@ public class RayCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         var mob = col.gameObject.GetComponent<IMob>();
-        Debug.Log(col.gameObject.name);
+       // Debug.Log(col.gameObject.name);
         if (mob != null)
         {
             
