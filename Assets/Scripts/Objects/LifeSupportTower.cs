@@ -39,7 +39,25 @@ namespace SPVD.LifeSupport
             if (state == GameState.Restart)
                 Reset();
         }
+        [EditorButton]
+        public void AddRandomCircle()
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                AddCircle(GetRandomPointOnEdge(), 20);
+            }
 
+        }
+        [EditorButton]
+        public void AddRandomCircle10()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                AddCircle(GetRandomPointOnEdge(), 20);
+            }
+
+        }
+        [EditorButton]
         private void Reset()
         {
             _circles.Clear();
@@ -67,38 +85,42 @@ namespace SPVD.LifeSupport
 
         public bool InRadius(Vector2 point)
         {
-           return _circles.Any(x => (point - x.pos).sqrMagnitude < x.radius * x.radius);
+            return _circles.Any(x => (point - x.pos).sqrMagnitude < x.radius * x.radius);
         }
 
         public Vector2 GetRandomPoint()
         {
             var currentCircle = _circles[Random.Range(0, _circles.Count)];
-            return currentCircle.pos + new Vector2(Random.value - .5f, Random.value - .5f).normalized * currentCircle.radius*Random.value;
+            return currentCircle.pos + new Vector2(Random.value - .5f, Random.value - .5f).normalized * currentCircle.radius * Random.value;
         }
-
+        public Vector2 GetRandomPointOnEdge()
+        {
+            var circles = _circles.Where(x => x.Points.Count > 0).ToArray();
+            var currentCircle = circles[Random.Range(0, circles.Length)];
+            return currentCircle.pos + new Vector2(Random.value - .5f, Random.value - .5f).normalized * currentCircle.radius;
+        }
         public void AddCircle(Vector2 center, float radius)
         {
-            _circles.Add(new Circle(center, radius));
+            _circles.Add(new Circle(center, radius, _circles.Count));
             UpdateVisual();
         }
         private void Test()
         {
             for (int i = 0; i < 50; i++)
             {
-                _circles.Add(new Circle(new Vector2(100 * (Random.value - .5f), 100 * (Random.value - .5f)), Random.Range(10, 30)));
+                _circles.Add(new Circle(new Vector2(100 * (Random.value - .5f), 100 * (Random.value - .5f)), Random.Range(10, 30), i));
             }
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             UpdateVisual();
             stopwatch.Stop();
-            Debug.Log("stopwatch "+stopwatch.ElapsedMilliseconds);
+            Debug.Log("stopwatch " + stopwatch.ElapsedMilliseconds);
         }
 
         private void UpdateVisual()
         {
             foreach (var circle in _circles)
             {
-
                 var points = GetCirclePoints(circle, 100);
                 circle.Points = RemovePointsInCircles(_circles.Where(x => x != circle), points);
                 for (int i = 1; i < circle.Points.Count; i++)
@@ -159,62 +181,92 @@ namespace SPVD.LifeSupport
             Vector2? prevPoint = null;
             int currentIndex = 0;
             int lineRendererIndex = 0;
+
+            int index = 0;
+            HashSet<int> set = new HashSet<int>();
             while (true)
             {
                 //await UniTask.Delay(10);
-                
-                var currentPoint = currentCircle.Points[currentIndex % currentCircle.Points.Count];
+                var normalIndex = currentIndex % currentCircle.Points.Count;
+
+
+                var currentPoint = currentCircle.Points[normalIndex];
                 if ((prevPoint == null
                     || currentCircle.MedianDistance * 1.5f > Vector2.Distance(prevPoint.Value, currentPoint)))
                 {
-                    if (currentCircle == startCircle && currentIndex > 0 && currentIndex % currentCircle.Points.Count == 0)
+                    if (set.Contains(normalIndex + currentCircle.ID * 1000000))
+                    {
+                        Debug.Log("Loop error " + normalIndex + " " + currentCircle.ID);
+                        break;
+                    }
+                    /*if (currentCircle == startCircle && (normalIndex == 0 && currentIndex > 0))
                     {
                         Debug.Log("Full loop circle");
                         break;
-                    }
+                    }*/
 
                     prevPoint = currentPoint;
                     _lineRenderer.positionCount++;
                     _lineRenderer.SetPosition(lineRendererIndex, currentPoint);
+
+                    set.Add(normalIndex + currentCircle.ID * 1000000);
                     currentIndex++;
+                    /*if (currentIndex >= currentCircle.Points.Count)
+                        currentIndex = 0;*/
                     lineRendererIndex++;
                 }
                 else
                 {
                     (Circle circle, float distance, int index) bestCircle;
                     bestCircle.distance = float.PositiveInfinity;
-                    bestCircle.circle = currentCircle;
+                    bestCircle.circle = startCircle;
                     bestCircle.index = 0;
-                    foreach (var circle in _circles.Where(x=>x!=currentCircle))
+                    foreach (var circle in _circles.Where(x => x != currentCircle))
                     {
                         for (int i = 0; i < circle.Points.Count; i++)
                         {
                             var distance = Vector2.Distance(prevPoint.Value, circle.Points[i]);
                             if (distance < bestCircle.distance)
                             {
-                                bestCircle.distance = distance;
-                                bestCircle.circle = circle;
-                                bestCircle.index = i;
+                                if (bestCircle.distance == float.PositiveInfinity || !set.Contains(i + circle.ID * 1000000))
+                                {
+                                    bestCircle.distance = distance;
+                                    bestCircle.circle = circle;
+                                    bestCircle.index = i;
+                                }
+                                else
+                                {
+                                   // Debug.Log("Loop in loop " + normalIndex + " " + currentCircle.ID);
+                                }
                             }
                         }
                     }
                     currentCircle = bestCircle.circle;
                     currentIndex = bestCircle.index;
                     prevPoint = null;
+                    /* if (currentCircle == startCircle)
+                         Debug.Log("to mach return to start " + currentIndex);*/
                     if (currentCircle == startCircle && currentIndex == 0)
                     {
                         Debug.Log("Full loop circle end index 0");
                         break;
                     }
                 }
+                if (index > 10000)
+                {
+
+                    Debug.Log("to mach " + startCircle.Points.Count());
+                    break;
+                }
+                index++;
                 //Debug.Log(lineRendererIndex);
             }
 
 
-            
+
         }
 
-        
+
 
         void Update()
         {
