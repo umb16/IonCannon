@@ -93,7 +93,16 @@ public class RayDrawer : MonoBehaviour
                 _cashedLenght = _player.Value.MaxPathLength;
             if (_currentPathLength < _cashedLenght)
             {
-                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
+                Vector3 pos;
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out var hit))
+                {
+                    pos = hit.point;
+                }
+                else
+                    return;
+                
+                //Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
                 if (pos.EqualsWithThreshold(_oldPointOfPath, 0.01f))
                     return;
                 _cannonPath.positionCount = _currentLineIndex + 1;

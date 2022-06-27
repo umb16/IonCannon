@@ -8,12 +8,16 @@ public class SoundsMenuLayer : BaseLayer
 {
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _soundSlider;
+    [SerializeField] Slider _angleSlider;
     [SerializeField] AudioMixer _mixer;
 
     private void Start()
     {
         _musicSlider.value = PlayerPrefs.GetFloat("music", 1);
         _soundSlider.value = PlayerPrefs.GetFloat("sound", 1);
+        _musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+        _soundSlider.onValueChanged.AddListener(OnSoundVolumeChanged);
+        _angleSlider.onValueChanged.AddListener(OnAngleChanged);
     }
     public void OnMusicVolumeChanged(float volume)
     {
@@ -25,5 +29,11 @@ public class SoundsMenuLayer : BaseLayer
         _mixer.SetFloat("SoundVolume", Mathf.Log10(volume) * 20 - 6);
         _mixer.SetFloat("OtherSoundsVolume", Mathf.Log10(volume) * 20 - 6);
         PlayerPrefs.SetFloat("sound", volume);
+    }
+    public void OnAngleChanged(float value)
+    {
+        var vector = Camera.main.transform.eulerAngles;
+        vector.x = -value;
+        Camera.main.transform.eulerAngles = vector;
     }
 }

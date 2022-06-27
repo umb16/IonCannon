@@ -196,6 +196,15 @@ public class Mob : MonoBehaviour, IMob
 
     protected virtual void Start()
     {
+        /*var vector =  transform.eulerAngles;
+        vector.x = Camera.main.transform.eulerAngles.x;
+        transform.eulerAngles = vector;*/
+        UniTaskAsyncEnumerable.EveryValueChanged(Camera.main.transform, x => x.eulerAngles.x).Subscribe(x =>
+        {
+            var vector = transform.eulerAngles;
+            vector.x = x;
+            transform.eulerAngles = vector;
+        },cancellationToken: this.GetCancellationTokenOnDestroy());
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
         Defence = StatsCollection.GetStat(StatType.Defence);

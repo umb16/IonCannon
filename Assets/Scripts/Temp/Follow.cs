@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,11 @@ public class Follow : MonoBehaviour
         float ortSize = Camera.main.orthographicSize;
         _cameraSize.y = ortSize;
         _cameraSize.x = ortSize * Camera.main.aspect;
+        UniTaskAsyncEnumerable.EveryValueChanged(Camera.main.transform, x => x.eulerAngles.x).Subscribe(x =>
+        {
+            //Debug.Log(x);
+            _shift.y = (x- 360) * 2.6f;
+        }, cancellationToken: this.GetCancellationTokenOnDestroy());
     }
 
     void Update()

@@ -12,11 +12,11 @@ namespace Umb16.Extensions
 
         public static Vector3 Get2D(this Vector3 v, float zShift = 0)
         {
-            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor + zShift);
+            return new Vector3(v.x, v.y, /*v.y * Constants.ZShiftFactor + zShift*/0);
         }
         public static Vector2 Get2D(this Vector2 v, float zShift = 0)
         {
-            return new Vector3(v.x, v.y, v.y * Constants.ZShiftFactor + zShift);
+            return new Vector3(v.x, v.y,/* v.y * Constants.ZShiftFactor + zShift*/0);
         }
         public static bool EqualsWithThreshold(this Vector3 v1, Vector3 v2, float threshold)
         {
