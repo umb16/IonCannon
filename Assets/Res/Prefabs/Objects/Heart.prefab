@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 8007996172826201487}
   - component: {fileID: 5263124681114150106}
   - component: {fileID: -1809642080273147267}
+  - component: {fileID: 7283234152039016285}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -283,3 +284,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7283234152039016285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007996172826201484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
