@@ -9,10 +9,11 @@ public class SoundsMenuLayer : BaseLayer
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _soundSlider;
     [SerializeField] Slider _angleSlider;
-    [SerializeField] AudioMixer _mixer;
+    AudioMixer _mixer;
 
     private void Start()
     {
+        _mixer = SoundManager.Instance.Mixer;
         _musicSlider.value = PlayerPrefs.GetFloat("music", 1);
         _soundSlider.value = PlayerPrefs.GetFloat("sound", 1);
         _musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);

@@ -60,6 +60,11 @@ public class WarningSound : MonoBehaviour
             .SetUpdate(x => _mixer.SetFloat("Lowpass", Mathf.Lerp(_currentLowpass, _lowpassMax, x * x)));
     }
 
+    private void OnDestroy()
+    {
+        _timer?.Stop();
+    }
+
     private void Update()
     {
         if (_lifeSupport == null)

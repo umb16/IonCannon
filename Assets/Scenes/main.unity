@@ -216,7 +216,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004022765, g: 0.0002196107, b: 0.000000053489103,
+  m_IndirectSpecularColor: {r: 0.0040227682, g: 0.00021961077, b: 0.000000053489103,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!108 &295
@@ -694,6 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f46e4c30934e0408d9b67a98bb8d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mixer: {fileID: 24100000, guid: 888815518065f8446963f4fdf081e0cd, type: 2}
   _audioSourceIgnoreLowpass: {fileID: 234364883}
   _shopOpen: {fileID: 8300000, guid: 131fb296014115245b61467c7fcb2d6c, type: 3}
   _shopClose: {fileID: 8300000, guid: 09834dbd96fe7c743966bd8f7054ea80, type: 3}
