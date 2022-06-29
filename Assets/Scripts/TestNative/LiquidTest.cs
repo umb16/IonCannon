@@ -159,11 +159,12 @@ public class LiquidTest : MonoBehaviour
             Debug.DrawLine((Vector2)xxxx.Positions[i], (Vector2)xxxx.Results[i], Color.white, 1);
             xxxx.Positions[i] = xxxx.Results[i];
         }
+        //Debug.Log("LiquidsList "+LiquidsList.Count);
     }
 
     public void Remove(Liquid liquid)
     {
-        if (!_destroyed)
+        if (!_destroyed && LiquidsList.Contains(liquid))
         {
             xxxx.Positions[liquid.Index] = new float2(float.PositiveInfinity, float.PositiveInfinity);
             LiquidsList.Remove(liquid);
@@ -172,17 +173,28 @@ public class LiquidTest : MonoBehaviour
 
     public int Add(Liquid liquid)
     {
-        LiquidsList.Add(liquid);
+        
         for (int i = 0; i < xxxx.Positions.Length; i++)
         {
             if (xxxx.Positions[i].x == float.PositiveInfinity)
             {
-                xxxx.Positions[i] = (Vector2) liquid.Position;
-                xxxx.CurrentRadius[i] = _RRadiusMin;
-                xxxx.Sleep[i] = 0;
+                AddByID(i, liquid);
                 return i;
             }
         }
-        return -1;
+
+         Liquid toRemove = LiquidsList[UnityEngine.Random.Range(0, LiquidsList.Count)];
+         toRemove.SelfDestroy();
+         AddByID(toRemove.Index, liquid);
+         return toRemove.Index;
+       // return -1;
+    }
+
+    private void AddByID(int i, Liquid liquid)
+    {
+        xxxx.Positions[i] = (Vector2)liquid.Position;
+        xxxx.CurrentRadius[i] = _RRadiusMin;
+        xxxx.Sleep[i] = 0;
+        LiquidsList.Add(liquid);
     }
 }
