@@ -15,10 +15,6 @@ public class Liquid : Mob
     protected override void Start()
     {
         Index = LiquidTest.Instance.Add(this);
-        if(Index == -1)
-            Destroy(this);
-        //LiquidsControl.Add(this);
-        //new Timer(Random.value * 2).SetEnd(() => _animator.enabled = true);
         HP = new ComplexStat(10);
         StatsCollection = new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
         {
@@ -29,8 +25,8 @@ public class Liquid : Mob
         vector.z = 0;
         transform.position = vector;
         _arrivalTimer = new Timer(.2f)
-            .SetUpdate(x => transform.localScale = new Vector3(1.5f, x+.5f, 1));
-        _deathTimer = new Timer(Random.Range(10, 300)).SetEnd(() => Die(new DamageMessage(this,this,9999, DamageSources.Self)));
+            .SetUpdate(x => transform.localScale = new Vector3(1.5f, x + .5f, 1));
+        _deathTimer = new Timer(Random.Range(10, 300)).SetEnd(SelfDestroy);
 
         AddPerk(new PerkAura(PerkType.ESlowAura, PerkType.ESlowAuraEffect,
             new[] { new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.MovementSpeed) },
@@ -39,67 +35,33 @@ public class Liquid : Mob
 
     private void FixedUpdate()
     {
-        TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index] /*+ Vector3.forward * 100*/;
+        if (!IsDead)
+            TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index];
+    }
+
+    protected override void Update()
+    public void SelfDestroy()
+    {
+        ReceiveDamage(new DamageMessage(this, this, 9999, DamageSources.Self));
     }
 
     protected override void Update()
     {
-
-        transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime);
-        //transform.position = Vector3.Lerp(transform.position,(Vector3)Target+Vector3.forward*100, Time.deltaTime);
-        //transform.position += (Vector3)Target*Time.deltaTime;
-        /*Vector2 gravity = Vector2.zero;
-        Vector2 repulsion = Vector2.zero;
-        float countG = 0;
-        float countR = 0;
-        foreach (var item in _liquidsList)
-        {
-            if (item.ID != ID)
-            {
-                Vector2 vector = (item.BackedPosition - BackedPosition);
-                var sqrDistance = vector.sqrMagnitude;
-                if (sqrDistance == 0)
-                {
-                    vector = new Vector2(Random.value, Random.value);
-                    sqrDistance = .1f;
-                }
-                if (sqrDistance < _bigRadius * _bigRadius)
-                {
-                    if (sqrDistance < _repulsionCurrentRadius * _repulsionCurrentRadius)
-                    {
-                        float k = sqrDistance / (_repulsionCurrentRadius * _repulsionCurrentRadius);
-                        countR++;
-                        repulsion += vector * -1 / sqrDistance * (1 - k);
-                    }
-                    else
-                    {
-                        countG++;
-                        gravity += vector / sqrDistance * _gravityK;
-                    }
-                }
-            }
-        }
-        _repulsionCurrentRadius = Mathf.Lerp(_repulsionMinRadius, _repulsionMaxRadius, countR * .333f);
-
-        if (countR > 0)
-            gravity /= countR;
-        if (!((Vector3)(gravity + repulsion)).EqualsWithThreshold(Vector3.zero, .1f))
-            transform.position += ((Vector3)(gravity + repulsion)) * Time.deltaTime;      */
+        if (!IsDead)
+            transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime);
     }
 
-    public override void ReceiveDamage(DamageMessage message)
-    {
-        base.ReceiveDamage(message);
-    }
     public override void Die(DamageMessage message)
     {
         base.Die(message);
         _deathTimer?.Stop();
         _arrivalTimer?.Stop();
-        _deathTimer = new Timer((message.DamageSource == DamageSources.Self)?10:.5f)
+        LiquidTest.Instance.Remove(this);
+        _deathTimer = new Timer((message.DamageSource == DamageSources.Self) ? 10 : .5f)
             .SetUpdate(x => _spriteRenderer.color *= new Color(1, 1, 1, 1 - x))
             .SetEnd(() => Destroy(gameObject));
     }
+
     protected override void OnDestroy()
     {
         _arrivalTimer?.Stop();
