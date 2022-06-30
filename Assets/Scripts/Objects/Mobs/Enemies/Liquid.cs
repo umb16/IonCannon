@@ -38,8 +38,6 @@ public class Liquid : Mob
         if (!IsDead)
             TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index];
     }
-
-    protected override void Update()
     public void SelfDestroy()
     {
         ReceiveDamage(new DamageMessage(this, this, 9999, DamageSources.Self));
