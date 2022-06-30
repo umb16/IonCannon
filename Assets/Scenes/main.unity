@@ -216,7 +216,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0040227682, g: 0.00021961077, b: 0.000000053489103,
+  m_IndirectSpecularColor: {r: 0.004022765, g: 0.0002196107, b: 0.000000053489103,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!108 &295
@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 558556044}
   - component: {fileID: 558556043}
   m_Layer: 6
-  m_Name: Ground (1)
+  m_Name: GroundForRayCast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
