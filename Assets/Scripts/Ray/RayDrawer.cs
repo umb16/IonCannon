@@ -95,7 +95,7 @@ public class RayDrawer : MonoBehaviour
             {
                 Vector3 pos;
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out var hit))
+                if (Physics.Raycast(ray, out var hit, 100000, _rayTaregetMask.value))
                 {
                     pos = hit.point;
                 }
