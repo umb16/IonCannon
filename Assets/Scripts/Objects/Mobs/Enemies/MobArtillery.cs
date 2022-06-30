@@ -13,8 +13,8 @@ namespace Assets.Scripts.Objects.Mobs.Enemies
         bool _attack = false;
         bool _canMove = true;
         private LifeSupportTower _lifeSupportTower;
-        private float DistanceToPlayer => ((Player?.Position - Position) ?? Vector3.zero).magnitude;
-        private bool AttackIsAvaliable => (DistanceToPlayer < (_attack ? 20 : 20)) && (_lifeSupportTower.InRadius(Position) || DistanceToPlayer < 10);
+        private float DistanceToPlayer => ((Player?.Position - Position) ?? Vector3.positiveInfinity).magnitude;
+        private bool AttackIsAvaliable => (DistanceToPlayer < (_attack ? 30 : 20)) && (_lifeSupportTower.InRadius(Position) || DistanceToPlayer < 10);
 
         [Inject]
         private void Construct(LifeSupportTower lifeSupportTower)
