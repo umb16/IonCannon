@@ -27,16 +27,18 @@ public class ArtilleryProjectile : MonoBehaviour
 
         _zone.gameObject.SetActive(true);
         Vector3 landingPosition = _player.Position.GetRandomPointInRadius(_splashRadius * 2);
-        _zone.SetPosition(landingPosition + Vector3.forward * 100);
-        _zone.SetRadius(_splashRadius);
+        _zone.SetPosition(landingPosition);
+        _zone.SetRadius(0);
         //_zone.SetBlink(.2f);
-        _endEffect.transform.position = landingPosition.Get2D() + Vector3.up * 100;
-        _explosion.transform.position = landingPosition.Get2D();
+        _endEffect.transform.position = landingPosition.Get2D() + Vector3.back * 100;
         _timer = new Timer(_fallDelay)
+            .SetUpdate(x =>_zone.SetRadius(_splashRadius * x * .5f))
             .SetEnd(() =>
             {
                 _endEffect.SetActive(true);
+
                 _timer = new Timer(1)
+                .SetUpdate(x => _zone.SetRadius(_splashRadius * (x * .5f + .5f)))
                 .SetEnd(() =>
                 {
                     Instantiate(_explosion, landingPosition.Get2D(), Quaternion.identity, transform.parent);

@@ -14,14 +14,11 @@ namespace Assets.Scripts.Objects.Mobs.Enemies
         [SerializeField] private GameObject _projectileInstance;
         bool _attack = false;
         private LifeSupportTower _lifeSupportTower;
-        //private float DistanceToPlayer => ((Player?.Position - Position) ?? Vector3.zero).magnitude;
-        //private bool AttackIsAvaliable => _lifeSupportTower.InRadius(Position);
+
         [Inject]
         private void Construct(LifeSupportTower lifeSupportTower)
         {
             _lifeSupportTower = lifeSupportTower;
-            //UniTaskAsyncEnumerable.EveryValueChanged(this, _ => AttackIsAvaliable).Subscribe(OnChangeState, this.GetCancellationTokenOnDestroy());
-            //_moveTarget = _lifeSupportTower.GetRandomPoint();
             MoveTo(_lifeSupportTower.GetRandomPoint());
             SetBehaviour(BehaviorMethod);
         }
@@ -47,10 +44,6 @@ namespace Assets.Scripts.Objects.Mobs.Enemies
             {
                 if (((Vector2)Position - _moveTarget).sqrMagnitude < 1)
                     StartAttack();
-                //else
-                //    MoveTo(_moveTarget);
-                //if (Player != null)
-                //    MoveTo(Player.Position+ new Vector3((1-Random.value*.5f)*2, (1 - Random.value * .5f)*2, 0));
             }
         }
 
