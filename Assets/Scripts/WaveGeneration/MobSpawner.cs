@@ -165,7 +165,7 @@ public class MobSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (GameData.State != GameState.Gameplay)
+        if (GameData.State != GameState.Gameplay || Stop)
             return;
 
         foreach (var item in _levelEvents)

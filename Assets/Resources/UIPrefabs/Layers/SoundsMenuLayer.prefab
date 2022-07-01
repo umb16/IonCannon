@@ -661,8 +661,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.700041, y: 174.31659}
-  m_SizeDelta: {x: 235.4368, y: 222.3827}
+  m_AnchoredPosition: {x: -12.700041, y: 142.75}
+  m_SizeDelta: {x: 235.4368, y: 285.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2113948037738862016
 CanvasRenderer:
@@ -829,19 +829,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2113948038293773437}
-        m_TargetAssemblyTypeName: SoundsMenu, Assembly-CSharp
-        m_MethodName: OnMusicVolumeChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2113948038293773433
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +867,7 @@ RectTransform:
   - {fileID: 2113948037478950011}
   - {fileID: 2113948038543119500}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -913,7 +901,6 @@ MonoBehaviour:
   is_loaded: 0
   _musicSlider: {fileID: 2113948038036951040}
   _soundSlider: {fileID: 2113948038543119503}
-  _mixer: {fileID: 24100000, guid: 888815518065f8446963f4fdf081e0cd, type: 2}
 --- !u!1 &2113948038502137902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,19 +1202,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2113948038293773437}
-        m_TargetAssemblyTypeName: SoundsMenu, Assembly-CSharp
-        m_MethodName: OnSoundVolumeChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2113948038689300696
 GameObject:
   m_ObjectHideFlags: 0

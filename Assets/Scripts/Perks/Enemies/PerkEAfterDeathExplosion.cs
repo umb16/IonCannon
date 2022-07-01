@@ -37,7 +37,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                         continue;
                     if ((mob.Position - _mob.Position).SqrMagnetudeXY() < Radius * Radius)
                     {
-                        mob.AddForce((1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius) * (mob.Position - _mob.Position).NormalizedXY() * 5, ForceMode2D.Impulse);
+                        mob.AddForce((1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius) * (mob.Position - _mob.Position).NormalizedXY() * 500, ForceMode.Impulse);
                         mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * (1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius), _source, .1f));
                     }
                 }

@@ -75,11 +75,14 @@ public class StandartZoneIndicator : MonoBehaviour, IZoneIndicator
         {
             _needUpdate = false;
             _lineRenderer.positionCount = _vertexCount;
+            float partSize = 4.0f / _vertexCount;
             for (int i = 0; i < _vertexCount; i++)
             {
-                Vector3 newPoint = Vector3.up.DiamondRotateXY(4.0f / _vertexCount * i);
+                Vector3 newPoint = Vector3.up.DiamondRotateXY(partSize * i);
                 newPoint *= _radius;
-                _lineRenderer.SetPosition(i, newPoint.Get2D(1));
+                //newPoint += transform.position;
+                //newPoint.z = 0;
+                _lineRenderer.SetPosition(i, newPoint.Get2D(0));
             }
         }
     }

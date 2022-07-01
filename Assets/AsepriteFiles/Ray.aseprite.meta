@@ -13,8 +13,8 @@ ScriptedImporter:
     transparencyMode: 0
     transparentColor: {r: 1, g: 0, b: 1, a: 1}
     pixelsPerUnit: 16
-    spriteAlignment: 9
-    spritePivot: {x: 0.5, y: 0.1405}
+    spriteAlignment: 7
+    spritePivot: {x: 0.5, y: 0}
     generateAnimations: 1
     createAnimationAssets: 0
     bindType: 0

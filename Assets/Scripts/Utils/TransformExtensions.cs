@@ -6,10 +6,10 @@ public static class TransformExtensions
 {
     public static void Set2DPos(this Transform t, float x, float y)
     {
-        t.position = new Vector3(x, y, y * Constants.ZShiftFactor);
+        t.position = new Vector3(x, y,/* y * Constants.ZShiftFactor*/0);
     }
     public static void To2DPos(this Transform t, float shift = 0)
     {
-        t.position = new Vector3(t.position.x, t.position.y, t.position.y * Constants.ZShiftFactor + shift);
+        t.position = new Vector3(t.position.x, t.position.y, /*t.position.y * Constants.ZShiftFactor + shift*/0);
     }
 }

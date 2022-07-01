@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-String-Tables-Russian (ru)
+  m_Name: Duplicate Asset Isolation
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-String-Tables-Russian (ru)
+  m_GroupName: Duplicate Asset Isolation
   m_Data:
     m_SerializedData: []
-  m_GUID: 53b234329ec854848896553d8e79a0e1
+  m_GUID: 67905b7e0cf26a049b0370064c2353ba
   m_SerializeEntries:
-  - m_GUID: 3011ec8a5d7cf024ab1e90ceaf821b8d
-    m_Address: Main_ru
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ru
-    - Preload
+  - m_GUID: 7fc1a822e0cd2714a8182f5c6e2f6d0b
+    m_Address: Assets/AsepriteFiles/Liquid/Liquid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  m_ReadOnly: 1
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 4f7d46dc97472454ab694a98fed49add, type: 2}
-    - {fileID: 11400000, guid: ff4d7618f157b9d499c2214f9f68c77b, type: 2}
+    - {fileID: 11400000, guid: 671be281bc5e2ac459d17215d172eb30, type: 2}
+    - {fileID: 11400000, guid: 63747928d21edb84b9b9b50327ca5197, type: 2}
