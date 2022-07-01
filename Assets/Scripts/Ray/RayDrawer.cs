@@ -196,7 +196,7 @@ public class RayDrawer : MonoBehaviour
 
     private void StopRay()
     {
-        _cannonRay.GetComponent<RayScript>().Stop();
+        _cannonRay?.GetComponent<RayScript>()?.Stop();
         _cannonRay = null;
         rayIsReady = true;
         _startDrawIsValid = false;

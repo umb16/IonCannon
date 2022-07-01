@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayRayReady()
     {
-        _audioSourceIgnoreLowpass.PlayOneShot(_rayReady);
+        _audioSourceIgnoreLowpass?.PlayOneShot(_rayReady);
     }
 
     public void Play(AudioClip clip)
