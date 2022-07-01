@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -9,10 +10,22 @@ public class DamageNumbersGenerator : MonoBehaviour
     private DamageController _damageController;
 
     [Inject]
-    private void Construct(DamageController damageController)
+    private void Construct(DamageController damageController, GameData gameData)
     {
         _damageController = damageController;
         _damageController.Damage += CreateNumber;
+        gameData.GameStateChanged += GameStateChanged;
+    }
+
+    private void GameStateChanged(GameState state)
+    {
+        if (state == GameState.Restart)
+        {
+            foreach (var trn in GetComponentsInChildren<Transform>().Skip(1))
+            {
+                Destroy(trn.gameObject);
+            }
+        }
     }
 
     private void CreateNumber(DamageMessage msg)
