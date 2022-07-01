@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8007996172826201201}
   - component: {fileID: 8007996172826201486}
-  - component: {fileID: 8007996172826201487}
   - component: {fileID: 5263124681114150106}
   - component: {fileID: -1809642080273147267}
   - component: {fileID: 7283234152039016285}
@@ -158,22 +157,6 @@ MonoBehaviour:
   _sound: {fileID: -1809642080273147267}
   _score: 20
   _animator: {fileID: 723286725745686467}
---- !u!58 &8007996172826201487
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8007996172826201484}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.62}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &5263124681114150106
 MonoBehaviour:
   m_ObjectHideFlags: 0

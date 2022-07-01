@@ -16,7 +16,7 @@ public class Mob : MonoBehaviour, IMob
     [SerializeField] private MobType _type;
     protected SpriteRenderer _spriteRenderer;
     protected Animator _animator;
-    private Rigidbody2D _rigidbody;
+    private Rigidbody _rigidbody;
 
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
@@ -60,11 +60,11 @@ public class Mob : MonoBehaviour, IMob
         IsReady = true;
         Spawner = mobSpawner;
         _animator = GetComponentInChildren<Animator>();
-        _rigidbody = GetComponentInChildren<Rigidbody2D>();
+        _rigidbody = GetComponentInChildren<Rigidbody>();
         Inventory.ItemAdded += AddItem;
         Inventory.ItemRemoved += RemoveItem;
         GameData.GameStateChanged += GameStateChanged;
-        await UniTask.WaitUntil(()=>player.Value!=null);
+        await UniTask.WaitUntil(() => player.Value != null);
         Player = player;
     }
 
@@ -199,12 +199,12 @@ public class Mob : MonoBehaviour, IMob
         /*var vector =  transform.eulerAngles;
         vector.x = Camera.main.transform.eulerAngles.x;
         transform.eulerAngles = vector;*/
-        UniTaskAsyncEnumerable.EveryValueChanged(Camera.main.transform, x => x.eulerAngles.x).Subscribe(x =>
+        /*UniTaskAsyncEnumerable.EveryValueChanged(Camera.main.transform, x => x.eulerAngles.x).Subscribe(x =>
         {
             var vector = transform.eulerAngles;
             vector.x = x;
             transform.eulerAngles = vector;
-        },cancellationToken: this.GetCancellationTokenOnDestroy());
+        },cancellationToken: this.GetCancellationTokenOnDestroy());*/
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
         Defence = StatsCollection.GetStat(StatType.Defence);
@@ -214,7 +214,7 @@ public class Mob : MonoBehaviour, IMob
         size.ValueChanged += (x) => transform.localScale = Vector3.one * x.Value;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!_stopped && _stunEndTime < Time.time)
         {
@@ -223,6 +223,9 @@ public class Mob : MonoBehaviour, IMob
                 if (_mirroringOnMove)
                     Flip();
 
+                //Vector3 vector = MovementSpeed.Value * ((Vector3)_moveTarget - transform.position).normalized;
+
+                //_rigidbody.velocity = vector;
                 Vector2 pos = transform.position;
                 pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - pos).normalized;
                 transform.position = pos.Get2D();
@@ -231,7 +234,7 @@ public class Mob : MonoBehaviour, IMob
     }
     protected virtual void Update()
     {
-        transform.To2DPos();
+        // transform.To2DPos();
     }
     private void Flip()
     {
@@ -296,7 +299,7 @@ public class Mob : MonoBehaviour, IMob
         GameData.GameStateChanged -= GameStateChanged;
     }
 
-    public void AddForce(Vector2 force, ForceMode2D mode)
+    public void AddForce(Vector2 force, ForceMode mode)
     {
         _rigidbody.AddForce(force, mode);
     }

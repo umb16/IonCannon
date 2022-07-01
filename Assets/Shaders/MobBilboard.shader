@@ -1,6 +1,6 @@
 // Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
-Shader "SpriteMob"
+Shader "IC/Sprites/MobBillboard"
 {
     Properties
     {
@@ -29,6 +29,7 @@ Shader "SpriteMob"
             "RenderType"="Transparent"
             "PreviewType"="Plane"
             "CanUseSpriteAtlas"="True"
+            "DisableBatching" = "True"
         }
 
         Stencil
@@ -82,8 +83,10 @@ Shader "SpriteMob"
             {
                 v2f OUT;
                 OUT.worldPosition = IN.vertex;
-                OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
-
+                //OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
+                OUT.vertex = mul(UNITY_MATRIX_P,
+                    mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
+                    + float4(IN.vertex.x, IN.vertex.y, 0.0, 0.0));
                 OUT.texcoord = IN.texcoord;
 
                 #ifdef UNITY_HALF_TEXEL_OFFSET

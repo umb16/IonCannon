@@ -215,7 +215,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004022765, g: 0.0002196107, b: 0.000000053489103,
+  m_IndirectSpecularColor: {r: 0.0040227682, g: 0.00021961077, b: 0.000000053489103,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!108 &295
@@ -1532,7 +1532,6 @@ MonoBehaviour:
   _mobSpawner: {fileID: 309}
   _shopShip: {fileID: 2056462216}
   _lifeSupportTower: {fileID: 1934586666}
-  _cameraControl: {fileID: 0}
 --- !u!114 &1111731683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,22 +2522,19 @@ Transform:
   m_Father: {fileID: 2056462214}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1962498997
-CircleCollider2D:
+--- !u!135 &1962498997
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962498995}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1971671912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,9 +2865,9 @@ GameObject:
   - component: {fileID: 2056462214}
   - component: {fileID: 2056462213}
   - component: {fileID: 2056462212}
-  - component: {fileID: 2056462217}
   - component: {fileID: 2056462216}
   - component: {fileID: 2056462218}
+  - component: {fileID: 2056462219}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -2985,27 +2981,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countdownText: {fileID: 369636203}
   _hintText: {fileID: 1978499607}
-  _collider: {fileID: 2056462217}
+  _collider: {fileID: 2056462219}
   _forceField: {fileID: 1962498995}
   _zoneIndiacator: {fileID: 866231504}
   _animator: {fileID: 2056462212}
   _dust: {fileID: 1501427028}
---- !u!58 &2056462217
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056462211}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!114 &2056462218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3018,6 +2998,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &2056462219
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056462211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2078588886
 GameObject:
   m_ObjectHideFlags: 0

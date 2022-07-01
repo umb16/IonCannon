@@ -117,7 +117,7 @@ public class EnemySimple : Mob
         base.OnDestroy();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (_noTouchDamage)
             return;

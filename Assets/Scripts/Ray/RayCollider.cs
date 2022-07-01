@@ -23,10 +23,9 @@ public class RayCollider : MonoBehaviour
         _player = player;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter(Collider col)
     {
         var mob = col.gameObject.GetComponent<IMob>();
-       // Debug.Log(col.gameObject.name);
         if (mob != null)
         {
             
@@ -34,7 +33,7 @@ public class RayCollider : MonoBehaviour
             mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
         }
     }
-    private void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit(Collider col)
     {
 
         var mob = col.gameObject.GetComponent<IMob>();

@@ -33,7 +33,7 @@ public interface IMob
     UniTask AddFx(Fx fx);
     void RemoveFx(Fx fx);
 
-    void AddForce(Vector2 force, ForceMode2D mode);
+    void AddForce(Vector2 force, ForceMode mode);
     void SetAnimVariable(string name, bool value);
     void RemovePerk(IPerk perk);
 

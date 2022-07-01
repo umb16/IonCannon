@@ -15,7 +15,7 @@ public class ShopShip : MonoBehaviour
 {
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private TMP_Text _hintText;
-    [SerializeField] private Collider2D _collider;
+    [SerializeField] private Collider _collider;
     [SerializeField] private GameObject _forceField;
     [SerializeField] private StandartZoneIndicator _zoneIndiacator;
     [SerializeField] private Animator _animator;
@@ -152,7 +152,7 @@ public class ShopShip : MonoBehaviour
         _shop.OnClosed -= CountDownForceEnd;
         _gameData.GameStarted -= OnGameStarted;
     }
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
@@ -160,7 +160,7 @@ public class ShopShip : MonoBehaviour
             BaseLayer.Show<UIShopLayer>();
         }
     }
-    private void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {

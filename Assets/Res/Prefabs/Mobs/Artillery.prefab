@@ -74,10 +74,10 @@ GameObject:
   - component: {fileID: 3155446214901190994}
   - component: {fileID: 7369147444643841068}
   - component: {fileID: 3155446216037005205}
-  - component: {fileID: 3155446216037005207}
-  - component: {fileID: 3666642523189826093}
   - component: {fileID: 4458365148599924103}
   - component: {fileID: 3155446215766331691}
+  - component: {fileID: 1789148355}
+  - component: {fileID: 1789148354}
   m_Layer: 0
   m_Name: Artillery
   m_TagString: Mob
@@ -104,7 +104,7 @@ Transform:
   - {fileID: 3155446215085388755}
   - {fileID: 1958498790453295816}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3155446214901190994
 MonoBehaviour:
@@ -205,53 +205,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3155446216037005207
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3156723541867610834}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00420475, y: 0.96225834}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.15}
-    oldSize: {x: 8, y: 8}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.1342163, y: 1.6109908}
-  m_EdgeRadius: 0
---- !u!50 &3666642523189826093
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3156723541867610834}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!95 &4458365148599924103
 Animator:
   serializedVersion: 4
@@ -294,6 +247,36 @@ MonoBehaviour:
   - {fileID: 5432521190018986330}
   - {fileID: 6163904188580315373}
   - {fileID: 373018329228023168}
+--- !u!136 &1789148355
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156723541867610834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.1223876
+  m_Height: 5.4329906
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.6816618, z: 0}
+--- !u!54 &1789148354
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156723541867610834}
+  serializedVersion: 2
+  m_Mass: 200
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!1 &4345475477393557816
 GameObject:
   m_ObjectHideFlags: 0
