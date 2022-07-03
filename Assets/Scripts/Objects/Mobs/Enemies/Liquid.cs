@@ -33,7 +33,7 @@ public class Liquid : Mob
             3, true));
     }
 
-    private void FixedUpdate()
+    protected  override void FixedUpdate()
     {
         if (!IsDead)
             TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index];

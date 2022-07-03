@@ -29,7 +29,6 @@ public interface IMob
     public void ReceiveDamage(DamageMessage message);
     void Die(DamageMessage message);
     void MoveTo(Vector2 target);
-    void OnDie();
     UniTask AddFx(Fx fx);
     void RemoveFx(Fx fx);
 
