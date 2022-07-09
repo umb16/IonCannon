@@ -15,6 +15,7 @@ public class PerkPShiftSystem : WithId, IPerk
 
     public bool IsCommon => false;
     private Timer _timer;
+    private StatModificator _modificator;
 
     public PerkPShiftSystem()
     {
@@ -24,6 +25,8 @@ public class PerkPShiftSystem : WithId, IPerk
     {
         _mob = mob;
         _mob.DamageController.Damage += OnDamage;
+        _modificator = new StatModificator(-1, StatModificatorType.Additive, StatType.Defence);
+        _mob.StatsCollection.AddModificator(_modificator);
     }
 
     private void OnDamage(DamageMessage msg)
@@ -32,7 +35,6 @@ public class PerkPShiftSystem : WithId, IPerk
             return;
         if (msg.Damage <= 0)
             return;
-
         _mob.SetInvulnerability(true);
         _timer?.Stop();
         _timer = new Timer(2).SetEnd(() => _mob.SetInvulnerability(false));
@@ -40,8 +42,9 @@ public class PerkPShiftSystem : WithId, IPerk
 
     public void Shutdown()
     {
-        _mob.DamageController.Damage -= OnDamage;
         _timer?.ForceEnd();
+        _mob.DamageController.Damage -= OnDamage;
+        _mob.StatsCollection.RemoveModificator(_modificator);
     }
 
     public void Add(IPerk perk)

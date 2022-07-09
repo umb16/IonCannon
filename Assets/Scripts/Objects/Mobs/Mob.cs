@@ -160,7 +160,7 @@ public class Mob : MonoBehaviour, IMob
         if (IsDead || _invulnerability)
             return;
         _stunEndTime = message.StunTime + Time.time;
-        if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)
+        //if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)
         {
             message.Damage = Mathf.Max(1, message.Damage - Defence.Value);
         }
