@@ -330,7 +330,7 @@ public class ItemsDB
             Name = "Система сдвига",
             Description = "При получение урона делает нематериальным на 2 секунды.\nВесть входящий урон увеличивается на 1.",
             Cost = 100,
-            Icon = Addresses.Ico_Box,
+            Icon = Addresses.Ico_ShiftSystem,
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPShiftSystem>(),
