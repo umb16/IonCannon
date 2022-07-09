@@ -27,7 +27,7 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player)
+    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, ItemsDB itemsDB)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
@@ -39,6 +39,7 @@ public class Player : Mob
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;
+        Inventory.Add(itemsDB.ShiftSystem());
     }
 
     protected override void Awake()

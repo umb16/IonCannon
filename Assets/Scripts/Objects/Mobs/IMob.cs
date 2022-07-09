@@ -37,4 +37,5 @@ public interface IMob
     void RemovePerk(IPerk perk);
 
     void Destroy();
+    void SetInvulnerability(bool value);
 }

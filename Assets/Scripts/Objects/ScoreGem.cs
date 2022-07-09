@@ -27,7 +27,6 @@ public class ScoreGem : MonoBehaviour
             _sound.Play();
             _animator.SetBool("take", true);
             _player.Gold.AddBaseValue(_score);
-            //_player.ReceiveDamage(new DamageMessage(null, _player, -.2f, DamageSources.Heal));
             Destroy(gameObject, 2);
         }
     }

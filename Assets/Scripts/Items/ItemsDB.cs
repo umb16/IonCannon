@@ -87,6 +87,8 @@ public class ItemsDB
                 return PowerControllerPlus();
             case ItemType.PowerControllerPlusPlus:
                 return PowerControllerPlusPlus();
+            case ItemType.ShiftSystem:
+                return ShiftSystem();
             case ItemType.None:
             default:
                 return Battery();
@@ -316,6 +318,22 @@ public class ItemsDB
             Perks = new IPerk[]
             {
                 _perksFactory.Create<PerkPIonization>(new object[]{ 12f, 20f })//урон, длительность
+            }
+        };
+    }
+    public Item ShiftSystem()
+    {
+        return new Item()
+        {
+            Unique = true,
+            Type = ItemType.ShiftSystem,
+            Name = "—истема сдвига",
+            Description = "ѕри получение урона делает нематериальным на 2 секунды",
+            Cost = 100,
+            Icon = Addresses.Ico_Box,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPShiftSystem>(),
             }
         };
     }

@@ -26,4 +26,5 @@ public enum PerkType
     MagneticManipulator = 22,
     ESlowAuraEffect = 23,
     ESlowAura = 24,
+    PShift = 25,
 }

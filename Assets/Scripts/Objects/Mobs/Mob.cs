@@ -18,6 +18,9 @@ public class Mob : MonoBehaviour, IMob
     protected Animator _animator;
     private Rigidbody _rigidbody;
 
+    private int _standartLayer;
+    bool _invulnerability = false;
+
     public int ID { get; private set; }
     public ComplexStat MovementSpeed { get; private set; }
     public ComplexStat HP { get; protected set; }
@@ -66,6 +69,21 @@ public class Mob : MonoBehaviour, IMob
         GameData.GameStateChanged += GameStateChanged;
         await UniTask.WaitUntil(() => player.Value != null);
         Player = player;
+        _standartLayer = gameObject.layer;
+    }
+
+    public void SetInvulnerability(bool value)
+    {
+        if (value)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Nether");
+        }
+        else
+        {
+            gameObject.layer = _standartLayer;
+            _spriteRenderer.enabled = true;
+        }
+        _invulnerability = value;
     }
 
     private void GameStateChanged(GameState state)
@@ -139,7 +157,7 @@ public class Mob : MonoBehaviour, IMob
 
     public virtual void ReceiveDamage(DamageMessage message)
     {
-        if (IsDead)
+        if (IsDead || _invulnerability)
             return;
         _stunEndTime = message.StunTime + Time.time;
         if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)
@@ -235,6 +253,10 @@ public class Mob : MonoBehaviour, IMob
     protected virtual void Update()
     {
         // transform.To2DPos();
+        if (_invulnerability)
+        {
+            _spriteRenderer.enabled = !_spriteRenderer.enabled;
+        }
     }
     private void Flip()
     {
