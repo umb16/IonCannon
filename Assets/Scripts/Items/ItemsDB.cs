@@ -328,7 +328,7 @@ public class ItemsDB
             Unique = true,
             Type = ItemType.ShiftSystem,
             Name = "Система сдвига",
-            Description = "При получение урона делает нематериальным на 2 секунды.\nВесть входящий урон увуличивается на 1.",
+            Description = "При получение урона делает нематериальным на 2 секунды.\nВесть входящий урон увеличивается на 1.",
             Cost = 100,
             Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
