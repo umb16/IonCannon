@@ -36,5 +36,6 @@
     PowerController,
     PowerControllerPlus,
     PowerControllerPlusPlus,
-    ShiftSystem
+    ShiftSystem,
+    ReverseSystem
 }

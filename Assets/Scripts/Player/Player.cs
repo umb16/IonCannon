@@ -11,6 +11,7 @@ public class Player : Mob
     private ComplexStat _rayDelay;
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
+    public ComplexStat RayReverse;
 
     public GameObject Blood;
     private ComplexStat _lifeSupport;
@@ -36,6 +37,7 @@ public class Player : Mob
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
+        RayReverse = StatsCollection.GetStat(StatType.RayReverse);
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;

@@ -24,6 +24,7 @@ public static class StatsCollectionsDB
             (StatType.LifeSupport, new ComplexStat(1).SetBaseLimit(0, 1)),
             (StatType.PickupRadius, new ComplexStat(2)),
             (StatType.RayError, new ComplexStat(0, (x)=>Mathf.Min(10,x))),
+            (StatType.RayReverse, new ComplexStat(0)),
          });
     }
     public static StandartStatsCollection StandartEnemy()

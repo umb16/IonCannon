@@ -89,6 +89,8 @@ public class ItemsDB
                 return PowerControllerPlusPlus();
             case ItemType.ShiftSystem:
                 return ShiftSystem();
+            case ItemType.ReverseSystem:
+                return ReverseSystem();
             case ItemType.None:
             default:
                 return Battery();
@@ -594,6 +596,26 @@ public class ItemsDB
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius)
                 },
                 PerkType.MagneticManipulator)
+            }
+        };
+    }
+    public Item ReverseSystem()
+    {
+        return new Item()
+        {
+            Type = ItemType.ReverseSystem,
+            Name = "Система обратного хода.",
+            Description = "Скорость луча +100%\nЛуч движется туда и обратно.",
+            Cost = 300,
+            Icon = Addresses.Ico_SpeedServo,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(1f, StatModificatorType.Additive, StatType.RayReverse),
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed)
+                },
+                PerkType.RayReverse)
             }
         };
     }

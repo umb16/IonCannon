@@ -87,7 +87,7 @@ public class RayDrawer : MonoBehaviour
         {
             _startDrawIsValid = true;
         }
-            if (Input.GetMouseButton(0) && rayIsReady && _startDrawIsValid)
+        if (Input.GetMouseButton(0) && rayIsReady && _startDrawIsValid)
         {
             if (_cashedLenght == null)
                 _cashedLenght = _player.Value.MaxPathLength;
@@ -101,7 +101,7 @@ public class RayDrawer : MonoBehaviour
                 }
                 else
                     return;
-                
+
                 //Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
                 if (pos.EqualsWithThreshold(_oldPointOfPath, 0.01f))
                     return;
@@ -138,7 +138,22 @@ public class RayDrawer : MonoBehaviour
                 _twoPointWay = cannonPath.Count == 2;
                 rayIsReady = false;
             }
+            if (_player.Value.RayReverse.Value > 0)
+            {
+                var cannonPathTemp = cannonPath.ToList();
+                for (int i = 0; i < _player.Value.RayReverse.Value; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        cannonPath.AddRange(cannonPathTemp.Reverse<Vector3>().ToList());
+                    }
+                    else
+                    {
+                        cannonPath.AddRange(cannonPathTemp);
+                    }
+                }
 
+            }
             _currentLineIndex = 0;
             _currentPathLength = 0f;
             rayTime = 0f;

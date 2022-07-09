@@ -18,4 +18,5 @@ public enum StatType
     RayError = 13,
 
     Defence = 14,
+    RayReverse = 15,
 }

@@ -11,6 +11,14 @@ public static class PlayerPerksDB
             { new StatModificator(.33f, StatModificatorType.Additive, StatType.MovementSpeed) },
            PerkType.Speed);
     }
+    
+    public static IPerk RayReversePerk()
+    {
+        return new SimplePerk(
+            new[]
+            { new StatModificator(1, StatModificatorType.Additive, StatType.RayReverse) },
+           PerkType.RayReverse);
+    }
     public static IPerk RaySpeedPerk()
     {
         return new SimplePerk(
