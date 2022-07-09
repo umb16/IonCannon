@@ -19,6 +19,7 @@ public class EnemySimple : Mob
     private Timer _damageTimer;
     private Timer _dieTimer;
     private Action BehaviourMethod;
+    private MobDamageTimer _mobDamageTimer = new MobDamageTimer() { Cooldown = 1 };
     protected override void Awake()
     {
         base.Awake();
@@ -123,7 +124,10 @@ public class EnemySimple : Mob
             return;
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.ReceiveDamage(new DamageMessage(this, Player, StatsCollection.GetStat(StatType.Damage).Value * Time.fixedDeltaTime, DamageSources.Melee, 0));
+            if (_mobDamageTimer.Update())
+            {
+                Player.ReceiveDamage(new DamageMessage(this, Player, StatsCollection.GetStat(StatType.Damage).Value, DamageSources.Melee, 0));
+            }
         }
     }
 

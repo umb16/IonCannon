@@ -32,14 +32,18 @@ public class DamageNumbersGenerator : MonoBehaviour
     {
         if (msg.Target.Type == MobType.Liquid)
             return;
-        if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
-            return;
+        // if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
+        //    return;
         var number = Instantiate(numberPrefab);
         number.transform.SetParent(transform);
         number.transform.position = msg.Target.Position + Vector3.up - Vector3.forward * 1;
 
         if (msg.DamageSource == DamageSources.Heal)
             number.SetText("<color=green>" + (-msg.Damage).ToString("0.#") + "</color>");
+        else if (msg.Target is Player)
+        {
+            number.SetText("<color=red>" + msg.Damage.ToString("0.#") + "</color>");
+        }
         else if (msg.DamageSource == DamageSources.Ionization)
         {
             number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#") + "</color>");

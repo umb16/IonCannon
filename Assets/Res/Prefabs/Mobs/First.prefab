@@ -95,7 +95,7 @@ MonoBehaviour:
   _speed: 2.4
   _defence: 0
   _size: 1
-  _damagePerSecond: 15
+  _damagePerSecond: 1
   _noTouchDamage: 0
   _startPerks: 
   _drop:
