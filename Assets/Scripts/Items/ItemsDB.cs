@@ -607,7 +607,7 @@ public class ItemsDB
             Name = "Система обратного хода.",
             Description = "Скорость луча +100%\nЛуч движется туда и обратно.",
             Cost = 300,
-            Icon = Addresses.Ico_SpeedServo,
+            Icon = Addresses.Ico_Reverse,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
