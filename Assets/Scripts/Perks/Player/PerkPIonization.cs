@@ -38,9 +38,9 @@ public class PerkPIonization : WithId,IPerk
 
     private void OnDamage(DamageMessage message)
     {
-        if (message.DamageSource == DamageSources.RayInitial && message.Attacker == _mob)
+        if (message.DamageSource == DamageSources.RayInitial && message.Attacker == _mob && message.Target is IMob target)
         {
-            message.Target.AddPerk(new PerkUIonizationEffect(_mob, _damage, _duration));
+            target.AddPerk(new PerkUIonizationEffect(_mob, _damage, _duration));
         }
     }
 

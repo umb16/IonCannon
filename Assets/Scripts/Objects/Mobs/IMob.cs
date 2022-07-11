@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMob
+public interface IMob : IDamagable
 {
     int ID { get; }
     MobType Type { get; }
@@ -26,7 +26,6 @@ public interface IMob
     void AddPerk(IPerk perk);
     void RemovePerksByType(PerkType perkType);
     bool ContainPerk(PerkType perkType);
-    public void ReceiveDamage(DamageMessage message);
     void Die(DamageMessage message);
     void MoveTo(Vector2 target);
     UniTask AddFx(Fx fx);

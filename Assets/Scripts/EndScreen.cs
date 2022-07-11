@@ -39,7 +39,7 @@ public class EndScreen : BaseLayer
 
     private void CheckGameOver(DamageMessage msg)
     {
-        if (_player.Value.ID == msg.Target.ID)
+        if ((IDamagable)_player.Value == msg.Target)
         {
             _gameData.State = GameState.GameOver;
         }

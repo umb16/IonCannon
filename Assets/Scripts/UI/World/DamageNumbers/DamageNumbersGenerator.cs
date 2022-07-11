@@ -30,26 +30,29 @@ public class DamageNumbersGenerator : MonoBehaviour
 
     private void CreateNumber(DamageMessage msg)
     {
-        if (msg.Target.Type == MobType.Liquid)
-            return;
-        // if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
-        //    return;
-        var number = Instantiate(numberPrefab);
-        number.transform.SetParent(transform);
-        number.transform.position = msg.Target.Position + Vector3.up - Vector3.forward * 1;
+        if (msg.Target is IMob target)
+        {
+            if (target.Type == MobType.Liquid)
+                return;
+            // if (msg.Target is Player && msg.DamageSource != DamageSources.Heal)
+            //    return;
+            var number = Instantiate(numberPrefab);
+            number.transform.SetParent(transform);
+            number.transform.position = target.Position + Vector3.up - Vector3.forward * 1;
 
-        if (msg.DamageSource == DamageSources.Heal)
-            number.SetText("<color=green>" + (-msg.Damage).ToString("0.#") + "</color>");
-        else if (msg.Target is Player)
-        {
-            number.SetText("<color=red>" + msg.Damage.ToString("0.#") + "</color>");
+            if (msg.DamageSource == DamageSources.Heal)
+                number.SetText("<color=green>" + (-msg.Damage).ToString("0.#") + "</color>");
+            else if (msg.Target is Player)
+            {
+                number.SetText("<color=red>" + msg.Damage.ToString("0.#") + "</color>");
+            }
+            else if (msg.DamageSource == DamageSources.Ionization)
+            {
+                number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#") + "</color>");
+            }
+            else
+                number.SetText(msg.Damage.ToString("0.#"));
         }
-        else if (msg.DamageSource == DamageSources.Ionization)
-        {
-            number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#") + "</color>");
-        }
-        else
-            number.SetText(msg.Damage.ToString("0.#"));
     }
 
     private void OnDestroy()
