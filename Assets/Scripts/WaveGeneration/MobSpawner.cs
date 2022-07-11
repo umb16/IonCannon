@@ -49,7 +49,7 @@ public class MobSpawner : MonoBehaviour
         new SpawnEvent(660, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
     };
 
-    
+
     private float _screenRatio;
     private int _screenHeight;
     private float _screenWidth;
@@ -91,7 +91,8 @@ public class MobSpawner : MonoBehaviour
 
     private void OnEnemyDie(DamageMessage msg)
     {
-        Mobs.Remove(msg.Target);
+        if (msg.Target is IMob target)
+            Mobs.Remove(target);
     }
 
     public void NextWave()
@@ -122,13 +123,13 @@ public class MobSpawner : MonoBehaviour
 
         Vector3 vector = Vector3.down;
         vector = vector.DiamondRotateXY(direction / 90);
-        vector *= _screenDiagonal*.5f;
+        vector *= _screenDiagonal * .5f;
         vector += _player.Value.transform.position;
         return vector;
     }
     public Vector3 GetRandomSpawnPoint()
     {
-        
+
         Vector3 vector = Vector3.zero;
         if (Random.value < .5f)
         {

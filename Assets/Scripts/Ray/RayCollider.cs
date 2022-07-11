@@ -10,12 +10,12 @@ public class RayCollider : MonoBehaviour
     private class RayTimer
     {
         public float NextTick;
-        public IMob Mob;
+        public IDamagable Mob;
     }
 
     private float tickTime = .5f;
     private AsyncReactiveProperty<Player> _player;
-    private Dictionary<int, RayTimer> _mobs = new Dictionary<int, RayTimer>();
+    private Dictionary<IDamagable, RayTimer> _mobs = new Dictionary<IDamagable, RayTimer>();
 
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player)
@@ -25,22 +25,32 @@ public class RayCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        var mob = col.gameObject.GetComponent<IMob>();
+        var mob = col.gameObject.GetComponent<IDamagable>();
         if (mob != null)
         {
-            
-            _mobs.Add(mob.ID, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
-            mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
+            OnTriggerEnter(mob);
         }
     }
+
+    private void OnTriggerEnter(IDamagable mob)
+    {
+        _mobs.Add(mob, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
+        mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
+    }
+
     private void OnTriggerExit(Collider col)
     {
 
-        var mob = col.gameObject.GetComponent<IMob>();
+        var mob = col.gameObject.GetComponent<IDamagable>();
         if (mob != null)
         {
-            _mobs.Remove(mob.ID);
+            OnTriggerExit(mob);
         }
+    }
+
+    private void OnTriggerExit(IDamagable mob)
+    {
+        _mobs.Remove(mob);
     }
 
     private void Update()

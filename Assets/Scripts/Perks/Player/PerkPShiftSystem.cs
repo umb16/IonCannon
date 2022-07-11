@@ -31,7 +31,7 @@ public class PerkPShiftSystem : WithId, IPerk
 
     private void OnDamage(DamageMessage msg)
     {
-        if (msg.Target.ID != _mob.ID)
+        if (msg.Target != _mob)
             return;
         if (msg.Damage <= 0)
             return;
