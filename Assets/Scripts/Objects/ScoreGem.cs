@@ -9,6 +9,7 @@ public class ScoreGem : MonoBehaviour
     [SerializeField] private AudioSource _sound;
     [SerializeField] private int _score;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _destroyDelay=2;
     private Player _player;
     private bool _taken;
     [Inject]
@@ -27,7 +28,7 @@ public class ScoreGem : MonoBehaviour
             _sound.Play();
             _animator.SetBool("take", true);
             _player.Gold.AddBaseValue(_score);
-            Destroy(gameObject, 2);
+            Destroy(gameObject, _destroyDelay);
         }
     }
 }
