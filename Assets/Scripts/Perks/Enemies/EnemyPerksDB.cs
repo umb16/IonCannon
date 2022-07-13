@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyPerksDB
 {
+    private PerksFactory _perksFactory;
+    public EnemyPerksDB(PerksFactory perksFactory)
+    {
+        _perksFactory = perksFactory;
+    }
     public IPerk Create(PerkType perkType)
     {
         switch (perkType)
@@ -31,7 +36,7 @@ public class EnemyPerksDB
             case PerkType.ESpeedAuraEffect:
                 return new PerkESpeedAuraEffect();
             case PerkType.EAfterDeathExplosion:
-                return new PerkEAfterDeathExplosion();
+                return _perksFactory.Create<PerkEAfterDeathExplosion>();
             case PerkType.EHunter:
                 return new PerkEHunter();
             case PerkType.EMother:

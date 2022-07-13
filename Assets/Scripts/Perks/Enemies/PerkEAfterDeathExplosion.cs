@@ -14,11 +14,17 @@ public class PerkEAfterDeathExplosion : PerkEStandart
     private Fx _explosion = new Fx("Fx_Explosion", FxPosition.Ground);
     private Timer _timer;
     private bool _disabled;
+    private MiningDamageReceiver _miningDamageReceiver;
 
+    public PerkEAfterDeathExplosion(MiningDamageReceiver miningDamageReceiver, float delay = 0)
+    {
+        _miningDamageReceiver = miningDamageReceiver;
+        Delay = delay;
+    }
 
     private void OnDie(DamageMessage msg)
     {
-        if(_disabled)
+        if (_disabled)
             return;
         if (msg.Target == _mob)
         {
@@ -40,6 +46,10 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                         mob.AddForce((1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius) * (mob.Position - _mob.Position).NormalizedXY() * 500, ForceMode.Impulse);
                         mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * (1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius), _source, .1f));
                     }
+                }
+                foreach (var item in _miningDamageReceiver.Tiles.GetInRadius(_mob.Position, Radius * .5f))
+                {
+                    item.ReceiveDamage(new DamageMessage(_mob, item, 50, _source));
                 }
                 var go = PrefabCreator.Instantiate(_explosion.Key, _mob.GroundCenterPosition);
             });
@@ -66,7 +76,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
     public override void Shutdown()
     {
         base.Shutdown();
-        
+
         //_enebled = false;
     }
 }

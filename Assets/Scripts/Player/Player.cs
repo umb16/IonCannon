@@ -12,7 +12,7 @@ public class Player : Mob
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
     public ComplexStat RayReverse;
-
+    private PerksFactory _perksFactory;
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
@@ -28,7 +28,7 @@ public class Player : Mob
     public float MaxPathLength => _maxPathLength.Value;
 
     [Inject]
-    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, ItemsDB itemsDB)
+    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, ItemsDB itemsDB, PerksFactory perksFactory)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
@@ -38,6 +38,7 @@ public class Player : Mob
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         RayReverse = StatsCollection.GetStat(StatType.RayReverse);
+        _perksFactory = perksFactory;
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;
@@ -70,7 +71,7 @@ public class Player : Mob
     protected override void Start()
     {
         base.Start();
-        AddPerk(new PerkEAfterDeathExplosion() { Delay = 0 });
+        AddPerk(_perksFactory.Create<PerkEAfterDeathExplosion>(0f));
         // GameData.GameStateChanged += GameStateChanged;
     }
 

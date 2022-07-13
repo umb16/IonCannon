@@ -287,7 +287,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPIonization>(new object[]{ 4f, 10f })//урон, длительность
+                _perksFactory.Create<PerkPIonization>(4f, 10f)//урон, длительность
             }
         };
     }
@@ -303,7 +303,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPIonization>(new object[]{ 6f, 15f })//урон, длительность
+                _perksFactory.Create<PerkPIonization>(6f, 15f)//урон, длительность
             }
         };
     }
@@ -319,7 +319,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Radiation,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPIonization>(new object[]{ 12f, 20f })//урон, длительность
+                _perksFactory.Create<PerkPIonization>(12f, 20f)//урон, длительность
             }
         };
     }
@@ -350,7 +350,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPBarrels>(new object[]{ 20f }),//cooldown
+                _perksFactory.Create<PerkPBarrels>(20f),//cooldown
             }
         };
     }
@@ -366,7 +366,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPBarrels>(new object[]{ 15f }),//cooldown
+                _perksFactory.Create<PerkPBarrels>(15f),//cooldown
             }
         };
     }
@@ -382,7 +382,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Box,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPBarrels>(new object[]{ 10f }),//cooldown
+                _perksFactory.Create<PerkPBarrels>(10f),//cooldown
             }
         };
     }
