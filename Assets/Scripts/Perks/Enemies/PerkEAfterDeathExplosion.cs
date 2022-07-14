@@ -16,7 +16,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
     private bool _disabled;
     private MiningDamageReceiver _miningDamageReceiver;
 
-    public PerkEAfterDeathExplosion(MiningDamageReceiver miningDamageReceiver, float delay = 0)
+    public PerkEAfterDeathExplosion(MiningDamageReceiver miningDamageReceiver, float delay = .49f)
     {
         _miningDamageReceiver = miningDamageReceiver;
         Delay = delay;
