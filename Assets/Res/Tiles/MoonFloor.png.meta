@@ -450,7 +450,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -458,6 +458,27 @@ TextureImporter:
       bones: []
       spriteID: f6746552bc50ffc4a862e21e5410711f
       internalID: -325574625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoonFloor_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 188
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca530ae1172a3546a0cec76d1e21fe8
+      internalID: -1331380154
       vertices: []
       indices: 
       edges: []
@@ -479,6 +500,7 @@ TextureImporter:
       MoonFloor_0: -946283461
       MoonFloor_13: 1780359685
       MoonFloor_12: 360932801
+      MoonFloor_17: -1331380154
       MoonFloor_2: -65578845
       MoonFloor_15: -1783409436
       MoonFloor_16: -325574625
