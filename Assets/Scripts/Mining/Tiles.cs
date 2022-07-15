@@ -15,33 +15,75 @@ public class Tiles
         {
             for (int j = _tiles.NY; j < _tiles.PY; j++)
             {
-                
-                
+
+                var tiles = new[] { new Tile(), new Tile(), new Tile() };
                 var hp = new[] { 20f, 100f, 300f };
                 //float randomValue = Random.value;
-                float randomValue = Mathf.PerlinNoise((i*.1f+ shiftx /*+ _xShift*/) /* _perlinFactor*/, (j *.1f+ shifty/*+ _yShift*/) /* _perlinFactor*/);
+                float randomValue = Mathf.PerlinNoise((i * .1f + shiftx /*+ _xShift*/) /* _perlinFactor*/, (j * .1f + shifty/*+ _yShift*/) /* _perlinFactor*/);
                 for (int x = 0; x < tilemaps.Length; x++)
                 {
                     Tilemap map = tilemaps[x];
-                    if (x==2 && Random.value < .003f)
                     {
-                        map.SetTile(new Vector3Int(i, j), rare);
-                        hp[x] = 350;
-                    }
-                    else
-                    {
-                        if (randomValue * (x + 1) > .3f)
+                        if (randomValue * (x + 1) > .3f && x == 0 || x > 0)
+                        {
                             map.SetTile(new Vector3Int(i, j), tile);
+                            tiles[x].HP = hp[x];
+                            if (drops.Length > x)
+                                tiles[x].Drop = drops[x];
+                            switch (x)
+                            {
+                                case 0:
+                                    tiles[x].Type = TileType.Grass;
+                                    break;
+                                case 1:
+                                    tiles[x].Type = TileType.Layer2;
+                                    break;
+                                case 2:
+                                    tiles[x].Type = TileType.Layer3;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
                         else
                         {
-                            hp[x] = 0;
+                            tiles[x].HP = 0;
                             map.SetTile(new Vector3Int(i, j), null);
                         }
                         //randomValue += Random.value;
                     }
                 }
-                _tiles[i, j] = new LayeredTile(hp, tilemaps, new Vector2Int(i, j), drops);
+                _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j));
             }
+        }
+        Tilemap map2 = tilemaps[2];
+        for (int i = 0; i < 3; i++)
+        {
+            var pos = MathMethods.GetRandomPointInCircle(Vector2.zero, 15, 0);
+            Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
+            map2.SetTile((Vector3Int)coords, rare);
+            _tiles[coords.x, coords.y].Layers[2].HP = 350;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            var pos = MathMethods.GetRandomPointInCircle(Vector2.zero, 20, 15);
+            Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
+            map2.SetTile((Vector3Int)coords, rare);
+            _tiles[coords.x, coords.y].Layers[2].HP = 350;
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            var pos = MathMethods.GetRandomPointInCircle(Vector2.zero, 25, 20);
+            Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
+            map2.SetTile((Vector3Int)coords, rare);
+            _tiles[coords.x, coords.y].Layers[2].HP = 350;
+        }
+        for (int i = 0; i < 16; i++)
+        {
+            var pos = MathMethods.GetRandomPointInCircle(Vector2.zero, 30, 25);
+            Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
+            map2.SetTile((Vector3Int)coords, rare);
+            _tiles[coords.x, coords.y].Layers[2].HP = 350;
         }
     }
 
