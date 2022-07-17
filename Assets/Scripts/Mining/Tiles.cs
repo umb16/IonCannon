@@ -87,6 +87,16 @@ public class Tiles
         }
     }
 
+    public TileType GetTileTypeByCoords(Vector2 coords)
+    {
+        Vector2Int scaled = new Vector2Int(Mathf.RoundToInt(coords.x * .5f), Mathf.RoundToInt(coords.y * .5f));
+        if (_tiles.InBounds(scaled.x, scaled.y))
+        {
+           return _tiles[scaled.x, scaled.y].TileType;
+        }
+        return TileType.None;
+    }
+
     public LayeredTile[] GetInRadius(Vector2 center, float radius)
     {
         List<LayeredTile> result = new List<LayeredTile>();

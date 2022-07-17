@@ -5,9 +5,11 @@ using UnityEngine.Tilemaps;
 
 public enum TileType
 {
+    None,
     Grass,
     Layer2,
-    Layer3
+    Layer3,
+    Layer4,
 }
 
 public class Tile
@@ -19,6 +21,7 @@ public class Tile
 public class LayeredTile : IDamagable
 {
     public bool IsEmpty => Layers.All(x => x.HP <= 0);
+    public TileType TileType => GetCurrentTile()?.Type ?? TileType.Layer4;
     public Tile[] Layers;
     private Tilemap[] _tilemaps;
     private Vector2Int _coords;
@@ -29,7 +32,17 @@ public class LayeredTile : IDamagable
         _tilemaps = tilemaps;
         _coords = coords;
     }
-
+    public Tile GetCurrentTile()
+    {
+        for (int i = 0; i < Layers.Length; i++)
+        {
+            if (Layers[i].HP > 0)
+            {
+                return Layers[i];
+            }
+        }
+        return null;
+    }
     public void ReceiveDamage(DamageMessage message)
     {
         for (int i = 0; i < Layers.Length; i++)

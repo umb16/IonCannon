@@ -13,6 +13,7 @@ public class Player : Mob
     private ComplexStat _rayDamage;
     public ComplexStat RayReverse;
     private PerksFactory _perksFactory;
+    private MiningDamageReceiver _miningDamageReceiver;
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
@@ -27,8 +28,11 @@ public class Player : Mob
 
     public float MaxPathLength => _maxPathLength.Value;
 
+    private float _baseMoveSpeed;
+
     [Inject]
-    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player, ItemsDB itemsDB, PerksFactory perksFactory)
+    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player,
+        ItemsDB itemsDB, PerksFactory perksFactory, MiningDamageReceiver miningDamageReceiver)
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
@@ -39,6 +43,7 @@ public class Player : Mob
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         RayReverse = StatsCollection.GetStat(StatType.RayReverse);
         _perksFactory = perksFactory;
+        _miningDamageReceiver = miningDamageReceiver;
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;
@@ -71,6 +76,7 @@ public class Player : Mob
     protected override void Start()
     {
         base.Start();
+        _baseMoveSpeed = MovementSpeed.BaseValue;
         AddPerk(_perksFactory.Create<PerkEAfterDeathExplosion>(0f));
         // GameData.GameStateChanged += GameStateChanged;
     }
@@ -131,6 +137,27 @@ public class Player : Mob
         base.Update();
         if (_stopped)
             return;
+        switch (_miningDamageReceiver.Tiles.GetTileTypeByCoords(Position))
+        {
+            case TileType.None:
+                MovementSpeed.SetBaseValue(_baseMoveSpeed);
+                break;
+            case TileType.Grass:
+                MovementSpeed.SetBaseValue(_baseMoveSpeed*1.1f);
+                break;
+            case TileType.Layer2:
+                MovementSpeed.SetBaseValue(_baseMoveSpeed * 1.0f);
+                break;
+            case TileType.Layer3:
+                MovementSpeed.SetBaseValue(_baseMoveSpeed * 0.9f);
+                break;
+            case TileType.Layer4:
+                MovementSpeed.SetBaseValue(_baseMoveSpeed * 0.8f);
+                break;
+            default:
+                break;
+        }
+        ;
         Movement();
     }
 
