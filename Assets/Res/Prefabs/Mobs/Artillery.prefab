@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 3155446216037005205}
   - component: {fileID: 4458365148599924103}
   - component: {fileID: 3155446215766331691}
-  - component: {fileID: 1789148355}
   - component: {fileID: 1789148354}
+  - component: {fileID: 939811253497671544}
   m_Layer: 0
   m_Name: Artillery
   m_TagString: Mob
@@ -104,7 +104,7 @@ Transform:
   - {fileID: 3155446215085388755}
   - {fileID: 1958498790453295816}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3155446214901190994
 MonoBehaviour:
@@ -247,20 +247,6 @@ MonoBehaviour:
   - {fileID: 5432521190018986330}
   - {fileID: 6163904188580315373}
   - {fileID: 373018329228023168}
---- !u!136 &1789148355
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3156723541867610834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.1223876
-  m_Height: 5.4329906
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.6816618, z: 0}
 --- !u!54 &1789148354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -277,6 +263,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!135 &939811253497671544
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156723541867610834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &4345475477393557816
 GameObject:
   m_ObjectHideFlags: 0

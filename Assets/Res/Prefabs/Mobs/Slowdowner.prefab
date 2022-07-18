@@ -200,8 +200,8 @@ GameObject:
   - component: {fileID: 3814810579698916087}
   - component: {fileID: 2514628056730097893}
   - component: {fileID: 3814810579432717385}
-  - component: {fileID: 937941453751732551}
   - component: {fileID: 4207966661318385298}
+  - component: {fileID: 5963144052916405296}
   m_Layer: 0
   m_Name: Slowdowner
   m_TagString: Mob
@@ -229,7 +229,7 @@ Transform:
   - {fileID: 732322242}
   - {fileID: 1949598046}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3814810580866186288
 MonoBehaviour:
@@ -374,20 +374,6 @@ MonoBehaviour:
   _points:
   - {fileID: 2917076621207216012}
   - {fileID: 6079501754548509752}
---- !u!136 &937941453751732551
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815785602394533808}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.76437247
-  m_Height: 4.824078
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.3024714, z: 0}
 --- !u!54 &4207966661318385298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -404,6 +390,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!135 &5963144052916405296
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815785602394533808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!1 &7832151147709320475
 GameObject:
   m_ObjectHideFlags: 0
