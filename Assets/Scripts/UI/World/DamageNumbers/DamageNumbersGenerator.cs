@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -41,17 +42,17 @@ public class DamageNumbersGenerator : MonoBehaviour
             number.transform.position = target.Position + Vector3.up - Vector3.forward * 1;
 
             if (msg.DamageSource == DamageSources.Heal)
-                number.SetText("<color=green>" + (-msg.Damage).ToString("0.#") + "</color>");
+                number.SetText("<color=green>" + (-msg.Damage).ToString("0.#", new CultureInfo("en-US", false)) + "</color>");
             else if (msg.Target is Player)
             {
-                number.SetText("<color=red>" + msg.Damage.ToString("0.#") + "</color>");
+                number.SetText("<color=red>" + msg.Damage.ToString("0.#", new CultureInfo("en-US", false)) + "</color>");
             }
             else if (msg.DamageSource == DamageSources.Ionization)
             {
-                number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#") + "</color>");
+                number.SetText("<color=#FFCF48>" + msg.Damage.ToString("0.#", new CultureInfo("en-US", false)) + "</color>");
             }
             else
-                number.SetText(msg.Damage.ToString("0.#"));
+                number.SetText(msg.Damage.ToString("0.#", new CultureInfo("en-US", false)));
         }
     }
 

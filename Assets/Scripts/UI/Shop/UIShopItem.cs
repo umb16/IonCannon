@@ -38,12 +38,13 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         _nameText.text = item.Name;
         if (item.Unique)
-            _text.text = "<color=red>Уникально</color>\n" + item.Description;
+            _text.text = "<color=red>" + LocaleKeys.Main.UNIQUE.GetLocalizedString() + "</color>\n" + item.Description;
         else
             _text.text = item.Description;
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.Icon).Task;
         _image.gameObject.SetActive(true);
-        CheckButtonStatus(_player.Value.Gold);
+        //CheckButtonStatus(_player.Value.Gold);
+        LocaleKeys.Main.BUY.StringChanged += _ => CheckButtonStatus(_player.Value.Gold);
     }
 
     private void CheckButtonStatus(ComplexStat stat)
@@ -51,12 +52,12 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (stat.Value >= Item.Cost)
         {
             _buyButton.interactable = true;
-            _buyButtonText.text = "Купить " + Item.Cost.ToString();
+            _buyButtonText.text = LocaleKeys.Main.BUY.GetLocalizedString() + " " + Item.Cost.ToString();
         }
         else
         {
             _buyButton.interactable = false;
-            _buyButtonText.text = "Купить <color=red>" + Item.Cost.ToString() + "</color>";
+            _buyButtonText.text = LocaleKeys.Main.BUY.GetLocalizedString() + " <color=red>" + Item.Cost.ToString() + "</color>";
         }
     }
 

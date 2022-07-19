@@ -58,6 +58,78 @@ MonoBehaviour:
     m_Localized: Wave
     m_Metadata:
       m_Items: []
+  - m_Id: 280054408704000
+    m_Localized: Ray damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280148335947776
+    m_Localized: Lvl.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280234981879808
+    m_Localized: Pess space to start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280394986188800
+    m_Localized: Combo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280452855001088
+    m_Localized: Ionization
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280573957140480
+    m_Localized: Buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13609745081200640
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13609861980647424
+    m_Localized: Sounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13609941089415168
+    m_Localized: Max HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13610577075924992
+    m_Localized: Ray error
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13625849786691584
+    m_Localized: Resources
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13627710325420032
+    m_Localized: Active
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13627913250041856
+    m_Localized: Reserve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13682888642686976
+    m_Localized: Unique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13686191296376832
+    m_Localized: Pickup Radius
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13686901442375680
+    m_Localized: p/s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13687008984330240
+    m_Localized: p
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13687083382894592
+    m_Localized: s
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

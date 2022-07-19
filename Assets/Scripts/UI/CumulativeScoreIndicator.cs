@@ -14,14 +14,16 @@ public class CumulativeScoreIndicator : MonoBehaviour
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player)
     {
-        player.Where(x => x != null).ForEachAsync(x=>
+        player.Where(x => x != null).ForEachAsync(x =>
         {
-            _text.text = "Ресурсы: 0";
+            _text.text = LocaleKeys.Main.RESOURCES.GetLocalizedString() + ": 0";
             x.Gold.ValueChanged += x =>
             {
-                _text.text = "Ресурсы: " + x.Value;
+                _text.text = LocaleKeys.Main.RESOURCES.GetLocalizedString() + ": " + x.Value;
             };
+            LocaleKeys.Main.RESOURCES.StringChanged += x => _text.text = x + ": " + player.Value.Gold.Value;
         });
+        
         //player.Gold.ValueChanged += x => _text.text = "Ресурсы: " + x.Value;
     }
 }
