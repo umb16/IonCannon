@@ -180,14 +180,14 @@ public class ItemsDB
         {
             Type = ItemType.ExoskeletonSpeedBooster,
             Name = "Ускоритель экзоскелета",
-            Description = "Скорость бега +0.5 п/с",
+            Description = "Скорость бега +10%",
             Cost = 60,
             Icon = Addresses.Ico_SpeedBoost,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(0.5f, StatModificatorType.Additive, StatType.MovementSpeed)
+                    new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed)
                 },
                 PerkType.Speed)
             }

@@ -130,6 +130,62 @@ MonoBehaviour:
     m_Localized: s
     m_Metadata:
       m_Items: []
+  - m_Id: 13696211052425216
+    m_Localized: Additional drives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13696611696537600
+    m_Localized: Ray speed +50%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13697295548444672
+    m_Localized: Exoskeleton speed booster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13697680912707584
+    m_Localized: Movement speed +10%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13697922395566080
+    m_Localized: Battery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698018138943488
+    m_Localized: Ray path +50%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698223630479360
+    m_Localized: Battery+
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698320141414400
+    m_Localized: Battery++
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698378807144448
+    m_Localized: Ray path +75%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698542057844736
+    m_Localized: Ray path +150%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698762434965504
+    m_Localized: Amplifier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698829044707328
+    m_Localized: Amplifier+
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13698929322127360
+    m_Localized: Amplifier++
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13701291499614208
+    m_Localized: HP
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
