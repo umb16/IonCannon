@@ -9949,7 +9949,7 @@ MonoBehaviour:
     type: 3}
   _zone: {fileID: 8222411616737769525}
   _splashRadius: 3
-  _damage: 10
+  _damage: 1
   _fallDelay: 1
 --- !u!114 &5488476856640461285
 MonoBehaviour:
