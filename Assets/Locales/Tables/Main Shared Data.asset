@@ -131,56 +131,16 @@ MonoBehaviour:
     m_Key: i_AdditionalDrives
     m_Metadata:
       m_Items: []
-  - m_Id: 13696611696537600
-    m_Key: id_AdditionalDrives
-    m_Metadata:
-      m_Items: []
   - m_Id: 13697295548444672
     m_Key: i_ExoskeletonSpeedBooster
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13697680912707584
-    m_Key: id_ExoskeletonSpeedBooster
     m_Metadata:
       m_Items: []
   - m_Id: 13697922395566080
     m_Key: i_Battery
     m_Metadata:
       m_Items: []
-  - m_Id: 13698018138943488
-    m_Key: id_Battery
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698223630479360
-    m_Key: i_BatteryPlus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698320141414400
-    m_Key: i_BatteryPlusPlus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698378807144448
-    m_Key: id_BatteryPlus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698542057844736
-    m_Key: id_BatteryPlusPlus
-    m_Metadata:
-      m_Items: []
   - m_Id: 13698762434965504
     m_Key: i_Amplifier
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698829044707328
-    m_Key: i_AmplifierPlus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13698929322127360
-    m_Key: i_AmplifierPlusPlus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13699003020242944
-    m_Key: id_Amplifier
     m_Metadata:
       m_Items: []
   - m_Id: 13701291499614208

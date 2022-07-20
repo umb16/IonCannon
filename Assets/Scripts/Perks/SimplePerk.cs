@@ -29,6 +29,20 @@ public class SimplePerk : WithId, IPerk
         _collection.RemoveModificators(_modificators);
     }
 
+    public override string ToString()
+    {
+        string result = "";
+        foreach (var item in _modificators)
+        {
+            string text = item.ToString();
+            if (!string.IsNullOrEmpty(text))
+            {
+                result += text+"\n";
+            }
+        }
+        return result;
+    }
+
     public void Add(IPerk perk)
     {
         
