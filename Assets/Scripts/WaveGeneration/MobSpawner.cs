@@ -107,6 +107,7 @@ public class MobSpawner : MonoBehaviour
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
         go.transform.SetParent(transform);
+        go.transform.eulerAngles -= new Vector3(90, 0, 0);
         Mobs.Add(mob);
         return mob;
     }
