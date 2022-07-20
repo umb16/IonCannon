@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: bb81bcbca714bf74eb79080907efb105
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MainMenuRay000
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07887878c20009fa0800000000000000
+      internalID: -5796132529173460880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay001
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee59ab10607974800800000000000000
+      internalID: 596611527704483310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay002
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919759986d6b94660800000000000000
+      internalID: 7370623297716058393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay003
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d29a64372b7a64a0800000000000000
+      internalID: -6599326895644699949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay004
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea67a047bac0ef20800000000000000
+      internalID: 3449980202978339556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay005
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf7a482e24466850800000000000000
+      internalID: 6369853687997300675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay006
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 1573
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6831a0d796d3edcd0800000000000000
+      internalID: -2531518417256967290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay007
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f840190bccefda0800000000000000
+      internalID: -5909060602344206448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay008
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764bd19b7169ecfa0800000000000000
+      internalID: -5778516243235621785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay009
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ca4790e1ff36fc0800000000000000
+      internalID: -3502675580691370984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay010
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddedec5d9a5752f50800000000000000
+      internalID: 6856015380038475485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay011
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e343870bbd6f1dbc0800000000000000
+      internalID: -3759952790458715074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay012
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9df0faa5fbe01530800000000000000
+      internalID: 3823815524004986267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay013
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 1049
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbcda6e1484298a00800000000000000
+      internalID: 759178162053242043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay014
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be48eef76f723150800000000000000
+      internalID: 5850878950542692017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay015
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a7f8f62601683e0800000000000000
+      internalID: -2051934565256168865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay016
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 386fd82b191b64030800000000000000
+      internalID: 3478663001514309251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay017
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d72ed0545937b0b0800000000000000
+      internalID: -5713034567999412265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay018
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c409dafc627af90800000000000000
+      internalID: -6942537627156329359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay019
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e60db56dc07203490800000000000000
+      internalID: -7768666421124673426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay020
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 525
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21af3ca92d6657f50800000000000000
+      internalID: 6878517060604000786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay021
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe685633ed3956150800000000000000
+      internalID: 5865256672274253551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay022
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eeca2e92c86749d0800000000000000
+      internalID: -2790146259046183200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuRay023
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1
+        width: 289
+        height: 522
+      alignment: 9
+      pivot: {x: 0.925, y: 0.966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e9c08734d1c23e0800000000000000
+      internalID: -2077253152510534033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      MainMenuRay000: -5796132529173460880
+      MainMenuRay007: -5909060602344206448
+      MainMenuRay009: -3502675580691370984
+      MainMenuRay001: 596611527704483310
+      MainMenuRay006: -2531518417256967290
+      MainMenuRay016: 3478663001514309251
+      MainMenuRay022: -2790146259046183200
+      MainMenuRay010: 6856015380038475485
+      MainMenuRay017: -5713034567999412265
+      MainMenuRay012: 3823815524004986267
+      MainMenuRay014: 5850878950542692017
+      MainMenuRay008: -5778516243235621785
+      MainMenuRay003: -6599326895644699949
+      MainMenuRay018: -6942537627156329359
+      MainMenuRay019: -7768666421124673426
+      MainMenuRay002: 7370623297716058393
+      MainMenuRay015: -2051934565256168865
+      MainMenuRay020: 6878517060604000786
+      MainMenuRay013: 759178162053242043
+      MainMenuRay023: -2077253152510534033
+      MainMenuRay005: 6369853687997300675
+      MainMenuRay004: 3449980202978339556
+      MainMenuRay011: -3759952790458715074
+      MainMenuRay021: 5865256672274253551
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

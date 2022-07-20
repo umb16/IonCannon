@@ -24,20 +24,26 @@ namespace SPVD.LifeSupport
             // _circles.Add(new Circle(Vector2.zero, 30));
             //_circles.Add(new Circle(new Vector2(0, 0), 25));
             //_circles.Add(new Circle(new Vector2(-10, 10), 25));
-            gameData.GameStateChanged += GameStateChanged; ;
+            gameData.GameStateChanged += GameStateChanged;
+            gameData.GameStarted += GameStarted;
             _player = player;
             _player.Where(x => x != null).ForEachAsync(x =>
             {
                 _stat = x.StatsCollection.GetStat(StatType.LifeSupport);
             });
             //Test();
-            AddCircle(Vector3.zero, 30);
+            //AddCircle(Vector3.zero, 30);
+        }
+
+        private void GameStarted()
+        {
+            Reset();
         }
 
         private void GameStateChanged(GameState state)
         {
             if (state == GameState.Restart)
-                Reset();
+                _circles.Clear();
         }
         [EditorButton]
         public void AddRandomCircle()

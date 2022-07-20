@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!612988286 &1
+SpriteAtlasAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_MasterAtlas: {fileID: 0}
+  m_ImporterData:
+    packables:
+    - {fileID: -2597512782462524797, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -8160561645241326637, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 3066164856985646117, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 5630466664348323700, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -1105098193030725585, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -7031111965662418167, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -2651659650101112126, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -8642772379171393182, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 4109521322389490625, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -348739131204695539, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 2452510013223140778, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -6513860915305489191, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -1701841467859114586, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 8825429069254674297, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -7375088668464226903, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -3515430977060417715, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 1436507297180315156, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 4102670024279362496, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -2466905572841819544, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 8747437393105860177, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -6806611880527013142, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -7268519041713533737, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: 6006774342731170181, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+    - {fileID: -812006073600878787, guid: e14d9b72a8caa324db80e6e7b2fc2bc8, type: 3}
+  m_IsVariant: 0
