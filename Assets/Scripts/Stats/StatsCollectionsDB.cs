@@ -6,7 +6,7 @@ public static class StatsCollectionsDB
 {
     public static StandartStatsCollection StandartPlayer()
     {
-        int hp = 10;
+        int hp = 20;
         ComplexStat maxHP = new ComplexStat(hp);
         ComplexStat HP = new ComplexStat(maxHP.Value, (x) => Mathf.Min(x, maxHP.Value));
         maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));

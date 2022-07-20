@@ -157,6 +157,7 @@ MonoBehaviour:
   _score: 1
   _animator: {fileID: 723286725745686467}
   _destroyDelay: 0
+  _heal: 1
 --- !u!114 &5263124681114150106
 MonoBehaviour:
   m_ObjectHideFlags: 0

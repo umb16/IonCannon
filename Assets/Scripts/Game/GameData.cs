@@ -51,6 +51,7 @@ public class GameData
     public async UniTask StartGame()
     {
         var Char = await PrefabCreator.Instantiate(Addresses.Char_standart, Vector3.zero);
+        Char.transform.eulerAngles -= Vector3.right * 90;
         Char.name = "char " + (charIndexer++);
         GameStarted?.Invoke();
         StartGameTime = Time.time;

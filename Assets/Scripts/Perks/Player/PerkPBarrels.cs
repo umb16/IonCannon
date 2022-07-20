@@ -50,6 +50,7 @@ public class PerkPBarrels : WithId, IPerk
     {
         _lastSpawnTime = Time.time;
         var go = await PrefabCreator.Instantiate("Obj_Barrel", new Vector3(Random.value * 2 - 1, Random.value * 2 - 1).normalized * 30 * Random.value);
+        go.transform.eulerAngles -= Vector3.right * 90;
         _mob.AllMobs.Add(go.GetComponent<IMob>());
     }
 
