@@ -35,6 +35,8 @@ public class PerkPShiftSystem : WithId, IPerk
             return;
         if (msg.Damage <= 0)
             return;
+        if (msg.DamageSource == DamageSources.Heal)
+            return;
         _mob.SetInvulnerability(true);
         _timer?.Stop();
         _timer = new Timer(2).SetEnd(() => _mob.SetInvulnerability(false));
