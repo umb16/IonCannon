@@ -23,7 +23,7 @@ public class ScoreGem : MonoBehaviour
     {
         if (_taken)
             return;
-        if (_player != null && (_player.Position - transform.position).magnitude < _player.StatsCollection.GetStat(StatType.PickupRadius).Value)
+        if (_player != null && (_heal == 0 || _player.HP.Value<_player.StatsCollection.GetStat(StatType.MaxHP).Value) && (_player.Position - transform.position).magnitude < _player.StatsCollection.GetStat(StatType.PickupRadius).Value)
         {
             _taken = true;
             _sound.Play();

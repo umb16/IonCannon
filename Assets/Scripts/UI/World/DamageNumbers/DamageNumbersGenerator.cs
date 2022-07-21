@@ -39,7 +39,7 @@ public class DamageNumbersGenerator : MonoBehaviour
             //    return;
             var number = Instantiate(numberPrefab);
             number.transform.SetParent(transform);
-            number.transform.position = target.Position + Vector3.up - Vector3.forward * 1;
+            number.transform.position = target.Position - Vector3.up*.1f - Vector3.forward * 1;
 
             if (msg.DamageSource == DamageSources.Heal)
                 number.SetText("<color=green>" + (-msg.Damage).ToString("0.#", new CultureInfo("en-US", false)) + "</color>");

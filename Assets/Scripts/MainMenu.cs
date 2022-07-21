@@ -24,7 +24,8 @@ public class MainMenu : BaseLayer
 
     private void StartGame()
     {
-        new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
+        /*new Timer(.1f).SetEnd(() =>*/
+        _gameData.StartGame().Forget();//);
         Show<InGameHUDLayer>();
         TryGet<MainMenu>().Hide();
     }

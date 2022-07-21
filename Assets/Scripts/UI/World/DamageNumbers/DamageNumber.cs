@@ -21,7 +21,8 @@ public class DamageNumber : MonoBehaviour
                 float tension = 5;
                 x -= 1;
                 x = x * x * ((tension + 1) * x + tension) + 1;
-                transform.position += Vector3.back * Time.deltaTime;
+                //transform.position += Vector3.back * Time.deltaTime;
+                transform.Translate(0, 0, -Time.deltaTime);
                 transform.localScale = Vector3.LerpUnclamped(Vector3.one * .1f, Vector3.one, x);
             })
             .SetEnd(() =>
@@ -32,7 +33,8 @@ public class DamageNumber : MonoBehaviour
                 _timers.Add(new Timer(.9f)
                     .SetUpdate(x =>
                     {
-                        transform.position += Vector3.back * Time.deltaTime * (1 -x*2f);
+                        transform.Translate(0, Time.deltaTime * (1 - x * 2f)*2, -Time.deltaTime*2);
+                        //transform.position += Vector3.back * Time.deltaTime * (1 -x*2f);
                         _text.color = Color.Lerp(startColor, endColor, Mathf.Max(0, x - .5f));
                     })
                     .SetEnd(() => Destroy(gameObject)));
