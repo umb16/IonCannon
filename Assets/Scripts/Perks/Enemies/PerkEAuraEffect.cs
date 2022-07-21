@@ -40,4 +40,9 @@ public class PerkAuraEffect : WithId, IPerk
     {
         //throw new System.NotImplementedException();
     }
+
+    public string GetDescription()
+    {
+        throw new System.NotImplementedException();
+    }
 }

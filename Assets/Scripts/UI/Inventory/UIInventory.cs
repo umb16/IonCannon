@@ -109,7 +109,7 @@ public class UIInventory : MonoBehaviour
         if (item.Unique)
             TooltipController.Instance.
             AssignTooltip(tooltiptext + @$"<color=yellow><size=30>{item.Name}</size></color>
-<color=red>”никально</color>
+<color=red>{LocaleKeys.Main.UNIQUE.GetLocalizedString()}</color>
 {item.Description}");
         else
             TooltipController.Instance.

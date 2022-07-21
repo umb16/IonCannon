@@ -7,6 +7,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using Zenject;
 
@@ -35,16 +37,20 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public async UniTask Set(Item item)
     {
         Item = item;
-
-        _nameText.text = item.Name;
-        if (item.Unique)
-            _text.text = "<color=red>" + LocaleKeys.Main.UNIQUE.GetLocalizedString() + "</color>\n" + item.Description;
-        else
-            _text.text = item.Description;
-        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.Icon).Task;
+        SetText();
+        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(Item.Icon).Task;
         _image.gameObject.SetActive(true);
         //CheckButtonStatus(_player.Value.Gold);
-        LocaleKeys.Main.BUY.StringChanged += _ => CheckButtonStatus(_player.Value.Gold);
+        CheckButtonStatus(_player.Value.Gold);
+    }
+
+    private void SetText()
+    {
+        _nameText.text = Item.Name;
+        if (Item.Unique)
+            _text.text = "<color=red>" + LocaleKeys.Main.UNIQUE.GetLocalizedString() + "</color>\n" + Item.Description;
+        else
+            _text.text = Item.Description;
     }
 
     private void CheckButtonStatus(ComplexStat stat)
@@ -61,8 +67,19 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    private void SetText(Locale x) => SetText();
+    private void CheckButtonStatus(Locale x) => CheckButtonStatus(_player.Value.Gold);
+
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += SetText;
+        LocalizationSettings.SelectedLocaleChanged += CheckButtonStatus;
+    }
+
     private void OnDisable()
     {
+        LocalizationSettings.SelectedLocaleChanged -= SetText;
+        LocalizationSettings.SelectedLocaleChanged -= CheckButtonStatus;
         // _player.Gold.ValueChanged -= CheckButtonStatus;
     }
 

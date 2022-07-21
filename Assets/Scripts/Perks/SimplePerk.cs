@@ -29,7 +29,7 @@ public class SimplePerk : WithId, IPerk
         _collection.RemoveModificators(_modificators);
     }
 
-    public override string ToString()
+    public string GetDescription()
     {
         string result = "";
         foreach (var item in _modificators)

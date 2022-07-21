@@ -54,4 +54,9 @@ public class PerkUIonizationEffect : WithId, IPerk
         _loop.Dispose();
         _mob.RemoveFx(_fx);
     }
+
+    public string GetDescription()
+    {
+        throw new NotImplementedException();
+    }
 }

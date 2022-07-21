@@ -150,6 +150,46 @@ MonoBehaviour:
     m_Localized: HP
     m_Metadata:
       m_Items: []
+  - m_Id: 14409818350317568
+    m_Localized: Focus lens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14410123615956992
+    m_Localized: Ionization unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14412175482056704
+    m_Localized: Shift system
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14413635666079744
+    m_Localized: Coprocessor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14413960053551104
+    m_Localized: Diverging lens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14414226677067776
+    m_Localized: Power controller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14414316061880320
+    m_Localized: Lens system
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14414923342573568
+    m_Localized: Magnetic manipulator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14415156986277888
+    m_Localized: Reverse system
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14415845196066816
+    m_Localized: Speed drives
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

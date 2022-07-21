@@ -24,4 +24,9 @@ public abstract class PerkEStandart : WithId, IPerk
     {
 
     }
+
+    public string GetDescription()
+    {
+        throw new System.NotImplementedException();
+    }
 }

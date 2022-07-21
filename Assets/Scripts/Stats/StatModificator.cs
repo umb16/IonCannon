@@ -77,7 +77,7 @@ public class StatModificator : IStatModificator
                 return "";
         }
         string perfix = Value > 0 ? "+" : "";
-        return perfix + statName + " " + value;
+        return statName + " " + perfix + value;
     }
 
     public StatModificator(float value, StatModificatorType modificatorType, StatType statType)

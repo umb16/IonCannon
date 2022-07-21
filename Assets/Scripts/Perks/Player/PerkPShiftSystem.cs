@@ -53,4 +53,9 @@ public class PerkPShiftSystem : WithId, IPerk
     {
 
     }
+
+    public string GetDescription()
+    {
+        return null;
+    }
 }

@@ -123,4 +123,9 @@ public class PerkAura : WithId, IPerk
     {
         //throw new NotImplementedException();
     }
+
+    public string GetDescription()
+    {
+        throw new NotImplementedException();
+    }
 }

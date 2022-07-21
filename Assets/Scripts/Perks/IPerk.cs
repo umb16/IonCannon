@@ -12,4 +12,6 @@ public interface IPerk
     void Shutdown();
     void Init(IMob mob);
     void Add(IPerk perk);
+
+    string GetDescription();
 }

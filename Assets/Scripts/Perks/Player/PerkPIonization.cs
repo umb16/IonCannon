@@ -48,4 +48,9 @@ public class PerkPIonization : WithId,IPerk
     {
         _damageController.Damage -= OnDamage;
     }
+
+    public string GetDescription()
+    {
+        return null;
+    }
 }
