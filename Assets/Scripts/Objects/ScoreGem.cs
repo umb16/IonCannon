@@ -12,13 +12,27 @@ public class ScoreGem : MonoBehaviour
     [SerializeField] private float _destroyDelay = 2;
     [SerializeField] private float _heal = 0;
     private Player _player;
+    private GameData _gameData;
     private bool _taken;
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
     {
         _player = player;
+        _gameData = gameData;
+        gameData.GameStateChanged += GameStateChanged;
     }
 
+    private void GameStateChanged(GameState obj)
+    {
+        if (obj == GameState.Restart)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnDestroy()
+    {
+        _gameData.GameStateChanged-= GameStateChanged;
+    }
     private void Update()
     {
         if (_taken)
