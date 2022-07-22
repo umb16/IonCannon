@@ -46,6 +46,8 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void SetText()
     {
+        if (Item == null)
+            return;
         _nameText.text = Item.Name;
         if (Item.Unique)
             _text.text = "<color=red>" + LocaleKeys.Main.UNIQUE.GetLocalizedString() + "</color>\n" + Item.Description;
@@ -58,29 +60,33 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (stat.Value >= Item.Cost)
         {
             _buyButton.interactable = true;
-            _buyButtonText.text = LocaleKeys.Main.BUY.GetLocalizedString() + " " + Item.Cost.ToString();
+            _buyButtonText.text = Item.Cost.ToString();
         }
         else
         {
             _buyButton.interactable = false;
-            _buyButtonText.text = LocaleKeys.Main.BUY.GetLocalizedString() + " <color=red>" + Item.Cost.ToString() + "</color>";
+            _buyButtonText.text = "<color=red>" + Item.Cost.ToString() + "</color>";
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform.parent);
     }
 
-    private void SetText(Locale x) => SetText();
-    private void CheckButtonStatus(Locale x) => CheckButtonStatus(_player.Value.Gold);
+    //private void SetText(Locale x) => SetText();
+    private void CheckButtonStatus(Locale x)
+    {
+        if (_player?.Value != null)
+            CheckButtonStatus(_player.Value.Gold);
+    }
 
     private void OnEnable()
     {
-        LocalizationSettings.SelectedLocaleChanged += SetText;
+        //LocalizationSettings.SelectedLocaleChanged += SetText;
         LocalizationSettings.SelectedLocaleChanged += CheckButtonStatus;
     }
 
     private void OnDisable()
     {
-        LocalizationSettings.SelectedLocaleChanged -= SetText;
+        //LocalizationSettings.SelectedLocaleChanged -= SetText;
         LocalizationSettings.SelectedLocaleChanged -= CheckButtonStatus;
-        // _player.Gold.ValueChanged -= CheckButtonStatus;
     }
 
     private void Awake()
