@@ -14,6 +14,7 @@ public class DamageNumber : MonoBehaviour
     }
     void OnEnable()
     {
+        _timers.Add(new Timer(.1f).SetEnd(() => transform.Translate(0, 0, -10)));
         _text.color = Color.white;
         _timers.Add(new Timer(.3f)
             .SetUpdate(x =>

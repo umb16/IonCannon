@@ -41,6 +41,8 @@ public class EnemyPerksDB
                 return new PerkEHunter();
             case PerkType.EMother:
                 return new PerkEMother(5, Addresses.Mob_Child);
+            case PerkType.EAgressor:
+                return new PerkEAgressor();
             default:
                 return null;
         }

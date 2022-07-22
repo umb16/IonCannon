@@ -34,6 +34,8 @@ public static class Addresses
    public static string Mob_First = "Mob_First";
    public static string Ico_ShiftSystem = "Ico_ShiftSystem";
    public static string Ico_Reverse = "Ico_Reverse";
+   public static string Mob_Heavy = "Mob_Heavy";
+   public static string Mob_Fortress = "Mob_Fortress";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }

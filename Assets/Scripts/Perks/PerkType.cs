@@ -28,4 +28,5 @@ public enum PerkType
     ESlowAura = 24,
     PShift = 25,
     RayReverse = 26,
+    EAgressor = 27,
 }
