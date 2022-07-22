@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: {fileID: -1809642080273147267}
-  _score: 0
+  _score: 1
   _animator: {fileID: 723286725745686467}
   _destroyDelay: 0
   _heal: 1
