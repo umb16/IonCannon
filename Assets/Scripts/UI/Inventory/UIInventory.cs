@@ -19,6 +19,7 @@ public class UIInventory : MonoBehaviour
     private AsyncReactiveProperty<Player> _player;
     private ItemsDB _itemsDB;
 
+
     public bool IsFull => !RealInventory.FreeSlotAvailable;
 
     [Inject]
@@ -225,6 +226,10 @@ public class UIInventory : MonoBehaviour
 
         foreach (var slot in _slots)
         {
+            if (slot.IsEmpty)
+            {
+                continue;
+            }
             if (exception == slot || type == ItemType.None)
             {
                 slot.Normal();

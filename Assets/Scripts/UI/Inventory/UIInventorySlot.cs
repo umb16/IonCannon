@@ -12,10 +12,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     
     [SerializeField] private Image _image;
+    [SerializeField] private Image _frameImage;
     [SerializeField] private TMP_Text _costText;
-    [SerializeField] private GameObject _darkFront;
     [SerializeField] private GameObject _upgradeLable;
     [SerializeField] private TMP_Text _upgradeText;
+    [SerializeField] private Sprite _normal;
+    [SerializeField] private Sprite _empty;
+    [SerializeField] private Sprite _hightlighted;
     public event Action<PointerEventData> BeginDrag;
     public event Action<PointerEventData> Drag;
     public event Action<PointerEventData> EndDrag;
@@ -30,17 +33,21 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         Item = null;
         _image.gameObject.SetActive(false);
+        Empty();
     }
 
     public void Normal()
     {
-        _darkFront.SetActive(false);
+        _frameImage.sprite = _normal;
     }
     public void Highlighted()
     {
-        _darkFront.SetActive(true);
+        _frameImage.sprite = _hightlighted;
     }
-
+    public void Empty()
+    {
+        _frameImage.sprite = _empty;
+    }
     public void OnBeginDrag(PointerEventData eventData) => BeginDrag?.Invoke(eventData);
 
     public void OnDrag(PointerEventData eventData) => Drag.Invoke(eventData);
@@ -53,8 +60,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public async UniTask Set(Item item)
     {
         Item = item;
+        Normal();
         _costText.text = item.SellCost.ToString();
         _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.Icon).Task;
+        _image.SetNativeSize();
         _image.gameObject.SetActive(true);
         if (item.UpgradeCount > 0)
         {

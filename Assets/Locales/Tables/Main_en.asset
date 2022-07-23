@@ -103,11 +103,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13627710325420032
-    m_Localized: Active
+    m_Localized: ACTIVE
     m_Metadata:
       m_Items: []
   - m_Id: 13627913250041856
-    m_Localized: Reserve
+    m_Localized: RESERVE
     m_Metadata:
       m_Items: []
   - m_Id: 13682888642686976

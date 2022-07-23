@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class UILock : MonoBehaviour
 {
-    [SerializeField] private GameObject _lockImage;
-    [SerializeField] private GameObject _unlockImage;
+    [SerializeField] private Image _image;
+    [SerializeField] private Sprite _lockSprite;
+    [SerializeField] private Sprite _unlockSprite;
     private UIShopLayer _shop;
 
     [Inject]
@@ -17,21 +19,18 @@ public class UILock : MonoBehaviour
 
     private void OnEnable()
     {
-        _lockImage.SetActive(false);
-        _unlockImage.SetActive(true);
+        _image.sprite = _unlockSprite;
     }
 
     public void OnPressLock()
     {
         if (_shop.Lock)
         {
-            _lockImage.SetActive(false);
-            _unlockImage.SetActive(true);
+            _image.sprite = _unlockSprite;
         }
         else
         {
-            _lockImage.SetActive(true);
-            _unlockImage.SetActive(false);
+            _image.sprite = _lockSprite;
         }
         _shop.SetLock(!_shop.Lock);
     }

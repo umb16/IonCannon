@@ -15,23 +15,32 @@ public class ExpandInventoryButton : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     private AsyncReactiveProperty<Player> _player;
     private int _cost = 100;
+    private GameData _gameData;
+
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player,
         GameData gameData)
     {
         _player = player;
-        player.Where(x => x != null).ForEachAsync(x => x.Gold.ValueChanged += CheckButtonStatus);
+        player.Where(x => x != null).ForEachAsync(x =>
+        {
+            CheckButtonStatus(_player.Value.Gold);
+            x.Gold.ValueChanged += CheckButtonStatus;
+        });
         _button.onClick.AddListener(OnExpandButtonClick);
         gameData.GameStateChanged += GameStateChanged;
-    }
-
-    private void OnEnable()
-    {
-        CheckButtonStatus(_player.Value.Gold);
+        _gameData = gameData;
     }
 
     private void GameStateChanged(GameState state)
     {
+        if (state == GameState.InShop && _cost <1600)
+        {
+            gameObject.SetActive(true);
+            transform.SetAsLastSibling();
+        }
+        else
+            gameObject.SetActive(false);
         if (state == GameState.Restart)
         {
             _cost = 100;
@@ -43,12 +52,12 @@ public class ExpandInventoryButton : MonoBehaviour
         if (gold.Value >= _cost)
         {
             _button.interactable = true;
-            _text.text = "Добавить слот инвентаря\n\n" + _cost.ToString();
+            _text.text = _cost.ToString();
         }
         else
         {
             _button.interactable = false;
-            _text.text = "Добавить слот инвентаря\n\n<color=red>" + _cost.ToString() + "</color>";
+            _text.text = "<color=red>" + _cost.ToString() + "</color>";
         }
     }
 
@@ -58,6 +67,9 @@ public class ExpandInventoryButton : MonoBehaviour
         _player.Value.Stash.AddSlot();
         //Костыль чтобы правильно обновилось сотояние кнопки
         _cost *= 2;
-        _player.Value.Gold.AddBaseValue(-_cost/2);
+        _player.Value.Gold.AddBaseValue(-_cost / 2);
+        if (_cost > 1600)
+            gameObject.SetActive(false);
+        transform.SetAsLastSibling();
     }
 }
