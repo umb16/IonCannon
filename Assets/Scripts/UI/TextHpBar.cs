@@ -32,9 +32,9 @@ public class TextHpBar : MonoBehaviour
     }
     private void UpdateText(int value, int max)
     {
-        string fullSquares = "";
+        string fullSquares = " <font=LiberationSans SDF>";
         if (value / 2 > 0)
-            fullSquares = string.Concat(Enumerable.Repeat("<color=#F5025F>■</color>", value / 2));
+            fullSquares += string.Concat(Enumerable.Repeat("<color=#F5025F>■</color>", value / 2));
         _text.text = "HP " +
                 fullSquares +
                 (value % 2 == 1 ? "<color=#fc5d9a>■</color>" : "") +

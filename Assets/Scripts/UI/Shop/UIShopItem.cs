@@ -17,7 +17,7 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private TMP_Text _buyButtonText;
+    [SerializeField] private TextWithIcon _costText;
     [SerializeField] private Button _buyButton;
 
     public event Action<PointerEventData> PointerEnter;
@@ -60,14 +60,13 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (stat.Value >= Item.Cost)
         {
             _buyButton.interactable = true;
-            _buyButtonText.text = Item.Cost.ToString();
+            _costText.SetText(Item.Cost.ToString());
         }
         else
         {
             _buyButton.interactable = false;
-            _buyButtonText.text = "<color=red>" + Item.Cost.ToString() + "</color>";
+            _costText.SetText("<color=red>" + Item.Cost.ToString() + "</color>");
         }
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform.parent);
     }
 
     //private void SetText(Locale x) => SetText();

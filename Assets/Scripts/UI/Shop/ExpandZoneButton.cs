@@ -12,7 +12,9 @@ using Zenject;
 public class ExpandZoneButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
-    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TextWithIcon _costText;
+    [SerializeField] private GameObject _normalText;
+    [SerializeField] private GameObject _expandedText;
     private AsyncReactiveProperty<Player> _player;
     private LifeSupportTower _lifeSupportTower;
     private ShopShip _ship;
@@ -49,18 +51,23 @@ public class ExpandZoneButton : MonoBehaviour
         if (_once)
         {
             _button.interactable = false;
-            _text.text = "Расширено";
+            _normalText.SetActive(false);
+            _expandedText.SetActive(true);
+            _costText.Hide();
             return;
         }
+        _normalText.SetActive(true);
+        _expandedText.SetActive(false);
+        _costText.Show();
         if (gold.Value >= _cost)
         {
             _button.interactable = true;
-            _text.text = "Расширить зону\n\n" + _cost.ToString();
+            _costText.SetText(_cost.ToString());
         }
         else
         {
             _button.interactable = false;
-            _text.text = "Расширить зону\n\n<color=red>" + _cost.ToString() + "</color>";
+            _costText.SetText("<color=red>" + _cost.ToString() + "</color>");
         }
     }
 

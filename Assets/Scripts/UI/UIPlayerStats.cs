@@ -48,10 +48,20 @@ public class UIPlayerStats : BaseLayer
         _player.Where(x => x != null).ForEachAsync(x =>
         {
             var stat = x.StatsCollection.GetStat(statType);
-            maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) + " " + postfix?.GetLocalizedString()??"");
-            stat.ValueChanged += x => maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) + " " + postfix?.GetLocalizedString() ?? "");
-            if (postfix != null)
-                postfix.StringChanged += x => maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) + " " + x);
+            if (postfix == null)
+            {
+                maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) + " ");
+                stat.ValueChanged += x => maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) + " ");
+            }
+            else
+            {
+                maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) +
+                    " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + postfix.GetLocalizedString() + "</font>");
+                stat.ValueChanged += x => maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) +
+                    " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + postfix.GetLocalizedString() + "</font>");
+                postfix.StringChanged += x => maxHPText.SetValue(stat.Value.ToString(format, new CultureInfo("en-US", false)) +
+                    " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + x + "</font>");
+            }
         });
     }
     private UIStatText AddString()

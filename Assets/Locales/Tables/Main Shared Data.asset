@@ -219,6 +219,14 @@ MonoBehaviour:
     m_Key: i_SpeedDrives
     m_Metadata:
       m_Items: []
+  - m_Id: 15069325246099456
+    m_Key: UpgradeSafeZone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15069925018988544
+    m_Key: Expanded
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
