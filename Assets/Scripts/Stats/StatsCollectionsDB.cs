@@ -8,8 +8,12 @@ public static class StatsCollectionsDB
     {
         int hp = 20;
         ComplexStat maxHP = new ComplexStat(hp);
-        ComplexStat HP = new ComplexStat(maxHP.Value, (x) => Mathf.Min(x, maxHP.Value)).SetBaseLimit(0,float.PositiveInfinity);
-        maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
+        ComplexStat HP = new ComplexStat(maxHP.Value).SetBaseLimit(0.0f, maxHP.Value);
+        maxHP.ValueChanged += (x) =>
+        {
+            HP.SetBaseLimit(0.0f, maxHP.Value);
+            HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
+        };
         return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
          {
             (StatType.MovementSpeed, new ComplexStat(6)),

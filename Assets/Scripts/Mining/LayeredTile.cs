@@ -50,7 +50,6 @@ public class LayeredTile : IDamagable
             if (Layers[i].HP > 0)
             {
                 Layers[i].HP -= message.Damage;
-                Debug.Log(message.Damage);
                 if (Layers[i].HP <= 0)
                 {
                     _tilemaps[i].SetTile((Vector3Int)_coords, null);
