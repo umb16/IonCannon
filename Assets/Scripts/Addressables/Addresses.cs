@@ -38,6 +38,15 @@ public static class Addresses
    public static string Mob_Fortress = "Mob_Fortress";
    public static string Ico_BatteryP = "Ico_BatteryP";
    public static string Ico_BatteryPP = "Ico_BatteryPP";
+   public static string Ico_HP = "Ico_HP";
+   public static string Ico_MoveSpeed = "Ico_MoveSpeed";
+   public static string Ico_PickupRadius = "Ico_PickupRadius";
+   public static string Ico_RayDamage = "Ico_RayDamage";
+   public static string Ico_RayDelay = "Ico_RayDelay";
+   public static string Ico_RayError = "Ico_RayError";
+   public static string Ico_RayPath = "Ico_RayPath";
+   public static string Ico_RaySpeed = "Ico_RaySpeed";
+   public static string Ico_RayWidth = "Ico_RayWidth";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }

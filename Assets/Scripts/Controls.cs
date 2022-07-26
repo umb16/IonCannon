@@ -40,6 +40,7 @@ public class Controls : MonoBehaviour
             else
             if (_gameData.State == GameState.Gameplay)
             {
+                BaseLayer.Show<UIShopBack>();
                 BaseLayer.Show<UIPlayerInventory>();
                 BaseLayer.Show<UIPlayerStats>();
                 BaseLayer.Show<SoundsMenuLayer>();

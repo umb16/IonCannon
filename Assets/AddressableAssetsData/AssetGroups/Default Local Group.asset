@@ -213,6 +213,51 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ac1b5163e5bba4da4fbdee695d0072
+    m_Address: Ico_HP
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc7f6c5db44b01b41a126f8d3ca36b99
+    m_Address: Ico_MoveSpeed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c4908d4fe7e8574f8db69407fb6d064
+    m_Address: Ico_PickupRadius
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b32647ec2a0d8ef4792e937e05a715ae
+    m_Address: Ico_RayDamage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 291e4a95396981942964d81b869b2ef9
+    m_Address: Ico_RayDelay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac7503a0597f3894e9e4db3bd9baf111
+    m_Address: Ico_RayError
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 868742bc8dd36a64dbbb47948f11623d
+    m_Address: Ico_RayPath
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7564583218042ac43b8b318c39f85822
+    m_Address: Ico_RaySpeed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b03af1b87a2840845bce727e0224cef1
+    m_Address: Ico_RayWidth
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

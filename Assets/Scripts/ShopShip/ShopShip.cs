@@ -157,6 +157,7 @@ public class ShopShip : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             //_hintText.gameObject.SetActive(true);
+            BaseLayer.Show<UIShopBack>();
             BaseLayer.Show<UIShopLayer>();
         }
     }

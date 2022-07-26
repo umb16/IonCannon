@@ -150,7 +150,10 @@ public class BaseLayer : MonoBehaviour
         layer.Show();                               // TODO: иметь разницу для вызова отображения, если элемент уже был отображён, или только что создан, наверно
         return (T)layer;
     }
-
+    public static void Hide<T>() where T : BaseLayer
+    {
+        registered_layers[typeof(T)].Hide();
+    }
     public static void MakeAllInvisible(BaseLayer exclusion = null)
     {
         //List<BaseLayer> remains_layers = new List<BaseLayer>();

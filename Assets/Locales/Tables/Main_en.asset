@@ -198,6 +198,14 @@ MonoBehaviour:
     m_Localized: Expanded
     m_Metadata:
       m_Items: []
+  - m_Id: 16222439475015680
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16222755830394880
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
