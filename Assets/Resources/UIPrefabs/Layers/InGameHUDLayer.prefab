@@ -729,7 +729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "HP <font=LiberationSans SDF>\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0</font>"
+  m_text: HP <font=LiberationSans SDF>|</font>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 417c1595bc54e874ca8b40a9edba3dda, type: 2}
   m_sharedMaterial: {fileID: -8991394523265442202, guid: 417c1595bc54e874ca8b40a9edba3dda,
