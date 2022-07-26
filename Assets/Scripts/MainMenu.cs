@@ -22,7 +22,7 @@ public class MainMenu : BaseLayer
         }
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         /*new Timer(.1f).SetEnd(() =>*/
         _gameData.StartGame().Forget();//);
@@ -30,11 +30,16 @@ public class MainMenu : BaseLayer
         TryGet<MainMenu>().Hide();
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled)
+       /* if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled)
         {
             StartGame();
-        }
+        }*/
     }
 }

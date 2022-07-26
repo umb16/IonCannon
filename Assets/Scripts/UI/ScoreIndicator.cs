@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-public class CumulativeScoreIndicator : MonoBehaviour
+public class ScoreIndicator : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
 
@@ -16,14 +16,11 @@ public class CumulativeScoreIndicator : MonoBehaviour
     {
         player.Where(x => x != null).ForEachAsync(x =>
         {
-            _text.text = LocaleKeys.Main.RESOURCES.GetLocalizedString() + ": 0";
+            _text.text = "0";
             x.Gold.ValueChanged += x =>
             {
-                _text.text = LocaleKeys.Main.RESOURCES.GetLocalizedString() + ": " + x.Value;
+                _text.text = x.Value.ToString();
             };
-            LocaleKeys.Main.RESOURCES.StringChanged += x => _text.text = x + ": " + player.Value.Gold.Value;
         });
-        
-        //player.Gold.ValueChanged += x => _text.text = "Ресурсы: " + x.Value;
     }
 }

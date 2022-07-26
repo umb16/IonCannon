@@ -121,7 +121,7 @@ public class ItemsDB
             Type = ItemType.BatteryPlus,
             UpgradeCount = 1,
             Cost = 75,
-            Icon = Addresses.Ico_Battery,
+            Icon = Addresses.Ico_BatteryP,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -139,7 +139,7 @@ public class ItemsDB
             Type = ItemType.BatteryPlusPlus,
             UpgradeCount = 2,
             Cost = 75,
-            Icon = Addresses.Ico_Battery,
+            Icon = Addresses.Ico_BatteryPP,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
