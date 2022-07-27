@@ -122,11 +122,11 @@ MonoBehaviour:
   _groundCenterPoint: {fileID: 4651668517475012253}
   _type: 0
   _destroyType: 2
-  _hp: 150
+  _hp: 160
   _speed: 1.8
   _defence: 0
   _size: 1
-  _damagePerSecond: 1
+  _damagePerSecond: 2
   _noTouchDamage: 0
   _startPerks: 1b000000
   _drop:

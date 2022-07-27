@@ -38,16 +38,10 @@ public class MobSpawner : MonoBehaviour
     private DamageController _damageController;
     private LevelEvent[] _levelEvents;
 
-    //LevelEvent[] _levelEvents = {
-
-    //    new SpawnEvent(0, 960, Addresses.Mob_First, 1).SetDirection(0,360),
-    //    new SpawnEvent(0, 480, Addresses.Mob_Artillery, 10).SetDirection(0,360),
-    //    new SpawnEvent(0, 480, Addresses.Mob_Slowdowner, 5).SetDirection(0,360),   
-    //};
 
     LevelEventsFactory _firstLevelFactory = new LevelEventsFactory().
-        AddEvents(Waves._levelEventsX, Waves._levelEventsX2).
-        AddEvents(Waves._levelEventsX3);
+        AddEvents(Waves.StartWaves)
+        .AddEvents(Waves.RingWaves);
     
     
 

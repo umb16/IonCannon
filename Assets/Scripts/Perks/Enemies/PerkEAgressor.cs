@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class PerkEAgressor : PerkEStandart
 {
-    private IStatModificator _statModificator = new StatModificator(0.7f, StatModificatorType.Additive, StatType.MovementSpeed);
+    private IStatModificator _statModificator = new StatModificator(2.6f, StatModificatorType.Additive, StatType.MovementSpeed);
     private IDisposable _updateDisposible;
     private bool _once;
 
