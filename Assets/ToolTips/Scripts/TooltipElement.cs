@@ -21,4 +21,10 @@ public class TooltipElement : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         TooltipController.Instance.UnassignTooltip();
     }
+
+    public void SetText(string text)
+    {
+        TooltipText = text;
+    }
+
 }

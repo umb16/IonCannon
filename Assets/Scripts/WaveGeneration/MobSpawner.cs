@@ -5,6 +5,27 @@ using Zenject;
 using Umb16.Extensions;
 using Cysharp.Threading.Tasks;
 using System.Linq;
+using System;
+using Random = UnityEngine.Random;
+
+public class LevelEventsFactory
+{
+    List<Func<LevelEvent[]>> _funcs = new List<Func<LevelEvent[]>>();
+    public LevelEventsFactory AddEvents(params LevelEvent[][] levelEvents)
+    {
+        _funcs.Add(() => levelEvents[Random.Range(0, levelEvents.Length)]);
+        return this;
+    }
+    public LevelEvent[] Get()
+    {
+        var list = new List<LevelEvent>();
+        foreach (var func in _funcs)
+        {
+            list.AddRange(func());
+        }
+        return list.ToArray();
+    }
+}
 
 public class MobSpawner : MonoBehaviour
 {
@@ -23,7 +44,10 @@ public class MobSpawner : MonoBehaviour
     //    new SpawnEvent(0, 480, Addresses.Mob_Slowdowner, 5).SetDirection(0,360),   
     //};
 
-    LevelEvent[] _levelEvents = {
+    LevelEventsFactory _firstLevelFactory = new LevelEventsFactory().
+        AddEvents(_levelEventsX);
+    private LevelEvent[] _levelEvents;
+    static LevelEvent[] _levelEventsX = {
 
         new SpawnEvent(0, 20, Addresses.Mob_First, 2).SetDirection(0,360),
         new SpawnEvent(21, 240, Addresses.Mob_First, 1).SetDirection(0,360),
@@ -35,7 +59,6 @@ public class MobSpawner : MonoBehaviour
         new SpawnEvent(210, Addresses.Mob_First).SetFixedCount(40).SetDirection(0,360),
        
         //после 4 минуты
-
         new SpawnEvent(241, 300, Addresses.Mob_First, 1).SetDirection(0,360),
         new SpawnEvent(300, 480, Addresses.Mob_First, 0.6f).SetDirection(0,360),
         new SpawnEvent(261, 480, Addresses.Mob_Child, 7).SetDirection(0,360),
@@ -63,6 +86,7 @@ public class MobSpawner : MonoBehaviour
     };
 
 
+
     private float _screenRatio;
     private int _screenHeight;
     private float _screenWidth;
@@ -80,6 +104,7 @@ public class MobSpawner : MonoBehaviour
     private void Start()
     {
         CalcScreenSpawnParams();
+        _levelEvents = _firstLevelFactory.Get();
         foreach (var eventItem in _levelEvents)
         {
             eventItem.SetSpawner(this);
@@ -90,6 +115,7 @@ public class MobSpawner : MonoBehaviour
         if (state == GameState.Restart)
         {
             Mobs.Clear();
+            _levelEvents = _firstLevelFactory.Get();
             foreach (var eventItem in _levelEvents)
             {
                 eventItem.Reset();
