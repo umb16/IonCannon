@@ -14,9 +14,10 @@ public class ScoreIndicator : MonoBehaviour
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player)
     {
+        _text.text = "0";
         player.Where(x => x != null).ForEachAsync(x =>
         {
-            _text.text = "0";
+            _text.text = x.Gold.Value.ToString();
             x.Gold.ValueChanged += x =>
             {
                 _text.text = x.Value.ToString();
