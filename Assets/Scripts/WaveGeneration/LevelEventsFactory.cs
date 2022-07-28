@@ -17,6 +17,10 @@ public class LevelEventsFactory
         {
             list.AddRange(func());
         }
+        foreach (var item in list)
+        {
+            item.Reset();
+        }
         return list.ToArray();
     }
 }
