@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,7 +8,7 @@ public class Tiles
     private Array2DWithNegatives<LayeredTile> _tiles = new Array2DWithNegatives<LayeredTile>(50, 50, 50, 50);
     private float _cellRadius = 1.4f;
 
-    public Tiles(Tilemap[] tilemaps, TileBase tile, Drop[] drops, TileBase rare)
+    public Tiles(Tilemap[] tilemaps, TileBase tile, Drop[] drops, TileBase rare, PlantsCollection plants)
     {
         float shiftx = Random.value * 1000 + 1000;
         float shifty = Random.value * 1000 + 1000;
@@ -19,7 +20,7 @@ public class Tiles
                 var tiles = new[] { new Tile(), new Tile(), new Tile() };
                 var hp = new[] { 20f, 100f, 300f };
                 //float randomValue = Random.value;
-                float randomValue = Mathf.PerlinNoise((i * .1f + shiftx /*+ _xShift*/) /* _perlinFactor*/, (j * .1f + shifty/*+ _yShift*/) /* _perlinFactor*/);
+                float randomValue = Mathf.PerlinNoise((i * .1f + shiftx), (j * .1f + shifty));
                 for (int x = 0; x < tilemaps.Length; x++)
                 {
                     Tilemap map = tilemaps[x];
@@ -53,7 +54,18 @@ public class Tiles
                         //randomValue += Random.value;
                     }
                 }
-                _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j));
+                float randomValue2 = Mathf.PerlinNoise((i * .1f + shiftx * 2), (j * .1f + shifty * 2));
+                if (randomValue2 < .3f && tiles[0].HP > 0)
+                    _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+                        Enumerable.Range(0, (int)(Mathf.Lerp(1, 5, (.3f - randomValue2)*3))).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .1f, j * 2 + 1 + (Random.value * 2 - 1.1f) * .7f)))));
+                else if (randomValue2 < .5f && Random.value<.01f && tiles[0].HP > 0)
+                        _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+                        Enumerable.Range(0, 1).Select(_ => (plants.CreatePlant(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .7f, j * 2 + 1 + (Random.value * 2 - 1.1f) * .7f)))));
+                   // if (/*randomValue2 < .5f &&*/ tiles[0].HP > 0/* && Random.value<.2f*/)
+                   //  _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+                   //      Enumerable.Range(0,10).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2+1 + (Random.value * 2 - 1) * .1f, j * 2+1 + (Random.value * 2 - 1.1f) * .7f)))));
+                else
+                    _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j));
             }
         }
         Tilemap map2 = tilemaps[2];
@@ -92,7 +104,7 @@ public class Tiles
         Vector2Int scaled = new Vector2Int(Mathf.RoundToInt(coords.x * .5f), Mathf.RoundToInt(coords.y * .5f));
         if (_tiles.InBounds(scaled.x, scaled.y))
         {
-           return _tiles[scaled.x, scaled.y].TileType;
+            return _tiles[scaled.x, scaled.y].TileType;
         }
         return TileType.None;
     }
