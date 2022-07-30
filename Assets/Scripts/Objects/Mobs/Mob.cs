@@ -15,7 +15,7 @@ public class Mob : MonoBehaviour, IMob
     [SerializeField] private Transform _groundCenterPoint;
     [SerializeField] private MobType _type;
     protected SpriteRenderer _spriteRenderer;
-    protected Animator _animator;
+    public Animator Animator { get; private set; }
     private Rigidbody _rigidbody;
 
     private int _standartLayer;
@@ -62,7 +62,7 @@ public class Mob : MonoBehaviour, IMob
         DamageController = damageController;
         IsReady = true;
         Spawner = mobSpawner;
-        _animator = GetComponentInChildren<Animator>();
+        Animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponentInChildren<Rigidbody>();
         Inventory.ItemAdded += AddItem;
         Inventory.ItemRemoved += RemoveItem;
@@ -94,7 +94,7 @@ public class Mob : MonoBehaviour, IMob
 
     public void SetAnimVariable(string name, bool value)
     {
-        _animator?.SetBool(name, value);
+        Animator?.SetBool(name, value);
     }
 
     public void AddPerk(IPerk perk)

@@ -9,6 +9,7 @@ public class FirstScene : MonoBehaviour
     void Start()
     {
         Addressables.LoadSceneAsync("Assets/Scenes/main.unity");
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

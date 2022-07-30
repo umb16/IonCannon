@@ -34,7 +34,7 @@ namespace Assets.Scripts.Objects.Mobs.Enemies
         private void StartAttack()
         {
             _attack = true;
-            _animator.SetBool("planting", true);
+            Animator.SetBool("planting", true);
             StopMove();
         }
 

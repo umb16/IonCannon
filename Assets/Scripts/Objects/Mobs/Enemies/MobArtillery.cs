@@ -37,7 +37,7 @@ namespace Assets.Scripts.Objects.Mobs.Enemies
         private void OnChangeState(bool attack)
         {
             _attack = attack;
-            _animator.SetBool("attack", attack);
+            Animator.SetBool("attack", attack);
             if (attack)
             {
                 _canMove = false;

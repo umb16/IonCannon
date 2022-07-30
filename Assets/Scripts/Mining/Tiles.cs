@@ -54,17 +54,17 @@ public class Tiles
                         //randomValue += Random.value;
                     }
                 }
-                float randomValue2 = Mathf.PerlinNoise((i * .2f + shiftx * 2), (j * .2f + shifty * 2))* Mathf.PerlinNoise((i * .2f + shiftx * 4), (j * .2f + shifty * 4))*2;
-                if (randomValue2 < .3f && tiles[0].HP > 0)
-                    _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
-                        Enumerable.Range(0, (int)(Mathf.Lerp(1, 10, Mathf.Sqrt ((.3f - randomValue2) * 3)))).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .7f, j * 2 + 1 + (Random.value * 2 - 1.1f) * 1f)))));
-                else if (randomValue2 < .7f && Random.value<.01f && tiles[0].HP > 0)
-                        _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
-                        Enumerable.Range(0, 1).Select(_ => (plants.CreatePlant(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .7f, j * 2 + 1 + (Random.value * 2 - 1.1f) * .7f)))));
-                   // if (/*randomValue2 < .5f &&*/ tiles[0].HP > 0/* && Random.value<.2f*/)
-                   //  _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
-                   //      Enumerable.Range(0,10).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2+1 + (Random.value * 2 - 1) * .1f, j * 2+1 + (Random.value * 2 - 1.1f) * .7f)))));
-                else
+              //  float randomValue2 = Mathf.PerlinNoise((i * .2f + shiftx * 2), (j * .2f + shifty * 2))* Mathf.PerlinNoise((i * .2f + shiftx * 4), (j * .2f + shifty * 4))*2;
+              //  if (randomValue2 < .3f && tiles[0].HP > 0)
+              //      _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+              //          Enumerable.Range(0, (int)(Mathf.Lerp(1, 10, Mathf.Sqrt ((.3f - randomValue2) * 3)))).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .7f, j * 2 + 1 + (Random.value * 2 - 1.1f) * 1f)))));
+              //  else if (randomValue2 < .7f && Random.value<.01f && tiles[0].HP > 0)
+             //           _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+              //          Enumerable.Range(0, 1).Select(_ => (plants.CreatePlant(new Vector3(i * 2 + 1 + (Random.value * 2 - 1) * .7f, j * 2 + 1 + (Random.value * 2 - 1.1f) * .7f)))));
+              //     // if (/*randomValue2 < .5f &&*/ tiles[0].HP > 0/* && Random.value<.2f*/)
+              //     //  _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j),
+              //     //      Enumerable.Range(0,10).Select(_ => (plants.CreatePlantsPack(new Vector3(i * 2+1 + (Random.value * 2 - 1) * .1f, j * 2+1 + (Random.value * 2 - 1.1f) * .7f)))));
+              //  else
                     _tiles[i, j] = new LayeredTile(tiles, tilemaps, new Vector2Int(i, j));
             }
         }

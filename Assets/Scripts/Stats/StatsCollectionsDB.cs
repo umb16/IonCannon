@@ -26,7 +26,7 @@ public static class StatsCollectionsDB
             (StatType.HP, HP),
             (StatType.Size, new ComplexStat(1)),
             (StatType.LifeSupport, new ComplexStat(1).SetBaseLimit(0, 1)),
-            (StatType.PickupRadius, new ComplexStat(2)),
+            (StatType.PickupRadius, new ComplexStat(3)),
             (StatType.RayError, new ComplexStat(0, (x)=>Mathf.Min(10,x))),
             (StatType.RayReverse, new ComplexStat(0)),
          });

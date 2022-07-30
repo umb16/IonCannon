@@ -175,13 +175,13 @@ public class Player : Mob
             dir += Vector3.right;
         if (dir != Vector3.zero)
         {
-            _animator.SetBool("Run", true);
-            _animator.speed = MovementSpeed.Value / 6;
+            Animator.SetBool("Run", true);
+            Animator.speed = MovementSpeed.Value / 6;
         }
         else
         {
-            _animator.speed = 1;
-            _animator.SetBool("Run", false);
+            Animator.speed = 1;
+            Animator.SetBool("Run", false);
         }
         MoveTo(transform.position + dir * 10);
     }

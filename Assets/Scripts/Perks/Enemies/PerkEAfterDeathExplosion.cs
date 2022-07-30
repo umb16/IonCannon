@@ -29,7 +29,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
         if (msg.Target == _mob)
         {
             _mob.DamageController.Die -= OnDie;
-            ((Mob)_mob).GetComponent<Animator>().speed = 3;
+            ((Mob)_mob).Animator.speed = 3;
             _timer = new Timer(Delay)
             .SetEnd(() =>
             {
@@ -43,8 +43,10 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                         continue;
                     if ((mob.Position - _mob.Position).SqrMagnetudeXY() < Radius * Radius)
                     {
-                        mob.AddForce((1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius) * (mob.Position - _mob.Position).NormalizedXY() * 500, ForceMode.Impulse);
-                        mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * (1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius), _source, .1f));
+                        Vector3 dir = (mob.Position - _mob.Position).NormalizedXY();
+                        float force = Mathf.Sqrt(1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius);
+                        mob.AddForce(force * dir * 500, ForceMode.Impulse);
+                        mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * force, _source, .1f));
                     }
                 }
                 foreach (var item in _miningDamageReceiver.Tiles.GetInRadius(_mob.Position, Radius * .5f))

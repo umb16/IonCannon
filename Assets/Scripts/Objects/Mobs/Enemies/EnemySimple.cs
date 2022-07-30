@@ -33,8 +33,8 @@ public class EnemySimple : Mob
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) =>
         {
-            if (!_fixedAnimSpeed && _animator != null)
-                _animator.speed = x.Ratio;
+            if (!_fixedAnimSpeed && Animator != null)
+                Animator.speed = x.Ratio;
         };
     }
     public void SetBehaviour(Action action)
