@@ -16,6 +16,7 @@ public class PerkPShiftSystem : WithId, IPerk
     public bool IsCommon => false;
     private Timer _timer;
     private StatModificator _modificator;
+    private StatModificator _modificatorSpeedUp = new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.MovementSpeed);
 
     public PerkPShiftSystem()
     {
@@ -38,8 +39,13 @@ public class PerkPShiftSystem : WithId, IPerk
         if (msg.DamageSource == DamageSources.Heal)
             return;
         _mob.SetInvulnerability(true);
+        _mob.StatsCollection.AddModificator(_modificatorSpeedUp);
         _timer?.Stop();
-        _timer = new Timer(2).SetEnd(() => _mob.SetInvulnerability(false));
+        _timer = new Timer(2).SetEnd(() =>
+        { 
+            _mob.SetInvulnerability(false);
+            _mob.StatsCollection.RemoveModificator(_modificatorSpeedUp);
+        });
     }
 
     public void Shutdown()

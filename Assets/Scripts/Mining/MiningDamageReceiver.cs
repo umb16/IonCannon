@@ -9,6 +9,7 @@ public class MiningDamageReceiver : MonoBehaviour
     [SerializeField] private TileBase _tile;
     [SerializeField] private TileBase _rareTile;
     [SerializeField] private Drop[] _drops;
+    [SerializeField] private PlantsCollection _plants;
     public Tiles Tiles { get; private set; }
 
     [Inject]
@@ -27,6 +28,6 @@ public class MiningDamageReceiver : MonoBehaviour
 
     private void Start()
     {
-        Tiles = new Tiles(_tilemaps, _tile, _drops, _rareTile);
+        Tiles = new Tiles(_tilemaps, _tile, _drops, _rareTile, _plants);
     }
 }
