@@ -20,7 +20,6 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -64,13 +63,12 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -102,6 +100,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -110,7 +120,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -130,8 +140,8 @@ TextureImporter:
       name: MoonFloor3_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 224
+        x: 35
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -151,8 +161,8 @@ TextureImporter:
       name: MoonFloor3_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
+        x: 71
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -172,8 +182,8 @@ TextureImporter:
       name: MoonFloor3_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 224
+        x: 107
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -193,8 +203,8 @@ TextureImporter:
       name: MoonFloor3_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 224
+        x: 143
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -214,8 +224,8 @@ TextureImporter:
       name: MoonFloor3_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 224
+        x: 179
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -235,8 +245,8 @@ TextureImporter:
       name: MoonFloor3_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 224
+        x: 217
+        y: 211
         width: 32
         height: 32
       alignment: 0
@@ -257,7 +267,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -277,8 +287,8 @@ TextureImporter:
       name: MoonFloor3_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
+        x: 35
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -298,8 +308,8 @@ TextureImporter:
       name: MoonFloor3_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 71
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -319,8 +329,8 @@ TextureImporter:
       name: MoonFloor3_10
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
+        x: 107
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -340,8 +350,8 @@ TextureImporter:
       name: MoonFloor3_11
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 143
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -361,8 +371,8 @@ TextureImporter:
       name: MoonFloor3_12
       rect:
         serializedVersion: 2
-        x: 160
-        y: 192
+        x: 179
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -382,8 +392,8 @@ TextureImporter:
       name: MoonFloor3_13
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 217
+        y: 167
         width: 32
         height: 32
       alignment: 0
@@ -404,7 +414,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -424,8 +434,8 @@ TextureImporter:
       name: MoonFloor3_15
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
+        x: 35
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -445,8 +455,8 @@ TextureImporter:
       name: MoonFloor3_16
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
+        x: 71
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -466,8 +476,8 @@ TextureImporter:
       name: MoonFloor3_17
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
+        x: 107
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -487,8 +497,8 @@ TextureImporter:
       name: MoonFloor3_18
       rect:
         serializedVersion: 2
-        x: 128
-        y: 160
+        x: 143
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -508,8 +518,8 @@ TextureImporter:
       name: MoonFloor3_19
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
+        x: 179
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -529,8 +539,8 @@ TextureImporter:
       name: MoonFloor3_20
       rect:
         serializedVersion: 2
-        x: 192
-        y: 160
+        x: 217
+        y: 127
         width: 32
         height: 32
       alignment: 0
@@ -551,7 +561,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -571,8 +581,8 @@ TextureImporter:
       name: MoonFloor3_22
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
+        x: 35
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -592,8 +602,8 @@ TextureImporter:
       name: MoonFloor3_23
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 71
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -613,8 +623,8 @@ TextureImporter:
       name: MoonFloor3_24
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
+        x: 107
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -634,8 +644,8 @@ TextureImporter:
       name: MoonFloor3_25
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 143
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -655,8 +665,8 @@ TextureImporter:
       name: MoonFloor3_26
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
+        x: 179
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -676,8 +686,8 @@ TextureImporter:
       name: MoonFloor3_27
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 217
+        y: 84
         width: 32
         height: 32
       alignment: 0
@@ -697,10 +707,10 @@ TextureImporter:
       name: MoonFloor3_28
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 2
+        y: 10
+        width: 20
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -718,10 +728,10 @@ TextureImporter:
       name: MoonFloor3_29
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 24
+        y: 10
+        width: 20
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -739,10 +749,10 @@ TextureImporter:
       name: MoonFloor3_30
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 46
+        y: 2
+        width: 34
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -760,8 +770,8 @@ TextureImporter:
       name: MoonFloor3_31
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
+        x: 106
+        y: 46
         width: 32
         height: 32
       alignment: 0
@@ -781,8 +791,8 @@ TextureImporter:
       name: MoonFloor3_32
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 144
+        y: 46
         width: 32
         height: 32
       alignment: 0
@@ -799,32 +809,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonFloor3_33
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 395ef421f03c6ee4cbc10e063f31f6e2
-      internalID: 2101149991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: MoonFloor3_34
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 182
+        y: 46
         width: 32
         height: 32
       alignment: 0
@@ -836,69 +825,6 @@ TextureImporter:
       bones: []
       spriteID: e4aa5f7044e0c6c458a1a2f92eb348d1
       internalID: 862374945
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoonFloor3_35
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57c306a89ced0ec4581ce14c37d8604d
-      internalID: -1394762038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoonFloor3_36
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6270979b32da86242a89773b6813c88d
-      internalID: -485643063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoonFloor3_37
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b8260513c4d4c149a742bb02f45dd1a
-      internalID: 543785449
       vertices: []
       indices: 
       edges: []
@@ -933,14 +859,12 @@ TextureImporter:
       MoonFloor3_20: -1583840590
       MoonFloor3_29: 1122468039
       MoonFloor3_0: 1960867592
-      MoonFloor3_36: -485643063
       MoonFloor3_18: -1151838878
       MoonFloor3_6: 2028209709
       MoonFloor3_11: -95816416
       MoonFloor3_12: 239548633
       MoonFloor3_31: 1679133586
       MoonFloor3_27: 333904254
-      MoonFloor3_37: 543785449
       MoonFloor3_30: -2116929373
       MoonFloor3_10: 1317458337
       MoonFloor3_26: 1726488932
@@ -951,9 +875,9 @@ TextureImporter:
       MoonFloor3_16: -284177709
       MoonFloor3_7: -1587336973
       MoonFloor3_22: 1477523333
-      MoonFloor3_35: -1394762038
   spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -20,10 +20,10 @@ public class MobSpawner : MonoBehaviour
 
 
     LevelEventsFactory _firstLevelFactory = new LevelEventsFactory().
-        AddEvents(Waves._levelEventsX);
-       // .AddEvents(Waves.RingWaves);
-    
-    
+        AddEvents(Waves.StartWaves)
+        .AddEvents(Waves.RingWaves);
+
+
 
     private float _screenRatio;
     private int _screenHeight;

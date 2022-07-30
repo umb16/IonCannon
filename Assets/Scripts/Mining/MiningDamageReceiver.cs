@@ -15,18 +15,19 @@ public class MiningDamageReceiver : MonoBehaviour
     [Inject]
     private void Construct(GameData gameData)
     {
-        gameData.GameStateChanged += GameStateChanged;
+        gameData.GameStarted += Generate;
+       // gameData.GameStateChanged += GameStateChanged;
     }
 
     private void GameStateChanged(GameState state)
     {
         if (state == GameState.Restart)
         {
-            Start();
+            Generate();
         }
     }
 
-    private void Start()
+    private void Generate()
     {
         Tiles = new Tiles(_tilemaps, _tile, _drops, _rareTile, _plants);
     }
