@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 4676107950548796731}
   - component: {fileID: 3136370932182221381}
   - component: {fileID: 3938832030519364298}
+  - component: {fileID: 5917827788239820210}
   m_Layer: 0
   m_Name: Child
   m_TagString: Mob
@@ -101,7 +102,7 @@ Transform:
   - {fileID: 8914846087955098049}
   - {fileID: 1952787526251375432}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3890843302205833572
 MonoBehaviour:
@@ -166,7 +167,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f538212c4a6b3be4a935da0cf9309fd1, type: 2}
+  - {fileID: 2100000, guid: 9a532800863f3a746b0cf3db8a1d4026, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,6 +271,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &5917827788239820210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953782839038499401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2717211234113621839
 GameObject:
   m_ObjectHideFlags: 0

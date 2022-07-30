@@ -10,6 +10,6 @@ public class InstantiateFromAnimator : MonoBehaviour
 
     public void Instantiate(int index)
     {
-        _particle.InstantiateAsync(_points[index].position, Quaternion.identity, transform.parent.parent);  
+        _particle.InstantiateAsync(_points[index].position, _points[index].rotation, transform.parent.parent);  
     }
 }

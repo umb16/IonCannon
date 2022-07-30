@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 4651668516794985573}
   - component: {fileID: 3496522446146223404}
   - component: {fileID: 8531143436062303920}
+  - component: {fileID: 6997703630854150285}
   m_Layer: 0
   m_Name: Heavy
   m_TagString: Mob
@@ -103,7 +104,7 @@ Transform:
   - {fileID: 7955983065508751566}
   - {fileID: 4651668517475012253}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7955810400067282097
 MonoBehaviour:
@@ -168,7 +169,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f538212c4a6b3be4a935da0cf9309fd1, type: 2}
+  - {fileID: 2100000, guid: 9a532800863f3a746b0cf3db8a1d4026, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,6 +273,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.1423843
   m_Center: {x: 0, y: 1.0724227, z: 0}
+--- !u!114 &6997703630854150285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650671495324204956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4651668517475012250
 GameObject:
   m_ObjectHideFlags: 0

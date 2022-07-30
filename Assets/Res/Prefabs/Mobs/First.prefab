@@ -46,7 +46,8 @@ GameObject:
   - component: {fileID: 1591229608895636648}
   - component: {fileID: 1435697156}
   - component: {fileID: 8072754546755260749}
-  - component: {fileID: 906884140794570591}
+  - component: {fileID: 3688574728813146619}
+  - component: {fileID: 8076761800301230910}
   m_Layer: 0
   m_Name: First
   m_TagString: Mob
@@ -137,7 +138,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f538212c4a6b3be4a935da0cf9309fd1, type: 2}
+  - {fileID: 2100000, guid: 9a532800863f3a746b0cf3db8a1d4026, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,8 +229,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!136 &906884140794570591
-CapsuleCollider:
+--- !u!135 &3688574728813146619
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -238,10 +239,21 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.76
-  m_Height: 2.16
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9200001, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.7380109
+  m_Center: {x: 0, y: 0.77, z: 0}
+--- !u!114 &8076761800301230910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278505130693629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1694584300231432215
 GameObject:
   m_ObjectHideFlags: 0

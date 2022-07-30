@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 3748042193679953130}
   - component: {fileID: 4903179715540385187}
   - component: {fileID: 209706124254963263}
+  - component: {fileID: 4477966548151690005}
   m_Layer: 0
   m_Name: Fortress
   m_TagString: Mob
@@ -134,7 +135,7 @@ Transform:
   - {fileID: 1937927901810452545}
   - {fileID: 3748042193284206098}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1937959829818090558
 MonoBehaviour:
@@ -199,7 +200,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f538212c4a6b3be4a935da0cf9309fd1, type: 2}
+  - {fileID: 2100000, guid: 9a532800863f3a746b0cf3db8a1d4026, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -303,6 +304,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.043531
   m_Center: {x: 0, y: 1.9735694, z: 0}
+--- !u!114 &4477966548151690005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749020530175622931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5173368983427430380
 GameObject:
   m_ObjectHideFlags: 0
