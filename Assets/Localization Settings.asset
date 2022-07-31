@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_ProjectLocaleIdentifier:
-    m_Code: en
+    m_Code: 
   m_InitializeSynchronously: 1
   references:
     version: 2
@@ -42,7 +42,7 @@ MonoBehaviour:
         asm: Unity.Localization}
       data:
         m_LocaleId:
-          m_Code: en
+          m_Code: ru
     - rid: 2931137736370552835
       type: {class: LocalesProvider, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
     - rid: 2931137736370552836

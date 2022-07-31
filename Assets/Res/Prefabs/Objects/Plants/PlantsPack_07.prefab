@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6974434052018207852}
   - component: {fileID: 1474257315497713598}
   - component: {fileID: 2048632560172905992}
+  - component: {fileID: -6931660048610635162}
   m_Layer: 0
   m_Name: PlantsPack_07
   m_TagString: Untagged
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2048632560172905992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,3 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5442cacb467ab4eb352f9feccb803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6931660048610635162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935689667640545160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40551e1882b75ba49ae6e37e334048e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 1474257315497713598}

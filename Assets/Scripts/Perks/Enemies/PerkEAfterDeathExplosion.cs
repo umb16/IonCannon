@@ -53,6 +53,15 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                 {
                     item.ReceiveDamage(new DamageMessage(_mob, item, 50, _source));
                 }
+                for (int i = 0; i < LiquidTest.Instance.LiquidsList.Count; i++)
+                {
+                    Liquid item = LiquidTest.Instance.LiquidsList[i];
+                    if ((item.Position - _mob.Position).SqrMagnetudeXY() < Mathf.Pow(item._colliderRadius + Radius * .5f, 2))
+                    {
+                        item.ReceiveDamage(new DamageMessage(_mob, item, 50, DamageSources.Explosion));
+                        i--;
+                    }
+                }
                 var go = PrefabCreator.Instantiate(_explosion.Key, _mob.GroundCenterPosition);
             });
         }
