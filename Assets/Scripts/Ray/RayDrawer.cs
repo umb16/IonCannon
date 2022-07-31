@@ -33,6 +33,7 @@ public class RayDrawer : MonoBehaviour
     private LineRenderer _cannonPath;
 
     private AsyncReactiveProperty<Player> _player;
+    private FakeCursor _fakeCursor;
     private ComplexStat _rayError;
     private GameData _gameData;
     private CooldownIndicator _colldownIndicator;
@@ -49,9 +50,10 @@ public class RayDrawer : MonoBehaviour
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
     [Inject]
-    private async UniTask Construct(AsyncReactiveProperty<Player> player, GameData gameData, UICooldownsManager cooldownsPanel)
+    private async UniTask Construct(AsyncReactiveProperty<Player> player, GameData gameData, UICooldownsManager cooldownsPanel, FakeCursor fakeCursor)
     {
         _player = player;
+        _fakeCursor = fakeCursor;
         _player.Where(x => x != null).ForEachAsync(x =>
         {
             _rayError = x.StatsCollection.GetStat(StatType.RayError);
@@ -137,6 +139,7 @@ public class RayDrawer : MonoBehaviour
                     cannonPath.Add(cannonPath[0]);
                 _twoPointWay = cannonPath.Count == 2;
                 rayIsReady = false;
+                _fakeCursor.SetWait(true);
             }
             if (_player.Value.RayReverse.Value > 0)
             {
@@ -216,6 +219,7 @@ public class RayDrawer : MonoBehaviour
         rayIsReady = true;
         _startDrawIsValid = false;
         SoundManager.Instance.PlayRayReady();
+        _fakeCursor.SetWait(false);
     }
 
     private void OnDestroy()

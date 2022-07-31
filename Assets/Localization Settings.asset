@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartupSelectors:
   - rid: 2931137736370552832
-  - rid: 2931137736370552833
-  - rid: 2931137736370552834
+  - rid: 7808745482426253357
   m_AvailableLocales:
     rid: 2931137736370552835
   m_AssetDatabase:
@@ -25,8 +24,8 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_ProjectLocaleIdentifier:
-    m_Code: 
-  m_InitializeSynchronously: 1
+    m_Code: en
+  m_InitializeSynchronously: 0
   references:
     version: 2
     RefIds:
@@ -35,14 +34,6 @@ MonoBehaviour:
         asm: Unity.Localization}
       data:
         m_CommandLineArgument: -language =
-    - rid: 2931137736370552833
-      type: {class: SystemLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
-    - rid: 2931137736370552834
-      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings,
-        asm: Unity.Localization}
-      data:
-        m_LocaleId:
-          m_Code: ru
     - rid: 2931137736370552835
       type: {class: LocalesProvider, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
     - rid: 2931137736370552836
@@ -206,3 +197,9 @@ MonoBehaviour:
         - default
         - d
         - 
+    - rid: 7808745482426253357
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings,
+        asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: en

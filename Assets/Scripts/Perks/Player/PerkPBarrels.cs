@@ -70,6 +70,6 @@ public class PerkPBarrels : WithId, IPerk
 
     public string GetDescription()
     {
-        return "Описание";
+        return "";
     }
 }

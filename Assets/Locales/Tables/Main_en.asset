@@ -210,6 +210,41 @@ MonoBehaviour:
     m_Localized: Recycling
     m_Metadata:
       m_Items: []
+  - m_Id: 14411346976993280
+    m_Localized: Enemies hit by ray take 4 damage per second for 10 seconds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14411613915082752
+    m_Localized: Enemies hit by ray take 6 damage per second for 15 seconds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14411829749772288
+    m_Localized: Enemies hit by ray take 12 damage per second for 20 seconds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14412328771284992
+    m_Localized: 'When you take damage, make you Intangible for 2 seconds
+
+      All
+      incoming damage is increased by 1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14412955253501952
+    m_Localized: Once every 20 seconds, delivers a box of explosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14413300457304064
+    m_Localized: Once every 15 seconds, delivers a box of explosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14413349958479872
+    m_Localized: Once every 10 seconds, delivers a box of explosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14415579965059072
+    m_Localized: Ray moves back and forth
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
