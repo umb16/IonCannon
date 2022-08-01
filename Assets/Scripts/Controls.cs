@@ -31,7 +31,7 @@ public class Controls : MonoBehaviour
         {
             BaseLayer.Show<CheatPanelLayer>();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && !CheatPanelLayer.Enabled)
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q) && !CheatPanelLayer.Enabled)
         {
             if (_gameData.State == GameState.InShop)
             {

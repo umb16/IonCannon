@@ -34,10 +34,10 @@ public class TextHpBar : MonoBehaviour
     {
         string fullSquares = "";
         if (value / 2 > 0)
-            fullSquares += string.Concat(Enumerable.Repeat("<color=#F5025F>></color>", value / 2));
-        _text.text = "HP " +
+            fullSquares += string.Concat(Enumerable.Repeat("<color=white>■</color>", value / 2));
+        _text.text = 
                 fullSquares +
-                (value % 2 == 1 ? "<color=#fc5d9a>></color>" : "") +
-                string.Concat(Enumerable.Repeat("<color=black>></color>", (max - value) / 2));
+                (value % 2 == 1 ? "<color=grey>■</color>" : "") +
+                string.Concat(Enumerable.Repeat("<color=black>■</color>", (max - value) / 2));
     }
 }

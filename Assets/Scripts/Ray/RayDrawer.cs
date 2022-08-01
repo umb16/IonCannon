@@ -72,7 +72,7 @@ public class RayDrawer : MonoBehaviour
             _stopTimer?.Stop();
             _colldownIndicator.SetTime(0, 1);
             DestroyImmediate(_cannonRay);
-            _fakeCursor.SetWait(false);
+            _fakeCursor.SetWait(CursorType.Normal);
         }
     }
 
@@ -130,6 +130,7 @@ public class RayDrawer : MonoBehaviour
                 _cannonPath.SetPosition(_currentLineIndex, pos);
                 _oldPointOfPath = pos;
                 _currentLineIndex++;
+                _fakeCursor.SetWait(CursorType.Draw);
             }
         }
         if (Input.GetMouseButtonUp(0) && rayIsReady && _startDrawIsValid)
@@ -140,7 +141,7 @@ public class RayDrawer : MonoBehaviour
                     cannonPath.Add(cannonPath[0]);
                 _twoPointWay = cannonPath.Count == 2;
                 rayIsReady = false;
-                _fakeCursor.SetWait(true);
+                _fakeCursor.SetWait(CursorType.Wait);
             }
             if (_player.Value.RayReverse.Value > 0)
             {
@@ -220,7 +221,7 @@ public class RayDrawer : MonoBehaviour
         rayIsReady = true;
         _startDrawIsValid = false;
         SoundManager.Instance.PlayRayReady();
-        _fakeCursor.SetWait(false);
+        _fakeCursor.SetWait(CursorType.Normal);
     }
 
     private void OnDestroy()

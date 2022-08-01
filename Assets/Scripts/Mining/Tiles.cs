@@ -122,7 +122,8 @@ public class Tiles
             }
         }
         Tilemap map2 = tilemaps[2];
-        for (int i = 0; i < 3; i++)
+        //Рарные тайлы на последнем слое
+        /*for (int i = 0; i < 3; i++)
         {
             var pos = MathMethods.GetRandomPointInCircle(Vector2.zero, 15, 0);
             Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
@@ -149,7 +150,7 @@ public class Tiles
             Vector2Int coords = new Vector2Int((int)pos.x, (int)pos.y);
             map2.SetTile((Vector3Int)coords, rare);
             _tiles[coords.x, coords.y].Layers[2].HP = 350;
-        }
+        }*/
     }
 
     public TileType GetTileTypeByCoords(Vector2 coords)

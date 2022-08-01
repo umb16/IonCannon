@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+public enum CursorType
+{
+    Wait,
+    Normal,
+    Draw
+}
+
 public class FakeCursor : MonoBehaviour
 {
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject _wait;
     [SerializeField] private GameObject _normal;
+    [SerializeField] private GameObject _draw;
 
     [Inject]
     private void Construct(GameData gameData)
@@ -15,10 +23,11 @@ public class FakeCursor : MonoBehaviour
         gameData.GameStateChanged += GameStateChanged;
     }
 
-    public void SetWait(bool value)
+    public void SetWait(CursorType type)
     {
-        _wait.SetActive(value);
-        _normal.SetActive(!value);
+        _wait.SetActive(type == CursorType.Wait);
+        _normal.SetActive(type == CursorType.Normal);
+        _draw.SetActive(type == CursorType.Draw);
     }
 
     private void GameStateChanged(GameState obj)

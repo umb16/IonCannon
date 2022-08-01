@@ -130,7 +130,8 @@ public class Player : Mob
     public override void ReceiveDamage(DamageMessage message)
     {
         base.ReceiveDamage(message);
-        SoundManager.Instance.PlayPlayerDamage();
+        if (message.DamageSource != DamageSources.Heal)
+            SoundManager.Instance.PlayPlayerDamage();
     }
 
     protected override void OnDestroy()
@@ -149,7 +150,7 @@ public class Player : Mob
                 MovementSpeed.SetBaseValue(_baseMoveSpeed);
                 break;
             case TileType.Grass:
-                MovementSpeed.SetBaseValue(_baseMoveSpeed*1.1f);
+                MovementSpeed.SetBaseValue(_baseMoveSpeed * 1.1f);
                 break;
             case TileType.Layer2:
                 MovementSpeed.SetBaseValue(_baseMoveSpeed * 1.0f);

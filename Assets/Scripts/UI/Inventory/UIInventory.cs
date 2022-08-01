@@ -106,7 +106,7 @@ public class UIInventory : MonoBehaviour
     {
         string tooltiptext = string.Empty;
         if (newItem)
-            tooltiptext += "<color=green><size=30>–≈«”À‹“¿“</size></color>\n";
+            tooltiptext += "<color=green><size=30>RESULT</size></color>\n";
         if (item.Unique)
             TooltipController.Instance.
             AssignTooltip(tooltiptext + @$"<color=yellow><size=30>{item.Name}</size></color>
