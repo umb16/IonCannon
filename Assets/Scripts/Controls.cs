@@ -27,7 +27,7 @@ public class Controls : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.BackQuote))
+        if (Input.GetKeyDown(KeyCode.BackQuote)&& Application.isEditor)
         {
             BaseLayer.Show<CheatPanelLayer>();
         }

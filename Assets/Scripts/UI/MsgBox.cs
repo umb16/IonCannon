@@ -18,9 +18,9 @@ public class MsgBox : BaseLayer
     {
         _text.text = text;
         if (cancel == null)
-            _buttonCancel.gameObject.SetActive(false);
+            _buttonCancel?.gameObject.SetActive(false);
         else
-            _buttonCancel.gameObject.SetActive(true);
+            _buttonCancel?.gameObject.SetActive(true);
         OkPressed = ok;
         CancelPressed = cancel;
     }
@@ -28,7 +28,7 @@ public class MsgBox : BaseLayer
     private void Awake()
     {
         _buttonOk.onClick.AddListener(Ok);
-        _buttonCancel.onClick.AddListener(Cancel);
+        _buttonCancel?.onClick.AddListener(Cancel);
     }
 
     private void Cancel()

@@ -9,7 +9,8 @@ public class EntrancePoint : MonoBehaviour
     {
         BaseLayer.Show<MainMenu>();
         BaseLayer.Show<EndScreen>().Hide();
-        BaseLayer.Show<CheatPanelLayer>().Hide();
+        if (Application.isEditor)
+            BaseLayer.Show<CheatPanelLayer>().Hide();
         Application.targetFrameRate = 60;
     }
 

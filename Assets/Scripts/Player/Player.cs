@@ -108,7 +108,7 @@ public class Player : Mob
     {
         if (stat.Value <= 0)
         {
-            ReceiveDamage(new DamageMessage(this, this, 1000, DamageSources.Unknown));
+            ReceiveDamage(new DamageMessage(this, this, 1000, DamageSources.God));
         }
     }
 
@@ -125,6 +125,12 @@ public class Player : Mob
         _stopped = true;
         if (Blood != null)
             Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
+    }
+
+    public override void ReceiveDamage(DamageMessage message)
+    {
+        base.ReceiveDamage(message);
+        SoundManager.Instance.PlayPlayerDamage();
     }
 
     protected override void OnDestroy()

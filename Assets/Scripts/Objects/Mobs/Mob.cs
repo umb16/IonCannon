@@ -157,7 +157,7 @@ public class Mob : MonoBehaviour, IMob
 
     public virtual void ReceiveDamage(DamageMessage message)
     {
-        if (IsDead || _invulnerability)
+        if (IsDead || _invulnerability && message.DamageSource != DamageSources.God)
             return;
         _stunEndTime = message.StunTime + Time.time;
         //if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)

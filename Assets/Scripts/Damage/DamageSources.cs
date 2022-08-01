@@ -11,5 +11,6 @@ public enum DamageSources
     Heal = 16,
     RayInitial = 32,
     RayAll = RayInitial + Ray,
-    Self = 34
+    Self = 64,
+    God = 128,
 }

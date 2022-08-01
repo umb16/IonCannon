@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _audioSourceGameplay;
 
     [SerializeField] private AudioClip _rayReady;
+    [SerializeField] private AudioClip _playerDamage;
 
     private void Awake()
     {
@@ -44,7 +45,10 @@ public class SoundManager : MonoBehaviour
     {
         _audioSourceIgnoreLowpass?.PlayOneShot(_rayReady);
     }
-
+    public void PlayPlayerDamage()
+    {
+        _audioSourceIgnoreLowpass?.PlayOneShot(_playerDamage);
+    }
     public void Play(AudioClip clip)
     {
         _audioSourceGameplay.PlayOneShot(clip);

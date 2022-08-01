@@ -46,9 +46,12 @@ public class EndScreen : BaseLayer
     {
         if (gameState == GameState.GameOver)
         {
-            gameObject.SetActive(true);
-            text.text = "GAME OVER";
-            _timer?.Stop();
+            UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), ignoreTimeScale: true).Subscribe(_ =>
+            {
+                gameObject.SetActive(true);
+                text.text = "GAME OVER";
+                _timer?.Stop();
+            });
         }
     }
 
@@ -68,20 +71,20 @@ public class EndScreen : BaseLayer
         UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
     }
 
-   /* private void Update()
-    {
-        if (_gameData.State == GameState.GameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled )
-            {
-                _gameData.Reset();
-                _gameData.State = GameState.Restart;
-                Hide();
-                UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
-                //new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
-                //Time.timeScale = 1;
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }*/
+    /* private void Update()
+     {
+         if (_gameData.State == GameState.GameOver)
+         {
+             if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled )
+             {
+                 _gameData.Reset();
+                 _gameData.State = GameState.Restart;
+                 Hide();
+                 UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
+                 //new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
+                 //Time.timeScale = 1;
+                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+             }
+         }
+     }*/
 }
