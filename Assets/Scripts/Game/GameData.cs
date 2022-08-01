@@ -14,6 +14,7 @@ public class GameData
     private GameState _state = GameState.StartMenu;
     private Timer _timer = null;
     public float GameTime => Time.time - StartGameTime;
+    public float LastGameTime => 960 -( Time.time - StartGameTime);
     public GameState State
     {
         get

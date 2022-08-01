@@ -32,7 +32,7 @@ public class TimeUI : MonoBehaviour
     {
         if (_gameData.State == GameState.Gameplay)
         {
-            var time = TimeSpan.FromSeconds(Time.time - _gameData.StartGameTime);
+            var time = TimeSpan.FromSeconds(_gameData.LastGameTime);
             if (time.Hours > 0)
                 text.text = time.ToString(@"hh\:mm\:ss");
             else

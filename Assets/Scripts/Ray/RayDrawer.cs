@@ -225,6 +225,7 @@ public class RayDrawer : MonoBehaviour
     private void OnDestroy()
     {
         _stopTimer?.ForceEnd();
+        _fakeCursor.SetWait(false);
     }
 
     private void Update()

@@ -1,16 +1,18 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
 public class EndScreen : BaseLayer
 {
-    [SerializeField] private GameObject text;
     private GameData _gameData;
     private AsyncReactiveProperty<Player> _player;
     private DamageController _damageController;
+    [SerializeField] private TMP_Text text;
+    private Timer _timer;
 
     [Inject]
     private void Construct(GameData gameData, AsyncReactiveProperty<Player> player, DamageController damageController)
@@ -18,6 +20,7 @@ public class EndScreen : BaseLayer
         _gameData = gameData;
         _player = player;
         _gameData.GameStateChanged += OnGameStateChanged;
+        _gameData.GameStarted += GameStarted;
         _damageController = damageController;
         damageController.Die += CheckGameOver;
     }
@@ -28,12 +31,24 @@ public class EndScreen : BaseLayer
         base.OnDestroy();
     }
 
+    private void GameStarted()
+    {
+        _timer?.Stop();
+        _timer = new Timer(960).SetEnd(() =>
+        {
+            gameObject.SetActive(true);
+            text.text = "COMPLETE";
+            Time.timeScale = 0;
+        });
+    }
+
     private void OnGameStateChanged(GameState gameState)
     {
         if (gameState == GameState.GameOver)
         {
             gameObject.SetActive(true);
-            text.SetActive(true);
+            text.text = "GAME OVER";
+            _timer?.Stop();
         }
     }
 
@@ -45,7 +60,15 @@ public class EndScreen : BaseLayer
         }
     }
 
-    private void Update()
+    public void Restart()
+    {
+        _gameData.Reset();
+        _gameData.State = GameState.Restart;
+        Hide();
+        UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
+    }
+
+   /* private void Update()
     {
         if (_gameData.State == GameState.GameOver)
         {
@@ -60,5 +83,5 @@ public class EndScreen : BaseLayer
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-    }
+    }*/
 }
