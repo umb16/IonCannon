@@ -72,6 +72,7 @@ public class RayDrawer : MonoBehaviour
             _stopTimer?.Stop();
             _colldownIndicator.SetTime(0, 1);
             DestroyImmediate(_cannonRay);
+            _fakeCursor.SetWait(false);
         }
     }
 
@@ -225,7 +226,6 @@ public class RayDrawer : MonoBehaviour
     private void OnDestroy()
     {
         _stopTimer?.ForceEnd();
-        _fakeCursor.SetWait(false);
     }
 
     private void Update()
