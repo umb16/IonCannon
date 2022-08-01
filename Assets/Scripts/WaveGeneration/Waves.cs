@@ -52,15 +52,29 @@ using System.Threading.Tasks;
 
     public static LevelEvent[] SecondBlock_1 = {
 
-        new SpawnEvent(481, 506, Addresses.Mob_Child, 4).SetDirection(0,360),
-        new SpawnEvent(509, 567, Addresses.Mob_Child, 3).SetDirection(0,360),
-        new SpawnEvent(569, 660, Addresses.Mob_Child, 2).SetDirection(0,360),
-        new SpawnEvent(661, 711, Addresses.Mob_Child, 1).SetDirection(0,360),
+        new SpawnEvent(481, 540, Addresses.Mob_First, 3).SetDirection(0,360),
+        new SpawnEvent(541, 600, Addresses.Mob_First, 2).SetDirection(0,360),
+        new SpawnEvent(601, 711, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(483, 540, Addresses.Mob_Child, 5).SetDirection(0,360),
+        new SpawnEvent(542, 600, Addresses.Mob_Child, 4).SetDirection(0,360),
+        new SpawnEvent(601, 660, Addresses.Mob_Child, 3).SetDirection(0,360),
+        new SpawnEvent(661, 700, Addresses.Mob_Child, 2).SetDirection(0,360),
         new SpawnEvent(491, 692, Addresses.Mob_Fortress, 20).SetDirection(0,360),
 
 
     };
 
+    public static LevelEvent[] SecondBlock_2 = {
+
+        new SpawnEvent(481, 540, Addresses.Mob_First, 3).SetDirection(0,360),
+        new SpawnEvent(541, 600, Addresses.Mob_First, 2).SetDirection(0,360),
+        new SpawnEvent(601, 711, Addresses.Mob_First, 1).SetDirection(0,360),
+        new SpawnEvent(491, 532, Addresses.Mob_Second, 20).SetDirection(0,360),
+        new SpawnEvent(546, 595, Addresses.Mob_Second, 16).SetDirection(0,360),
+        new SpawnEvent(606, 691, Addresses.Mob_Second, 12).SetDirection(0,360),
+
+
+    };
 
     public static LevelEvent[] ThirdBlock_1 = {
 
@@ -72,15 +86,19 @@ using System.Threading.Tasks;
         new SpawnEvent(842, 898, Addresses.Mob_Artillery, 5).SetDirection(0,360),
         new SpawnEvent(901, 949, Addresses.Mob_Artillery, 6).SetDirection(0,360),
         new SpawnEvent(721, 780, Addresses.Mob_Slowdowner, 5).SetDirection(0,360),
-        new SpawnEvent(781, 840, Addresses.Mob_Slowdowner, 3).SetDirection(0,360),
-        new SpawnEvent(841, 900, Addresses.Mob_Slowdowner, 2).SetDirection(0,360),
+        new SpawnEvent(781, 902, Addresses.Mob_Slowdowner, 3).SetDirection(0,360),
 
     };
 
     public static LevelEvent[] ThirdBlock_2 = {
 
-
-        //хеви спидбаф чилдрен
+        new SpawnEvent(721, 780, Addresses.Mob_Child, 2).SetDirection(0,360),
+        new SpawnEvent(781, 951, Addresses.Mob_Child, 1).SetDirection(0,360),
+        new SpawnEvent(731, 760, Addresses.Mob_Heavy, 6).SetDirection(0,360),
+        new SpawnEvent(781, 837, Addresses.Mob_Heavy, 5).SetDirection(0,360),
+        new SpawnEvent(841, 898, Addresses.Mob_Heavy, 4).SetDirection(0,360),
+        new SpawnEvent(901, 944, Addresses.Mob_Heavy, 3).SetDirection(0,360),
+        new SpawnEvent(731, 948, Addresses.Mob_SpdBuff, 20).SetDirection(0,360),
 
     };
 }

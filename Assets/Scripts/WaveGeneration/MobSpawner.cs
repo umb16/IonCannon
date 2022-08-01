@@ -23,8 +23,8 @@ public class MobSpawner : MonoBehaviour
         AddEvents(Waves.StartWaves)
         .AddEvents(Waves.RingWaves)
         .AddEvents(Waves.FirstBlock_1, Waves.FirstBlock_2)
-        .AddEvents(Waves.SecondBlock_1)
-        .AddEvents(Waves.ThirdBlock_1);
+        .AddEvents(Waves.SecondBlock_1, Waves.SecondBlock_2)
+        .AddEvents(Waves.ThirdBlock_1, Waves.ThirdBlock_2);
     
     
 
