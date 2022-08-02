@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2366637028248124643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8007996172826201201}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5fee7cb668a225544ac22a2b5dba2964, type: 3}
+  m_Sprite: {fileID: 831416684672119948, guid: d2bae6163ec53b14995e68c44968e15c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,9 +93,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2366637028248124643}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 671a1a78b6a883c4d9ae990d80f337da, type: 2}
+  m_Controller: {fileID: 9100000, guid: c26415d1f6acbde4c8355760f5b3f513, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   _sound: {fileID: -1809642080273147267}
   _score: 1
   _animator: {fileID: 723286725745686467}
-  _destroyDelay: 0
+  _destroyDelay: 1
   _heal: 1
 --- !u!114 &5263124681114150106
 MonoBehaviour:

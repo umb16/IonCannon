@@ -1,37 +1,7 @@
 fileFormatVersion: 2
 guid: 322720bddac1a85409ac607da6effb2d
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2947832725791518410
-    second: heart000
-  - first:
-      213: 1451019895797007255
-    second: heart001
-  - first:
-      213: -838592537783473541
-    second: heart002
-  - first:
-      213: -7407120193233033000
-    second: heart003
-  - first:
-      213: 1036483977883260110
-    second: heart004
-  - first:
-      213: -4717276561995191647
-    second: heart005
-  - first:
-      213: 5760100627776064932
-    second: heart006
-  - first:
-      213: -7483401674779154168
-    second: heart007
-  - first:
-      213: -6536290523447665891
-    second: heart008
-  - first:
-      213: 6846479393616391301
-    second: heart009
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:

@@ -130,7 +130,7 @@ public class Player : Mob
     public override void ReceiveDamage(DamageMessage message)
     {
         base.ReceiveDamage(message);
-        if (message.DamageSource != DamageSources.Heal)
+        if (message.DamageSource != DamageSources.Heal && HP.Value>0)
             SoundManager.Instance.PlayPlayerDamage();
     }
 

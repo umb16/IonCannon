@@ -20,13 +20,13 @@ public class MobSpawner : MonoBehaviour
 
 
     LevelEventsFactory _firstLevelFactory = new LevelEventsFactory().
-        AddEvents(Waves.StartWaves)
+        AddEvents(Waves.StartWaves, Waves.Empty)
         .AddEvents(Waves.RingWaves)
         .AddEvents(Waves.FirstBlock_1, Waves.FirstBlock_2)
         .AddEvents(Waves.SecondBlock_1, Waves.SecondBlock_2)
         .AddEvents(Waves.ThirdBlock_1, Waves.ThirdBlock_2);
-    
-    
+
+
 
     private float _screenRatio;
     private int _screenHeight;
@@ -57,6 +57,10 @@ public class MobSpawner : MonoBehaviour
         {
             Mobs.Clear();
             _levelEvents = _firstLevelFactory.Get();
+            foreach (var eventItem in _levelEvents)
+            {
+                eventItem.SetSpawner(this);
+            }
             foreach (var eventItem in _levelEvents)
             {
                 eventItem.Reset();

@@ -157,6 +157,8 @@ MonoBehaviour:
   _sound: {fileID: -1809642080273147267}
   _score: 20
   _animator: {fileID: 723286725745686467}
+  _destroyDelay: 2
+  _heal: 0
 --- !u!114 &5263124681114150106
 MonoBehaviour:
   m_ObjectHideFlags: 0
