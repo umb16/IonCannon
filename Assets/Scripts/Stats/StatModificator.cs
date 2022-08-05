@@ -19,7 +19,7 @@ public class StatModificator : IStatModificator
             case StatType.RaySpeed:
                 statName = LocaleKeys.Main.RAY_SPEED.GetLocalizedString();
                 break;
-            case StatType.RayPathLenght:
+            case StatType.Energy:
                 statName = LocaleKeys.Main.RAY_PATH_LENGHT.GetLocalizedString();
                 break;
             case StatType.RayDelay:

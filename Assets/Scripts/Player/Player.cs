@@ -6,7 +6,9 @@ using Zenject;
 public class Player : Mob
 {
     public ComplexStat Gold { get; private set; } = new ComplexStat(0);
-    private ComplexStat _maxPathLength;
+    private ComplexStat _energy;
+    private ComplexStat _capacity;
+    private ComplexStat _energyRegen;
     private ComplexStat _raySpeed;
     private ComplexStat _rayDelay;
     private ComplexStat _raySplashRadius;
@@ -26,9 +28,10 @@ public class Player : Mob
 
     public float RaySpeed => _raySpeed.Value;
 
-    public float MaxPathLength => _maxPathLength.Value;
+    public float Energy => _energy.Value;
 
     private float _baseMoveSpeed;
+    private bool _regenActive = true;
 
     [Inject]
     private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player,
@@ -36,18 +39,30 @@ public class Player : Mob
     {
         StatsCollection = StatsCollectionsDB.StandartPlayer();
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
-        _maxPathLength = StatsCollection.GetStat(StatType.RayPathLenght);
+        _energy = StatsCollection.GetStat(StatType.Energy);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
         _rayDelay = StatsCollection.GetStat(StatType.RayDelay);
         _raySplashRadius = StatsCollection.GetStat(StatType.RayDamageAreaRadius);
         _lifeSupport = StatsCollection.GetStat(StatType.LifeSupport);
         RayReverse = StatsCollection.GetStat(StatType.RayReverse);
+        _capacity = StatsCollection.GetStat(StatType.Capacity);
+        _energyRegen = StatsCollection.GetStat(StatType.EnergyRegen);
         _perksFactory = perksFactory;
         _miningDamageReceiver = miningDamageReceiver;
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;
         Inventory.Add(itemsDB.ShiftSystem());
+    }
+
+    public void AddEnergy(float value)
+    {
+        _energy.AddBaseValue(value);
+    }
+
+    public void EnergyRegen(bool value)
+    {
+        _regenActive = value;
     }
 
     protected override void Awake()
@@ -130,7 +145,7 @@ public class Player : Mob
     public override void ReceiveDamage(DamageMessage message)
     {
         base.ReceiveDamage(message);
-        if (message.DamageSource != DamageSources.Heal && HP.Value>0)
+        if (message.DamageSource != DamageSources.Heal && HP.Value > 0)
             SoundManager.Instance.PlayPlayerDamage();
     }
 
@@ -141,6 +156,9 @@ public class Player : Mob
     }
     protected override void Update()
     {
+
+        if (_capacity.Value > _energy.Value && _regenActive)
+            AddEnergy(Time.deltaTime * _energyRegen.Value);
         base.Update();
         if (_stopped)
             return;

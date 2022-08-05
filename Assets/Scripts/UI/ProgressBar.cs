@@ -6,7 +6,7 @@ public class ProgressBar : MonoBehaviour
 {
     [SerializeField] private bool InvisibleOnFull;
     // [EditorButton]
-    public void Set(float value)
+   virtual public void Set(float value)
     {
         if (InvisibleOnFull && value == 1)
             transform.localScale = new Vector3(0, 1, 1);

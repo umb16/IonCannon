@@ -2,7 +2,7 @@ public enum StatType
 {
     MovementSpeed = 0,
     RaySpeed = 1,
-    RayPathLenght= 2,
+    Energy= 2,
     RayDelay= 3,
     RayDamageAreaRadius = 4,
     RayDamage = 5,
@@ -19,4 +19,6 @@ public enum StatType
 
     Defence = 14,
     RayReverse = 15,
+    Capacity = 16,
+    EnergyRegen = 17,
 }

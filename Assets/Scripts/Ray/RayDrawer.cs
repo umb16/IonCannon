@@ -36,7 +36,6 @@ public class RayDrawer : MonoBehaviour
     private FakeCursor _fakeCursor;
     private ComplexStat _rayError;
     private GameData _gameData;
-    private CooldownIndicator _colldownIndicator;
     private float? _cashedLenght;
     private bool _twoPointWay;
 
@@ -46,11 +45,21 @@ public class RayDrawer : MonoBehaviour
     private float _errorLenghtRatio;
     private bool _startDrawIsValid;
 
+    public float MaxLenght
+    {
+        get {
+            if (_cashedLenght == null)
+                return _player.Value.Energy;
+            else
+                return Mathf.Max(_cashedLenght.Value, _player.Value.Energy);
+        }
+    }
+
 
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
     [Inject]
-    private async UniTask Construct(AsyncReactiveProperty<Player> player, GameData gameData, UICooldownsManager cooldownsPanel, FakeCursor fakeCursor)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData, UICooldownsManager cooldownsPanel, FakeCursor fakeCursor)
     {
         _player = player;
         _fakeCursor = fakeCursor;
@@ -60,7 +69,6 @@ public class RayDrawer : MonoBehaviour
         }).Forget();
         _gameData = gameData;
         _gameData.GameStateChanged += GameStateChanged;
-        _colldownIndicator = await cooldownsPanel.AddIndiacator(Addresses.Ico_Laser);
     }
 
     private void GameStateChanged(GameState state)
@@ -70,7 +78,6 @@ public class RayDrawer : MonoBehaviour
             cannonPath.Clear();
             rayIsReady = true;
             _stopTimer?.Stop();
-            _colldownIndicator.SetTime(0, 1);
             DestroyImmediate(_cannonRay);
             _fakeCursor.SetWait(CursorType.Normal);
         }
@@ -93,8 +100,8 @@ public class RayDrawer : MonoBehaviour
         if (Input.GetMouseButton(0) && rayIsReady && _startDrawIsValid)
         {
             if (_cashedLenght == null)
-                _cashedLenght = _player.Value.MaxPathLength;
-            if (_currentPathLength < _cashedLenght)
+                _cashedLenght = _player.Value.Energy;
+            if (_currentPathLength < MaxLenght)
             {
                 Vector3 pos;
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -111,15 +118,15 @@ public class RayDrawer : MonoBehaviour
                 _cannonPath.positionCount = _currentLineIndex + 1;
                 if (_currentLineIndex > 0)
                 {
-                    if (_cashedLenght > _currentPathLength + Vector3.Distance(pos, _oldPointOfPath))
+                    if (MaxLenght > _currentPathLength + Vector3.Distance(pos, _oldPointOfPath))
                     {
                         _currentPathLength += Vector3.Distance(pos, _oldPointOfPath);
                     }
                     else
                     {
-                        float d = (float)_cashedLenght - _currentPathLength;
+                        float d = (float)MaxLenght - _currentPathLength;
                         pos = _oldPointOfPath + (pos - _oldPointOfPath).normalized * d;
-                        _currentPathLength = (float)_cashedLenght;
+                        _currentPathLength = (float)MaxLenght;
                     }
                 }
                 else
@@ -142,6 +149,8 @@ public class RayDrawer : MonoBehaviour
                 _twoPointWay = cannonPath.Count == 2;
                 rayIsReady = false;
                 _fakeCursor.SetWait(CursorType.Wait);
+                _player.Value.AddEnergy(-Mathf.Max(_currentPathLength,20));
+                //_player.Value.EnergyRegen(false);
             }
             if (_player.Value.RayReverse.Value > 0)
             {
@@ -180,7 +189,6 @@ public class RayDrawer : MonoBehaviour
         }
         _rayDelayTime += Time.deltaTime;
         _allRayTime = _rayPathLenght / _player.Value.RaySpeed + _player.Value.RayDelay;
-        _colldownIndicator.SetTime(CooldownTime, _allRayTime);
         if (_rayDelayTime > _player.Value.RayDelay)
         {
             if (_cannonRay == null)
@@ -222,6 +230,7 @@ public class RayDrawer : MonoBehaviour
         _startDrawIsValid = false;
         SoundManager.Instance.PlayRayReady();
         _fakeCursor.SetWait(CursorType.Normal);
+       // _player.Value.EnergyRegen(true);
     }
 
     private void OnDestroy()

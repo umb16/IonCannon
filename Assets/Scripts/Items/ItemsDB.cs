@@ -108,7 +108,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
+                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.Capacity)
                 },
                     PerkType.RayPathLenght)
             },
@@ -126,7 +126,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
+                    new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.Capacity)
                 },
                     PerkType.RayPathLenght)
             },
@@ -144,7 +144,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.RayPathLenght)
+                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Capacity)
                 },
                     PerkType.RayPathLenght)
             },
@@ -195,7 +195,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(-0.2f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(-0.2f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(0.2f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                 PerkType.Amplifier)
@@ -214,7 +214,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(-0.3f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(-0.3f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(0.4f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                 PerkType.Amplifier)
@@ -233,7 +233,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                 PerkType.Amplifier)
@@ -444,7 +444,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                     PerkType.PowerController)
@@ -464,7 +464,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                     PerkType.PowerController)
@@ -484,7 +484,7 @@ public class ItemsDB
             {
                 new SimplePerk(new[]
                 {
-                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayPathLenght),
+                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayDamage)
                 },
                     PerkType.PowerController)
