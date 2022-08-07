@@ -29,6 +29,7 @@ public class Player : Mob
     public float RaySpeed => _raySpeed.Value;
 
     public float Energy => _energy.Value;
+    public float Capacity => _capacity.Value;
 
     private float _baseMoveSpeed;
     private bool _regenActive = true;

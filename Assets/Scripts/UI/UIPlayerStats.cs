@@ -22,7 +22,7 @@ public class UIPlayerStats : BaseLayer
         AddString(LocaleKeys.Main.PICKUP_RADIUS, StatType.PickupRadius, Addresses.Ico_PickupRadius, LocaleKeys.Main.P);
         AddString(LocaleKeys.Main.RAY_DAMAGE, StatType.RayDamage, Addresses.Ico_RayDamage);
         AddString(LocaleKeys.Main.RAY_SPEED, StatType.RaySpeed, Addresses.Ico_RaySpeed, LocaleKeys.Main.P_S);
-        AddString(LocaleKeys.Main.RAY_PATH_LENGHT, StatType.Energy, Addresses.Ico_RayPath, LocaleKeys.Main.P);
+        AddString(LocaleKeys.Main.RAY_PATH_LENGHT, StatType.Capacity, Addresses.Ico_RayPath);
         AddString(LocaleKeys.Main.RAY_CHARGE_DELAY, StatType.RayDelay, Addresses.Ico_RayDelay, LocaleKeys.Main.S);
         AddString(LocaleKeys.Main.RAY_WIDTH, StatType.RayDamageAreaRadius, Addresses.Ico_RayWidth, LocaleKeys.Main.P);
         AddString(LocaleKeys.Main.RAY_ERROR, StatType.RayError, Addresses.Ico_RayError, LocaleKeys.Main.P);

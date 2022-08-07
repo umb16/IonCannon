@@ -13,6 +13,7 @@ public class RayCollider : MonoBehaviour
         public float NextTick;
         public IDamagable Mob;
     }
+    [HideInInspector] public float DamageMultiplier = 1;
     private float tickTime = .5f;
     private AsyncReactiveProperty<Player> _player;
     private MiningDamageReceiver _miningDamageReceiver;
@@ -38,7 +39,7 @@ public class RayCollider : MonoBehaviour
     private void OnTriggerEnter(IDamagable mob)
     {
         _mobs.Add(mob, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
-        mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg, DamageSources.RayInitial, .5f));
+        mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg * DamageMultiplier, DamageSources.RayInitial, .5f));
     }
 
     private void OnTriggerExit(Collider col)
@@ -81,7 +82,7 @@ public class RayCollider : MonoBehaviour
             Liquid item = LiquidTest.Instance.LiquidsList[i];
             if ((item.Position - transform.position).SqrMagnetudeXY() < Mathf.Pow(item._colliderRadius + transform.localScale.x * .5f, 2))
             {
-                item.ReceiveDamage(new DamageMessage(_player.Value, item, _player.Value.RayDmg, DamageSources.RayInitial));
+                item.ReceiveDamage(new DamageMessage(_player.Value, item, _player.Value.RayDmg * DamageMultiplier, DamageSources.RayInitial));
                 i--;
             }
         }
@@ -90,7 +91,7 @@ public class RayCollider : MonoBehaviour
             if (mob.Value.NextTick < Time.time)
             {
                 mob.Value.NextTick = Time.time + tickTime;
-                mob.Value.Mob.ReceiveDamage(new DamageMessage(_player.Value, mob.Value.Mob, _player.Value.RayDmg * .5f, DamageSources.Ray, .5f));
+                mob.Value.Mob.ReceiveDamage(new DamageMessage(_player.Value, mob.Value.Mob, _player.Value.RayDmg * .5f * DamageMultiplier, DamageSources.Ray, .5f));
             }
         }
     }

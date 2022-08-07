@@ -55,6 +55,11 @@ public class StatModificator : IStatModificator
                 break;
             case StatType.RayReverse:
                 break;
+            case StatType.Capacity:
+                statName = "Ёмкость";
+                break;
+            case StatType.EnergyRegen:
+                break;
             default:
                 break;
         }

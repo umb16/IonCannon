@@ -27,7 +27,7 @@ public static class StatsCollectionsDB
             (StatType.RaySpeed, new ComplexStat(6)),
             (StatType.Energy, energy),
             (StatType.Capacity, capacity),
-            (StatType.EnergyRegen, new ComplexStat(6)),
+            (StatType.EnergyRegen, new ComplexStat(4)),
             (StatType.RayDelay, new ComplexStat(1.3f, (x)=>Mathf.Max(0,x))),
             (StatType.RayDamageAreaRadius, new ComplexStat(1)),
             (StatType.RayDamage, new ComplexStat(40, (x)=>Mathf.Max(1,x))),
