@@ -54,6 +54,7 @@ public class Player : Mob
         _stopped = false;
         player.Value = this;
         Inventory.Add(itemsDB.ShiftSystem());
+        Inventory.Add(itemsDB.EnergyAbsorber());
     }
 
     public void AddEnergy(float value)

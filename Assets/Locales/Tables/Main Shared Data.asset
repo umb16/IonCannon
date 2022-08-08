@@ -239,6 +239,22 @@ MonoBehaviour:
     m_Key: Recycling
     m_Metadata:
       m_Items: []
+  - m_Id: 20904029497094144
+    m_Key: i_AtomicBattery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20904717245509632
+    m_Key: EnergyRegen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20907228719247360
+    m_Key: Capacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20912301641854976
+    m_Key: i_EnergyAbsorber
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

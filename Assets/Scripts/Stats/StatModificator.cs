@@ -56,9 +56,10 @@ public class StatModificator : IStatModificator
             case StatType.RayReverse:
                 break;
             case StatType.Capacity:
-                statName = "Ёмкость";
+                statName = LocaleKeys.Main.Capacity.GetLocalizedString();
                 break;
             case StatType.EnergyRegen:
+                statName = LocaleKeys.Main.EnergyRegen.GetLocalizedString();
                 break;
             default:
                 break;

@@ -26,6 +26,8 @@ public class Recipes
         new Recipe(ItemType.PowerControllerPlus, ItemType.PowerControllerPlus, ItemType.PowerControllerPlusPlus),
         new Recipe(ItemType.BatteryPlusPlus, ItemType.CoprocessorPlusPlus, ItemType.PowerControllerPlusPlus),
         new Recipe(ItemType.CoprocessorPlus, ItemType.SpeedDrives, ItemType.ReverseSystem),
+        new Recipe(ItemType.AtomicBatteryPlus, ItemType.AtomicBattery, ItemType.AtomicBattery),
+        new Recipe(ItemType.AtomicBatteryPlusPlus, ItemType.AtomicBatteryPlus, ItemType.AtomicBatteryPlus),
     };
     public static IEnumerable<Recipe> GetAllValidRecipes(ItemType type)
     {

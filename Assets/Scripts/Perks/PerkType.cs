@@ -29,4 +29,6 @@ public enum PerkType
     PShift = 25,
     RayReverse = 26,
     EAgressor = 27,
+    EnergyRegen = 28,
+    EnergyAbsorber = 29,
 }

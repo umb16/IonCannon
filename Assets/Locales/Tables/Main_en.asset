@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13697922395566080
-    m_Localized: Battery
+    m_Localized: Storage battery
     m_Metadata:
       m_Items: []
   - m_Id: 13698762434965504
@@ -245,6 +245,22 @@ MonoBehaviour:
     m_Localized: 'The ray moves back and forth
 
 '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20904029497094144
+    m_Localized: Atomic battery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20904717245509632
+    m_Localized: Energy generation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20907228719247360
+    m_Localized: Capacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20912301641854976
+    m_Localized: Energy absorber
     m_Metadata:
       m_Items: []
   references:

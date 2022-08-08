@@ -14,7 +14,7 @@ public static class StatsCollectionsDB
             HP.SetBaseLimit(0.0f, maxHP.Value);
             HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
         };
-        ComplexStat capacity = new ComplexStat(100);
+        ComplexStat capacity = new ComplexStat(80);
         ComplexStat energy = new ComplexStat(capacity.Value).SetBaseLimit(0,capacity.Value);
         capacity.ValueChanged += x =>
         {

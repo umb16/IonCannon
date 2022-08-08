@@ -18,6 +18,7 @@ public class ItemsDB
          ItemType.Coprocessor,
          ItemType.DivergingLens,
          ItemType.MagneticManipulator,
+         ItemType.AtomicBattery
     };
     private PerksFactory _perksFactory;
 
@@ -92,6 +93,14 @@ public class ItemsDB
                 return ShiftSystem();
             case ItemType.ReverseSystem:
                 return ReverseSystem();
+            case ItemType.AtomicBattery:
+                return AtomicBattery();
+            case ItemType.AtomicBatteryPlus:
+                return AtomicBatteryPlus();
+            case ItemType.AtomicBatteryPlusPlus:
+                return AtomicBatteryPlusPlus();
+            case ItemType.EnergyAbsorber:
+                return EnergyAbsorber();
             case ItemType.None:
             default:
                 return Battery();
@@ -111,6 +120,60 @@ public class ItemsDB
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.Capacity)
                 },
                     PerkType.RayPathLenght)
+            },
+        };
+    }
+
+    public Item AtomicBattery()
+    {
+        return new Item(LocaleKeys.Main.i_AtomicBattery)
+        {
+            Type = ItemType.AtomicBattery,
+            Cost = 50,
+            Icon = Addresses.Ico_AtomicBattery,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(2, StatModificatorType.Additive, StatType.EnergyRegen)
+                },
+                    PerkType.EnergyRegen)
+            },
+        };
+    }
+    public Item AtomicBatteryPlus()
+    {
+        return new Item(LocaleKeys.Main.i_AtomicBattery)
+        {
+            UpgradeCount = 1,
+            Type = ItemType.AtomicBatteryPlus,
+            Cost = 100,
+            Icon = Addresses.Ico_AtomicBattery,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(4, StatModificatorType.Additive, StatType.EnergyRegen)
+                },
+                    PerkType.EnergyRegen)
+            },
+        };
+    }
+    public Item AtomicBatteryPlusPlus()
+    {
+        return new Item(LocaleKeys.Main.i_AtomicBattery)
+        {
+            UpgradeCount = 1,
+            Type = ItemType.AtomicBatteryPlusPlus,
+            Cost = 250,
+            Icon = Addresses.Ico_AtomicBattery,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(new[]
+                {
+                    new StatModificator(8, StatModificatorType.Additive, StatType.EnergyRegen)
+                },
+                    PerkType.EnergyRegen)
             },
         };
     }
@@ -138,7 +201,7 @@ public class ItemsDB
         {
             Type = ItemType.BatteryPlusPlus,
             UpgradeCount = 2,
-            Cost = 75,
+            Cost = 150,
             Icon = Addresses.Ico_BatteryPP,
             Perks = new IPerk[]
             {
@@ -259,9 +322,22 @@ public class ItemsDB
             }
         };
     }
+    public Item EnergyAbsorber()
+    {
+        return new Item(LocaleKeys.Main.i_EnergyAbsorber)
+        {
+            Type = ItemType.EnergyAbsorber,
+            Cost = 60,
+            Icon = Addresses.Ico_Laser,
+            Perks = new IPerk[]
+            {
+                _perksFactory.Create<PerkPEnegryAbsorber>(5f)//урон, длительность
+            }
+        };
+    }
     public Item IonizationUnit()
     {
-        return new Item(LocaleKeys.Main.i_IonizationUnit,LocaleKeys.Main.id_IonizationUnit)
+        return new Item(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnit)
         {
             Type = ItemType.IonizationUnit,
             Cost = 60,

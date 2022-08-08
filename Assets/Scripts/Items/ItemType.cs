@@ -37,5 +37,9 @@
     PowerControllerPlus,
     PowerControllerPlusPlus,
     ShiftSystem,
-    ReverseSystem
+    ReverseSystem,
+    AtomicBatteryPlus,
+    AtomicBatteryPlusPlus,
+    AtomicBattery,
+    EnergyAbsorber
 }
