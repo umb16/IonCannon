@@ -23,7 +23,6 @@ public class PerkPEnegryAbsorber : WithId,IPerk
     public PerkPEnegryAbsorber(DamageController damageController, float amount)
     {
         _damageController = damageController;
-        _damageController.Die += OnDie;
         _amount = amount;
     }
 
@@ -41,6 +40,7 @@ public class PerkPEnegryAbsorber : WithId,IPerk
     public void Init(IMob mob)
     {
         _mob = mob;
+        _damageController.Die += OnDie;
     }
 
     public void Shutdown()

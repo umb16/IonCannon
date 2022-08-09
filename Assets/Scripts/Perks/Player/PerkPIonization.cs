@@ -26,7 +26,7 @@ public class PerkPIonization : WithId,IPerk
     {
         _damageController = damageController;
 
-        _damageController.Damage += OnDamage;
+        
         _damage = damage;
         _duration = duration;
     }
@@ -34,6 +34,7 @@ public class PerkPIonization : WithId,IPerk
     public void Init(IMob mob)
     {
         _mob = mob;
+        _damageController.Damage += OnDamage;
     }
 
     private void OnDamage(DamageMessage message)
