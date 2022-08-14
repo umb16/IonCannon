@@ -48,6 +48,7 @@ public static class Addresses
    public static string Ico_RaySpeed = "Ico_RaySpeed";
    public static string Ico_RayWidth = "Ico_RayWidth";
    public static string Ico_AtomicBattery = "Ico_AtomicBattery";
+   public static string Char_T_300 = "Char_T_300";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }

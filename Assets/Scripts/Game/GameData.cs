@@ -13,6 +13,7 @@ public class GameData
     public float StartGameTime;
     private GameState _state = GameState.StartMenu;
     private Timer _timer = null;
+    private string _currentCharName;
     public float GameTime => Time.time - StartGameTime;
     public float LastGameTime => 960 -( Time.time - StartGameTime);
     public GameState State
@@ -49,15 +50,21 @@ public class GameData
     }
 
     int charIndexer = 0;
-    public async UniTask StartGame()
+    public async UniTask StartGame(string charName)
     {
-        var Char = await PrefabCreator.Instantiate(Addresses.Char_standart, Vector3.zero);
+        _currentCharName = charName;
+        var Char = await PrefabCreator.Instantiate(charName, Vector3.zero);
         Char.transform.eulerAngles -= Vector3.right * 90;
         Char.name = "char " + (charIndexer++);
         GameStarted?.Invoke();
         StartGameTime = Time.time;
         State = GameState.Gameplay;
         Time.timeScale = 1;
+    }
+
+    public async UniTask StartGame()
+    {
+       await StartGame(_currentCharName);
     }
 
     public void AddWave()

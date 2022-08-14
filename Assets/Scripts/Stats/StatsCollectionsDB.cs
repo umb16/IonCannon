@@ -40,6 +40,44 @@ public static class StatsCollectionsDB
             (StatType.RayReverse, new ComplexStat(0)),
          });
     }
+
+    public static StandartStatsCollection T_300Player()
+    {
+        int hp = 30;
+        ComplexStat maxHP = new ComplexStat(hp);
+        ComplexStat HP = new ComplexStat(maxHP.Value).SetBaseLimit(0.0f, maxHP.Value);
+        maxHP.ValueChanged += (x) =>
+        {
+            HP.SetBaseLimit(0.0f, maxHP.Value);
+            HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
+        };
+        ComplexStat capacity = new ComplexStat(100);
+        ComplexStat energy = new ComplexStat(capacity.Value).SetBaseLimit(0, capacity.Value);
+        capacity.ValueChanged += x =>
+        {
+            energy.SetBaseLimit(0.0f, capacity.Value);
+            energy.SetBaseValue(Mathf.Min(energy.BaseValue, capacity.Value));
+        };
+        return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+         {
+            (StatType.MovementSpeed, new ComplexStat(7)),
+            (StatType.RaySpeed, new ComplexStat(11)),
+            (StatType.Energy, energy),
+            (StatType.Capacity, capacity),
+            (StatType.EnergyRegen, new ComplexStat(6)),
+            (StatType.RayDelay, new ComplexStat(1f, (x)=>Mathf.Max(0,x))),
+            (StatType.RayDamageAreaRadius, new ComplexStat(1.5f)),
+            (StatType.RayDamage, new ComplexStat(30, (x)=>Mathf.Max(1,x))),
+            (StatType.MaxHP, maxHP),
+            (StatType.HP, HP),
+            (StatType.Size, new ComplexStat(1)),
+            (StatType.LifeSupport, new ComplexStat(1).SetBaseLimit(0, 1)),
+            (StatType.PickupRadius, new ComplexStat(3)),
+            (StatType.RayError, new ComplexStat(0, (x)=>Mathf.Min(10,x))),
+            (StatType.RayReverse, new ComplexStat(1)),
+         });
+    }
+
     public static StandartStatsCollection StandartEnemy()
     {
         ComplexStat maxHP = new ComplexStat(3);

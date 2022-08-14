@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+public enum PlayerType
+{
+    Astro,
+    T_300
+}
+
 public class Player : Mob
 {
+    [SerializeField] private PlayerType _playerType;
     public ComplexStat Gold { get; private set; } = new ComplexStat(0);
     private ComplexStat _energy;
     private ComplexStat _capacity;
@@ -19,7 +26,7 @@ public class Player : Mob
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
-
+    public PlayerType Type => _playerType;
     public float RayDmg => _rayDamage.Value;
 
     public float RayDelay => _rayDelay.Value;
@@ -38,7 +45,11 @@ public class Player : Mob
     private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player,
         ItemsDB itemsDB, PerksFactory perksFactory, MiningDamageReceiver miningDamageReceiver)
     {
-        StatsCollection = StatsCollectionsDB.StandartPlayer();
+        if (_playerType == PlayerType.Astro)
+            StatsCollection = StatsCollectionsDB.StandartPlayer();
+        else
+            StatsCollection = StatsCollectionsDB.T_300Player();
+
         _rayDamage = StatsCollection.GetStat(StatType.RayDamage);
         _energy = StatsCollection.GetStat(StatType.Energy);
         _raySpeed = StatsCollection.GetStat(StatType.RaySpeed);
@@ -53,8 +64,9 @@ public class Player : Mob
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
         player.Value = this;
-        Inventory.Add(itemsDB.ShiftSystem());
-        Inventory.Add(itemsDB.EnergyAbsorber());
+        if (_playerType == PlayerType.Astro)
+            Inventory.Add(itemsDB.ShiftSystem());
+        //Inventory.Add(itemsDB.EnergyAbsorber());
     }
 
     public void AddEnergy(float value)

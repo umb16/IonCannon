@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class UIInventoryTrashCan : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audoioSource;
     public void PlaySound()
     {
-        _audoioSource.Play();
+        SoundManager.Instance.PlayDisassemble();
     }
 }
