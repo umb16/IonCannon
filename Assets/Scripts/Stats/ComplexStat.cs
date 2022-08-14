@@ -25,10 +25,12 @@ public class ComplexStat
     private List<IStatModificator> _transformChain = new List<IStatModificator>();
     private List<IStatModificator> _correction = new List<IStatModificator>();
 
+    public float ModValue => _cachedValue - BaseValue;
     public float Value => _cachedValue;
     public int IntValue => _intCachedValue;
     public float BaseValue => _isUsedFunc ? _baseValueFunc() : _baseValue;
-    public float Ratio => Value / BaseValue;
+    public float Ratio => BaseValue == 0 ? 1 : Value / BaseValue;
+    public int Percents => Mathf.RoundToInt(Ratio * 100 - 100);
 
     public ComplexStat(float newValue, Func<float, float> correctionFunc = null)
     {

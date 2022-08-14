@@ -32,7 +32,6 @@ public class LobbyUI : BaseLayer
 
     public void CharSelect(int index)
     {
-        Debug.Log(index);
         for (int i = 0; i < _chars.Length; i++)
         {
             var charCell = _chars[i];
