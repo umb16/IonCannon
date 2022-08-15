@@ -43,7 +43,10 @@ namespace SPVD.LifeSupport
         private void GameStateChanged(GameState state)
         {
             if (state == GameState.Restart)
+            {
                 _circles.Clear();
+                _lineRenderer.positionCount = 0;
+            }
         }
         [EditorButton]
         public void AddRandomCircle()

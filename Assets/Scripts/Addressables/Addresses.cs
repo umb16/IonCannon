@@ -36,8 +36,6 @@ public static class Addresses
    public static string Ico_Reverse = "Ico_Reverse";
    public static string Mob_Heavy = "Mob_Heavy";
    public static string Mob_Fortress = "Mob_Fortress";
-   public static string Ico_BatteryP = "Ico_BatteryP";
-   public static string Ico_BatteryPP = "Ico_BatteryPP";
    public static string Ico_HP = "Ico_HP";
    public static string Ico_MoveSpeed = "Ico_MoveSpeed";
    public static string Ico_PickupRadius = "Ico_PickupRadius";

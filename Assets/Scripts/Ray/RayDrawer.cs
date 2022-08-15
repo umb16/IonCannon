@@ -160,7 +160,10 @@ public class RayDrawer : MonoBehaviour
             {
                 if (cannonPath.Count == 1)
                     cannonPath.Add(cannonPath[0]);
-                _twoPointWay = cannonPath.Count == 2;
+                if (_currentPathLength < .2f || cannonPath.Count == 2)
+                    _twoPointWay = true;
+                else
+                    _twoPointWay = false;
                 rayIsReady = false;
                 _fakeCursor.SetWait(CursorType.Wait);
                 _player.Value.EnergyRegen(true);

@@ -11,15 +11,24 @@ public class MainMenu : BaseLayer
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
+        _gameData.GameStateChanged += GameStateChanged;
     }
 
-    private void Start()
+    private void GameStateChanged(GameState obj)
+    {
+        if (obj == GameState.StartMenu)
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
+    private void OnEnabled()
     {
         Time.timeScale = 1f;
-        if (_gameData.State == GameState.Restart)
+        /*if (_gameData.State == GameState.Restart)
         {
             StartGame();
-        }
+        }*/
     }
 
     public void StartGame()

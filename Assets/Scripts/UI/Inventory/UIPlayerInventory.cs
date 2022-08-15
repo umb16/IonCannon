@@ -14,7 +14,7 @@ public class UIPlayerInventory : BaseLayer
     private AsyncReactiveProperty<Player> _player;
 
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
     {
         _player = player;
         _player.Where(x => x != null).ForEachAsync(x =>
@@ -23,8 +23,13 @@ public class UIPlayerInventory : BaseLayer
             _uiInventory.IsActiveInventory = true;
             SetInventory(x.Stash, _uiStash);
         });
+        gameData.GameStateChanged += GameStateChanged;
     }
-
+    private void GameStateChanged(GameState obj)
+    {
+        if (obj == GameState.StartMenu)
+            Hide();
+    }
     protected override void OnFinishHiding()
     {
         base.OnFinishHiding();

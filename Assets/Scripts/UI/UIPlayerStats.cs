@@ -14,7 +14,7 @@ public class UIPlayerStats : BaseLayer
     private AsyncReactiveProperty<Player> _player;
 
     [Inject]
-    private void Construct(AsyncReactiveProperty<Player> player)
+    private void Construct(AsyncReactiveProperty<Player> player, GameData gameData)
     {
         _player = player;
 
@@ -28,6 +28,14 @@ public class UIPlayerStats : BaseLayer
         AddString(LocaleKeys.Main.RAY_CHARGE_DELAY, StatType.RayDelay, Addresses.Ico_RayDelay, LocaleKeys.Main.S, modPositive: false);
         AddString(LocaleKeys.Main.RAY_WIDTH, StatType.RayDamageAreaRadius, Addresses.Ico_RayWidth, LocaleKeys.Main.P);
         AddString(LocaleKeys.Main.RAY_ERROR, StatType.RayError, Addresses.Ico_RayError, LocaleKeys.Main.P, modPositive: false);
+
+        gameData.GameStateChanged += GameStateChanged;
+    }
+
+    private void GameStateChanged(GameState obj)
+    {
+        if (obj == GameState.StartMenu)
+            Hide();
     }
 
     private void AddString(LocalizedString text, StatType statType, string icon, LocalizedString postfix = null, bool modPositive = true)

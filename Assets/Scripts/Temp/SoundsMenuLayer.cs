@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Zenject;
 
 public class SoundsMenuLayer : BaseLayer
 {
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _soundSlider;
     AudioMixer _mixer;
+    private GameData _gameData;
 
+    [Inject]
+    private void Construct(GameData gameData)
+    {
+        _gameData = gameData;
+        gameData.GameStateChanged += GameStateChanged;
+    }
+    private void GameStateChanged(GameState obj)
+    {
+        if (obj == GameState.StartMenu)
+            Hide();
+    }
     private void Start()
     {
         _mixer = SoundManager.Instance.Mixer;
@@ -28,5 +41,10 @@ public class SoundsMenuLayer : BaseLayer
         _mixer.SetFloat("SoundVolume", Mathf.Log10(volume) * 20 - 6);
         _mixer.SetFloat("OtherSoundsVolume", Mathf.Log10(volume) * 20 - 6);
         PlayerPrefs.SetFloat("sound", volume);
+    }
+    public void GoToMainMenu()
+    {
+        _gameData.State = GameState.Restart;
+        _gameData.State = GameState.StartMenu;
     }
 }

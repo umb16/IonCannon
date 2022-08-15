@@ -184,7 +184,7 @@ public class ItemsDB
             Type = ItemType.BatteryPlus,
             UpgradeCount = 1,
             Cost = 75,
-            Icon = Addresses.Ico_BatteryP,
+            Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -202,7 +202,7 @@ public class ItemsDB
             Type = ItemType.BatteryPlusPlus,
             UpgradeCount = 2,
             Cost = 150,
-            Icon = Addresses.Ico_BatteryPP,
+            Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]
@@ -646,9 +646,10 @@ public class ItemsDB
     {
         return new Item(LocaleKeys.Main.i_SpeedDrives)
         {
+            UpgradeCount = 1,
             Type = ItemType.SpeedDrives,
             Cost = 100,
-            Icon = Addresses.Ico_SpeedServo,
+            Icon = Addresses.Ico_Servo,
             Perks = new IPerk[]
             {
                 new SimplePerk(new[]

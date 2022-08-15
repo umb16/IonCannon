@@ -12,6 +12,7 @@
     <type fullname="EnemySimple" preserve="all" />
     <type fullname="EntrancePoint" preserve="all" />
     <type fullname="FakeCursor" preserve="all" />
+    <type fullname="HelpMessageLayer" preserve="all" />
     <type fullname="IgnoreListenerPause" preserve="all" />
     <type fullname="InstantiateFromAnimator" preserve="all" />
     <type fullname="IonCannon.Tiles.TileDrawer" preserve="all" />

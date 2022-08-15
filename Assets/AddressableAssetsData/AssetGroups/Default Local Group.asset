@@ -203,16 +203,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8f7d4fbdbc97da446baa0e49fd18739e
-    m_Address: Ico_BatteryP
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e8bbdd221939c394c825d3cee09983ca
-    m_Address: Ico_BatteryPP
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7ac1b5163e5bba4da4fbdee695d0072
     m_Address: Ico_HP
     m_ReadOnly: 0
