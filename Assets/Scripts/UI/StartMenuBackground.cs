@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks.Linq;
 
 public class StartMenuBackground : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
     private float AspectRatio => Screen.width / (float)Screen.height;
     [Inject]
     private void Construct(GameData gameData)
@@ -43,6 +44,15 @@ public class StartMenuBackground : MonoBehaviour
             transform.localScale = Vector3.one * 1.095f;
             transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
         }
+    }
+
+    private void OnEnable()
+    {
+        _audioSource.Play();
+    }
+    private void OnDisable()
+    {
+        _audioSource.Stop();
     }
 
 }

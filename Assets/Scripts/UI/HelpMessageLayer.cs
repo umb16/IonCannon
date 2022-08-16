@@ -56,7 +56,7 @@ public class HelpMessageLayer : MonoBehaviour
         if (_nextUpdate < Time.time)
         {
             _nextUpdate = Time.time + 1f;
-            text.enabled = !text.enabled;
+            //text.enabled = !text.enabled;
         }
     }
 }

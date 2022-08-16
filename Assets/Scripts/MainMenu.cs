@@ -22,13 +22,17 @@ public class MainMenu : BaseLayer
         }
     }
 
-    private void OnEnabled()
+    private void OnEnable()
     {
         Time.timeScale = 1f;
         /*if (_gameData.State == GameState.Restart)
         {
             StartGame();
         }*/
+    }
+    private void OnDisable()
+    {
+
     }
 
     public void StartGame()
