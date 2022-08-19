@@ -24,7 +24,8 @@ public class HelpMessageLayer : MonoBehaviour
     {
         if (obj == GameState.Gameplay)
         {
-            gameObject.SetActive(true);
+            if(_mobSpawner.Stop)
+                gameObject.SetActive(true);
         }
         else
         {
