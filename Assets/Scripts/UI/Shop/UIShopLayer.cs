@@ -9,7 +9,7 @@ using Zenject;
 using Button = UnityEngine.UI.Button;
 using SPVD.LifeSupport;
 
-public class UIShopLayer : BaseLayer
+public class UIShopLayer : UIElement
 {
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Transform _itemsRoot;

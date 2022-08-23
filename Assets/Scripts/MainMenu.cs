@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class MainMenu : BaseLayer
+public class MainMenu : UIElement
 {
     private GameData _gameData;
 

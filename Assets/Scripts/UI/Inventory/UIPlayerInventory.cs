@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIPlayerInventory : BaseLayer
+public class UIPlayerInventory : UIElement
 {
     [SerializeField] UIInventory _uiInventory;
     [SerializeField] UIInventory _uiStash;
@@ -30,9 +30,8 @@ public class UIPlayerInventory : BaseLayer
         if (obj == GameState.StartMenu)
             Hide();
     }
-    protected override void OnFinishHiding()
+    protected override void OnHided()
     {
-        base.OnFinishHiding();
         TooltipController.Instance.UnassignTooltip();
     }
 

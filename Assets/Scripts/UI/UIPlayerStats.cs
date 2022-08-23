@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using Zenject;
 
-public class UIPlayerStats : BaseLayer
+public class UIPlayerStats : UIElement
 {
     [SerializeField] GameObject _textPrefab;
     private AsyncReactiveProperty<Player> _player;

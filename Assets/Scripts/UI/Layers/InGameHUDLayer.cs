@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class InGameHUDLayer : BaseLayer
+public class InGameHUDLayer : UIElement
 {
     [Inject]
     private void Construct(GameData gameData)

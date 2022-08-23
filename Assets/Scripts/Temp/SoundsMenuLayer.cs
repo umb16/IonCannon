@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using Zenject;
 
-public class SoundsMenuLayer : BaseLayer
+public class SoundsMenuLayer : UIElement
 {
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _soundSlider;

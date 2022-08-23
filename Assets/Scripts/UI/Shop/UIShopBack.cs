@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIShopBack : BaseLayer
+public class UIShopBack : UIElement
 {
     [Inject]
     private void Construct(GameData gameData)

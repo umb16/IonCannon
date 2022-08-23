@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class LobbyUI : BaseLayer
+public class LobbyUI : UIElement
 {
     [SerializeField] private CharCell[] _chars;
     private string[] _charsNames = { Addresses.Char_standart, Addresses.Char_T_300 };

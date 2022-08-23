@@ -12,7 +12,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 
-public class CheatPanelLayer : BaseLayer
+public class CheatPanelLayer : UIElement
 {
     public static bool Enabled;
     [SerializeField] CheatPanelList _categories;

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class MsgBox : BaseLayer
+public class MsgBox : UIElement
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Button _buttonOk;
