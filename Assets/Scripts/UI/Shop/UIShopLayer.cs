@@ -9,7 +9,7 @@ using Zenject;
 using Button = UnityEngine.UI.Button;
 using SPVD.LifeSupport;
 
-public class UIShopLayer : UIElement
+public class UIShopLayer : MonoBehaviour
 {
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Transform _itemsRoot;
@@ -61,8 +61,6 @@ public class UIShopLayer : UIElement
 
     private async UniTask OnEnable()
     {
-        _playerInventory = Show<UIPlayerInventory>();
-        _playerStats = Show<UIPlayerStats>();
         SoundManager.Instance.PlayShopOpen();
         await UniTask.WaitUntil(()=>_gameData != null);
         _gameData.State = GameState.InShop;
@@ -91,7 +89,10 @@ public class UIShopLayer : UIElement
             _playerInventory.HighlightItems(ItemType.None);
         }
         else
-            BaseLayer.Show<MsgBox>().Set("Inventory is full");
+        {
+            //todo: Сообщение об ошибке (звук, мигание)
+        }
+            //BaseLayer.Show<MsgBox>().Set("Inventory is full");
             //MessageBox.Show("Нехватает места");
     }
 
@@ -99,9 +100,6 @@ public class UIShopLayer : UIElement
     {
         OnClosed?.Invoke();
         SoundManager.Instance.PlayShopClose();
-        Hide();
-        _playerInventory.Hide();
-        _playerStats.Hide();
         Time.timeScale = 1;
         new Timer(.1f).SetEnd(() => _gameData.State = GameState.Gameplay);
     }

@@ -3,10 +3,11 @@ using Cysharp.Threading.Tasks.Linq;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class EndScreen : UIElement
+public class EndScreen : MonoBehaviour
 {
     private GameData _gameData;
     private AsyncReactiveProperty<Player> _player;
@@ -66,7 +67,6 @@ public class EndScreen : UIElement
     {
         _gameData.Reset();
         _gameData.State = GameState.Restart;
-        Hide();
         UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
     }
 }

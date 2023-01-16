@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class MainMenu : UIElement
+public class MainMenu : MonoBehaviour
 {
     private GameData _gameData;
 
@@ -11,15 +11,6 @@ public class MainMenu : UIElement
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += GameStateChanged;
-    }
-
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-        {
-            gameObject.SetActive(true);
-        }
     }
 
     private void OnEnable()
@@ -40,8 +31,8 @@ public class MainMenu : UIElement
         /*new Timer(.1f).SetEnd(() =>*/
         //_gameData.StartGame().Forget();//);
         //Show<InGameHUDLayer>();
-        Show<LobbyUI>();
-        Hide();
+       /* Show<LobbyUI>();
+        Hide();*/
     }
 
     public void Exit()

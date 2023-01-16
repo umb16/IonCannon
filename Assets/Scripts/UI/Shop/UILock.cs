@@ -14,7 +14,7 @@ public class UILock : MonoBehaviour
     [Inject]
     private void Awake()
     {
-        _shop = BaseLayer.ForceGet<UIShopLayer>();
+
     }
 
     private void OnEnable()

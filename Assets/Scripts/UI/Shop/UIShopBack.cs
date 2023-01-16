@@ -3,17 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIShopBack : UIElement
+public class UIShopBack : MonoBehaviour
 {
-    [Inject]
-    private void Construct(GameData gameData)
-    {
-        gameData.GameStateChanged += GameStateChanged;
-    }
 
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-            Hide();
-    }
 }

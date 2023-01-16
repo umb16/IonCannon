@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class LobbyUI : UIElement
+public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private CharCell[] _chars;
     private string[] _charsNames = { Addresses.Char_standart, Addresses.Char_T_300 };
@@ -23,11 +23,7 @@ public class LobbyUI : UIElement
 
     public void StartGame()
     {
-        _gameData.StartGame(_charName).ContinueWith(() =>
-        {
-            Show<InGameHUDLayer>();
-        }).Forget();
-        Hide();
+        _gameData.StartGame(_charName).Forget();
     }
 
     public void CharSelect(int index)

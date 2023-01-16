@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIPlayerInventory : UIElement
+public class UIPlayerInventory : MonoBehaviour
 {
     [SerializeField] UIInventory _uiInventory;
     [SerializeField] UIInventory _uiStash;
@@ -23,14 +23,9 @@ public class UIPlayerInventory : UIElement
             _uiInventory.IsActiveInventory = true;
             SetInventory(x.Stash, _uiStash);
         });
-        gameData.GameStateChanged += GameStateChanged;
+
     }
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-            Hide();
-    }
-    protected override void OnHided()
+    private void OnDisable()
     {
         TooltipController.Instance.UnassignTooltip();
     }

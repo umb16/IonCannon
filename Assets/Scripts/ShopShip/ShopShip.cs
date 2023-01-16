@@ -47,7 +47,6 @@ public class ShopShip : MonoBehaviour
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
-        _shop = BaseLayer.ForceGet<UIShopLayer>();
         _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
@@ -156,9 +155,7 @@ public class ShopShip : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            //_hintText.gameObject.SetActive(true);
-            BaseLayer.Show<UIShopBack>();
-            BaseLayer.Show<UIShopLayer>();
+            _gameData.UIStatus = UIStates.Shop;
         }
     }
     private void OnTriggerExit(Collider collider)
