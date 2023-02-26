@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Enemy_03_Move
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -37,7 +37,7 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 25
-  m_WrapMode: 1
+  m_WrapMode: 2
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -50,6 +50,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 68064031989025203, guid: c2bb5ef5abc72ab46a10167e2b4e08e4, type: 3}
     - {fileID: -326461347065157321, guid: c2bb5ef5abc72ab46a10167e2b4e08e4, type: 3}
