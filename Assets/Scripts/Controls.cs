@@ -6,6 +6,7 @@ using Zenject;
 public class Controls : MonoBehaviour
 {
     private GameData _gameData;
+    private UIStates _oldUIStatus;
 
     [Inject]
     private void Construct(GameData gameData)
@@ -25,32 +26,30 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.BackQuote) && Application.isEditor)
         {
+            _oldUIStatus = _gameData.UIStatus;
             _gameData.UIStatus = UIStates.Console;
+        }
+        if(Input.GetKeyDown(KeyCode.Escape) && Application.isEditor && _gameData.UIStatus == UIStates.Console)
+        {
+            _gameData.UIStatus = _oldUIStatus;
+            return;
         }
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q) && !CheatPanelLayer.Enabled)
         {
             if (_gameData.State == GameState.InShop)
             {
-                //_shop.Close();
                 _gameData.State = GameState.Gameplay;
                 _gameData.UIStatus = UIStates.Play;
             }
             else
             if (_gameData.State == GameState.Gameplay)
             {
-                //BaseLayer.Show<UIShopBack>();
-                //BaseLayer.Show<UIPlayerInventory>();
-                //BaseLayer.Show<UIPlayerStats>();
-                //BaseLayer.Show<SoundsMenuLayer>();
                 _gameData.UIStatus = UIStates.Pause;
                 _gameData.State = GameState.Inventory;
             }
             else
             if (_gameData.State == GameState.Inventory)
             {
-                //_playerInventory.Hide();
-                //_playerStats.Hide();
-                //_soundsMenu.Hide();
                 _gameData.State = GameState.Gameplay;
                 _gameData.UIStatus = UIStates.Play;
             }

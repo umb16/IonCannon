@@ -10,7 +10,8 @@ public class SceneInstaller : MonoInstaller
     [SerializeField] private LifeSupportTower _lifeSupportTower;
     [SerializeField] private MiningDamageReceiver _miningDamageReceiver;
     [SerializeField] private FakeCursor _fakeCursor;
-    
+    [SerializeField] private UIPlayerInventory _uiPlayerInventory;
+
     public override void InstallBindings()
     {
         Container.Bind<MobSpawner>().FromInstance(_mobSpawner).AsSingle();
@@ -18,6 +19,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<LifeSupportTower>().FromInstance(_lifeSupportTower).AsSingle();
         Container.Bind<MiningDamageReceiver>().FromInstance(_miningDamageReceiver).AsSingle();
         Container.Bind<FakeCursor>().FromInstance(_fakeCursor).AsSingle();
+        Container.Bind<UIPlayerInventory>().FromInstance(_uiPlayerInventory).AsSingle();
 
     }
 }

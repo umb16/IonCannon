@@ -862,7 +862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8607098680886490187}
   - component: {fileID: 8607098680886490186}
-  - component: {fileID: 8607098680886490189}
+  - component: {fileID: 901968757}
   m_Layer: 5
   m_Name: UIPlayerStats
   m_TagString: Untagged
@@ -904,13 +904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4aef5e2c5542934780931260e3ee2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth_level: 0
-  is_hidable: 1
-  components: []
-  canvasType: 0
-  is_loaded: 0
   _textPrefab: {fileID: 273195014}
---- !u!114 &8607098680886490189
+--- !u!114 &901968757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -919,10 +914,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8607098680886490184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d12c9424dc6074ab273b0ed72db7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerSource: 2
+  EnableStates: 6
+  ButtonStates: []
 --- !u!1 &8607098681407681051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1060,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 8607098680886490187}
     m_Modifications:
     - target: {fileID: 2669274266797097757, guid: 06a9350e54dbfe142a4cfd8baec92c22,
@@ -1202,6 +1199,7 @@ PrefabInstance:
       value: Score (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 06a9350e54dbfe142a4cfd8baec92c22, type: 3}
 --- !u!224 &5688143124769909602 stripped
 RectTransform:

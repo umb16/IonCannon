@@ -11,7 +11,6 @@ using SPVD.LifeSupport;
 
 public class UIShopLayer : MonoBehaviour
 {
-    [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Transform _itemsRoot;
     [SerializeField] private Button _refrashButton;
     public event Action OnClosed;
@@ -29,11 +28,12 @@ public class UIShopLayer : MonoBehaviour
 
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player, GameData gameData,
-        ItemsDB itemsDB)
+        ItemsDB itemsDB, UIPlayerInventory uiPlayerInventory)
     {
         _player = player;
         _gameData = gameData;
         _itemsDB = itemsDB;
+        _playerInventory = uiPlayerInventory;
     }
 
     private void Awake()
