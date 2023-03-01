@@ -13,7 +13,7 @@ public class ButtonState
     public UIStates State;
 }
 
-public class BattleUIElement : MonoBehaviour
+public class UIElementHider : MonoBehaviour
 {
     public UIStates EnableStates;
     //public UIStates IgnoreStates;

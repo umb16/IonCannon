@@ -28,11 +28,12 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        /*new Timer(.1f).SetEnd(() =>*/
+        _gameData.UIStatus = UIStates.Lobby;
+        /*new Timer(.1f).SetEnd(() =>
         //_gameData.StartGame().Forget();//);
         //Show<InGameHUDLayer>();
-       /* Show<LobbyUI>();
-        Hide();*/
+        /* Show<LobbyUI>();
+         Hide();*/
     }
 
     public void Exit()

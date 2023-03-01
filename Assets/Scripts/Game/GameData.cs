@@ -61,6 +61,7 @@ public class GameData
         StartGameTime = Time.time;
         State = GameState.Gameplay;
         Time.timeScale = 1;
+        UIStatus = UIStates.Play;
     }
 
     public async UniTask StartGame()

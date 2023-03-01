@@ -28,7 +28,7 @@ public class ShopShip : MonoBehaviour
     private Timer _interactionTimer;
     private Vector3 _newPosition;
     private Vector3 _startPosition;
-    private UIShopLayer _shop;
+    //private UIShopLayer _shop;
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
     private float _lastArrival;
@@ -47,7 +47,7 @@ public class ShopShip : MonoBehaviour
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
-        _shop.OnClosed += CountDownForceEnd;
+        //_shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
         _lifeSupportTower = lifeSupportTower;
@@ -148,7 +148,7 @@ public class ShopShip : MonoBehaviour
     {
         _landingTimer?.Stop();
         _countdownTimer?.Stop();
-        _shop.OnClosed -= CountDownForceEnd;
+        //_shop.OnClosed -= CountDownForceEnd;
         _gameData.GameStarted -= OnGameStarted;
     }
     private void OnTriggerEnter(Collider collider)
