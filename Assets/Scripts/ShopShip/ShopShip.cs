@@ -153,12 +153,6 @@ public class ShopShip : MonoBehaviour
         _gameData.GameStarted -= OnGameStarted;
     }
 
-    private static void ShowShop()
-    {
-        BaseLayer.Show<UIShopBack>();
-        BaseLayer.Show<UIShopLayer>();
-    }
-
     private void Update()
     {
         if (_gameData.State == GameState.Gameplay)
@@ -167,7 +161,7 @@ public class ShopShip : MonoBehaviour
             {
                 if (Vector3.Distance(_player.Value.Position, _zoneIndiacator.transform.position) < _zoneRadius)
                 {
-                    ShowShop();
+                    _gameData.UIStatus = UIStates.Shop;
                 }
             }
 

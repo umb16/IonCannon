@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/UI/UIStates.meta
-guid: 2edeab4fa003f54448903dc6a347a21c
-========
 guid: 521c9efe9d26e954dbb79b05830ea59e
->>>>>>>> develop:Assets/Res/Prefabs/Objects/Ship.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
