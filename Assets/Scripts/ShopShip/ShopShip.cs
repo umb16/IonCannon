@@ -28,7 +28,7 @@ public class ShopShip : MonoBehaviour
     private Timer _interactionTimer;
     private Vector3 _newPosition;
     private Vector3 _startPosition;
-    //private UIShopLayer _shop;
+    private UIShopLayer _shop;
     private GameData _gameData;
     private CooldownIndicator _shopIndicator;
     private float _lastArrival;
@@ -43,11 +43,12 @@ public class ShopShip : MonoBehaviour
 
     [Inject]
     private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData,
-        AsyncReactiveProperty<Player> player, LifeSupportTower lifeSupportTower)
+        AsyncReactiveProperty<Player> player, LifeSupportTower lifeSupportTower, UIShopLayer uiShop)
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
-        //_shop.OnClosed += CountDownForceEnd;
+        _shop = uiShop;
+        _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
         _lifeSupportTower = lifeSupportTower;
@@ -63,9 +64,7 @@ public class ShopShip : MonoBehaviour
             _countdownTimer?.ForceEnd();
             _landingTimer?.ForceEnd();
             DisableLandingState();
-            transform.position = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
-            //OnCountDownEnd();
-            
+            transform.position = _newPosition + Vector3.up * 100 - Vector3.forward * 50;          
         }
     }
 
@@ -127,7 +126,6 @@ public class ShopShip : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(_newPosition, _startPosition, x);
             });
-        //.SetEnd(() => gameObject.SetActive(false));
     }
 
     private void DisableLandingState()
@@ -139,7 +137,6 @@ public class ShopShip : MonoBehaviour
         _targetZoneSetted = false;
         _targetZoneShearchStart = false;
         _zoneIndiacator.gameObject.SetActive(false);
-        //_forceField.transform.localScale = Vector3.one * 3;
         _countdownText.gameObject.SetActive(false);
         _animator.SetBool("Idle", false);
     }
@@ -148,7 +145,7 @@ public class ShopShip : MonoBehaviour
     {
         _landingTimer?.Stop();
         _countdownTimer?.Stop();
-        //_shop.OnClosed -= CountDownForceEnd;
+        _shop.OnClosed -= CountDownForceEnd;
         _gameData.GameStarted -= OnGameStarted;
     }
     private void OnTriggerEnter(Collider collider)
@@ -176,7 +173,6 @@ public class ShopShip : MonoBehaviour
                 Vector3 specialPos;
                 if (!_targetZoneShearchStart)
                 {
-                    //_zoneIndiacator.SetBlink(.5f);
                     _zoneIndiacator.SetRadius(2);
                     _zoneIndiacator.gameObject.SetActive(true);
                     _targetZoneShearchStart = true;

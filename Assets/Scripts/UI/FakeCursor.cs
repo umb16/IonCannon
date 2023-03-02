@@ -30,20 +30,6 @@ public class FakeCursor : MonoBehaviour
         _draw.SetActive(type == CursorType.Draw);
     }
 
-    /*private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.Gameplay)
-        {
-            gameObject.SetActive(true);
-            Cursor.visible = false;
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            Cursor.visible = true;
-        }
-    }*/
-
     private void OnEnable()
     {
         Cursor.visible = false;

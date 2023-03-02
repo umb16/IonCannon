@@ -14,17 +14,9 @@ public class Controls : MonoBehaviour
         _gameData = gameData;
     }
 
-    private void Awake()
-    {
-       /* _playerStats = BaseLayer.ForceGet<UIPlayerStats>();
-        _playerInventory = BaseLayer.ForceGet<UIPlayerInventory>();
-        _soundsMenu = BaseLayer.ForceGet<SoundsMenuLayer>();
-
-        _shop = BaseLayer.ForceGet<UIShopLayer>();*/
-    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.BackQuote) && Application.isEditor)
+        if (Input.GetKeyDown(KeyCode.BackQuote) && Application.isEditor && _gameData.UIStatus != UIStates.Console)
         {
             _oldUIStatus = _gameData.UIStatus;
             _gameData.UIStatus = UIStates.Console;
@@ -34,6 +26,8 @@ public class Controls : MonoBehaviour
             _gameData.UIStatus = _oldUIStatus;
             return;
         }
+        if (_gameData.UIStatus == UIStates.Console)
+            return;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q) && !CheatPanelLayer.Enabled)
         {
             if (_gameData.State == GameState.InShop)

@@ -11,6 +11,7 @@ public class SceneInstaller : MonoInstaller
     [SerializeField] private MiningDamageReceiver _miningDamageReceiver;
     [SerializeField] private FakeCursor _fakeCursor;
     [SerializeField] private UIPlayerInventory _uiPlayerInventory;
+    [SerializeField] private UIShopLayer _uiShop;
 
     public override void InstallBindings()
     {
@@ -20,6 +21,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<MiningDamageReceiver>().FromInstance(_miningDamageReceiver).AsSingle();
         Container.Bind<FakeCursor>().FromInstance(_fakeCursor).AsSingle();
         Container.Bind<UIPlayerInventory>().FromInstance(_uiPlayerInventory).AsSingle();
+        Container.Bind<UIShopLayer>().FromInstance(_uiShop).AsSingle();
 
     }
 }

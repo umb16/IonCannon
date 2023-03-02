@@ -93,7 +93,7 @@ public class UIShopLayer : MonoBehaviour
             //todo: Сообщение об ошибке (звук, мигание)
         }
             //BaseLayer.Show<MsgBox>().Set("Inventory is full");
-            //MessageBox.Show("Нехватает места");
+            //MessageBox.Show("Не хватает места");
     }
 
     public void Close()
@@ -101,7 +101,11 @@ public class UIShopLayer : MonoBehaviour
         OnClosed?.Invoke();
         SoundManager.Instance.PlayShopClose();
         Time.timeScale = 1;
-        new Timer(.1f).SetEnd(() => _gameData.State = GameState.Gameplay);
+        new Timer(.1f).SetEnd(() =>
+        {
+            _gameData.UIStatus = UIStates.Play;
+            _gameData.State = GameState.Gameplay;
+        });
     }
 
     public void Refrash()
