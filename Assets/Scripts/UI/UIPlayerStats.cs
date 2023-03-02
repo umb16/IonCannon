@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using Zenject;
 
-public class UIPlayerStats : BaseLayer
+public class UIPlayerStats : MonoBehaviour
 {
     [SerializeField] GameObject _textPrefab;
     private AsyncReactiveProperty<Player> _player;
@@ -28,14 +28,6 @@ public class UIPlayerStats : BaseLayer
         AddString(LocaleKeys.Main.RAY_CHARGE_DELAY, StatType.RayDelay, Addresses.Ico_RayDelay, LocaleKeys.Main.S, modPositive: false);
         AddString(LocaleKeys.Main.RAY_WIDTH, StatType.RayDamageAreaRadius, Addresses.Ico_RayWidth, LocaleKeys.Main.P);
         AddString(LocaleKeys.Main.RAY_ERROR, StatType.RayError, Addresses.Ico_RayError, LocaleKeys.Main.P, modPositive: false);
-
-        gameData.GameStateChanged += GameStateChanged;
-    }
-
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-            Hide();
     }
 
     private void AddString(LocalizedString text, StatType statType, string icon, LocalizedString postfix = null, bool modPositive = true)
@@ -89,10 +81,5 @@ public class UIPlayerStats : BaseLayer
         var go = Instantiate(_textPrefab, _textPrefab.transform.parent);
         go.SetActive(true);
         return go.GetComponent<UIStatText>();
-    }
-
-    private void OnDisable()
-    {
-        BaseLayer.Hide<UIShopBack>();
     }
 }

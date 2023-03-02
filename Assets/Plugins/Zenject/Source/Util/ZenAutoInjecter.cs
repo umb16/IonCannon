@@ -22,8 +22,8 @@ namespace Zenject
         {
             if (!_hasInjected)
             {
-                throw Assert.CreateException(
-                    "ZenAutoInjecter was injected!  Do not use ZenAutoInjecter for objects that are instantiated through zenject or which exist in the initial scene hierarchy");
+                throw Assert.CreateException(name+
+                    " ZenAutoInjecter was injected!  Do not use ZenAutoInjecter for objects that are instantiated through zenject or which exist in the initial scene hierarchy");
             }
         }
 

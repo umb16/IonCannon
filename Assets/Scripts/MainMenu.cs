@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class MainMenu : BaseLayer
+public class MainMenu : MonoBehaviour
 {
     private GameData _gameData;
 
@@ -11,15 +11,6 @@ public class MainMenu : BaseLayer
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += GameStateChanged;
-    }
-
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-        {
-            gameObject.SetActive(true);
-        }
     }
 
     private void OnEnable()
@@ -37,11 +28,12 @@ public class MainMenu : BaseLayer
 
     public void StartGame()
     {
-        /*new Timer(.1f).SetEnd(() =>*/
+        _gameData.UIStatus = UIStates.Lobby;
+        /*new Timer(.1f).SetEnd(() =>
         //_gameData.StartGame().Forget();//);
         //Show<InGameHUDLayer>();
-        Show<LobbyUI>();
-        Hide();
+        /* Show<LobbyUI>();
+         Hide();*/
     }
 
     public void Exit()

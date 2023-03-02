@@ -11,15 +11,14 @@ GameObject:
   - component: {fileID: 4350237166418466527}
   - component: {fileID: 3636366173791831689}
   - component: {fileID: 805212980690086564}
-  - component: {fileID: 1683756808711328777}
-  - component: {fileID: -8562409778966791152}
+  - component: {fileID: 907355645}
   m_Layer: 5
   m_Name: UIShopBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4350237166418466527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1683756808711328777
+--- !u!114 &907355645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,24 +86,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7055548104373739061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12f919612beb7b47841616cde9e9256, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d12c9424dc6074ab273b0ed72db7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth_level: 0
-  is_hidable: 1
-  components: []
-  canvasType: 0
-  is_loaded: 0
---- !u!114 &-8562409778966791152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7055548104373739061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containerSource: 1
+  EnableStates: 6
+  ButtonStates: []

@@ -57,6 +57,8 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void CheckButtonStatus(ComplexStat stat)
     {
+        if(!gameObject.activeInHierarchy)
+            return;
         if (stat.Value >= Item.Cost)
         {
             _buyButton.interactable = true;

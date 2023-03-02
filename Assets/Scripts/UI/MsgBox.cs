@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class MsgBox : BaseLayer
+public class MsgBox : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Button _buttonOk;
@@ -34,12 +34,10 @@ public class MsgBox : BaseLayer
     private void Cancel()
     {
         CancelPressed?.Invoke();
-        Hide();
     }
 
     private void Ok()
     {
         OkPressed?.Invoke();
-        Hide();
     }
 }

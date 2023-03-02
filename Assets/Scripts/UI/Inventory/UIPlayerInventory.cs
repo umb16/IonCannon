@@ -1,11 +1,9 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UIPlayerInventory : BaseLayer
+public class UIPlayerInventory : MonoBehaviour
 {
     [SerializeField] UIInventory _uiInventory;
     [SerializeField] UIInventory _uiStash;
@@ -23,16 +21,10 @@ public class UIPlayerInventory : BaseLayer
             _uiInventory.IsActiveInventory = true;
             SetInventory(x.Stash, _uiStash);
         });
-        gameData.GameStateChanged += GameStateChanged;
+
     }
-    private void GameStateChanged(GameState obj)
+    private void OnDisable()
     {
-        if (obj == GameState.StartMenu)
-            Hide();
-    }
-    protected override void OnFinishHiding()
-    {
-        base.OnFinishHiding();
         TooltipController.Instance.UnassignTooltip();
     }
 

@@ -9,9 +9,8 @@ using Zenject;
 using Button = UnityEngine.UI.Button;
 using SPVD.LifeSupport;
 
-public class UIShopLayer : BaseLayer
+public class UIShopLayer : MonoBehaviour
 {
-    [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Transform _itemsRoot;
     [SerializeField] private Button _refrashButton;
     public event Action OnClosed;
@@ -29,11 +28,12 @@ public class UIShopLayer : BaseLayer
 
     [Inject]
     private void Construct(AsyncReactiveProperty<Player> player, GameData gameData,
-        ItemsDB itemsDB)
+        ItemsDB itemsDB, UIPlayerInventory uiPlayerInventory)
     {
         _player = player;
         _gameData = gameData;
         _itemsDB = itemsDB;
+        _playerInventory = uiPlayerInventory;
     }
 
     private void Awake()
@@ -61,8 +61,6 @@ public class UIShopLayer : BaseLayer
 
     private async UniTask OnEnable()
     {
-        _playerInventory = Show<UIPlayerInventory>();
-        _playerStats = Show<UIPlayerStats>();
         SoundManager.Instance.PlayShopOpen();
         await UniTask.WaitUntil(()=>_gameData != null);
         _gameData.State = GameState.InShop;
@@ -91,19 +89,23 @@ public class UIShopLayer : BaseLayer
             _playerInventory.HighlightItems(ItemType.None);
         }
         else
-            BaseLayer.Show<MsgBox>().Set("Inventory is full");
-            //MessageBox.Show("Нехватает места");
+        {
+            //todo: Сообщение об ошибке (звук, мигание)
+        }
+            //BaseLayer.Show<MsgBox>().Set("Inventory is full");
+            //MessageBox.Show("Не хватает места");
     }
 
     public void Close()
     {
         OnClosed?.Invoke();
         SoundManager.Instance.PlayShopClose();
-        Hide();
-        _playerInventory.Hide();
-        _playerStats.Hide();
         Time.timeScale = 1;
-        new Timer(.1f).SetEnd(() => _gameData.State = GameState.Gameplay);
+        new Timer(.1f).SetEnd(() =>
+        {
+            _gameData.UIStatus = UIStates.Play;
+            _gameData.State = GameState.Gameplay;
+        });
     }
 
     public void Refrash()

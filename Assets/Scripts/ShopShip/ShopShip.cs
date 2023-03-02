@@ -45,11 +45,11 @@ public class ShopShip : MonoBehaviour
 
     [Inject]
     private async UniTask Construct(UICooldownsManager cooldownsManager, GameData gameData,
-        AsyncReactiveProperty<Player> player, LifeSupportTower lifeSupportTower)
+        AsyncReactiveProperty<Player> player, LifeSupportTower lifeSupportTower, UIShopLayer uiShop)
     {
         _gameData = gameData;
         _gameData.GameStarted += OnGameStarted;
-        _shop = BaseLayer.ForceGet<UIShopLayer>();
+        _shop = uiShop;
         _shop.OnClosed += CountDownForceEnd;
         _lastArrival = Time.time;
         _player = player;
@@ -141,7 +141,6 @@ public class ShopShip : MonoBehaviour
         _targetZoneSetted = false;
         _targetZoneShearchStart = false;
         _zoneIndiacator.gameObject.SetActive(false);
-        //_forceField.transform.localScale = Vector3.one * 3;
         _countdownText.gameObject.SetActive(false);
         _animator.SetBool("Idle", false);
     }
@@ -154,12 +153,6 @@ public class ShopShip : MonoBehaviour
         _gameData.GameStarted -= OnGameStarted;
     }
 
-    private static void ShowShop()
-    {
-        BaseLayer.Show<UIShopBack>();
-        BaseLayer.Show<UIShopLayer>();
-    }
-
     private void Update()
     {
         if (_gameData.State == GameState.Gameplay)
@@ -168,7 +161,7 @@ public class ShopShip : MonoBehaviour
             {
                 if (Vector3.Distance(_player.Value.Position, _zoneIndiacator.transform.position) < _zoneRadius)
                 {
-                    ShowShop();
+                    _gameData.UIStatus = UIStates.Shop;
                 }
             }
 

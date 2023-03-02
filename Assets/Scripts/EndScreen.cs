@@ -3,10 +3,11 @@ using Cysharp.Threading.Tasks.Linq;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class EndScreen : BaseLayer
+public class EndScreen : MonoBehaviour
 {
     private GameData _gameData;
     private AsyncReactiveProperty<Player> _player;
@@ -24,11 +25,10 @@ public class EndScreen : BaseLayer
         _damageController = damageController;
         damageController.Die += CheckGameOver;
     }
-    protected override void OnDestroy()
+    private void OnDestroy()
     {
         _damageController.Die -= CheckGameOver;
         _gameData.GameStateChanged -= OnGameStateChanged;
-        base.OnDestroy();
     }
 
     private void GameStarted()
@@ -67,24 +67,6 @@ public class EndScreen : BaseLayer
     {
         _gameData.Reset();
         _gameData.State = GameState.Restart;
-        Hide();
         UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
     }
-
-    /* private void Update()
-     {
-         if (_gameData.State == GameState.GameOver)
-         {
-             if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled )
-             {
-                 _gameData.Reset();
-                 _gameData.State = GameState.Restart;
-                 Hide();
-                 UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
-                 //new Timer(.1f).SetEnd(() => _gameData.StartGame().Forget());
-                 //Time.timeScale = 1;
-                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-             }
-         }
-     }*/
 }

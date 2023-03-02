@@ -9,6 +9,7 @@ public class GameData
     public event Action<GameState> GameStateChanged;
     public event Action<int> WaveChanged;
     public event Action GameStarted;
+    public UIStates UIStatus;
     public int Wave = 0;
     public float StartGameTime;
     private GameState _state = GameState.StartMenu;
@@ -60,6 +61,7 @@ public class GameData
         StartGameTime = Time.time;
         State = GameState.Gameplay;
         Time.timeScale = 1;
+        UIStatus = UIStates.Play;
     }
 
     public async UniTask StartGame()

@@ -95,7 +95,7 @@ public class LiquidTest : MonoBehaviour
     }
     public static LiquidTest Instance;
 
-    public CalcLiquidForcesJob xxxx;
+    public CalcLiquidForcesJob ForcesJob;
     int size = 1024;
     const Allocator alloc = Allocator.Persistent;
     NativeArray<float2> positions;
@@ -120,7 +120,7 @@ public class LiquidTest : MonoBehaviour
 
 
 
-        xxxx = new CalcLiquidForcesJob()
+        ForcesJob = new CalcLiquidForcesJob()
         {
             Positions = positions,
             Results = result,
@@ -131,10 +131,10 @@ public class LiquidTest : MonoBehaviour
             _RRadiusMax = _RRadiusMax,
             _RRadiusMin = _RRadiusMin
         };
-        var stop = new Stopwatch();
+        /*var stop = new Stopwatch();
         stop.Start();
-        xxxx.Schedule(size, 64).Complete();
-        Debug.Log("swer " + stop.ElapsedMilliseconds);
+        ForcesJob.Schedule(size, 64).Complete();
+        Debug.Log("swer " + stop.ElapsedMilliseconds);*/
     }
 
     private void OnDisable()
@@ -148,16 +148,16 @@ public class LiquidTest : MonoBehaviour
 
     void FixedUpdate()
     {
-        xxxx.Schedule(size, 64).Complete();
+        ForcesJob.Schedule(size, 64).Complete();
 
-        for (int i = 0; i < xxxx.Positions.Length; i++)
+        for (int i = 0; i < ForcesJob.Positions.Length; i++)
         {
-            if (xxxx.Positions[i].x == float.PositiveInfinity)
+            if (ForcesJob.Positions[i].x == float.PositiveInfinity)
                 continue;
-            Debug.DrawLine((Vector2)xxxx.Results[i] - Vector2.up, (Vector2)xxxx.Results[i] + Vector2.up, Color.red);
-            Debug.DrawLine((Vector2)xxxx.Results[i] - Vector2.left, (Vector2)xxxx.Results[i] + Vector2.left, Color.red);
-            Debug.DrawLine((Vector2)xxxx.Positions[i], (Vector2)xxxx.Results[i], Color.white, 1);
-            xxxx.Positions[i] = xxxx.Results[i];
+            Debug.DrawLine((Vector2)ForcesJob.Results[i] - Vector2.up, (Vector2)ForcesJob.Results[i] + Vector2.up, Color.red);
+            Debug.DrawLine((Vector2)ForcesJob.Results[i] - Vector2.left, (Vector2)ForcesJob.Results[i] + Vector2.left, Color.red);
+            Debug.DrawLine((Vector2)ForcesJob.Positions[i], (Vector2)ForcesJob.Results[i], Color.white, 1);
+            ForcesJob.Positions[i] = ForcesJob.Results[i];
         }
         //Debug.Log("LiquidsList "+LiquidsList.Count);
     }
@@ -166,7 +166,7 @@ public class LiquidTest : MonoBehaviour
     {
         if (!_destroyed && LiquidsList.Contains(liquid))
         {
-            xxxx.Positions[liquid.Index] = new float2(float.PositiveInfinity, float.PositiveInfinity);
+            ForcesJob.Positions[liquid.Index] = new float2(float.PositiveInfinity, float.PositiveInfinity);
             LiquidsList.Remove(liquid);
         }
     }
@@ -174,9 +174,9 @@ public class LiquidTest : MonoBehaviour
     public int Add(Liquid liquid)
     {
         
-        for (int i = 0; i < xxxx.Positions.Length; i++)
+        for (int i = 0; i < ForcesJob.Positions.Length; i++)
         {
-            if (xxxx.Positions[i].x == float.PositiveInfinity)
+            if (ForcesJob.Positions[i].x == float.PositiveInfinity)
             {
                 AddByID(i, liquid);
                 return i;
@@ -187,14 +187,13 @@ public class LiquidTest : MonoBehaviour
          toRemove.SelfDestroy();
          AddByID(toRemove.Index, liquid);
          return toRemove.Index;
-       // return -1;
     }
 
     private void AddByID(int i, Liquid liquid)
     {
-        xxxx.Positions[i] = (Vector2)liquid.Position;
-        xxxx.CurrentRadius[i] = _RRadiusMin;
-        xxxx.Sleep[i] = 0;
+        ForcesJob.Positions[i] = (Vector2)liquid.Position;
+        ForcesJob.CurrentRadius[i] = _RRadiusMin;
+        ForcesJob.Sleep[i] = 0;
         LiquidsList.Add(liquid);
     }
 }

@@ -36,7 +36,7 @@ public class Liquid : Mob
     protected  override void FixedUpdate()
     {
         if (!IsDead)
-            TargetPos = (Vector3)(Vector2)LiquidTest.Instance.xxxx.Results[Index];
+            TargetPos = (Vector3)(Vector2)LiquidTest.Instance.ForcesJob.Results[Index];
     }
     public void SelfDestroy()
     {

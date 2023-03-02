@@ -35,7 +35,8 @@ public class ExpandZoneButton : MonoBehaviour
     private void OnEnable()
     {
         _once = false;
-        CheckButtonStatus(_player.Value.Gold);
+        if (_player.Value != null)
+            CheckButtonStatus(_player.Value.Gold);
     }
 
     private void GameStateChanged(GameState state)

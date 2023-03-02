@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using Zenject;
 
-public class SoundsMenuLayer : BaseLayer
+public class SoundsMenuLayer : MonoBehaviour
 {
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _soundSlider;
@@ -16,13 +16,8 @@ public class SoundsMenuLayer : BaseLayer
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        gameData.GameStateChanged += GameStateChanged;
     }
-    private void GameStateChanged(GameState obj)
-    {
-        if (obj == GameState.StartMenu)
-            Hide();
-    }
+
     private void Start()
     {
         _mixer = SoundManager.Instance.Mixer;

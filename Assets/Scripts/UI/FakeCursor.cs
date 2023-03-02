@@ -20,7 +20,7 @@ public class FakeCursor : MonoBehaviour
     [Inject]
     private void Construct(GameData gameData)
     {
-        gameData.GameStateChanged += GameStateChanged;
+       // gameData.GameStateChanged += GameStateChanged;
     }
 
     public void SetWait(CursorType type)
@@ -30,18 +30,14 @@ public class FakeCursor : MonoBehaviour
         _draw.SetActive(type == CursorType.Draw);
     }
 
-    private void GameStateChanged(GameState obj)
+    private void OnEnable()
     {
-        if (obj == GameState.Gameplay)
-        {
-            gameObject.SetActive(true);
-            Cursor.visible = false;
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            Cursor.visible = true;
-        }
+        Cursor.visible = false;
+    }
+
+    private void OnDisable()
+    {
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
