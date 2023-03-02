@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hero2_Idle
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -52,6 +52,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 4280583287014959377, guid: 5c52e4838a53404468b856f7e54d8e2b, type: 3}
     - {fileID: -3572415920944528234, guid: 5c52e4838a53404468b856f7e54d8e2b, type: 3}

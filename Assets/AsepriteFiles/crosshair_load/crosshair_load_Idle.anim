@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: crosshair_load_Idle
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -148,6 +148,7 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 8657617483261847712, guid: 01938e8e1c5e1644598b1effde7e6c12, type: 3}
     - {fileID: 1896048987902512898, guid: 01938e8e1c5e1644598b1effde7e6c12, type: 3}

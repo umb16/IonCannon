@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DustFromShip_Idle
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -55,6 +55,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 603538477802749774, guid: 7709d565f75e48f4b9ff4d906cd5d024, type: 3}
     - {fileID: 5252914800756567871, guid: 7709d565f75e48f4b9ff4d906cd5d024, type: 3}

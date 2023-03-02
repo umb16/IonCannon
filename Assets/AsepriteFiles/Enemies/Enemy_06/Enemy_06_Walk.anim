@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Enemy_06_Walk
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -88,6 +88,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -2947612510021434384, guid: cf547a6eae0a621428fbe1edf7f9c0d9, type: 3}
     - {fileID: -166164354751506768, guid: cf547a6eae0a621428fbe1edf7f9c0d9, type: 3}

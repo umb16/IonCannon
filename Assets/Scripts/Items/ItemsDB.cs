@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class ItemsDB
 {
     private ItemType[] shop ={
-        ItemType.AdditionalDrives,
-        ItemType.ExoskeletonSpeedBooster,
+         ItemType.AdditionalDrives,
+         ItemType.ExoskeletonSpeedBooster,
          ItemType.Battery,
          ItemType.Amplifier,
          ItemType.FocusLens,

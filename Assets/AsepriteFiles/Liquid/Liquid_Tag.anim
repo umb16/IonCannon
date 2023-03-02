@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Liquid_Tag
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -64,6 +64,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -2934121358155701748, guid: 7fc1a822e0cd2714a8182f5c6e2f6d0b, type: 3}
     - {fileID: -384904695013871976, guid: 7fc1a822e0cd2714a8182f5c6e2f6d0b, type: 3}

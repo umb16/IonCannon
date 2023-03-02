@@ -1,78 +1,9 @@
 fileFormatVersion: 2
 guid: cf547a6eae0a621428fbe1edf7f9c0d9
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2947612510021434384
-    second: Enemy_06000
-  - first:
-      213: -166164354751506768
-    second: Enemy_06001
-  - first:
-      213: -2728909585370888948
-    second: Enemy_06002
-  - first:
-      213: -2862325128807708671
-    second: Enemy_06003
-  - first:
-      213: -6042128210799726296
-    second: Enemy_06004
-  - first:
-      213: -8844151040176399431
-    second: Enemy_06005
-  - first:
-      213: 5379776580299786190
-    second: Enemy_06006
-  - first:
-      213: 470878840398405883
-    second: Enemy_06007
-  - first:
-      213: 1362221790338702756
-    second: Enemy_06008
-  - first:
-      213: -5361052592398682811
-    second: Enemy_06009
-  - first:
-      213: -3426744050724384883
-    second: Enemy_06010
-  - first:
-      213: -7162498403492982365
-    second: Enemy_06011
-  - first:
-      213: -8159371973780359447
-    second: Enemy_06012
-  - first:
-      213: -4331457021157762199
-    second: Enemy_06013
-  - first:
-      213: -5780673577135024504
-    second: Enemy_06014
-  - first:
-      213: -5165752750311381077
-    second: Enemy_06015
-  - first:
-      213: 4538571057101123591
-    second: Enemy_06016
-  - first:
-      213: -7268732185450150685
-    second: Enemy_06017
-  - first:
-      213: 1108600064948094995
-    second: Enemy_06018
-  - first:
-      213: -6453436957419582144
-    second: Enemy_06019
-  - first:
-      213: 6610395881584659344
-    second: Enemy_06020
-  - first:
-      213: -4163037924318526822
-    second: Enemy_06021
-  - first:
-      213: -1737298679091846762
-    second: Enemy_06022
+  internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -89,6 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -132,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -139,6 +73,42 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -667,7 +637,6 @@ TextureImporter:
       Enemy_06022: -1737298679091846762
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
