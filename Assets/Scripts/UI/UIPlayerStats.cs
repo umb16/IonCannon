@@ -32,25 +32,25 @@ public class UIPlayerStats : MonoBehaviour
 
     private void AddString(LocalizedString text, StatType statType, string icon, LocalizedString postfix = null, bool modPositive = true)
     {
-        var maxHPText = AddString();
+        var statText = AddString();
 
-        text.StringChanged += x => maxHPText.SetText(x);
+        text.StringChanged += x => statText.SetText(x);
         //maxHPText.SetIconAsync(icon).Forget();
         _player.Where(x => x != null).ForEachAsync(x =>
         {
             var stat = x.StatsCollection.GetStat(statType);
             if (postfix == null)
             {
-                maxHPText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) + GetModText(stat, modPositive));
-                stat.ValueChanged += x => maxHPText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) + " " + GetModText(stat, modPositive));
+                statText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) + GetModText(stat, modPositive));
+                stat.ValueChanged += x => statText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) + " " + GetModText(stat, modPositive));
             }
             else
             {
-                maxHPText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
+                statText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
                     " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + postfix.GetLocalizedString() + "</font> " + GetModText(stat, modPositive));
-                stat.ValueChanged += x => maxHPText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
+                stat.ValueChanged += x => statText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
                     " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + postfix.GetLocalizedString() + "</font> " + GetModText(stat, modPositive));
-                postfix.StringChanged += x => maxHPText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
+                postfix.StringChanged += x => statText.SetValue(stat.Value.ToString("0.#", new CultureInfo("en-US", false)) +
                     " <font=\"GothaProBla SDF\" material=\"GothaProBla Without outline SDF Material\">" + x + "</font> " + GetModText(stat, modPositive));
             }
         });
@@ -64,9 +64,13 @@ public class UIPlayerStats : MonoBehaviour
         {
             modValue = "";
         }
-        else if (stat.Percents > 0 && positive || stat.Percents < 0 && !positive)
+        else if (stat.Percents > 0 && positive)
         {
             modValue = "<color=green>(+" + modValue + "%)</color>";
+        }
+        else if (stat.Percents < 0 && !positive)
+        {
+            modValue = "<color=green>(" + modValue + "%)</color>";
         }
         else
         {
