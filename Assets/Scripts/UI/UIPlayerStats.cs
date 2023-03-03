@@ -64,9 +64,13 @@ public class UIPlayerStats : MonoBehaviour
         {
             modValue = "";
         }
-        else if (stat.Percents > 0 && positive || stat.Percents < 0 && !positive)
+        else if (stat.Percents > 0 && positive)
         {
             modValue = "<color=green>(+" + modValue + "%)</color>";
+        }
+        else if (stat.Percents < 0 && !positive)
+        {
+            modValue = "<color=green>(" + modValue + "%)</color>";
         }
         else
         {
