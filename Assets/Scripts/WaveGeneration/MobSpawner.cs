@@ -26,8 +26,6 @@ public class MobSpawner : MonoBehaviour
         .AddEvents(Waves.SecondBlock_1, Waves.SecondBlock_2)
         .AddEvents(Waves.ThirdBlock_1, Waves.ThirdBlock_2);
 
-
-
     private float _screenRatio;
     private int _screenHeight;
     private float _screenWidth;
@@ -105,7 +103,6 @@ public class MobSpawner : MonoBehaviour
     }
     public Vector3 GetSpawnPointFromDirection(float direction)
     {
-
         Vector3 vector = Vector3.down;
         vector = vector.DiamondRotateXY(direction / 90);
         vector *= _screenDiagonal * .5f;
@@ -114,7 +111,6 @@ public class MobSpawner : MonoBehaviour
     }
     public Vector3 GetRandomSpawnPoint()
     {
-
         Vector3 vector = Vector3.zero;
         if (Random.value < .5f)
         {

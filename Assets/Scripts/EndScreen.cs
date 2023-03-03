@@ -48,7 +48,7 @@ public class EndScreen : MonoBehaviour
         {
             UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), ignoreTimeScale: true).Subscribe(_ =>
             {
-                gameObject.SetActive(true);
+                _gameData.UIStatus = UIStates.GameOver;
                 text.text = "GAME OVER";
                 _timer?.Stop();
             });
@@ -67,6 +67,7 @@ public class EndScreen : MonoBehaviour
     {
         _gameData.Reset();
         _gameData.State = GameState.Restart;
-        UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
+        _gameData.UIStatus = UIStates.StartMenu;
+        //UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
     }
 }

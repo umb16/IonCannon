@@ -62,13 +62,13 @@ public class UIShopLayer : MonoBehaviour
     private async UniTask OnEnable()
     {
         SoundManager.Instance.PlayShopOpen();
-        await UniTask.WaitUntil(()=>_gameData != null);
+        await UniTask.WaitUntil(() => _gameData != null);
         _gameData.State = GameState.InShop;
         _refrashButton.interactable = true;
         if (!Lock)
             Generate();
         else
-           Lock = false;
+            Lock = false;
     }
 
     private void Generate()
@@ -92,20 +92,21 @@ public class UIShopLayer : MonoBehaviour
         {
             //todo: Сообщение об ошибке (звук, мигание)
         }
-            //BaseLayer.Show<MsgBox>().Set("Inventory is full");
-            //MessageBox.Show("Не хватает места");
+        //BaseLayer.Show<MsgBox>().Set("Inventory is full");
+        //MessageBox.Show("Не хватает места");
     }
 
-    public void Close()
+    private void OnDisable()
     {
         OnClosed?.Invoke();
         SoundManager.Instance.PlayShopClose();
         Time.timeScale = 1;
-        new Timer(.1f).SetEnd(() =>
-        {
-            _gameData.UIStatus = UIStates.Play;
-            _gameData.State = GameState.Gameplay;
-        });
+    }
+
+    public void Close()
+    {
+        _gameData.UIStatus = UIStates.Play;
+        _gameData.State = GameState.Gameplay;
     }
 
     public void Refrash()

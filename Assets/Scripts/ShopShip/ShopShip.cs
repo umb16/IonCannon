@@ -40,7 +40,7 @@ public class ShopShip : MonoBehaviour
     private float TimeToArrival => COOLDOWN_TIME - (Time.time - _lastArrival);
     private bool _targetZoneSetted = false;
     private bool _targetZoneShearchStart = false;
-
+    private bool _shopOpen;
     public bool Landed { get; private set; }
 
     [Inject]
@@ -138,6 +138,7 @@ public class ShopShip : MonoBehaviour
         _forceField.SetActive(false);
         _interactionTimer?.Stop();
         Landed = false;
+        _shopOpen = false;
         _targetZoneSetted = false;
         _targetZoneShearchStart = false;
         _zoneIndiacator.gameObject.SetActive(false);
@@ -157,11 +158,12 @@ public class ShopShip : MonoBehaviour
     {
         if (_gameData.State == GameState.Gameplay)
         {
-            if (Landed)
+            if (Landed && !_shopOpen)
             {
                 if (Vector3.Distance(_player.Value.Position, _zoneIndiacator.transform.position) < _zoneRadius)
                 {
                     _gameData.UIStatus = UIStates.Shop;
+                    _shopOpen = true;
                 }
             }
 

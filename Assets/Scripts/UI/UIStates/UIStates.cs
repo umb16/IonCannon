@@ -12,4 +12,5 @@ public enum UIStates
     Lobby = 8,
     Console = 16,
     Play = 32,
+    GameOver = 64,
 }
