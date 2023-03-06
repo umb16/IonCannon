@@ -67,6 +67,7 @@ public class EndScreen : MonoBehaviour
     {
         _gameData.Reset();
         _gameData.State = GameState.Restart;
+        _gameData.State = GameState.StartMenu;
         _gameData.UIStatus = UIStates.StartMenu;
         //UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
     }

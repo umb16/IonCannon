@@ -125,7 +125,7 @@ public class RayDrawer : MonoBehaviour
                     return;
 
                 //Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
-                if (pos.EqualsWithThreshold(_oldPointOfPath, 0.01f))
+                if (pos.EqualsWithThreshold(_oldPointOfPath, 0.1f))
                     return;
                 _cannonPath.positionCount = _currentLineIndex + 1;
                 if (_currentLineIndex > 0)
@@ -159,15 +159,17 @@ public class RayDrawer : MonoBehaviour
             if (cannonPath.Count != 0)
             {
                 if (cannonPath.Count == 1)
+                {
                     cannonPath.Add(cannonPath[0]);
-                if (_currentPathLength < .2f || cannonPath.Count == 2)
+                    _player.Value.AddEnergy(-20);
+                }
+                if (_currentPathLength < 1f || cannonPath.Count == 2)
                     _twoPointWay = true;
                 else
                     _twoPointWay = false;
                 rayIsReady = false;
                 _fakeCursor.SetWait(CursorType.Wait);
                 _player.Value.EnergyRegen(true);
-                //_player.Value.EnergyRegen(false);
             }
             if (_player.Value.RayReverse.Value > 0)
             {
