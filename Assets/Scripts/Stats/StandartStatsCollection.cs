@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandartStatsCollection : IStatsCollection
+public class StandardStatsCollection : IStatsCollection
 {
     Dictionary<StatType, ComplexStat> _stats = new Dictionary<StatType, ComplexStat>();
-    public StandartStatsCollection((StatType type, ComplexStat stat)[] stats)
+    public StandardStatsCollection((StatType type, ComplexStat stat)[] stats)
     {
         foreach (var stat in stats)
         {

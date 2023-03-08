@@ -17,7 +17,7 @@ public interface IMob : IDamagable
     List<IMob> AllMobs { get; }
     MobSpawner Spawner { get; }
     ComplexStat MovementSpeed { get; }
-    StandartStatsCollection StatsCollection { get; }
+    StandardStatsCollection StatsCollection { get; }
     Inventory Inventory { get; }
     bool IsDead { get; }
 

@@ -29,7 +29,7 @@ public class Mob : MonoBehaviour, IMob
     public bool IsDead => HP == null || HP.Value <= 0;
 
     private Dictionary<PerkType, List<IPerk>> _perks = new Dictionary<PerkType, List<IPerk>>();
-    public StandartStatsCollection StatsCollection { get; protected set; }
+    public StandardStatsCollection StatsCollection { get; protected set; }
     public DamageController DamageController { get; private set; }
 
     protected EnemyPerksDB _enemyPerksDB;

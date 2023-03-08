@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StatsCollectionsDB
 {
-    public static StandartStatsCollection StandartPlayer()
+    public static StandardStatsCollection StandartPlayer()
     {
         int hp = 20;
         ComplexStat maxHP = new ComplexStat(hp);
@@ -21,7 +21,7 @@ public static class StatsCollectionsDB
             energy.SetBaseLimit(0.0f, capacity.Value);
             energy.SetBaseValue(Mathf.Min(energy.BaseValue, capacity.Value));
         };
-        return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+        return new StandardStatsCollection(new (StatType type, ComplexStat stat)[]
          {
             (StatType.MovementSpeed, new ComplexStat(6)),
             (StatType.RaySpeed, new ComplexStat(6)),
@@ -41,7 +41,7 @@ public static class StatsCollectionsDB
          });
     }
 
-    public static StandartStatsCollection T_300Player()
+    public static StandardStatsCollection T_300Player()
     {
         int hp = 30;
         ComplexStat maxHP = new ComplexStat(hp);
@@ -58,7 +58,7 @@ public static class StatsCollectionsDB
             energy.SetBaseLimit(0.0f, capacity.Value);
             energy.SetBaseValue(Mathf.Min(energy.BaseValue, capacity.Value));
         };
-        return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+        return new StandardStatsCollection(new (StatType type, ComplexStat stat)[]
          {
             (StatType.MovementSpeed, new ComplexStat(7)),
             (StatType.RaySpeed, new ComplexStat(11)),
@@ -78,12 +78,12 @@ public static class StatsCollectionsDB
          });
     }
 
-    public static StandartStatsCollection StandartEnemy()
+    public static StandardStatsCollection StandartEnemy()
     {
         ComplexStat maxHP = new ComplexStat(3);
         ComplexStat HP = new ComplexStat(maxHP.Value, (x) => Mathf.Min(x, maxHP.Value));
         maxHP.ValueChanged += (x) => HP.SetBaseValue(Mathf.Min(HP.BaseValue, maxHP.Value));
-        return new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+        return new StandardStatsCollection(new (StatType type, ComplexStat stat)[]
          {
             (StatType.MovementSpeed, new ComplexStat(3)),
             (StatType.MaxHP, maxHP),

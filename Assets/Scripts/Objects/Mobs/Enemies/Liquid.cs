@@ -16,7 +16,7 @@ public class Liquid : Mob
     {
         Index = LiquidTest.Instance.Add(this);
         HP = new ComplexStat(10);
-        StatsCollection = new StandartStatsCollection(new (StatType type, ComplexStat stat)[]
+        StatsCollection = new StandardStatsCollection(new (StatType type, ComplexStat stat)[]
         {
             (StatType.HP,new ComplexStat(10)),
         });
