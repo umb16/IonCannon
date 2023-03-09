@@ -12,6 +12,10 @@ public class UILock : MonoBehaviour
     private UIShopLayer _shop;
 
     [Inject]
+    private void Construct(UIShopLayer shop)
+    {
+        _shop = shop;
+    }
     private void Awake()
     {
 

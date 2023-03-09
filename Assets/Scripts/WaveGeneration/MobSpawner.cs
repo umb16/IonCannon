@@ -84,7 +84,7 @@ public class MobSpawner : MonoBehaviour
 
     public async UniTask<IMob> SpawnByName(string key, Vector3 position)
     {
-        if (GameData.State != GameState.Gameplay)
+        if (GameData.Status != GameState.Gameplay)
             return null;
         GameObject go = await PrefabCreator.Instantiate(key, position);
         IMob mob = go.GetComponent<IMob>();
@@ -147,7 +147,7 @@ public class MobSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (GameData.State != GameState.Gameplay || Stop)
+        if (GameData.Status != GameState.Gameplay || Stop)
             return;
 
         foreach (var item in _levelEvents)

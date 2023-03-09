@@ -5,5 +5,7 @@
     Gameplay,
     GameOver,
     InShop,
-    Inventory
+    Inventory,
+    Lobby,
+    Console
 }

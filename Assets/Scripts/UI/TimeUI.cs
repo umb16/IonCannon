@@ -30,7 +30,7 @@ public class TimeUI : MonoBehaviour
 
     private void Update()
     {
-        if (_gameData.State == GameState.Gameplay)
+        if (_gameData.Status == GameState.Gameplay)
         {
             var time = TimeSpan.FromSeconds(_gameData.LastGameTime);
             if (time.Hours > 0)

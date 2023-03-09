@@ -40,8 +40,7 @@ public class SoundsMenuLayer : MonoBehaviour
     public void GoToMainMenu()
     {
         _gameData.Reset();
-        _gameData.State = GameState.Restart;
-        _gameData.State = GameState.StartMenu;
-        _gameData.UIStatus = UIStates.StartMenu;
+        _gameData.SetState(GameState.Restart);
+        _gameData.SetState(GameState.StartMenu);
     }
 }

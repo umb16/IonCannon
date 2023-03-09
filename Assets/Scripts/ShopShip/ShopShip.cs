@@ -156,13 +156,13 @@ public class ShopShip : MonoBehaviour
 
     private void Update()
     {
-        if (_gameData.State == GameState.Gameplay)
+        if (_gameData.Status == GameState.Gameplay)
         {
             if (Landed && !_shopOpen)
             {
                 if (Vector3.Distance(_player.Value.Position, _zoneIndiacator.transform.position) < _zoneRadius)
                 {
-                    _gameData.UIStatus = UIStates.Shop;
+                    _gameData.SetState(GameState.InShop);
                     _shopOpen = true;
                 }
             }

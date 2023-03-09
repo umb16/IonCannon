@@ -63,7 +63,6 @@ public class UIShopLayer : MonoBehaviour
     {
         SoundManager.Instance.PlayShopOpen();
         await UniTask.WaitUntil(() => _gameData != null);
-        _gameData.State = GameState.InShop;
         _refrashButton.interactable = true;
         if (!Lock)
             Generate();
@@ -105,8 +104,7 @@ public class UIShopLayer : MonoBehaviour
 
     public void Close()
     {
-        _gameData.UIStatus = UIStates.Play;
-        _gameData.State = GameState.Gameplay;
+        _gameData.ReturnToPrevStatus();
     }
 
     public void Refrash()

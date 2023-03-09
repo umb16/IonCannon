@@ -26,7 +26,7 @@ public class Player : Mob
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
-    public PlayerType Type => _playerType;
+    public new PlayerType Type => _playerType;
     public float RayDmg => _rayDamage.Value;
 
     public float RayDelay => _rayDelay.Value;
@@ -66,7 +66,7 @@ public class Player : Mob
         player.Value = this;
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
-        //Inventory.Add(itemsDB.EnergyAbsorber());
+        Inventory.Add(itemsDB.CoprocessorPlusPlus());
     }
 
     public void AddEnergy(float value)

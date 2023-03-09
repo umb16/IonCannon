@@ -6,7 +6,6 @@ using Zenject;
 public class Controls : MonoBehaviour
 {
     private GameData _gameData;
-    private UIStates _oldUIStatus;
 
     [Inject]
     private void Construct(GameData gameData)
@@ -18,34 +17,25 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.BackQuote) && Application.isEditor && _gameData.UIStatus != UIStates.Console)
         {
-            _oldUIStatus = _gameData.UIStatus;
-            _gameData.UIStatus = UIStates.Console;
+            _gameData.SetState(GameState.Console);
         }
         if(Input.GetKeyDown(KeyCode.Escape) && Application.isEditor && _gameData.UIStatus == UIStates.Console)
         {
-            _gameData.UIStatus = _oldUIStatus;
+            _gameData.ReturnToPrevStatus();
             return;
         }
         if (_gameData.UIStatus == UIStates.Console)
             return;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q) && !CheatPanelLayer.Enabled)
         {
-            if (_gameData.State == GameState.InShop)
+            if (_gameData.Status == GameState.InShop || _gameData.Status == GameState.Inventory)
             {
-                _gameData.State = GameState.Gameplay;
-                _gameData.UIStatus = UIStates.Play;
+                _gameData.SetState(GameState.Gameplay);
             }
             else
-            if (_gameData.State == GameState.Gameplay)
+            if (_gameData.Status == GameState.Gameplay)
             {
-                _gameData.UIStatus = UIStates.Pause;
-                _gameData.State = GameState.Inventory;
-            }
-            else
-            if (_gameData.State == GameState.Inventory)
-            {
-                _gameData.State = GameState.Gameplay;
-                _gameData.UIStatus = UIStates.Play;
+                _gameData.SetState(GameState.Inventory);
             }
         }
     }

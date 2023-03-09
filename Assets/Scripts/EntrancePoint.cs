@@ -16,11 +16,7 @@ public class EntrancePoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _gameData.UIStatus = UIStates.StartMenu;
-        /*BaseLayer.Show<MainMenu>();
-        BaseLayer.Show<EndScreen>().Hide();
-        if (Application.isEditor)
-            BaseLayer.Show<CheatPanelLayer>().Hide();*/
+        _gameData.SetState(GameState.StartMenu);
         Application.targetFrameRate = 60;
     }
 

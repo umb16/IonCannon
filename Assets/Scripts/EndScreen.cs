@@ -48,7 +48,6 @@ public class EndScreen : MonoBehaviour
         {
             UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), ignoreTimeScale: true).Subscribe(_ =>
             {
-                _gameData.UIStatus = UIStates.GameOver;
                 text.text = "GAME OVER";
                 _timer?.Stop();
             });
@@ -59,16 +58,14 @@ public class EndScreen : MonoBehaviour
     {
         if ((IDamagable)_player.Value == msg.Target)
         {
-            _gameData.State = GameState.GameOver;
+            _gameData.SetState(GameState.GameOver);
         }
     }
 
     public void Restart()
     {
         _gameData.Reset();
-        _gameData.State = GameState.Restart;
-        _gameData.State = GameState.StartMenu;
-        _gameData.UIStatus = UIStates.StartMenu;
-        //UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(.1f), ignoreTimeScale: true).Subscribe(_ => _gameData.StartGame().Forget());
+        _gameData.SetState(GameState.Restart);
+        _gameData.SetState(GameState.StartMenu);
     }
 }

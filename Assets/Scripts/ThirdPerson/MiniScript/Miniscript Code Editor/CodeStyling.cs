@@ -73,7 +73,7 @@ public class CodeStyling : MonoBehaviour {
 			Token tok = null;
 			try {
 				tok = lexer.Dequeue();
-			} catch (LexerException exc) {
+			} catch (LexerException) {
 				tok = new Token();
 				lexer.Position = code.Length;
 			}

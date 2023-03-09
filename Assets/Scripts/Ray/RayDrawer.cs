@@ -100,7 +100,7 @@ public class RayDrawer : MonoBehaviour
     {
         if (_gameData == null)
             return;
-        if (_gameData.State != GameState.Gameplay)
+        if (_gameData.Status != GameState.Gameplay)
             return;
         if (Input.GetMouseButtonDown(0) && rayIsReady)
         {

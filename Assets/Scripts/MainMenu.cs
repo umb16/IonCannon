@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        _gameData.UIStatus = UIStates.Lobby;
+        _gameData.SetState(GameState.Lobby);
         /*new Timer(.1f).SetEnd(() =>
         //_gameData.StartGame().Forget();//);
         //Show<InGameHUDLayer>();
@@ -43,9 +43,9 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled)
-        {
-            StartGame();
-        }*/
+        /* if (Input.GetKeyDown(KeyCode.Space) && !CheatPanelLayer.Enabled)
+         {
+             StartGame();
+         }*/
     }
 }

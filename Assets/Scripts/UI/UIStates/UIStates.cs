@@ -8,9 +8,9 @@ public enum UIStates
 {
     StartMenu = 1,
     Shop = 2,
-    Pause = 4,
+    EscMenu = 4,
     Lobby = 8,
     Console = 16,
-    Play = 32,
+    Gameplay = 32,
     GameOver = 64,
 }
