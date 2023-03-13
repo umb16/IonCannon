@@ -14,18 +14,17 @@ public class TimeUI : MonoBehaviour
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += GameStateChanged;
+        _gameData.OnReset += OnGameReset;
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
-            text.text = "";
+        text.text = "";
     }
 
     private void OnDestroy()
     {
-        _gameData.GameStateChanged -= GameStateChanged;
+        _gameData.OnReset -= OnGameReset;
     }
 
     private void Update()

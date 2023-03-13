@@ -38,7 +38,7 @@ public class MobSpawner : MonoBehaviour
         damageController.Die += OnEnemyDie;
         _player = player;
         GameData = gameData;
-        GameData.GameStateChanged += OnGameStateChanged;
+        GameData.OnReset += OnGameReset;
     }
     private void Start()
     {
@@ -49,25 +49,22 @@ public class MobSpawner : MonoBehaviour
             eventItem.SetSpawner(this);
         }
     }
-    private void OnGameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
+        Mobs.Clear();
+        _levelEvents = _firstLevelFactory.Get();
+        foreach (var eventItem in _levelEvents)
         {
-            Mobs.Clear();
-            _levelEvents = _firstLevelFactory.Get();
-            foreach (var eventItem in _levelEvents)
-            {
-                eventItem.SetSpawner(this);
-            }
-            foreach (var eventItem in _levelEvents)
-            {
-                eventItem.Reset();
-            }
-            foreach (var trn in transform.GetComponentsInChildren<Transform>().Skip(1))
-            {
-                if (trn.GetComponent<IMob>() == null)
-                    Destroy(trn.gameObject);
-            }
+            eventItem.SetSpawner(this);
+        }
+        foreach (var eventItem in _levelEvents)
+        {
+            eventItem.Reset();
+        }
+        foreach (var trn in transform.GetComponentsInChildren<Transform>().Skip(1))
+        {
+            if (trn.GetComponent<IMob>() == null)
+                Destroy(trn.gameObject);
         }
     }
 

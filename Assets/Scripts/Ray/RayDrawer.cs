@@ -9,12 +9,6 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class RayPathPoint
-{
-    public Vector3 point;
-    public float energyRatio;
-}
-
 public class RayDrawer : MonoBehaviour
 {
     [SerializeField] private GameObject _cannonRayPrefab;
@@ -77,19 +71,16 @@ public class RayDrawer : MonoBehaviour
             _rayError = x.StatsCollection.GetStat(StatType.RayError);
         }).Forget();
         _gameData = gameData;
-        _gameData.GameStateChanged += GameStateChanged;
+        _gameData.OnReset += OnGameReset;
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
-        {
-            cannonPath.Clear();
-            rayIsReady = true;
-            _stopTimer?.Stop();
-            DestroyImmediate(_cannonRay);
-            _fakeCursor.SetWait(CursorType.Normal);
-        }
+        cannonPath.Clear();
+        rayIsReady = true;
+        _stopTimer?.Stop();
+        DestroyImmediate(_cannonRay);
+        _fakeCursor.SetWait(CursorType.Normal);
     }
 
     private void Awake()

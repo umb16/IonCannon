@@ -33,7 +33,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
             _timer = new Timer(Delay)
             .SetEnd(() =>
             {
-                _mob.GameData.GameStateChanged -= GameStateChanged;
+                _mob.GameData.OnReset -= OnGameReset;
                 List<IMob> mobs = new List<IMob>(_mob.AllMobs);
                 mobs.Add(_mob.Player);
                 for (int i = 0; i < mobs.Count; i++)
@@ -71,23 +71,19 @@ public class PerkEAfterDeathExplosion : PerkEStandart
     {
         base.Init(mob);
         _mob.DamageController.Die += OnDie;
-        _mob.GameData.GameStateChanged += GameStateChanged;
+        _mob.GameData.OnReset += OnGameReset;
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
-        {
-            _timer?.Stop();
-            _mob.GameData.GameStateChanged -= GameStateChanged;
-            _disabled = true;
-        }
+        _timer?.Stop();
+        _mob.GameData.OnReset -= OnGameReset;
+        _disabled = true;
     }
+
 
     public override void Shutdown()
     {
         base.Shutdown();
-
-        //_enebled = false;
     }
 }

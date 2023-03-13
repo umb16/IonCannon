@@ -66,10 +66,15 @@ public class Mob : MonoBehaviour, IMob
         _rigidbody = GetComponentInChildren<Rigidbody>();
         Inventory.ItemAdded += AddItem;
         Inventory.ItemRemoved += RemoveItem;
-        GameData.GameStateChanged += GameStateChanged;
+        GameData.OnReset += OnGameReset;
         await UniTask.WaitUntil(() => player.Value != null);
         Player = player;
         _standartLayer = gameObject.layer;
+    }
+
+    private void OnGameReset()
+    {
+        Destroy();
     }
 
     public void SetInvulnerability(bool value)
@@ -84,12 +89,6 @@ public class Mob : MonoBehaviour, IMob
             _spriteRenderer.enabled = true;
         }
         _invulnerability = value;
-    }
-
-    private void GameStateChanged(GameState state)
-    {
-        if (state == GameState.Restart)
-            Destroy();
     }
 
     public void SetAnimVariable(string name, bool value)
@@ -319,7 +318,7 @@ public class Mob : MonoBehaviour, IMob
     {
         if (!IsDead)
             ShutdownPerks();
-        GameData.GameStateChanged -= GameStateChanged;
+        GameData.OnReset -= OnGameReset;
     }
 
     public void AddForce(Vector2 force, ForceMode mode)

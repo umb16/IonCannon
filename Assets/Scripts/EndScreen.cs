@@ -65,7 +65,6 @@ public class EndScreen : MonoBehaviour
     public void Restart()
     {
         _gameData.Reset();
-        _gameData.SetState(GameState.Restart);
         _gameData.SetState(GameState.StartMenu);
     }
 }

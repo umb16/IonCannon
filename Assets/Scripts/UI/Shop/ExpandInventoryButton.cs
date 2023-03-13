@@ -29,6 +29,7 @@ public class ExpandInventoryButton : MonoBehaviour
         });
         _button.onClick.AddListener(OnExpandButtonClick);
         gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += () => _cost = 100;
         _gameData = gameData;
     }
 
@@ -41,10 +42,6 @@ public class ExpandInventoryButton : MonoBehaviour
         }
         else
             gameObject.SetActive(false);
-        if (state == GameState.Restart)
-        {
-            _cost = 100;
-        }
     }
 
     private void CheckButtonStatus(ComplexStat gold)

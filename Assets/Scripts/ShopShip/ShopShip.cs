@@ -55,19 +55,16 @@ public class ShopShip : MonoBehaviour
         _player = player;
         _lifeSupportTower = lifeSupportTower;
         _shopIndicator = await cooldownsManager.AddIndiacator(Addresses.Ico_Ship);
-        gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += OnGameReset;
 
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
-        {
-            _countdownTimer?.ForceEnd();
-            _landingTimer?.ForceEnd();
-            DisableLandingState();
-            transform.position = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
-        }
+        _countdownTimer?.ForceEnd();
+        _landingTimer?.ForceEnd();
+        DisableLandingState();
+        transform.position = _newPosition + Vector3.up * 100 - Vector3.forward * 50;
     }
 
     public void SetLastArrival(float shift)

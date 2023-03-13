@@ -29,7 +29,7 @@ public class ExpandZoneButton : MonoBehaviour
         _player = player;
         player.Where(x => x != null).ForEachAsync(x => x.Gold.ValueChanged += CheckButtonStatus);
         _button.onClick.AddListener(OnExpandButtonClick);
-        gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += OnGameReset;
     }
 
     private void OnEnable()
@@ -39,12 +39,9 @@ public class ExpandZoneButton : MonoBehaviour
             CheckButtonStatus(_player.Value.Gold);
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
-        {
-            _cost = 100;
-        }
+        _cost = 100;
     }
 
     private void CheckButtonStatus(ComplexStat gold)

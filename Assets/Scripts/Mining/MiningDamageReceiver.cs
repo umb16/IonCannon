@@ -16,15 +16,6 @@ public class MiningDamageReceiver : MonoBehaviour
     private void Construct(GameData gameData)
     {
         gameData.GameStarted += Generate;
-       // gameData.GameStateChanged += GameStateChanged;
-    }
-
-    private void GameStateChanged(GameState state)
-    {
-        if (state == GameState.Restart)
-        {
-            Generate();
-        }
     }
 
     private void Generate()

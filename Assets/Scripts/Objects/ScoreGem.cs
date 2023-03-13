@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using Zenject;
 
 public class ScoreGem : MonoBehaviour
@@ -19,19 +21,17 @@ public class ScoreGem : MonoBehaviour
     {
         _player = player;
         _gameData = gameData;
-        gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += OnGameReset;
     }
 
-    private void GameStateChanged(GameState obj)
+    private void OnGameReset()
     {
-        if (obj == GameState.Restart)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
+
     private void OnDestroy()
     {
-        _gameData.GameStateChanged-= GameStateChanged;
+        _gameData.OnReset -= OnGameReset;
     }
     private void Update()
     {

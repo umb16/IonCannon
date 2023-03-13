@@ -28,6 +28,7 @@ public class WarningSound : MonoBehaviour
             _oldSupportValue = _lifeSupport.Value;
         });
         gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += () => _mixer.SetFloat("Lowpass", _lowpassMax);
     }
 
     private void GameStateChanged(GameState state)
@@ -35,10 +36,6 @@ public class WarningSound : MonoBehaviour
         if (state == GameState.GameOver)
         {
             _mixer.SetFloat("Lowpass", _lowpassSoftMin);
-        }
-        if (state == GameState.Restart)
-        {
-            _mixer.SetFloat("Lowpass", _lowpassMax);
         }
     }
 
@@ -48,7 +45,7 @@ public class WarningSound : MonoBehaviour
         _timer = new Timer(.5f)
             .SetUpdate(x =>
             {
-                _currentLowpass = Mathf.Lerp(_lowpassMax-10000, _lowpassSoftMin, (1.0f - Mathf.Pow((1.0f - x), 2 * 1.4f)));
+                _currentLowpass = Mathf.Lerp(_lowpassMax - 10000, _lowpassSoftMin, (1.0f - Mathf.Pow((1.0f - x), 2 * 1.4f)));
                 _mixer.SetFloat("Lowpass", _currentLowpass);
             });
     }

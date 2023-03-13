@@ -16,7 +16,7 @@ public class UIWave : MonoBehaviour
     private void Construct(GameData gameData)
     {
         _gameData = gameData;
-        _gameData.GameStateChanged += GameStateChanged;
+        _gameData.OnReset += ()=> _text.text = "";
         _gameData.WaveChanged += WaveChanged;
         _waveLocal.StringChanged += UpdateText;
     }
@@ -27,11 +27,6 @@ public class UIWave : MonoBehaviour
         UpdateText(_waveLocal.GetLocalizedString());
     }
 
-    private void GameStateChanged(GameState state)
-    {
-        if (state == GameState.Restart)
-            _text.text = "";
-    }
     private void UpdateText(string text)
     {
         _text.text = text + ": " + (_wave+1);

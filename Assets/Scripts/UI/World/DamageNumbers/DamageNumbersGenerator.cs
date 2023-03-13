@@ -15,17 +15,14 @@ public class DamageNumbersGenerator : MonoBehaviour
     {
         _damageController = damageController;
         _damageController.Damage += CreateNumber;
-        gameData.GameStateChanged += GameStateChanged;
+        gameData.OnReset += OnGameReset;
     }
 
-    private void GameStateChanged(GameState state)
+    private void OnGameReset()
     {
-        if (state == GameState.Restart)
+        foreach (var trn in GetComponentsInChildren<Transform>().Skip(1))
         {
-            foreach (var trn in GetComponentsInChildren<Transform>().Skip(1))
-            {
-                Destroy(trn.gameObject);
-            }
+            Destroy(trn.gameObject);
         }
     }
 
@@ -39,7 +36,7 @@ public class DamageNumbersGenerator : MonoBehaviour
             //    return;
             var number = Instantiate(numberPrefab);
             number.transform.SetParent(transform);
-            number.transform.position = target.Position - Vector3.up*.1f;
+            number.transform.position = target.Position - Vector3.up * .1f;
 
             if (msg.DamageSource == DamageSources.Heal)
                 number.SetText("<color=green>" + (-msg.Damage).ToString("0.#", new CultureInfo("en-US", false)) + "</color>");

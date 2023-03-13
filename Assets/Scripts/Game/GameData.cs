@@ -10,6 +10,7 @@ public class GameData
     public event Action<GameState> GameStateChanged;
     public event Action<int> WaveChanged;
     public event Action GameStarted;
+    public event Action OnReset;
     public UIStates UIStatus { get; private set; }
     public int Wave = 0;
     public float StartGameTime;
@@ -27,8 +28,6 @@ public class GameData
         {
             case GameState.StartMenu:
                 UIStatus = UIStates.StartMenu;
-                break;
-            case GameState.Restart:
                 break;
             case GameState.Gameplay:
                 UIStatus = UIStates.Gameplay;
@@ -105,6 +104,7 @@ public class GameData
     {
         Wave = 0;
         WaveChanged?.Invoke(Wave);
+        OnReset?.Invoke();
         //GameStateChanged = null;
     }
 }
