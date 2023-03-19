@@ -115,11 +115,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.Capacity)
-                },
-                    PerkType.RayPathLenght)
+                new SimplePerk(PerkType.RayPathLenght,
+                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.Capacity))
             },
         };
     }
@@ -133,11 +130,8 @@ public class ItemsDB
             Icon = Addresses.Ico_AtomicBattery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(2, StatModificatorType.Additive, StatType.EnergyRegen)
-                },
-                    PerkType.EnergyRegen)
+                new SimplePerk(PerkType.EnergyRegen,
+                    new StatModificator(2, StatModificatorType.Additive, StatType.EnergyRegen))
             },
         };
     }
@@ -151,11 +145,8 @@ public class ItemsDB
             Icon = Addresses.Ico_AtomicBattery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(4, StatModificatorType.Additive, StatType.EnergyRegen)
-                },
-                    PerkType.EnergyRegen)
+                new SimplePerk(PerkType.EnergyRegen,
+                    new StatModificator(4, StatModificatorType.Additive, StatType.EnergyRegen))
             },
         };
     }
@@ -169,11 +160,8 @@ public class ItemsDB
             Icon = Addresses.Ico_AtomicBattery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(8, StatModificatorType.Additive, StatType.EnergyRegen)
-                },
-                    PerkType.EnergyRegen)
+                new SimplePerk(PerkType.EnergyRegen,
+                    new StatModificator(8, StatModificatorType.Additive, StatType.EnergyRegen))
             },
         };
     }
@@ -187,11 +175,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.Capacity)
-                },
-                    PerkType.RayPathLenght)
+                new SimplePerk(PerkType.RayPathLenght,
+                    new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.Capacity))
             },
         };
     }
@@ -205,11 +190,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Battery,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Capacity)
-                },
-                    PerkType.RayPathLenght)
+                new SimplePerk(PerkType.RayPathLenght,
+                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Capacity))
             },
         };
     }
@@ -222,11 +204,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Servo,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RaySpeed)
-                },
-                PerkType.RaySpeed)
+                new SimplePerk(PerkType.RaySpeed,
+                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RaySpeed))
             }
         };
     }
@@ -239,11 +218,8 @@ public class ItemsDB
             Icon = Addresses.Ico_SpeedBoost,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed)
-                },
-                PerkType.Speed)
+                new SimplePerk(PerkType.Speed,
+                    new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed))
             }
         };
     }
@@ -256,12 +232,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.2f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(0.2f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                PerkType.Amplifier)
+                    new StatModificator(0.2f, StatModificatorType.Multiplicative, StatType.RayDamage))
             }
         };
     }
@@ -275,12 +248,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.3f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(0.4f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                PerkType.Amplifier)
+                    new StatModificator(0.4f, StatModificatorType.Multiplicative, StatType.RayDamage))
             }
         };
     }
@@ -294,12 +264,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Amplifier,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                PerkType.Amplifier)
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage))
             }
         };
     }
@@ -313,12 +280,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Lens,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.FocusLens,
                     new StatModificator(-0.9f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
-                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                PerkType.FocusLens)
+                    new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.RayDamage))
             }
         };
     }
@@ -440,12 +404,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.RayDelay,
                     new StatModificator(-.3f, StatModificatorType.Multiplicative, StatType.RayDelay),
-                    new StatModificator(-1f, StatModificatorType.Additive, StatType.RayError),
-                },
-                    PerkType.RayDelay)
+                    new StatModificator(-1f, StatModificatorType.Additive, StatType.RayError))
             },
         };
     }
@@ -459,12 +420,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.RayDelay),
-                    new StatModificator(-2f, StatModificatorType.Additive, StatType.RayError),
-                },
-                    PerkType.RayDelay)
+                new SimplePerk(PerkType.RayDelay, 
+                    new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.RayDelay), 
+                    new StatModificator(-2f, StatModificatorType.Additive, StatType.RayError))
             },
         };
     }
@@ -479,12 +437,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Chip,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(-1, StatModificatorType.Multiplicative, StatType.RayDelay),
-                    new StatModificator(-4f, StatModificatorType.Additive, StatType.RayError),
-                },
-                    PerkType.RayDelay)
+                new SimplePerk(PerkType.RayDelay, 
+                    new StatModificator(-1, StatModificatorType.Multiplicative, StatType.RayDelay), 
+                    new StatModificator(-4f, StatModificatorType.Additive, StatType.RayError))
             },
         };
     }
@@ -499,12 +454,9 @@ public class ItemsDB
             Icon = Addresses.Ico_DivergingLens,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.DivergingLens,
                     new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
-                    new StatModificator(-0.5f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                PerkType.DivergingLens)
+                    new StatModificator(-0.5f, StatModificatorType.Multiplicative, StatType.RayDamage))
             }
         };
     }
@@ -518,12 +470,9 @@ public class ItemsDB
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                    PerkType.PowerController)
+                new SimplePerk(PerkType.PowerController, 
+                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.Capacity), 
+                    new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage))
             },
         };
     }
@@ -538,12 +487,9 @@ public class ItemsDB
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                    PerkType.PowerController)
+                new SimplePerk(PerkType.PowerController, 
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.Capacity), 
+                    new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamage))
             },
         };
     }
@@ -558,12 +504,9 @@ public class ItemsDB
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity),
-                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayDamage)
-                },
-                    PerkType.PowerController)
+                new SimplePerk(PerkType.PowerController, 
+                    new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity), 
+                new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayDamage))
             },
         };
     }
@@ -578,11 +521,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Lenses,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)
-                },
-                PerkType.LensSystem)
+                new SimplePerk(PerkType.LensSystem,
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))
             }
         };
     }
@@ -598,11 +538,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Lenses,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)
-                },
-                PerkType.LensSystem)
+                new SimplePerk(PerkType.LensSystem, 
+                    new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))
             }
         };
     }
@@ -616,11 +553,8 @@ public class ItemsDB
             Icon = Addresses.Ico_Magnet,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius)
-                },
-                PerkType.MagneticManipulator)
+                new SimplePerk(PerkType.MagneticManipulator,
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius))
             }
         };
     }
@@ -633,12 +567,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Reverse,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
+                new SimplePerk(PerkType.RayReverse,
                     new StatModificator(1f, StatModificatorType.Additive, StatType.RayReverse),
-                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed)
-                },
-                PerkType.RayReverse)
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed))
             }
         };
     }
@@ -652,12 +583,9 @@ public class ItemsDB
             Icon = Addresses.Ico_Servo,
             Perks = new IPerk[]
             {
-                new SimplePerk(new[]
-                {
-                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed),
-                    new StatModificator(3, StatModificatorType.Additive, StatType.RayError),
-                },
-                PerkType.RaySpeed)
+                new SimplePerk(PerkType.RaySpeed, 
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed), 
+                    new StatModificator(3, StatModificatorType.Additive, StatType.RayError))
             }
         };
     }

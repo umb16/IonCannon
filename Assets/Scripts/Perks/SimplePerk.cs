@@ -12,7 +12,7 @@ public class SimplePerk : WithId, IPerk
     private IStatsCollection _collection;
     private StatModificator[] _modificators;
 
-    public SimplePerk(StatModificator[] statModificators, PerkType type)
+    public SimplePerk(PerkType type, params StatModificator[] statModificators)
     {
         _modificators = statModificators;
         Type = type;
