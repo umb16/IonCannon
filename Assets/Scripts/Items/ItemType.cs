@@ -41,5 +41,23 @@
     AtomicBatteryPlus,
     AtomicBatteryPlusPlus,
     AtomicBattery,
-    EnergyAbsorber
+    EnergyAbsorber,
+
+    Accelerator,
+    ArmoredPlates,
+    ExoskeletonModule,
+    MagneticCore,
+    OxygenCylinders,
+    CoprocessorTwo,
+    FreonCylinders,
+    AdditionalArmorContour,
+    StiffeningRibs,
+    MovableMechanisms,
+    ReinforcedMagneticCore,
+    OxygenSprayer,
+    AnalyzingModule,
+    FreonSprayer,
+    PoisonGasCylinders,
+    OxygenSupplyModule
+
 }

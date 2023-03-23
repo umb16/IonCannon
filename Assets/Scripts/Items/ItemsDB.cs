@@ -101,10 +101,267 @@ public class ItemsDB
                 return AtomicBatteryPlusPlus();
             case ItemType.EnergyAbsorber:
                 return EnergyAbsorber();
+            case ItemType.Accelerator:
+                return Accelerator();
+            case ItemType.ArmoredPlates:
+                return ArmoredPlates();
+            case ItemType.ExoskeletonModule:
+                return ExoskeletonModule();
+            case ItemType.MagneticCore:
+                return MagneticCore();
+            case ItemType.OxygenCylinders:
+                return OxygenCylinders();
+            case ItemType.CoprocessorTwo:
+                return CoprocessorTwo();
+            case ItemType.FreonCylinders:
+                return FreonCylinders();
+            case ItemType.AdditionalArmorContour:
+                return AdditionalArmorContour();
+            case ItemType.StiffeningRibs:
+                return StiffeningRibs();
+            case ItemType.MovableMechanisms:
+                return MovableMechanisms();
+            case ItemType.ReinforcedMagneticCore:
+                return ReinforcedMagneticCore();
+            case ItemType.OxygenSprayer:
+                return OxygenSprayer();
+            case ItemType.AnalyzingModule:
+                return AnalyzingModule();
+            case ItemType.FreonSprayer:
+                return FreonSprayer();
+            case ItemType.OxygenSupplyModule:
+                return OxygenSupplyModule();
+            case ItemType.PoisonGasCylinders:
+                return PoisonGasCylinders();
             case ItemType.None:
             default:
                 return Battery();
         }
+    }
+    public Item Accelerator()
+    {
+        return new Item(LocaleKeys.Main.i_Accelerator)
+        {
+            Type = ItemType.Accelerator,
+            Cost = 40,
+            Icon = Addresses.Ico_Accelerator,
+            Perks = new IPerk[] 
+            {
+                new SimplePerk(PerkType.Speed,
+                    new StatModificator(.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed))//+10% скорости
+            }
+        };
+    }
+    public Item ArmoredPlates()
+    {
+        return new Item(LocaleKeys.Main.i_ArmoredPlates)
+        {
+            Type = ItemType.ArmoredPlates,
+            Cost = 40,
+            Icon = Addresses.Ico_ArmoredPlates,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerMaxHP,
+                    new StatModificator(3f, StatModificatorType.Additive, StatType.MaxHP))//+3 к макс хп.
+            }
+        };
+    }
+    public Item ExoskeletonModule()
+    {
+        return new Item(LocaleKeys.Main.i_ExoskeletonModule)
+        {
+            Type = ItemType.ExoskeletonModule,
+            Cost = 40,
+            Icon = Addresses.Ico_ExoskeletonModule,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.Speed,
+                    new StatModificator(.5f, StatModificatorType.Additive, StatType.MovementSpeed))//+.5 скорости
+            }
+        };
+    }
+    public Item MagneticCore()
+    {
+        return new Item(LocaleKeys.Main.i_MagneticCore)
+        {
+            Type = ItemType.MagneticCore,
+            Cost = 40,
+            Icon = Addresses.Ico_MagneticCore,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.MagneticManipulator,
+                    new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius))//+100% радиус подбора
+            }
+        };
+    }
+    public Item OxygenCylinders()
+    {
+        return new Item(LocaleKeys.Main.i_OxygenCylinders)
+        {
+            Type = ItemType.OxygenCylinders,
+            Cost = 40,
+            Icon = Addresses.Ico_OxygenCylinders,
+            Perks = new IPerk[] 
+            {
+                new SimplePerk(PerkType.PlayerLifeSupport,
+                    new StatModificator(2f, StatModificatorType.Additive, StatType.LifeSupport))//+2 c лайвсапорта
+            }
+        };
+    }
+    public Item CoprocessorTwo()
+    {
+        return new Item(LocaleKeys.Main.i_CoprocessorTwo)
+        {
+            Type = ItemType.CoprocessorTwo,
+            Cost = 40,
+            Icon = Addresses.Ico_CoprocessorTwo,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerDodge,
+                    new StatModificator(.1f, StatModificatorType.Additive, StatType.Dodge))//+10% а шкансу клониться от урона
+            }
+        };
+    }
+    public Item FreonCylinders()
+    {
+        return new Item(LocaleKeys.Main.i_FreonCylinders)
+        {
+            Type = ItemType.FreonCylinders,
+            Cost = 40,
+            Icon = Addresses.Ico_FreonCylinders,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerFireResist,
+                    new StatModificator(2f, StatModificatorType.Additive, StatType.FireResist))//+2 защиты от огня
+            }
+        };          
+    }
+    public Item AdditionalArmorContour()
+    {
+        return new Item(LocaleKeys.Main.i_AdditionalArmorContour)
+        {
+            Type = ItemType.AdditionalArmorContour,
+            Cost = 40,
+            Icon = Addresses.Ico_AdditionalArmorContour,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerMaxHP,
+                    new StatModificator(5f, StatModificatorType.Additive, StatType.MaxHP))//+5 к макс хп
+            }
+        };
+    }
+    public Item StiffeningRibs()
+    {
+        return new Item(LocaleKeys.Main.i_StiffeningRibs)
+        {
+            Type = ItemType.StiffeningRibs,
+            Cost = 40,
+            Icon = Addresses.Ico_StiffeningRibs,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerStunResist,
+                    new StatModificator(.5f, StatModificatorType.Additive, StatType.StunResist))//+50% защиты от оглушения
+            }
+        };
+    }
+    public Item MovableMechanisms()
+    {
+        return new Item(LocaleKeys.Main.i_MovableMechanisms)
+        {
+            Type = ItemType.MovableMechanisms,
+            Cost = 40,
+            Icon = Addresses.Ico_MovableMechanisms,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.Speed,
+                    new StatModificator(.8f, StatModificatorType.Additive, StatType.MovementSpeed))//+.8 скорости
+            }
+        };
+    }
+    public Item ReinforcedMagneticCore()
+    {
+        return new Item(LocaleKeys.Main.i_ReinforcedMagneticCore)
+        {
+            Type = ItemType.ReinforcedMagneticCore,
+            Cost = 40,
+            Icon = Addresses.Ico_ReinforcedMagneticCore,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.MagneticManipulator,
+                    new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.PickupRadius))//+150% радиус подбора
+            }
+        };
+    }
+    public Item OxygenSprayer()
+    {
+        return new Item(LocaleKeys.Main.i_OxygenSprayer)
+        {
+            Type = ItemType.OxygenSprayer,
+            Cost = 40,
+            Icon = Addresses.Ico_OxygenSprayer,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerSlowdownResist,
+                    new StatModificator(.5f, StatModificatorType.Additive, StatType.SlowdownResist))//+50% защиты от замедления
+            }
+        };
+    }
+    public Item AnalyzingModule()
+    {
+        return new Item(LocaleKeys.Main.i_AnalyzingModule)
+        {
+            Type = ItemType.AnalyzingModule,
+            Cost = 40,
+            Icon = Addresses.Ico_AnalyzingModule,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerDodge,
+                    new StatModificator(.2f, StatModificatorType.Additive, StatType.Dodge))//+20% а шкансу клониться от урона
+            }
+        };
+    }
+    public Item FreonSprayer()
+    {
+        return new Item(LocaleKeys.Main.i_FreonSprayer)
+        {
+            Type = ItemType.FreonSprayer,
+            Cost = 40,
+            Icon = Addresses.Ico_FreonSprayer,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerFireResist,
+                    new StatModificator(.3f, StatModificatorType.Additive, StatType.FireResistPercent)),//+30% защиты от огня
+                new SimplePerk(PerkType.PlayerElectricityResist,
+                    new StatModificator(.3f, StatModificatorType.Additive, StatType.ElectricityResist))//+30% уворота от электричества
+            }
+        };
+    }
+    public Item OxygenSupplyModule()
+    {
+        return new Item(LocaleKeys.Main.i_OxygenSupplyModule)
+        {
+            Type = ItemType.OxygenSupplyModule,
+            Cost = 40,
+            Icon = Addresses.Ico_OxygenSupplyModule,
+            Perks = new IPerk[]
+            {
+                new SimplePerk(PerkType.PlayerLifeSupport,
+                    new StatModificator(4f, StatModificatorType.Additive, StatType.LifeSupport))//+2 c лайвсапорта
+            }
+        };
+    }
+    public Item PoisonGasCylinders()
+    {
+        return new Item(LocaleKeys.Main.i_PoisonGasCylinders)
+        {
+            Type = ItemType.PoisonGasCylinders,
+            Cost = 40,
+            Icon = Addresses.Ico_PoisonGasCylinders,
+            Perks = new IPerk[]
+            {
+
+            }
+        };
     }
     public Item Battery()
     {

@@ -31,4 +31,12 @@ public enum PerkType
     EAgressor = 27,
     EnergyRegen = 28,
     EnergyAbsorber = 29,
+
+    PlayerMaxHP = 30,
+    PlayerLifeSupport = 31,
+    PlayerDodge = 32,
+    PlayerFireResist = 33,
+    PlayerStunResist = 34,
+    PlayerSlowdownResist = 35,
+    PlayerElectricityResist = 36,
 }

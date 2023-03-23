@@ -21,4 +21,11 @@ public enum StatType
     RayReverse = 15,
     Capacity = 16,
     EnergyRegen = 17,
+
+    Dodge = 18,
+    FireResist = 19,
+    StunResist = 20,
+    SlowdownResist = 21,
+    FireResistPercent = 22,
+    ElectricityResist = 23,
 }

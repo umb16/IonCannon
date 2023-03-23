@@ -75,7 +75,24 @@ public static partial class LocaleKeys
 			public static LocalizedString @EnergyRegen => new LocalizedString() { TableReference = NAME, TableEntryReference = "EnergyRegen" };
 			public static LocalizedString @Capacity => new LocalizedString() { TableReference = NAME, TableEntryReference = "Capacity" };
 			public static LocalizedString @i_EnergyAbsorber => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_EnergyAbsorber" };
+		    public static LocalizedString @i_Accelerator => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_Accelerator" };
+		    public static LocalizedString @i_ArmoredPlates => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_ArmoredPlates" };
+		    public static LocalizedString @i_ExoskeletonModule => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_ExoskeletonModule" };
+		    public static LocalizedString @i_MagneticCore => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_MagneticCore" };
+	     	public static LocalizedString @i_OxygenCylinders => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_OxygenCylinders" };
+	    	public static LocalizedString @i_CoprocessorTwo => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_CoprocessorTwo" };
+	    	public static LocalizedString @i_FreonCylinders => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_FreonCylinders" };
+		    public static LocalizedString @i_AdditionalArmorContour => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_AdditionalArmorContour" };
+		    public static LocalizedString @i_StiffeningRibs => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_StiffeningRibs" };
+		    public static LocalizedString @i_MovableMechanisms => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_MovableMechanisms" };
+		    public static LocalizedString @i_ReinforcedMagneticCore => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_ReinforcedMagneticCore" };
+		    public static LocalizedString @i_OxygenSprayer => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_OxygenSprayer" };
+		    public static LocalizedString @i_AnalyzingModule => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_AnalyzingModule" };
+		    public static LocalizedString @i_FreonSprayer => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_FreonSprayer" };
+		    public static LocalizedString @i_PoisonGasCylinders => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_PoisonGasCylinders" };
+		    public static LocalizedString @i_OxygenSupplyModule => new LocalizedString() { TableReference = NAME, TableEntryReference = "i_OxygenSupplyModule" };
 
-    }
+
+	}
 }
 
