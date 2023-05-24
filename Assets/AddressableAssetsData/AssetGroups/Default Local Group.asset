@@ -258,6 +258,551 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e0e01a960bbc5049a78de9f8c0016f4
+    m_Address: Ico_Accelerator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 958a31b7743dc7444a402ce9b02ac434
+    m_Address: Ico_ArmoredPlates
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a78a8e0c4284d154384c6aec5d5d5536
+    m_Address: Ico_ExoskeletonModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c1b0645a5970a747878903c83566b08
+    m_Address: Ico_MagneticCore
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe4a060378f92bc4482d22386d22dcd4
+    m_Address: Ico_CoprocessorTwo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a3e83ca7952f2f4bae6d6d975e251a5
+    m_Address: Ico_OxygenCylinders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64baa168986b96642871079a9f0e8650
+    m_Address: Ico_FreonCylinders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1568d9fa48f4f34bae83bcca1d42f67
+    m_Address: Ico_DeliveryDevice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3db1e3f412470bc4da6de559c60f796e
+    m_Address: Ico_AtomicCell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff3cbb39f994fb24ba6f680d2a0d46c7
+    m_Address: Ico_Accumulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da7ef4d693bdc564492aa2fbd7adf625
+    m_Address: Ico_AdditionalDriveUnits
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe370bbb4cbbfd441bd7ce4533722453
+    m_Address: Ico_AdditionalLens
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e47d066507bd8dd41b35253cad8f7069
+    m_Address: Ico_AdditionalArmorContour
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c66366fa9b64b4f44958619f30f2cab9
+    m_Address: Ico_StiffeningRibs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e3c6e728f5556146adfeb546dc202e8
+    m_Address: Ico_MovableMechanisms
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c00fa31430878464ca7a6445f8ec2038
+    m_Address: Ico_ReinforcedMagneticCore
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e0bbcb543d4414db6f83e3b1fc19b0
+    m_Address: Ico_OxygenSprayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 849d6d121ab9e0f4aba8ebcc395af138
+    m_Address: Ico_AnalyzingModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdb5a5754edf18c4faec2f320963b5de
+    m_Address: Ico_FreonSprayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c462ff42d7b62684680679597970711f
+    m_Address: Ico_PoisonGasCylinders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d23d32ac651b5dc46bc9f6168ad950f4
+    m_Address: Ico_OxygenSupplyModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2a20370e32735945896e55295620d57
+    m_Address: Ico_ProcessingSlagDropping
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7e5225c4cd8f5c409bcc398abd934f1
+    m_Address: Ico_HighSpeedDriveUnits
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 477a993ee4bb70e49ad7fae5bfb8452f
+    m_Address: Ico_DeliveryOfExplosives
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1729b309afb2afc4f99769641c086a0d
+    m_Address: Ico_IonizingPlant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c3636cb1a500e54a8e42c8364951fb0
+    m_Address: Ico_StableAtomicCell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ece7b4192e5126948a698311114234db
+    m_Address: Ico_AccumulatorBattery
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd2332a50cc0fca4a9d8869f6a4a9ac1
+    m_Address: Ico_PowerControllerTwo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d272279f7af94424788efe1a487ef5e5
+    m_Address: Ico_DiffusionObjective
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f524487fc5ad04a4b8204f09b796aeeb
+    m_Address: Ico_ErrorCalculator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a7a9fa915e030b4d9cf0e9f972152bc
+    m_Address: Ico_FocusingObjective
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: feb4a7629c3c7354d92ec9a53a86cb60
+    m_Address: Ico_PlasmaSupercharger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 027a4195f976a1446847b7963baf5517
+    m_Address: Ico_DistortionMirror
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca5be511aaf4d554bac9ce1705d27559
+    m_Address: Ico_PurpleCovering
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9ff4e96d6cafd14291df53a8e8d5aaa
+    m_Address: Ico_ExoskeletonProtection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d87821debed80a4e8acd80709d0565a
+    m_Address: Ico_ReinforcedCarcass
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09664349e950a0d4fb05abbd9e8a60cc
+    m_Address: Ico_ExoskeletonBooster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b27644dd0b7606d498a5d7a6cfc1c6cc
+    m_Address: Ico_MagneticManipulatorTwo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3753accf0dbf1234ab794a55a2af35bd
+    m_Address: Ico_ElectromagneticFieldCore
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 767deb3c0b8ace14e92d8ddda44a7d25
+    m_Address: Ico_StarDust
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35da121df6f2cb64eab3c639aacb05cb
+    m_Address: Ico_StarShard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c818882488c6794782fad0c77d2e52e
+    m_Address: Ico_OxidationSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8af2e456abb81f94b903b76d909b05a8
+    m_Address: Ico_FireSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cee1ff073235c704a9c1222d189e8baf
+    m_Address: Ico_DielectricGasSource
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98f630e334c6b0044a8f585569a5144a
+    m_Address: Ico_ConcentratedPoisonGasCylinders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2655489210e6148488e9000c48bce8c5
+    m_Address: Ico_OrganicDecompositionDevice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffbdfa73cad531146abe55c14d77d359
+    m_Address: Ico_OxygenSaturationModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 474184cf1732fec42aca18524e0a7202
+    m_Address: Ico_TreatmentSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2638f9688d675bb48a53c9f11da9f748
+    m_Address: Ico_Echo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef42fa6554d2f1847a7740b791d96120
+    m_Address: Ico_HandmadeFlamethrower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8736da0554baae4c93c1df443568264
+    m_Address: Ico_WhiteShroud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 127d0238f54ed6d41871d5dfeff2370f
+    m_Address: Ico_IceSoul
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ae991794f10c4d46a97c5c449612782
+    m_Address: Ico_PoisonousSubstancesDropping
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77305531cd19bdc4ab168b165b00f65e
+    m_Address: Ico_NonConformingMaterialsDropping
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1bb3592618932e4ba5b3df01eecba4e
+    m_Address: Ico_ExplosiveMixtureDropping
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 775b43b0e94e88e41a813786db565eee
+    m_Address: Ico_i_BakedApplesDelivery
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf89dff5274268a4c95ebbedb8897de0
+    m_Address: Ico_RadiationContour
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df3600c005c3d0245b65f770195aa6a3
+    m_Address: Ico_IsotopeReactor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93cc25f54f79c8c4cbef7487c4bb3768
+    m_Address: Ico_SmallNuclearReactor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35b14dbef72b70d49901146ac9cfaa18
+    m_Address: Ico_AtmosphericIonizer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d05f14a87d6fd84aa10f0efcc64f656
+    m_Address: Ico_SelfChargingAccumulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db889fc6aae484241a71073453740d63
+    m_Address: Ico_RayOverloadController
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f7951d9dd2a76d41ac6ef736ed5dd76
+    m_Address: Ico_ElectricDriveUnits
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4480e864fa0a0849965851ef49043de
+    m_Address: Ico_MediumCapacityAccumulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e75ee23afd0108042ac9ac61968a5603
+    m_Address: Ico_ErrorCorrector
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 286a0aabe9192164989d79fba3ad793f
+    m_Address: Ico_CrystalHalo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 244cb826d96444740ae56450823d7f96
+    m_Address: Ico_RayDiffusionSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6053976813f6ea14987edd22fd06b9b7
+    m_Address: Ico_RayFocusingSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ced0a0e051e33d0419f5323c608bf664
+    m_Address: Ico_CrystalLens
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec0e030fe8e90c0478709c4a7e2c9e71
+    m_Address: Ico_FireFootprints
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a390829c5313ad04fa9f87c26f1ff5f9
+    m_Address: Ico_VeilOfDecay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db566166333113845adacc37a5ce684d
+    m_Address: Ico_WarriorExoskeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0971a85058927e74ca736a614b16c995
+    m_Address: Ico_SpaceShiftSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ddcd46d4b5c5764aa49a2453efad0f5
+    m_Address: Ico_PioneerExoskeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8507e126fce1de74e857d73a07071a0d
+    m_Address: Ico_GravitationalExplosionDevice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8da32b53906deb54083dc42d1c64ebbd
+    m_Address: Ico_PerpetualMotionMachine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4475f765dc1bc7548b6f93c6402b56c0
+    m_Address: Ico_StarSatellite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d2dc52fae43b514794ebfb3798aa609
+    m_Address: Ico_HarvesterExoskeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35b106dfa17ddc146b0b61e85f862577
+    m_Address: Ico_EnvironmentalControlSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f8450c296cd7db4680684356d7de252
+    m_Address: Ico_EngineerExoskeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2c699b2a0eb3fa458633a197685ef00
+    m_Address: Ico_TissueRegenerationSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c1795bda7eddd94f8326a16ffa66c95
+    m_Address: Ico_CombatFlamethrower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f8b8364986c3f64fbb15737ea5bc37b
+    m_Address: Ico_LifeSupportingSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4305d8177122c944dbfc30f405672c99
+    m_Address: Ico_GreatGlaciation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29dcc96fdafb84845b7ea35d4c2b287a
+    m_Address: Ico_TacticExoskeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ba2ca6c2cc72f546830ec52e041d911
+    m_Address: Ico_FullUnloading
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd3e6859cd968b5478c6a00edbd78bee
+    m_Address: Ico_MeteorRain
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7bb32da98c20594195d3a680806b57c
+    m_Address: Ico_Arsenal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cc7c525462bc0049abec105ddbe57f3
+    m_Address: Ico_OrbitalSupportSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac8a4e1c8f9f80247be4fa80c12ee666
+    m_Address: Ico_AtomicRay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c721bec9dd64194cb2339c6277e63eb
+    m_Address: Ico_OverloadedRay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3ed916b2358fd94d9fd70a2075e7bc1
+    m_Address: Ico_ChemonuclearReactor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e74aac2d3c6ccd4680961fa60dc1fad
+    m_Address: Ico_Lightning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8357d637dd7c6b4468439f3f9939c054
+    m_Address: Ico_HighCapacityAccumulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d39a663f1b033ad4c91bd6718a63e1fb
+    m_Address: Ico_ExtraDriveUnits
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51d500ab69bc4274097029daf787fb7f
+    m_Address: Ico_ReverseSystemTwo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 099635f3cf45fe64b9801766313b5472
+    m_Address: Ico_PillarOfLight
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31352a5bb9e9fb84ebe5961985d5a48f
+    m_Address: Ico_RaySplitter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1057a296a4744d640a1b4879eec288e6
+    m_Address: Ico_ArchimedesMirror
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c4f8e22a16f6ca4a9a0e097d29db97c
+    m_Address: Ico_FireRay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fcbf8ae389e23747b590b655c59149e
+    m_Address: Ico_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d4dfc003e7609949b13b02be6506441
+    m_Address: Ico_FireGem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0393df0ee07c4724990c72ec8372f7df
+    m_Address: Ico_RadiantMineral
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e29f11b2341e16b428b17d844959a341
+    m_Address: Ico_DistortingCrystal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb9bfd00b87ba9a4d9f36385ec3b76e9
+    m_Address: Ico_ElectricalLead
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca4fca1b96669545859703f3ef1938b
+    m_Address: Ico_GravityStone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07a1928b4c77ee04f95e5b72efba2572
+    m_Address: Ico_PurpleTuber
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdba366718ded1742bd044bb37f408e4
+    m_Address: Ico_PoleOfCold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 275b329e2d6c2a944b4ac7246d98dce1
+    m_Address: Ico_StoneApple
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

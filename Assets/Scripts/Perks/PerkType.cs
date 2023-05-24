@@ -39,4 +39,10 @@ public enum PerkType
     PlayerStunResist = 34,
     PlayerSlowdownResist = 35,
     PlayerElectricityResist = 36,
+    PlayerRadiationResist = 37,
+
+    MineralEffect = 38,
+    RayError = 39,
+
+    EnergyCapacity = 40,
 }

@@ -23,9 +23,12 @@ public enum StatType
     EnergyRegen = 17,
 
     Dodge = 18,
-    FireResist = 19,
+    FireDef = 19,
     StunResist = 20,
     SlowdownResist = 21,
-    FireResistPercent = 22,
+    FireResist = 22,
     ElectricityResist = 23,
+    RadiationResist = 24,
+
+    MineralEffect = 25,
 }
