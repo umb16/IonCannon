@@ -147,7 +147,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13701291499614208
-    m_Localized: HP
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 14409818350317568
@@ -261,6 +261,450 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 20912301641854976
     m_Localized: Energy absorber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126096015582683136
+    m_Localized: Accelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126096103918919680
+    m_Localized: ArmoredPlates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099413220581376
+    m_Localized: ExoskeletonModule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099457193664512
+    m_Localized: MagneticCore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099461366996992
+    m_Localized: OxygenCylinders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099468061106176
+    m_Localized: Coprocessor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099469646553088
+    m_Localized: FreonCylinders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099470380556288
+    m_Localized: DeliveryDevice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099471777259520
+    m_Localized: AtomicCell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099473190739968
+    m_Localized: Accumulator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099474788769792
+    m_Localized: AdditionalDriveUnits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099476781064192
+    m_Localized: AdditionalLens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126097746353840128
+    m_Localized: AdditionalArmorContour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099479318618112
+    m_Localized: StiffeningRibs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099481650651136
+    m_Localized: MovableMechanisms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099487556231168
+    m_Localized: ReinforcedMagneticCore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099502081105920
+    m_Localized: OxygenSprayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126099503662358528
+    m_Localized: AnalyzingModule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126098510396645376
+    m_Localized: FreonSprayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126098615774339072
+    m_Localized: PoisonGasCylinders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126098654437433344
+    m_Localized: OxygenSupplyModule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113243178852352
+    m_Localized: HighSpeedDriveUnits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113272866136064
+    m_Localized: DeliveryOfExplosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113274275422208
+    m_Localized: IonizingPlant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113275789565952
+    m_Localized: StableAtomicCell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113277211435008
+    m_Localized: AccumulatorBattery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113278608138240
+    m_Localized: PowerController
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113279371501568
+    m_Localized: DiffusionObjective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113280868868096
+    m_Localized: ErrorCalculator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113282269765632
+    m_Localized: FocusingObjective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113283771326464
+    m_Localized: PlasmaSupercharger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113285256110080
+    m_Localized: DistortionMirror
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113249629691904
+    m_Localized: PurpleCovering
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113287542005760
+    m_Localized: ExoskeletonProtection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113289085509632
+    m_Localized: ReinforcedCarcass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113290700316672
+    m_Localized: ExoskeletonBooster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113292176711680
+    m_Localized: MagneticManipulatorTwo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113293695049728
+    m_Localized: ElectromagneticFieldCore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113294483578880
+    m_Localized: StarDust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113296014499840
+    m_Localized: StarShard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113297465729024
+    m_Localized: OxidationSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113298925346816
+    m_Localized: FireSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113300372381696
+    m_Localized: DielectricGasSource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113257665978368
+    m_Localized: ConcentratedPoisonGasCylinders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113268734746624
+    m_Localized: OrganicDecompositionDevice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126113271347798016
+    m_Localized: OxygenSaturationModule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119918778572800
+    m_Localized: TreatmentSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119961287843840
+    m_Localized: Echo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119962743267328
+    m_Localized: HandmadeFlamethrower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119964005752832
+    m_Localized: WhiteShroud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119965385678848
+    m_Localized: IceSoul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119966732050432
+    m_Localized: PoisonousSubstancesDropping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119928802959360
+    m_Localized: NonConformingMaterialsDropping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119968812425216
+    m_Localized: ExplosiveMixtureDropping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119970293014528
+    m_Localized: BakedApplesDelivery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119971689717760
+    m_Localized: RadiationContour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119973111586816
+    m_Localized: IsotopeReactor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119974567010304
+    m_Localized: SmallNuclearReactor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119975284236288
+    m_Localized: AtmosphericIonizer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119976739659776
+    m_Localized: SelfChargingAccumulator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119978216054784
+    m_Localized: RayOverloadController
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119980300623872
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119979608563712
+    m_Localized: ElectricDriveUnits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119980992684032
+    m_Localized: MediumCapacityAccumulator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119940823834624
+    m_Localized: ErrorCorrector
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119983131779072
+    m_Localized: CrystalHalo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119984612368384
+    m_Localized: RayDiffusionSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119986055208960
+    m_Localized: RayFocusingSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119987481272320
+    m_Localized: CrystalLens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119989586812928
+    m_Localized: FireFootprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119998466154496
+    m_Localized: VeilOfDecay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120005248344064
+    m_Localized: WarriorExoskeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120012433186816
+    m_Localized: SpaceShiftSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120019521560576
+    m_Localized: PioneerExoskeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120024521170944
+    m_Localized: GravitationalExplosionDevice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119949627678720
+    m_Localized: PerpetualMotionMachine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120026849009664
+    m_Localized: StarSatellite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120028325404672
+    m_Localized: HarvesterExoskeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120029898268672
+    m_Localized: EnvironmentalControlSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120031156559872
+    m_Localized: EngineerExoskeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120032565846016
+    m_Localized: TissueRegenerationSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120033182408704
+    m_Localized: CombatFlamethrower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120034562334720
+    m_Localized: LifeSupportingSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120035946455040
+    m_Localized: GreatGlaciation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120037372518400
+    m_Localized: TacticExoskeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120038811164672
+    m_Localized: FullUnloading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126119959022919680
+    m_Localized: MeteorRain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120041013174272
+    m_Localized: Arsenal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120043378761728
+    m_Localized: OrbitalSupportSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120044876128256
+    m_Localized: AtomicRay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120046335746048
+    m_Localized: OverloadedRay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120047866667008
+    m_Localized: ChemonuclearReactor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120048592281600
+    m_Localized: Lightning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120050047705088
+    m_Localized: HighCapacityAccumulator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120051561848832
+    m_Localized: ExtraDriveUnits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126120053122129920
+    m_Localized: ReverseSystem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126189976084480
+    m_Localized: PillarOfLight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126219604647936
+    m_Localized: RaySplitter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126221001351168
+    m_Localized: ArchimedesMirror
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126222385471488
+    m_Localized: FireRay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126223664734208
+    m_Localized: Empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126224939802624
+    m_Localized: FireGem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126197727158272
+    m_Localized: RadiantMineral
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126204060557312
+    m_Localized: DistortingCrystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126210901467136
+    m_Localized: ElectricalLead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126126216396005376
+    m_Localized: GravityStone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126127419326586880
+    m_Localized: PurpleTuber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126127425139892224
+    m_Localized: PoleOfCold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126127430189834240
+    m_Localized: StoneApple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126131712163176448
+    m_Localized: Muve speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126132698449567744
+    m_Localized: HP
     m_Metadata:
       m_Items: []
   references:

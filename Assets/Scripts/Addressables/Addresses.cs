@@ -47,15 +47,12 @@ public static class Addresses
    public static string Ico_RayWidth = "Ico_RayWidth";
    public static string Ico_AtomicBattery = "Ico_AtomicBattery";
    public static string Char_T_300 = "Char_T_300";
-   public static string Main_en = "Main_en";
-   public static string Main_ru = "Main_ru";
-
    public static string Ico_Accelerator = "Ico_Accelerator";
    public static string Ico_ArmoredPlates = "Ico_ArmoredPlates";
    public static string Ico_ExoskeletonModule = "Ico_ExoskeletonModule";
    public static string Ico_MagneticCore = "Ico_MagneticCore";
-   public static string Ico_OxygenCylinders = "Ico_OxygenCylinders";
    public static string Ico_CoprocessorTwo = "Ico_CoprocessorTwo";
+   public static string Ico_OxygenCylinders = "Ico_OxygenCylinders";
    public static string Ico_FreonCylinders = "Ico_FreonCylinders";
    public static string Ico_DeliveryDevice = "Ico_DeliveryDevice";
    public static string Ico_AtomicCell = "Ico_AtomicCell";
@@ -159,4 +156,6 @@ public static class Addresses
    public static string Ico_PurpleTuber = "Ico_PurpleTuber";
    public static string Ico_PoleOfCold = "Ico_PoleOfCold";
    public static string Ico_StoneApple = "Ico_StoneApple";
+   public static string Main_en = "Main_en";
+   public static string Main_ru = "Main_ru";
 }

@@ -534,7 +534,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 775b43b0e94e88e41a813786db565eee
-    m_Address: Ico_i_BakedApplesDelivery
+    m_Address: Ico_BakedApplesDelivery
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
