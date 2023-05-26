@@ -803,6 +803,46 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 661f5a6ee40765441a297252c6c691f4
+    m_Address: Ico_Dodge
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8a5ca77c902e324a9cec45b3fcffbb2
+    m_Address: Ico_FireAbsorption
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70db6a479368201428051236784956f1
+    m_Address: Ico_StunResist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf7d36339de586e458ee9390306f596e
+    m_Address: Ico_SlowdownResist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6cc3c581a04a41b43a80f3c25a0a96a5
+    m_Address: Ico_FireResist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: daede00c6e15fe04998d5ac028878305
+    m_Address: Ico_ElectricityResist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76569a5b38b98ac46a09419f677f62b1
+    m_Address: Ico_RadiationResist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f1158bd2640adb4988dbd3782dfbb9a
+    m_Address: Ico_MineralEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64f09d6972258434792146d046b7d0a9, type: 2}
   m_SchemaSet:

@@ -593,7 +593,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 218.28046, y: -231.83508}
-  m_SizeDelta: {x: 436.5609, y: 300.33002}
+  m_SizeDelta: {x: 436.5609, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5609672701995889463
 CanvasRenderer:
@@ -695,7 +695,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -246.5, y: -5.1158}
-  m_SizeDelta: {x: 246.5, y: 26.572}
+  m_SizeDelta: {x: 246.5, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8607098679550558720
 CanvasRenderer:
@@ -753,8 +753,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -835,7 +835,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 218.28046, y: -32.8595}
-  m_SizeDelta: {x: 388.5609, y: 65.719}
+  m_SizeDelta: {x: 388.5609, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8607098679673461067
 MonoBehaviour:
@@ -885,7 +885,7 @@ RectTransform:
   - {fileID: 5609672701995889459}
   - {fileID: 5688143124769909602}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -918,7 +918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableStates: 6
-  ButtonStates: []
 --- !u!1 &8607098681407681051
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +954,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 138.62, y: -33.75433}
-  m_SizeDelta: {x: -138.62, y: 23.775}
+  m_SizeDelta: {x: -138.62, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8607098681407681052
 CanvasRenderer:
@@ -1013,8 +1012,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

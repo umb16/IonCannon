@@ -20,23 +20,39 @@ public class Player : Mob
     private ComplexStat _rayDelay;
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
+
+    private ComplexStat _dodge;
+    private ComplexStat _fireAbsorption;
+    private ComplexStat _stunResist;
+    private ComplexStat _slowdownResist;
+    private ComplexStat _fireResist;
+    private ComplexStat _electricityResist;
+    private ComplexStat _radiationResist;
+    private ComplexStat _mineralEffect;
+
     public ComplexStat RayReverse;
     private PerksFactory _perksFactory;
     private MiningDamageReceiver _miningDamageReceiver;
     public GameObject Blood;
     private ComplexStat _lifeSupport;
     public Inventory Stash = new Inventory();
+
     public new PlayerType Type => _playerType;
     public float RayDmg => _rayDamage.Value;
-
     public float RayDelay => _rayDelay.Value;
-
     public float RaySplash => _raySplashRadius.Value;
-
     public float RaySpeed => _raySpeed.Value;
-
     public float Energy => _energy.Value;
     public float Capacity => _capacity.Value;
+
+    public float Dodge => _dodge.Value;
+    public float FireAbsorption => _fireAbsorption.Value;
+    public float StunResist => _stunResist.Value;
+    public float SlowdownResist => _slowdownResist.Value;
+    public float FireResist => _fireResist.Value;
+    public float ElectricityResist => _electricityResist.Value;
+    public float RadiationResist => _radiationResist.Value;
+    public float MineralEffect => _mineralEffect.Value;
 
     private float _baseMoveSpeed;
     private bool _regenActive = true;
@@ -59,6 +75,16 @@ public class Player : Mob
         RayReverse = StatsCollection.GetStat(StatType.RayReverse);
         _capacity = StatsCollection.GetStat(StatType.Capacity);
         _energyRegen = StatsCollection.GetStat(StatType.EnergyRegen);
+
+        _dodge = StatsCollection.GetStat(StatType.Dodge);
+        _fireAbsorption = StatsCollection.GetStat(StatType.FireAbsorption);
+        _stunResist = StatsCollection.GetStat(StatType.StunResist);
+        _slowdownResist = StatsCollection.GetStat(StatType.SlowdownResist);
+        _fireResist = StatsCollection.GetStat(StatType.FireResist);
+        _electricityResist = StatsCollection.GetStat(StatType.ElectricityResist);
+        _radiationResist = StatsCollection.GetStat(StatType.RadiationResist);
+        _mineralEffect = StatsCollection.GetStat(StatType.MineralEffect);
+
         _perksFactory = perksFactory;
         _miningDamageReceiver = miningDamageReceiver;
         _lifeSupport.ValueChanged += LifeSupportValueChanged;

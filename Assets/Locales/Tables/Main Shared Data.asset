@@ -1119,6 +1119,38 @@ MonoBehaviour:
     m_Key: WAVE
     m_Metadata:
       m_Items: []
+  - m_Id: 126442785860870144
+    m_Key: Dodge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126442896477249536
+    m_Key: FireAbsorption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444320061775872
+    m_Key: StunResist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444427696005120
+    m_Key: SlowdownResist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444505571647488
+    m_Key: FireResist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444575880765440
+    m_Key: ElectricityResist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444864750870528
+    m_Key: RadiationResist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444980538826752
+    m_Key: MineralEffect
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

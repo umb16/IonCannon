@@ -30,6 +30,7 @@ public class EnemySimple : Mob
         StatsCollection.SetStat(StatType.Size, _size);
         StatsCollection.SetStat(StatType.Damage, _damagePerSecond);
         StatsCollection.SetStat(StatType.Defence, _defence);
+
         var movSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         movSpeed.ValueChanged += (x) =>
         {

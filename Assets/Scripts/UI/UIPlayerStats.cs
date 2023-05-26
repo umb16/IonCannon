@@ -28,6 +28,14 @@ public class UIPlayerStats : MonoBehaviour
         AddString(LocaleKeys.Main.RAY_CHARGE_DELAY, StatType.RayDelay, Addresses.Ico_RayDelay, LocaleKeys.Main.S, modPositive: false);
         AddString(LocaleKeys.Main.RAY_WIDTH, StatType.RayDamageAreaRadius, Addresses.Ico_RayWidth, LocaleKeys.Main.P);
         AddString(LocaleKeys.Main.RAY_ERROR, StatType.RayError, Addresses.Ico_RayError, LocaleKeys.Main.P, modPositive: false);
+        AddString(LocaleKeys.Main.Dodge, StatType.Dodge, Addresses.Ico_Dodge);
+        AddString(LocaleKeys.Main.FireAbsorption, StatType.FireAbsorption, Addresses.Ico_FireAbsorption);
+        AddString(LocaleKeys.Main.StunResist, StatType.StunResist, Addresses.Ico_StunResist);
+        AddString(LocaleKeys.Main.SlowdownResist, StatType.SlowdownResist, Addresses.Ico_SlowdownResist);
+        AddString(LocaleKeys.Main.FireResist, StatType.FireResist, Addresses.Ico_FireResist);
+        AddString(LocaleKeys.Main.ElectricityResist, StatType.ElectricityResist, Addresses.Ico_ElectricityResist);
+        AddString(LocaleKeys.Main.RadiationResist, StatType.RadiationResist, Addresses.Ico_RadiationResist);
+        AddString(LocaleKeys.Main.MineralEffect, StatType.MineralEffect, Addresses.Ico_MineralEffect);
     }
 
     private void AddString(LocalizedString text, StatType statType, string icon, LocalizedString postfix = null, bool modPositive = true)

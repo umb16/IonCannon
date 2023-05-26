@@ -158,4 +158,15 @@ public static class Addresses
    public static string Ico_StoneApple = "Ico_StoneApple";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
+   public static string Ico_Dodge = "Ico_Dodge";
+   public static string Ico_ElectricityResist = "Ico_ElectricityResist";
+   public static string Ico_FireAbsorption = "Ico_FireAbsorption";
+   public static string Ico_FireResist = "Ico_FireResist";
+   public static string Ico_MineralEffect = "Ico_MineralEffect";
+   public static string Ico_RadiationResist = "Ico_RadiationResist";
+   public static string Ico_SlowdownResist = "Ico_SlowdownResist";
+   public static string Ico_StunResist = "Ico_StunResist";
+
+
+
 }

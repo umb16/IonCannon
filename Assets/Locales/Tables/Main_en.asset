@@ -707,6 +707,38 @@ MonoBehaviour:
     m_Localized: HP
     m_Metadata:
       m_Items: []
+  - m_Id: 126442785860870144
+    m_Localized: Dodge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126442896477249536
+    m_Localized: Fire Absorption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444320061775872
+    m_Localized: Stun Resist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444427696005120
+    m_Localized: Slowdown Resist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444505571647488
+    m_Localized: Fire Resist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444575880765440
+    m_Localized: ' Electricity Resist'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444864750870528
+    m_Localized: Radiation Resist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126444980538826752
+    m_Localized: Strengthening the effect of the mineral
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -425,7 +425,7 @@ public class ItemsDB
             Perks = new IPerk[]
             {
                 new SimplePerk(PerkType.PlayerFireResist,
-                               new StatModificator(2f, StatModificatorType.Additive, StatType.FireDef))//+2 защиты от огня
+                               new StatModificator(2f, StatModificatorType.Additive, StatType.FireAbsorption))//+2 защиты от огня
             }
         };
     }
@@ -1509,7 +1509,7 @@ public class ItemsDB
                 //Жижа растворяется
 
                 new SimplePerk(PerkType.PlayerFireResist,
-                               new StatModificator(1, StatModificatorType.Additive, StatType.FireDef))//[[Огонь]] не наносит урона.
+                               new StatModificator(1, StatModificatorType.Additive, StatType.FireAbsorption))//[[Огонь]] не наносит урона.
 
 
                
@@ -1615,7 +1615,7 @@ public class ItemsDB
                     new StatModificator(10f, StatModificatorType.Additive, StatType.MaxHP)),//[[Мак хит поинтов]] + 10 ед.
                 //При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerFireResist,
-                               new StatModificator(.5f, StatModificatorType.Additive, StatType.FireDef))//[[Огонь]] не наносит урона.//[[Огонь]] наносит персонажу на 50% урона меньше.
+                               new StatModificator(.5f, StatModificatorType.Additive, StatType.FireAbsorption))//[[Огонь]] не наносит урона.//[[Огонь]] наносит персонажу на 50% урона меньше.
                 //[[Экзоскелет]].
 
 

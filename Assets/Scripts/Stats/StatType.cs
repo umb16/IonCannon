@@ -23,7 +23,7 @@ public enum StatType
     EnergyRegen = 17,
 
     Dodge = 18,
-    FireDef = 19,
+    FireAbsorption = 19,
     StunResist = 20,
     SlowdownResist = 21,
     FireResist = 22,
