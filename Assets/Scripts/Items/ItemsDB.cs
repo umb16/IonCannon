@@ -1964,6 +1964,7 @@ public class ItemsDB
             Icon = Addresses.Ico_GravityStone,
             Perks = new IPerk[]
             {
+                new PerkGravityStone()
                 //Вращает осколок материи вокруг персонажа в радиусе 30 п., наносящий 10 ед.урона [[Физический урон]].
                 //[[Минерал]].
             }

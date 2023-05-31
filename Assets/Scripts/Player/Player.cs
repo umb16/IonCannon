@@ -93,6 +93,7 @@ public class Player : Mob
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
         Inventory.Add(itemsDB.CoprocessorPlusPlus());
+        Inventory.Add(itemsDB.GravityStone());
     }
 
     public void AddEnergy(float value)
@@ -111,7 +112,7 @@ public class Player : Mob
         /* Inventory.Add(_itemsDB.Coprocessor());
          Inventory.Add(_itemsDB.Coprocessor());*/
         //Inventory.Add(_itemsDB.IonizationUnit());
-        // Inventory.Add(_itemsDB.IonizationUnit());
+        //Inventory.Add(_itemsDB.IonizationUnit());
         /*Inventory.Add(_itemsDB.DeliveryDevice());*/
         /*Inventory.Add(_itemsDB.DivergingLens());*/
         /*Inventory.Add(_itemsDB.IonizationUnit());

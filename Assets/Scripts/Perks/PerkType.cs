@@ -45,4 +45,5 @@ public enum PerkType
     RayError = 39,
 
     EnergyCapacity = 40,
+    GravityStone = 41,
 }
