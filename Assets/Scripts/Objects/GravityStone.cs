@@ -6,10 +6,13 @@ using Zenject;
 
 public class GravityStone : MonoBehaviour
 {
-    private const int _radius = 10;
-    private const int _speed = 5;
     private IMob _mob;
     private float _phaseTime;
+    private int _radius;
+    private float _speed;
+    private int _damage;
+    private float _stunTime;
+    private PerkType _perkType;
 
     public void Init(IMob mob)
     {
@@ -18,11 +21,19 @@ public class GravityStone : MonoBehaviour
     }
     private void Update()
     {
-        _phaseTime += Time.deltaTime * _speed;
+
+        _phaseTime += Time.deltaTime * (_speed * (_perkType == PerkType.Xenomineral? 1f + 0.3f *_mob.Player.MineralEffectBoost : 1f));           
         CalculatePosition();
 
     }
-
+    public void SetParams(int radius, float speed, int damage, float stunTime, PerkType perkType)
+    {
+        _radius = radius;
+        _speed = speed;
+        _damage = damage;
+        _stunTime = stunTime;
+        _perkType = perkType;
+    }
     private void CalculatePosition()
     {
         transform.position = _mob.Position + new Vector3(Mathf.Sin(_phaseTime), Mathf.Cos(_phaseTime)) * _radius;
@@ -39,6 +50,6 @@ public class GravityStone : MonoBehaviour
 
     private void OnTriggerEnter(IDamagable mob)
     {      
-        mob.ReceiveDamage(new DamageMessage(_mob, mob, 10, DamageSources.Unknown, .5f));
+        mob.ReceiveDamage(new DamageMessage(_mob, mob, _damage * (_perkType == PerkType.Xenomineral ? (1 + _mob.Player.MineralEffectBoost) : 1), DamageSources.Physical, _stunTime));
     }
 }

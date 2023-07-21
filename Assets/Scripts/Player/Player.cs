@@ -20,7 +20,6 @@ public class Player : Mob
     private ComplexStat _rayDelay;
     private ComplexStat _raySplashRadius;
     private ComplexStat _rayDamage;
-
     private ComplexStat _dodge;
     private ComplexStat _fireAbsorption;
     private ComplexStat _stunResist;
@@ -28,8 +27,7 @@ public class Player : Mob
     private ComplexStat _fireResist;
     private ComplexStat _electricityResist;
     private ComplexStat _radiationResist;
-    private ComplexStat _mineralEffect;
-
+    private ComplexStat _mineralEffectBoost;
     public ComplexStat RayReverse;
     private PerksFactory _perksFactory;
     private MiningDamageReceiver _miningDamageReceiver;
@@ -44,7 +42,6 @@ public class Player : Mob
     public float RaySpeed => _raySpeed.Value;
     public float Energy => _energy.Value;
     public float Capacity => _capacity.Value;
-
     public float Dodge => _dodge.Value;
     public float FireAbsorption => _fireAbsorption.Value;
     public float StunResist => _stunResist.Value;
@@ -52,8 +49,7 @@ public class Player : Mob
     public float FireResist => _fireResist.Value;
     public float ElectricityResist => _electricityResist.Value;
     public float RadiationResist => _radiationResist.Value;
-    public float MineralEffect => _mineralEffect.Value;
-
+    public float MineralEffectBoost => _mineralEffectBoost.Value;
     private float _baseMoveSpeed;
     private bool _regenActive = true;
 
@@ -83,7 +79,7 @@ public class Player : Mob
         _fireResist = StatsCollection.GetStat(StatType.FireResist);
         _electricityResist = StatsCollection.GetStat(StatType.ElectricityResist);
         _radiationResist = StatsCollection.GetStat(StatType.RadiationResist);
-        _mineralEffect = StatsCollection.GetStat(StatType.MineralEffect);
+        _mineralEffectBoost = StatsCollection.GetStat(StatType.MineralEffect);
 
         _perksFactory = perksFactory;
         _miningDamageReceiver = miningDamageReceiver;
@@ -92,8 +88,12 @@ public class Player : Mob
         player.Value = this;
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
+
         Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        Inventory.Add(itemsDB.GravityStone());
+        //Inventory.Add(itemsDB.GravityStone());
+        //Inventory.Add(itemsDB.StarShard());
+        Inventory.Add(itemsDB.StarSatellite());
+        //Inventory.Add(itemsDB.Echo());
     }
 
     public void AddEnergy(float value)

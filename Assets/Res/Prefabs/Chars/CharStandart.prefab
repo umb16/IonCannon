@@ -118,6 +118,7 @@ MonoBehaviour:
   _reverseMirroring: 0
   _groundCenterPoint: {fileID: 1916824526990639935}
   _type: 0
+  _playerType: 0
   Blood: {fileID: 0}
 --- !u!114 &5757576374904828842
 MonoBehaviour:
@@ -361,7 +362,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &6621291766097266296
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -378,7 +379,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &3697537072844624277
 MonoBehaviour:
   m_ObjectHideFlags: 0

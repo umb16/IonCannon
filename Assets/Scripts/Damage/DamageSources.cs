@@ -13,4 +13,5 @@ public enum DamageSources
     RayAll = RayInitial + Ray,
     Self = 64,
     God = 128,
+    Physical = 11,
 }
