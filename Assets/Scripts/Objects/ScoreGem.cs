@@ -42,9 +42,7 @@ public class ScoreGem : MonoBehaviour
             _taken = true;
             _sound.Play();
             _animator.SetBool("take", true);
-            _player.Gold.AddBaseValue(_score);
-            if (_heal > 0 && _player.Type != PlayerType.T_300)
-                _player.ReceiveDamage(new DamageMessage(_player, _player, -_heal, DamageSources.Heal));
+            _player.ScoreGemPickingUp(_score, _heal);                 
             Destroy(gameObject, _destroyDelay);
         }
     }

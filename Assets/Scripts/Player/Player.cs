@@ -1,4 +1,6 @@
 using Cysharp.Threading.Tasks;
+using NewCheatPanel;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -89,10 +91,11 @@ public class Player : Mob
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
 
-        Inventory.Add(itemsDB.CoprocessorPlusPlus());
+        //Inventory.Add(itemsDB.CoprocessorPlusPlus());
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
-        Inventory.Add(itemsDB.StarSatellite());
+        //Inventory.Add(itemsDB.StarSatellite());
+        Inventory.Add(itemsDB.StarDust());
         //Inventory.Add(itemsDB.Echo());
     }
 
@@ -250,5 +253,17 @@ public class Player : Mob
             Animator.SetBool("Run", false);
         }
         MoveTo(transform.position + dir * 10);
+    }
+    public void ScoreGemPickingUp(float score, float heal)
+    {
+        Gold.AddBaseValue(score);
+
+        if (heal > 0)
+        {
+            if (Type != PlayerType.T_300)
+                ReceiveDamage(new DamageMessage(this, this, -heal, DamageSources.Heal));
+        }
+        else
+            OnPickingUpScoreGem();
     }
 }

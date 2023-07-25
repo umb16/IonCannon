@@ -53,6 +53,9 @@ public class Mob : MonoBehaviour, IMob
     private float _stunEndTime;
     public Inventory Inventory { get; private set; } = new Inventory();
 
+    public event Action PickedUpScoreGem;
+ 
+
     [Inject]
     private async UniTask Construct(DamageController damageController, GameData gameData,
         AsyncReactiveProperty<Player> player, MobSpawner mobSpawner, EnemyPerksDB enemyPerksDB)
@@ -93,7 +96,7 @@ public class Mob : MonoBehaviour, IMob
 
     public void SetAnimVariable(string name, bool value)
     {
-        Animator?.SetBool(name, value);
+        Animator?.SetBool(name, value);       
     }
 
     public void AddPerk(IPerk perk)
@@ -311,7 +314,10 @@ public class Mob : MonoBehaviour, IMob
     {
         _mobFxes.Remove(fx);
     }
-
+    protected void OnPickingUpScoreGem()
+    {
+        PickedUpScoreGem?.Invoke();
+    }
 
 
     protected virtual void OnDestroy()

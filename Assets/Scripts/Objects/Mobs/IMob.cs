@@ -20,6 +20,7 @@ public interface IMob : IDamagable
     StandardStatsCollection StatsCollection { get; }
     Inventory Inventory { get; }
     bool IsDead { get; }
+    event Action PickedUpScoreGem;
 
     void SetPosition(float x, float y);
     void SetPosition(Vector3 vector);
@@ -34,7 +35,7 @@ public interface IMob : IDamagable
     void AddForce(Vector2 force, ForceMode mode);
     void SetAnimVariable(string name, bool value);
     void RemovePerk(IPerk perk);
-
     void Destroy();
     void SetInvulnerability(bool value);
+    
 }

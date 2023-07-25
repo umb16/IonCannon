@@ -900,6 +900,7 @@ public class ItemsDB
             Icon = Addresses.Ico_StarDust,
             Perks = new IPerk[]
             {
+                new PerkStarDust(10, 2, 5, 0, .5f, PerkType.GravityMatter),
                 //При поднятии руды получаете малый осколок материи, который  вращается вокруг персонажа в радиусе 30 п., наносящий 5 ед.
                 //[[Физический урон]] в течение 20 с.
                 new SimplePerk(PerkType.MagneticManipulator,
@@ -916,7 +917,7 @@ public class ItemsDB
             Icon = Addresses.Ico_StarShard,
             Perks = new IPerk[]
             {
-                new PerkGravityMatter(15, 2, 20, 1, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 15 п.
+                new PerkGravityMatter(20, 1.5f, 20, 1, 1, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 15 п.
                                                                            //Осколок наносит 20 ед.  [[Физический урон]] и оглушает на 1 секунды.
             }
         };
@@ -1468,7 +1469,7 @@ public class ItemsDB
             Icon = Addresses.Ico_StarSatellite,
             Perks = new IPerk[]
             {
-                new PerkGravityMatter(15, 2, 40, 2, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 15 п.
+                new PerkGravityMatter(25, 1, 40, 2, 2, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 25 п.
                                                                            //Осколок наносит 40 ед.  [[Физический урон]] и оглушает на 2 секунды.
 
 
@@ -1966,7 +1967,7 @@ public class ItemsDB
             Icon = Addresses.Ico_GravityStone,
             Perks = new IPerk[]
             {
-                new PerkGravityMatter(15, 2, 10, .5f, PerkType.Xenomineral)
+                new PerkGravityMatter(15, 2, 10, .5f, 1, PerkType.GravityMatter)
                 //Вращает осколок материи вокруг персонажа в радиусе 15 п. Осколок наносит 10 ед.урона [[Физический урон]] и оглушает на 0.5 секунды.
                 //[[Ксеноминерал]].
             }
