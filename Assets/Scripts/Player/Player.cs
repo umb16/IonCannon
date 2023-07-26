@@ -91,11 +91,15 @@ public class Player : Mob
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
 
+        Inventory.AddSlot();
+        Inventory.AddSlot();
+
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        //Inventory.Add(itemsDB.GravityStone());
-        //Inventory.Add(itemsDB.StarShard());
-        //Inventory.Add(itemsDB.StarSatellite());
+        Inventory.Add(itemsDB.GravityStone());
+        Inventory.Add(itemsDB.StarShard());
+        Inventory.Add(itemsDB.StarSatellite());
         Inventory.Add(itemsDB.StarDust());
+
         //Inventory.Add(itemsDB.Echo());
     }
 

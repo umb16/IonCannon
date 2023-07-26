@@ -900,7 +900,7 @@ public class ItemsDB
             Icon = Addresses.Ico_StarDust,
             Perks = new IPerk[]
             {
-                new PerkStarDust(10, 2, 5, 0, .5f, PerkType.GravityMatter),
+                new PerkStarDust(10, 2, 5, 0, .5f, 10, 6, PerkType.GravityMatter),
                 //ѕри подн€тии руды получаете малый осколок материи, который  вращаетс€ вокруг персонажа в радиусе 30 п., нанос€щий 5 ед.
                 //[[‘изический урон]] в течение 20 с.
                 new SimplePerk(PerkType.MagneticManipulator,

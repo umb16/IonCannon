@@ -4,7 +4,7 @@ using Umb16.Extensions;
 using UnityEngine;
 using Zenject;
 
-public class GravityStone : MonoBehaviour
+public class OrbitalProjectile : MonoBehaviour
 {
     private IMob _mob;
     private float _phaseTime;
@@ -13,16 +13,18 @@ public class GravityStone : MonoBehaviour
     private int _damage;
     private float _stunTime;
     private PerkType _perkType;
+    public float Lifetime;
 
     public void Init(IMob mob)
     {
         _mob = mob;
+
         CalculatePosition();
     }
     private void Update()
     {
 
-        _phaseTime += Time.deltaTime * (_speed * (_perkType == PerkType.Xenomineral? 1f + 0.3f *_mob.Player.MineralEffectBoost : 1f));           
+        _phaseTime += Time.deltaTime * (_speed * (_perkType == PerkType.Xenomineral? 1f + 0.3f *_mob.Player.MineralEffectBoost : 1f));  
         CalculatePosition();
 
     }
@@ -51,5 +53,9 @@ public class GravityStone : MonoBehaviour
     private void OnTriggerEnter(IDamagable mob)
     {      
         mob.ReceiveDamage(new DamageMessage(_mob, mob, _damage * (_perkType == PerkType.Xenomineral ? (1 + _mob.Player.MineralEffectBoost) : 1), DamageSources.Physical, _stunTime));
+    }
+    public void SetPhaseTime(float phaseTime)
+    {
+        _phaseTime = phaseTime;
     }
 }
