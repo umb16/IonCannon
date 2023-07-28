@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
+using MiniScriptSharp.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ public class RayDrawer : MonoBehaviour
     private float _rayPathLenght;
     private float _errorLenghtRatio;
     private bool _startDrawIsValid;
+    private float _rayEnergyCost;
+    private float _rayCostCorrectionValue;
     private RayCollider _rayCollider;
 
     public float MaxLenght
@@ -57,7 +60,7 @@ public class RayDrawer : MonoBehaviour
                 return Mathf.Max(_cashedLenght.Value, _player.Value.Energy);
         }
     }
-
+    
 
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
@@ -131,7 +134,8 @@ public class RayDrawer : MonoBehaviour
                         pos = _oldPointOfPath + (pos - _oldPointOfPath).normalized * d;
                         _currentPathLength = (float)MaxLenght;
                     }
-                    _player.Value.AddEnergy(_oldPathLength - _currentPathLength);
+                    _rayEnergyCost = (_oldPathLength - _currentPathLength)* (1 - RayCostÑorrection());
+                    _player.Value.AddEnergy(_rayEnergyCost);
                     _oldPathLength = _currentPathLength;
                 }
                 else
@@ -230,6 +234,22 @@ public class RayDrawer : MonoBehaviour
                     StopRay();
             }
         }
+    }
+    public float RayCostÑorrection()
+    {
+        return 0;
+        _rayCostCorrectionValue = 0;
+
+        if (_player.Value.RayCostReduction == 0)
+        {
+            _rayCostCorrectionValue = (_currentPathLength / (50/*/_player.Value.RayCostReduction*/));
+
+            if (_rayCostCorrectionValue > .9f)
+                _rayCostCorrectionValue = .9f;
+            return _rayCostCorrectionValue;
+        }
+        
+        return _rayCostCorrectionValue;
     }
 
     private float LenghtOfPath(List<RayPathPoint> vectors)

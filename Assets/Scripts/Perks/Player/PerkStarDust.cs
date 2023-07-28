@@ -47,7 +47,7 @@ public class PerkStarDust : PerkGravityMatter
     }
     private void PhaseTimeReCalculate()
     {
-        float _phasePart = Mathf.PI*2 / _shards.Count;
+        float _phasePart = Mathf.PI * 2 / _shards.Count;
 
         for (int i = 0; i < _shards.Count; i++)
         {
@@ -62,7 +62,8 @@ public class PerkStarDust : PerkGravityMatter
 
         foreach (var item in _shards)
         {
-            GameObject.Destroy(item?.gameObject);
+            if (item != null)
+                GameObject.Destroy(item.gameObject);
         }
         _shards.Clear();
     }

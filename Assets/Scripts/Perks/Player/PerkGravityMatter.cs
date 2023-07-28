@@ -30,7 +30,7 @@ public class PerkGravityMatter : WithId, IPerk
 
     public virtual void Add(IPerk perk)
     {
-        
+
     }
     public string GetDescription()
     {
@@ -44,12 +44,13 @@ public class PerkGravityMatter : WithId, IPerk
 
     public virtual void Shutdown()
     {
-        GameObject.Destroy(_stone.gameObject);
+        if (_stone != null)
+            GameObject.Destroy(_stone.gameObject);
     }
 
     public virtual async UniTask CreateGravityStone()
     {
-         var go = await PrefabCreator.Instantiate(Addresses.Obj_GravityStone, Vector3.zero);
+        var go = await PrefabCreator.Instantiate(Addresses.Obj_GravityStone, Vector3.zero);
         _stone = go.GetComponent<OrbitalProjectile>();
         _stone.SetParams(_radius, _speed, _damage, _stunTime, _perkType);
         _stone.Init(_mob);

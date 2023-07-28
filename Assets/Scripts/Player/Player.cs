@@ -30,12 +30,16 @@ public class Player : Mob
     private ComplexStat _electricityResist;
     private ComplexStat _radiationResist;
     private ComplexStat _mineralEffectBoost;
-    public ComplexStat RayReverse;
     private PerksFactory _perksFactory;
-    private MiningDamageReceiver _miningDamageReceiver;
-    public GameObject Blood;
+    private ComplexStat _rayCostReduction;
     private ComplexStat _lifeSupport;
+    public ComplexStat RayReverse;
+
+    private MiningDamageReceiver _miningDamageReceiver;   
+    public GameObject Blood;   
     public Inventory Stash = new Inventory();
+    private float _baseMoveSpeed;
+    private bool _regenActive = true;
 
     public new PlayerType Type => _playerType;
     public float RayDmg => _rayDamage.Value;
@@ -52,8 +56,7 @@ public class Player : Mob
     public float ElectricityResist => _electricityResist.Value;
     public float RadiationResist => _radiationResist.Value;
     public float MineralEffectBoost => _mineralEffectBoost.Value;
-    private float _baseMoveSpeed;
-    private bool _regenActive = true;
+    public float RayCostReduction => _rayCostReduction.Value;
 
     [Inject]
     private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player,
@@ -82,6 +85,7 @@ public class Player : Mob
         _electricityResist = StatsCollection.GetStat(StatType.ElectricityResist);
         _radiationResist = StatsCollection.GetStat(StatType.RadiationResist);
         _mineralEffectBoost = StatsCollection.GetStat(StatType.MineralEffect);
+        _rayCostReduction = StatsCollection.GetStat(StatType.RayCostReduction);
 
         _perksFactory = perksFactory;
         _miningDamageReceiver = miningDamageReceiver;

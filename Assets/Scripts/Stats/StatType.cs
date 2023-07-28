@@ -31,4 +31,5 @@ public enum StatType
     RadiationResist = 24,
 
     MineralEffect = 25,
+    RayCostReduction = 26
 }
