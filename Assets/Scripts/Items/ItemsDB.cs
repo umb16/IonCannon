@@ -1998,6 +1998,7 @@ public class ItemsDB
             Icon = Addresses.Ico_PoleOfCold,
             Perks = new IPerk[]
             {
+                new PerkColdAOE(5, 40, 10)
                 //Накладывает [[Обморожение]] на 5 врагов в радиусе 40 п. раз в 10 с.
                 //[[Минерал]].
             }

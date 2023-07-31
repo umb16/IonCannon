@@ -99,10 +99,11 @@ public class Player : Mob
         Inventory.AddSlot();
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        Inventory.Add(itemsDB.GravityStone());
-        Inventory.Add(itemsDB.StarShard());
-        Inventory.Add(itemsDB.StarSatellite());
-        Inventory.Add(itemsDB.StarDust());
+        Inventory.Add(itemsDB.PoleOfCold());
+        //Inventory.Add(itemsDB.GravityStone());
+        //Inventory.Add(itemsDB.StarShard());
+        //Inventory.Add(itemsDB.StarSatellite());
+        //Inventory.Add(itemsDB.StarDust());
 
         //Inventory.Add(itemsDB.Echo());
     }

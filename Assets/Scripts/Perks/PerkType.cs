@@ -47,5 +47,7 @@ public enum PerkType
     EnergyCapacity = 40,
     GravityMatter = 41,
     Xenomineral = 42,
-    RayCostReduction = 43
+    RayCostReduction = 43,
+    FrostbiteEffect = 44,
+    ColdAOE = 45,
 }
