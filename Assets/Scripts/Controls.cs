@@ -19,7 +19,7 @@ public class Controls : MonoBehaviour
         {
             _gameData.SetState(GameState.Console);
         }
-        if(Input.GetKeyDown(KeyCode.Escape) && Application.isEditor && _gameData.UIStatus == UIStates.Console)
+        if (Input.GetKeyDown(KeyCode.Escape) && Application.isEditor && _gameData.UIStatus == UIStates.Console)
         {
             _gameData.ReturnToPrevStatus();
             return;
@@ -32,8 +32,7 @@ public class Controls : MonoBehaviour
             {
                 _gameData.SetState(GameState.Gameplay);
             }
-            else
-            if (_gameData.Status == GameState.Gameplay)
+            else if (_gameData.Status == GameState.Gameplay)
             {
                 _gameData.SetState(GameState.Inventory);
             }
