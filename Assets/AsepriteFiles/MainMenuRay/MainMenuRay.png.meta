@@ -25,7 +25,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -77,18 +77,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -113,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -634,30 +638,30 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       MainMenuRay000: -5796132529173460880
-      MainMenuRay007: -5909060602344206448
-      MainMenuRay009: -3502675580691370984
       MainMenuRay001: 596611527704483310
-      MainMenuRay006: -2531518417256967290
-      MainMenuRay016: 3478663001514309251
-      MainMenuRay022: -2790146259046183200
-      MainMenuRay010: 6856015380038475485
-      MainMenuRay017: -5713034567999412265
-      MainMenuRay012: 3823815524004986267
-      MainMenuRay014: 5850878950542692017
-      MainMenuRay008: -5778516243235621785
+      MainMenuRay002: 7370623297716058393
       MainMenuRay003: -6599326895644699949
+      MainMenuRay004: 3449980202978339556
+      MainMenuRay005: 6369853687997300675
+      MainMenuRay006: -2531518417256967290
+      MainMenuRay007: -5909060602344206448
+      MainMenuRay008: -5778516243235621785
+      MainMenuRay009: -3502675580691370984
+      MainMenuRay010: 6856015380038475485
+      MainMenuRay011: -3759952790458715074
+      MainMenuRay012: 3823815524004986267
+      MainMenuRay013: 759178162053242043
+      MainMenuRay014: 5850878950542692017
+      MainMenuRay015: -2051934565256168865
+      MainMenuRay016: 3478663001514309251
+      MainMenuRay017: -5713034567999412265
       MainMenuRay018: -6942537627156329359
       MainMenuRay019: -7768666421124673426
-      MainMenuRay002: 7370623297716058393
-      MainMenuRay015: -2051934565256168865
       MainMenuRay020: 6878517060604000786
-      MainMenuRay013: 759178162053242043
-      MainMenuRay023: -2077253152510534033
-      MainMenuRay005: 6369853687997300675
-      MainMenuRay004: 3449980202978339556
-      MainMenuRay011: -3759952790458715074
       MainMenuRay021: 5865256672274253551
-  spritePackingTag: 
+      MainMenuRay022: -2790146259046183200
+      MainMenuRay023: -2077253152510534033
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

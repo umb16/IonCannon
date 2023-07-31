@@ -39,7 +39,9 @@ public class StandardStatsCollection : IStatsCollection
     {
         if (_stats.TryGetValue(statType, out ComplexStat result))
             return result;
+#if STATS_WARNING
         Debug.LogWarning("GetStat: stat not found " + statType);
+#endif
         var stat = new ComplexStat(0);
         _stats[statType] = stat;
         return stat;

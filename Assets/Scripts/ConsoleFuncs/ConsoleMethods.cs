@@ -23,7 +23,7 @@ public class ConsoleMethods : MonoBehaviour
         _gameData = gameData;
         _shopShip = shopShip;
         _itemsDB = itemsDB;
-        FunctionInjector.AddFunctions(this, Debug.Log);
+        FunctionInjector.AddFunctions(this, null/* Debug.Log*/);
     }
 
     private void Start()
