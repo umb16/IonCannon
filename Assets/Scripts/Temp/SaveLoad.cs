@@ -9,9 +9,6 @@ public class SaveLoad : MonoBehaviour
     void Start()
     {
         _mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("music", 1)) * 20 - 9);
-    }
-    public void OnSoundVolumeChanged(float volume)
-    {
         _mixer.SetFloat("SoundVolume", Mathf.Log10(PlayerPrefs.GetFloat("sound", 1)) * 20 - 6);
         _mixer.SetFloat("OtherSoundsVolume", Mathf.Log10(PlayerPrefs.GetFloat("sound", 1)) * 20 - 6);
     }
