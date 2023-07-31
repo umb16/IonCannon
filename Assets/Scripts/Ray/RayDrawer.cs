@@ -1,8 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using MiniScriptSharp.Types;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Umb16.Extensions;
@@ -38,29 +36,25 @@ public class RayDrawer : MonoBehaviour
     private FakeCursor _fakeCursor;
     private ComplexStat _rayError;
     private GameData _gameData;
-    private float? _cashedLenght;
+    private float? _cashedLength;
     private bool _twoPointWay;
 
     private Timer _stopTimer;
     private float _allRayTime;
-    private float _rayPathLenght;
-    private float _errorLenghtRatio;
+    private float _rayPathLength;
+    private float _errorLengthRatio;
     private bool _startDrawIsValid;
-    private float _rayEnergyCost;
     private float _rayCostCorrectionValue;
     private RayCollider _rayCollider;
 
-    public float MaxLenght
+    public float LengthLeft
     {
         get
         {
-            if (_cashedLenght == null)
-                return _player.Value.Energy;
-            else
-                return Mathf.Max(_cashedLenght.Value, _player.Value.Energy);
+            return _player.Value.Energy;
         }
     }
-    
+
 
     private float CooldownTime => _allRayTime - _rayDelayTime;
 
@@ -99,52 +93,52 @@ public class RayDrawer : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && rayIsReady)
         {
             _startDrawIsValid = true;
-            _oldPathLength = -20;
-            //_player.Value.AddEnergy(-20);
+            _oldPathLength = 0;
+            _player.Value.AddEnergy(-20);
             _player.Value.EnergyRegen(false);
         }
         if (Input.GetMouseButton(0) && rayIsReady && _startDrawIsValid)
         {
-            if (_cashedLenght == null)
-                _cashedLenght = _player.Value.Energy;
-            if (_currentPathLength < MaxLenght)
+            if (_cashedLength == null)
+                _cashedLength = _player.Value.Energy;
+            if (LengthLeft > 0)
             {
-                Vector3 pos;
+                Vector3 newPos;
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out var hit, 100000, _rayTaregetMask.value))
                 {
-                    pos = hit.point;
+                    newPos = hit.point;
                 }
                 else
                     return;
 
-                //Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition).Get2D();
-                if (pos.EqualsWithThreshold(_oldPointOfPath, 0.1f))
+                if (newPos.EqualsWithThreshold(_oldPointOfPath, 0.1f))
                     return;
                 _cannonPath.positionCount = _currentLineIndex + 1;
                 if (_currentLineIndex > 0)
                 {
-                    if (MaxLenght > _currentPathLength + Vector3.Distance(pos, _oldPointOfPath))
+                    var distanceFromOldPoint = Vector3.Distance(newPos, _oldPointOfPath);
+                    if (LengthLeft > distanceFromOldPoint)
                     {
-                        _currentPathLength += Vector3.Distance(pos, _oldPointOfPath);
+                        _currentPathLength += distanceFromOldPoint;
                     }
                     else
                     {
-                        float d = (float)MaxLenght - _currentPathLength;
-                        pos = _oldPointOfPath + (pos - _oldPointOfPath).normalized * d;
-                        _currentPathLength = (float)MaxLenght;
+                        var validDistance = LengthLeft;
+                        newPos = _oldPointOfPath + (newPos - _oldPointOfPath).normalized * validDistance;
+                        _currentPathLength += validDistance;
                     }
-                    _rayEnergyCost = (_oldPathLength - _currentPathLength)* (1 - RayCostÑorrection());
-                    _player.Value.AddEnergy(_rayEnergyCost);
+                    var rayEnergyCost = (_oldPathLength - _currentPathLength) * (1 - RayCostÑorrection());
+                    _player.Value.AddEnergy(rayEnergyCost);
                     _oldPathLength = _currentPathLength;
                 }
                 else
                 {
                     cannonPath.Clear();
                 }
-                cannonPath.Add(new RayPathPoint() { point = pos, energyRatio = _player.Value.Energy / _player.Value.Capacity });
-                _cannonPath.SetPosition(_currentLineIndex, pos);
-                _oldPointOfPath = pos;
+                cannonPath.Add(new RayPathPoint() { point = newPos, energyRatio = _player.Value.Energy / _player.Value.Capacity });
+                _cannonPath.SetPosition(_currentLineIndex, newPos);
+                _oldPointOfPath = newPos;
                 _currentLineIndex++;
                 _fakeCursor.SetWait(CursorType.Draw);
             }
@@ -186,14 +180,14 @@ public class RayDrawer : MonoBehaviour
             _currentPathLength = 0f;
             rayTime = 0f;
             _rayDelayTime = 0f;
-            _cashedLenght = null;
+            _cashedLength = null;
             _cannonPath.positionCount = 0;
-            _rayPathLenght = LenghtOfPath(cannonPath);
-            _errorLenghtRatio = 1;
+            _rayPathLength = LenghtOfPath(cannonPath);
+            _errorLengthRatio = 1;
             if (_rayError.Value > 0)
             {
                 cannonPath.ForEach(x => x.point += new Vector3(Random.value, Random.value).normalized * Random.value * _rayError.Value);
-                _errorLenghtRatio = LenghtOfPath(cannonPath) / _rayPathLenght;
+                _errorLengthRatio = LenghtOfPath(cannonPath) / _rayPathLength;
             }
 
         }
@@ -202,7 +196,7 @@ public class RayDrawer : MonoBehaviour
             return;
         }
         _rayDelayTime += Time.deltaTime;
-        _allRayTime = _rayPathLenght / _player.Value.RaySpeed + _player.Value.RayDelay;
+        _allRayTime = _rayPathLength / _player.Value.RaySpeed + _player.Value.RayDelay;
         if (_rayDelayTime > _player.Value.RayDelay)
         {
             if (_cannonRay == null)
@@ -214,7 +208,7 @@ public class RayDrawer : MonoBehaviour
                 if (cannonPath[0].energyRatio < .3f)
                     _rayCollider.DamageMultiplier = Mathf.Max(.3f, cannonPath[0].energyRatio * 3);
             }
-            rayTime += Time.deltaTime * _player.Value.RaySpeed * _errorLenghtRatio;
+            rayTime += Time.deltaTime * _player.Value.RaySpeed * _errorLengthRatio;
 
             _cannonRay.transform.position = Vector3.Lerp(cannonPath[0].point, cannonPath[1].point, rayTime / Vector2.Distance(cannonPath[0].point, cannonPath[1].point));
             if (rayTime > Vector2.Distance(cannonPath[0].point, cannonPath[1].point))
@@ -248,7 +242,7 @@ public class RayDrawer : MonoBehaviour
                 _rayCostCorrectionValue = .9f;
             return _rayCostCorrectionValue;
         }
-        
+
         return _rayCostCorrectionValue;
     }
 
