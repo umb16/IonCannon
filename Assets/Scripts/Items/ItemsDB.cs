@@ -2380,7 +2380,6 @@ public class ItemsDB
         return new Item(LocaleKeys.Main.i_PowerController)
         {
             Type = ItemType.PowerController,
-            NotForSale = true,
             Cost = 100,
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
@@ -2397,7 +2396,6 @@ public class ItemsDB
         {
             UpgradeCount = 1,
             Type = ItemType.PowerControllerPlus,
-            NotForSale = true,
             Cost = 200,
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
@@ -2414,7 +2412,6 @@ public class ItemsDB
         {
             UpgradeCount = 2,
             Type = ItemType.PowerControllerPlusPlus,
-            NotForSale = true,
             Cost = 500,
             Icon = Addresses.Ico_PowerController,
             Perks = new IPerk[]
@@ -2430,7 +2427,6 @@ public class ItemsDB
         return new Item(LocaleKeys.Main.i_LensSystem)
         {
             Type = ItemType.LensSystem,
-            NotForSale = true,
             Unique = false,
             Cost = 150,
             Icon = Addresses.Ico_Lenses,
@@ -2447,7 +2443,6 @@ public class ItemsDB
         {
             UpgradeCount = 1,
             Type = ItemType.LensSystemPlus,
-            NotForSale = true,
             Unique = false,
             Cost = 400,
             Icon = Addresses.Ico_Lenses,

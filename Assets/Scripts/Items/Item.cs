@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -7,21 +7,19 @@ public class Item : WithId
 {
     public ItemType Type;
     public int UpgradeCount = 0;
-    public bool NotForSale;
     public bool Unique = false;
-
-    public string PreDescription = "Áàòàðåÿ";
-    public string PostDescription = "Áàòàðåÿ";
     public string Description => UpdateDescription();
     public string Name => UpdateName();
+    public int Cost = 10;
+
+    public IPerk[] Perks = { };
+    public string Icon = Addresses.Ico_Battery;
 
     private LocalizedString _localizedName;
     private LocalizedString _localizedDescription;
     private string _description = null;
-    public int Cost = 10;
+
     public int SellCost => Cost / 2;
-    public IPerk[] Perks = { };
-    public string Icon = Addresses.Ico_Battery;
     private string _name = null;
 
     private string UpdateName()
