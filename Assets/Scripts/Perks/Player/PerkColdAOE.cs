@@ -3,43 +3,52 @@ using Cysharp.Threading.Tasks.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Umb16.Extensions;
-using Random = UnityEngine.Random;
+using UnityEngine;
+using UnityEngine.PlayerLoop;
 
-public class PerkColdAOE : PerkCommonBase
+public class PerkColdAOE : PerkBase
 {
     private IMob _mob;
-    private IDisposable _loop;
-    private int _maxAffectedBy;
     private float _radius;
-    private float _timeTikInSec;
     private List<IMob> _mobs = new();
+    private DamageController _damageController;
 
-    public PerkColdAOE(int maxAffectedBy, float radius, float timeTikInSec)
+    public PerkColdAOE(float radius)
     {
-        _maxAffectedBy = maxAffectedBy;
         _radius = radius;
-        _timeTikInSec = timeTikInSec;
-        SetType(PerkType.ColdAOE);
+    }
+
+    public override void Add(IPerk perk)
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void Init(IMob mob)
     {
         _mob = mob;
         _mobs = mob.AllMobs;
-        _loop = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(_timeTikInSec), TimeSpan.FromSeconds(_timeTikInSec)).Subscribe(Update);
+        _damageController = _mob.DamageController;
+        _damageController.Damage += OnDamage;
+
+    }
+
+    private void OnDamage(DamageMessage message)
+    {
+        if (message.Target == _mob && message.DamageSource != DamageSources.Heal)
+        {
+            TakingDamage();
+        }
+        
     }
 
     public override void Shutdown()
     {
-        _loop.Dispose();
+        _damageController.Damage -= OnDamage;
     }
 
-    private void Update(AsyncUnit obj)
+    private void TakingDamage()
     {
-        List<IMob> mobsAffectedBy = new();
-
         for (int i = 0; i < _mobs.Count; i++)
         {
             var mob = _mobs[i];
@@ -47,18 +56,8 @@ public class PerkColdAOE : PerkCommonBase
                 continue;
             if ((mob.Position - _mob.Position).SqrMagnetudeXY() < _radius * _radius)
             {
-                mobsAffectedBy.Add(mob);
+                mob.AddPerk(new PerkFrostbiteEffect());
             }
-        }
-
-        for (int i = 0; i < _maxAffectedBy; i++)
-        {
-            if (mobsAffectedBy.Count != 0)
-            {
-                var randomMob = mobsAffectedBy[Random.Range(0, mobsAffectedBy.Count)];
-                randomMob.AddPerk(new PerkFrostbiteEffect());
-                mobsAffectedBy.Remove(randomMob);
-            }          
         }
     }
 }

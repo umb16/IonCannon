@@ -1,17 +1,13 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PerkFrostbiteEffect : PerkBase
 {
     private IMob _mob;
     private IDisposable _loop;
     private StatModificator _slowdown;
+    
     public float Countdown { get; private set; }
 
     public PerkFrostbiteEffect()
@@ -40,6 +36,7 @@ public class PerkFrostbiteEffect : PerkBase
     {
         _loop.Dispose();
     }
+
     private void Update(AsyncUnit obj)
     {
         Countdown--;
