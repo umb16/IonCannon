@@ -97,13 +97,14 @@ public class UIShopLayer : MonoBehaviour
 
     private void OnDisable()
     {
-        OnClosed?.Invoke();
-        SoundManager.Instance.PlayShopClose();
-        Time.timeScale = 1;
+        
     }
 
     public void Close()
     {
+        OnClosed?.Invoke();
+        SoundManager.Instance.PlayShopClose();
+        Time.timeScale = 1;
         _gameData.ReturnToPrevStatus();
     }
 

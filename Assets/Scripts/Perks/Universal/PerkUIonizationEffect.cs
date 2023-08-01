@@ -34,11 +34,11 @@ public class PerkUIonizationEffect : WithId, IPerk
         Damage += effect.Damage;
     }
 
-    public async void Init(IMob mob)
+    public void Init(IMob mob)
     {
         _mob = mob;
         _loop = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)).Subscribe(Update);
-        _mob.AddFx(_fx);
+        _mob.AddFx(_fx).Forget();
     }
 
     private void Update(AsyncUnit obj)

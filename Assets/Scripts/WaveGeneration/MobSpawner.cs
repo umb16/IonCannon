@@ -152,7 +152,6 @@ public class MobSpawner : MonoBehaviour
             item.Update();
         }
 
-        //������������ �����
         if (teleportation)
         {
             foreach (var mob in Mobs)
