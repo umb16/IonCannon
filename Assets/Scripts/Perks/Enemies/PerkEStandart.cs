@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PerkEStandart : WithId, IPerk
+public abstract class PerkEStandart : WithTag, IPerk
 {
     public abstract PerkType Type { get; }
 

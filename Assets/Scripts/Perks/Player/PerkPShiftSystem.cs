@@ -5,24 +5,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class PerkPShiftSystem : WithId, IPerk
+public class PerkPShiftSystem : PerkBase
 {
     private IMob _mob;
 
-    public PerkType Type => PerkType.PShift;
-
-    public bool IsCommon => false;
     private Timer _timer;
     private StatModificator _modificator;
     private StatModificator _modificatorSpeedUp = new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.MovementSpeed);
 
     public PerkPShiftSystem()
     {
-
+        SetType(PerkType.PShift);
     }
-    public void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _mob = mob;
         _mob.DamageController.Damage += OnDamage;
@@ -48,20 +44,15 @@ public class PerkPShiftSystem : WithId, IPerk
         });
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _timer?.ForceEnd();
         _mob.DamageController.Damage -= OnDamage;
         _mob.StatsCollection.RemoveModificator(_modificator);
     }
 
-    public void Add(IPerk perk)
+    public override void Add(IPerk perk)
     {
 
-    }
-
-    public string GetDescription()
-    {
-        return null;
     }
 }

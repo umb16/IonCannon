@@ -1,4 +1,4 @@
-public enum PerkType
+﻿public enum PerkType
 {
     Speed = 0,
     RaySpeed = 1,
@@ -50,4 +50,6 @@ public enum PerkType
     RayCostReduction = 43,
     FrostbiteEffect = 44,
     ColdAOE = 45,
+
+    Base = 46 //Для всех простых перков которые не имеют сложных правил
 }

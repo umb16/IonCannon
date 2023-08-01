@@ -4,7 +4,6 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
 using Cysharp.Threading.Tasks.Linq;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class PerkStarDust : PerkGravityMatter
 {
@@ -17,10 +16,7 @@ public class PerkStarDust : PerkGravityMatter
         _lifetime = lifetime;
         _maxShards = maxShards;
     }
-    public override void Add(IPerk perk)
-    {
 
-    }
     public override void Init(IMob mob)
     {
         _mob = mob;

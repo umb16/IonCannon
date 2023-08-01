@@ -5,33 +5,23 @@ using UnityEngine;
 using Cysharp.Threading.Tasks.Linq;
 using Zenject;
 
-public class PerkPIonization : WithId,IPerk
+public class PerkPIonization : PerkCommonBase
 {
-    public PerkType Type => PerkType.Ionization;
-
     private IMob _mob;
     private DamageController _damageController;
 
-    private float _damage;  //_mob.StatsCollection.GetStat(StatType.RayDamage).Value  * .1f;
+    private float _damage;
     private float _duration = 10;
-
-    public bool IsCommon => true;
-
-    public void Add(IPerk perk)
-    {
-
-    }
 
     public PerkPIonization(DamageController damageController, float damage, float duration)
     {
         _damageController = damageController;
-
-        
         _damage = damage;
         _duration = duration;
+        SetType(PerkType.Ionization);
     }
 
-    public void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _mob = mob;
         _damageController.Damage += OnDamage;
@@ -45,13 +35,8 @@ public class PerkPIonization : WithId,IPerk
         }
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _damageController.Damage -= OnDamage;
-    }
-
-    public string GetDescription()
-    {
-        return null;
     }
 }

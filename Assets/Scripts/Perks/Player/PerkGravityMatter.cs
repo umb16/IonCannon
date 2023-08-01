@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkGravityMatter : WithId, IPerk
+public class PerkGravityMatter : PerkCommonBase
 {
     protected IMob _mob;
     protected OrbitalProjectile _stone;
@@ -21,28 +21,16 @@ public class PerkGravityMatter : WithId, IPerk
         _damage = damage;
         _stunTime = stunTime;
         _size = size;
-        _perkType = perkType;
+        SetType(perkType);
     }
 
-    public bool IsCommon => true;
-
-    public PerkType Type => _perkType;
-
-    public virtual void Add(IPerk perk)
-    {
-
-    }
-    public string GetDescription()
-    {
-        return "";
-    }
-    public virtual void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _mob = mob;
         CreateGravityStone().Forget();
     }
 
-    public virtual void Shutdown()
+    public override void Shutdown()
     {
         if (_stone != null)
             GameObject.Destroy(_stone.gameObject);

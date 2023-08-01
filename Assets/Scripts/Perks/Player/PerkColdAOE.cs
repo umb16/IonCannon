@@ -7,7 +7,7 @@ using UnityEngine;
 using Umb16.Extensions;
 using Random = UnityEngine.Random;
 
-public class PerkColdAOE : WithId, IPerk
+public class PerkColdAOE : PerkCommonBase
 {
     private IMob _mob;
     private IDisposable _loop;
@@ -21,31 +21,17 @@ public class PerkColdAOE : WithId, IPerk
         _maxAffectedBy = maxAffectedBy;
         _radius = radius;
         _timeTikInSec = timeTikInSec;
+        SetType(PerkType.ColdAOE);
     }
 
-
-    public bool IsCommon => true;
-
-    public PerkType Type => PerkType.ColdAOE;
-
-    public void Add(IPerk perk)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public string GetDescription()
-    {
-        return "";
-    }
-
-    public void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _mob = mob;
         _mobs = mob.AllMobs;
         _loop = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(_timeTikInSec), TimeSpan.FromSeconds(_timeTikInSec)).Subscribe(Update);
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _loop.Dispose();
     }

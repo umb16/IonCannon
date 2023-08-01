@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PerkAuraEffect : WithId, IPerk
+public class PerkAuraEffect : WithTag, IPerk
 {
     public PerkType Type { get; private set; }
 

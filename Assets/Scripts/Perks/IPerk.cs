@@ -1,9 +1,3 @@
-using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Zenject;
-
 public interface IPerk
 {
     int InstanceId { get; }
@@ -12,6 +6,5 @@ public interface IPerk
     void Shutdown();
     void Init(IMob mob);
     void Add(IPerk perk);
-
     string GetDescription();
 }

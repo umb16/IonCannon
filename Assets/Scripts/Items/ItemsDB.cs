@@ -121,10 +121,6 @@ public class ItemsDB
                 return OxygenSupplyModule();
             case ItemType.PoisonGasCylinders:
                 return PoisonGasCylinders();
-            case ItemType.None:
-            default:
-                return Battery();
-
             case ItemType.Accelerator:
                 return Accelerator();
             case ItemType.ArmoredPlates:
@@ -329,6 +325,9 @@ public class ItemsDB
                 return PoleOfCold();
             case ItemType.StoneApple:
                 return StoneApple();
+            case ItemType.None:
+            default:
+                return Battery();
         }
     }
     public Item Accelerator()//Акселератор
@@ -2211,7 +2210,7 @@ public class ItemsDB
             Icon = Addresses.Ico_Laser,
             Perks = new IPerk[]
             {
-                _perksFactory.Create<PerkPEnegryAbsorber>(5f)//урон, длительность
+                _perksFactory.Create<PerkPEnergyAbsorber>(5f)//урон, длительность
             }
         };
     }

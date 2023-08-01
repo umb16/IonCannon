@@ -7,7 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class PerkFrostbiteEffect : WithId, IPerk
+public class PerkFrostbiteEffect : PerkBase
 {
     private IMob _mob;
     private IDisposable _loop;
@@ -18,31 +18,25 @@ public class PerkFrostbiteEffect : WithId, IPerk
     {
         _slowdown = new StatModificator(-.7f, StatModificatorType.Multiplicative, StatType.MovementSpeed);
         Countdown = 4;
+        SetType(PerkType.FrostbiteEffect);
     }
 
-    public bool IsCommon => false;
+    public override bool IsCommon => false;
 
-    public PerkType Type => PerkType.FrostbiteEffect;
-
-    public void Add(IPerk perk)
+    public override void Add(IPerk perk)
     {
         PerkFrostbiteEffect effect = ((PerkFrostbiteEffect)perk);
         Countdown = effect.Countdown;
     }
 
-    public string GetDescription()
-    {
-        return "";
-    }
-
-    public void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _mob = mob;
         _mob.StatsCollection.AddModificator(_slowdown);
         _loop = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)).Subscribe(Update);
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _loop.Dispose();
     }

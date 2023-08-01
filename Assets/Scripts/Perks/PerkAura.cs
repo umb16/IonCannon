@@ -7,7 +7,7 @@ using System.Threading;
 using Umb16.Extensions;
 using UnityEngine;
 
-public class PerkAura : WithId, IPerk
+public class PerkAura : WithTag, IPerk
 {
     public PerkType Type { get; private set; }
     private PerkType _effectType;

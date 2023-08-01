@@ -2,34 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class SimplePerk : WithId, IPerk
+public class SimplePerk : PerkCommonBase
 {
-    
-    public PerkType Type { get; private set; }
-
-    public bool IsCommon => true;
-
     private IStatsCollection _collection;
     private StatModificator[] _modificators;
 
     public SimplePerk(PerkType type, params StatModificator[] statModificators)
     {
         _modificators = statModificators;
-        Type = type;
+        SetType(type);
     }
 
-    public void Init(IMob parent)
+    public override void Init(IMob parent)
     {
         _collection = parent.StatsCollection;
         _collection.AddModificators(_modificators);
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         _collection.RemoveModificators(_modificators);
     }
 
-    public string GetDescription()
+    public override string GetDescription()
     {
         string result = "";
         foreach (var item in _modificators)
@@ -42,10 +37,4 @@ public class SimplePerk : WithId, IPerk
         }
         return result;
     }
-
-    public void Add(IPerk perk)
-    {
-        
-    }
-
 }

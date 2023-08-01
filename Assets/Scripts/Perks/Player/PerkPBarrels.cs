@@ -7,17 +7,15 @@ using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PerkPBarrels : WithId, IPerk
+public class PerkPBarrels : PerkCommonBase
 {
     private IMob _mob;
 
-    public PerkType Type => PerkType.PBarrels;
     private float _cooldown = 20;
     private float _lastSpawnTime;
     private float NextSpawnTime => _lastSpawnTime + _cooldown;
     private bool SpawnTimeCome => NextSpawnTime < Time.time;
 
-    public bool IsCommon => true;
     private CooldownIndicator _indicator;
 
     private List<IDisposable> _loops = new List<IDisposable>();
@@ -27,8 +25,9 @@ public class PerkPBarrels : WithId, IPerk
     {
         _cooldownsPanel = cooldownsManager;
         _cooldown = cooldown;
+        SetType(PerkType.PBarrels);
     }
-    public void Init(IMob mob)
+    public override void Init(IMob mob)
     {
         _lastSpawnTime = Time.time;
         _mob = mob;
@@ -54,22 +53,12 @@ public class PerkPBarrels : WithId, IPerk
         _mob.AllMobs.Add(go.GetComponent<IMob>());
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         foreach (var loop in _loops)
         {
             loop.Dispose();
         }
         _indicator?.Destroy();
-    }
-
-    public void Add(IPerk perk)
-    {
-
-    }
-
-    public string GetDescription()
-    {
-        return "";
     }
 }
