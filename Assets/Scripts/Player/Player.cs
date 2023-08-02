@@ -102,6 +102,7 @@ public class Player : Mob
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
         Inventory.Add(itemsDB.PoleOfCold());
+        Inventory.Add(itemsDB.WhiteShroud());
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
         //Inventory.Add(itemsDB.StarSatellite());

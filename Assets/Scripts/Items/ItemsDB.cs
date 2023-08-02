@@ -1055,9 +1055,9 @@ public class ItemsDB
             Icon = Addresses.Ico_WhiteShroud,
             Perks = new IPerk[]
             {
-                //При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
+                new PerkColdAOE(15),//При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerFireResist,
-                    new StatModificator(.8f, StatModificatorType.Additive, StatType.FireResist))//[[Огонь]] наносит персонажу на 50 % урона меньше.
+                    new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.FireResist))//[[Огонь]] наносит персонажу на 50 % урона меньше.
             }
         };
     }
@@ -1997,7 +1997,8 @@ public class ItemsDB
             Icon = Addresses.Ico_PoleOfCold,
             Perks = new IPerk[]
             {
-                new PerkColdAOE(5, 40, 10)
+                _perksFactory.Create<PerkColdAOEWithCooldown>(5, 40f, 10f)
+                //new PerkColdAOE(5, 40, 10)
                 //Накладывает [[Обморожение]] на 5 врагов в радиусе 40 п. раз в 10 с.
                 //[[Минерал]].
             }
