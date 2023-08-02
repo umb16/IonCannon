@@ -57,8 +57,8 @@ public class StandardStatsCollection : IStatsCollection
         }
         else
         {
-            var stat = new ComplexStat(value);
-            _stats[statType] = stat;
+            var newStat = new ComplexStat(value);
+            _stats[statType] = newStat;
             Debug.LogWarning("SetStat: " + statType + " not found");
         }
     }
@@ -71,8 +71,8 @@ public class StandardStatsCollection : IStatsCollection
         }
         else
         {
-            var newstat = new ComplexStat(value);
-            _stats[statType] = newstat;
+            var newStat = new ComplexStat(value);
+            _stats[statType] = newStat;
             Debug.LogWarning("SetStat: " + statType + " not found");
         }
     }

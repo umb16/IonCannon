@@ -179,7 +179,7 @@ public class Player : Mob
     {
         if (stat.Value <= 0)
         {
-            ReceiveDamage(new DamageMessage(this, this, 1000, DamageSources.God));
+            ReceiveDamage(new DamageMessage(this, this, 9999, DamageSources.God));
         }
     }
 
@@ -192,7 +192,6 @@ public class Player : Mob
     private void Stop()
     {
         _spriteRenderer.enabled = false;
-        //Destroy(gameObject);
         _stopped = true;
         if (Blood != null)
             Destroy(Instantiate(Blood, transform.position + Vector3.back * 0.5f, Blood.transform.rotation), 10f);
@@ -207,7 +206,6 @@ public class Player : Mob
 
     protected override void OnDestroy()
     {
-        //GameData.GameStateChanged -= GameStateChanged;
         base.OnDestroy();
     }
     protected override void Update()
