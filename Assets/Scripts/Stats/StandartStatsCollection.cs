@@ -62,4 +62,18 @@ public class StandardStatsCollection : IStatsCollection
             Debug.LogWarning("SetStat: " + statType + " not found");
         }
     }
+
+    public void AddStat(StatType statType, float value)
+    {
+        if (_stats.TryGetValue(statType, out var stat))
+        {
+            _stats[statType].SetBaseValue(stat.BaseValue + value);
+        }
+        else
+        {
+            var newstat = new ComplexStat(value);
+            _stats[statType] = newstat;
+            Debug.LogWarning("SetStat: " + statType + " not found");
+        }
+    }
 }

@@ -59,9 +59,11 @@ public class Player : Mob
     public float RayCostReduction => _rayCostReduction.Value;
 
     [Inject]
-    private void Construct(DamageController damageController, AsyncReactiveProperty<Player> player,
+    private void Construct(AsyncReactiveProperty<Player> player,
         ItemsDB itemsDB, PerksFactory perksFactory, MiningDamageReceiver miningDamageReceiver)
     {
+        player.Value = this;
+
         if (_playerType == PlayerType.Astro)
             StatsCollection = StatsCollectionsDB.StandartPlayer();
         else
@@ -91,7 +93,7 @@ public class Player : Mob
         _miningDamageReceiver = miningDamageReceiver;
         _lifeSupport.ValueChanged += LifeSupportValueChanged;
         _stopped = false;
-        player.Value = this;
+
         if (_playerType == PlayerType.Astro)
             Inventory.Add(itemsDB.ShiftSystem());
 

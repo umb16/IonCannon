@@ -161,8 +161,9 @@ public class Mob : MonoBehaviour, IMob
     {
         if (IsDead || _invulnerability && message.DamageSource != DamageSources.God)
             return;
+
         _stunEndTime = message.StunTime + Time.time;
-        //if ((message.DamageSource & DamageSources.RayAll) == message.DamageSource)
+
         if (message.DamageSource != DamageSources.Heal)
         {
             message.Damage = Mathf.Max(1, message.Damage - Defence.Value);
@@ -217,15 +218,6 @@ public class Mob : MonoBehaviour, IMob
 
     protected virtual void Start()
     {
-        /*var vector =  transform.eulerAngles;
-        vector.x = Camera.main.transform.eulerAngles.x;
-        transform.eulerAngles = vector;*/
-        /*UniTaskAsyncEnumerable.EveryValueChanged(Camera.main.transform, x => x.eulerAngles.x).Subscribe(x =>
-        {
-            var vector = transform.eulerAngles;
-            vector.x = x;
-            transform.eulerAngles = vector;
-        },cancellationToken: this.GetCancellationTokenOnDestroy());*/
         MovementSpeed = StatsCollection.GetStat(StatType.MovementSpeed);
         HP = StatsCollection.GetStat(StatType.HP);
         Defence = StatsCollection.GetStat(StatType.Defence);
@@ -243,10 +235,6 @@ public class Mob : MonoBehaviour, IMob
             {
                 if (_mirroringOnMove)
                     Flip();
-
-                //Vector3 vector = MovementSpeed.Value * ((Vector3)_moveTarget - transform.position).normalized;
-
-                //_rigidbody.velocity = vector;
                 Vector2 pos = transform.position;
                 pos += MovementSpeed.Value * Time.deltaTime * (_moveTarget - pos).normalized;
                 transform.position = pos.Get2D();
@@ -267,12 +255,10 @@ public class Mob : MonoBehaviour, IMob
         if (_moveTarget.x - transform.position.x < 0)
         {
             _spriteRenderer.flipX = !_reverseMirroring;
-            //scale.x = -1;
         }
         else if (_moveTarget.x - transform.position.x > 0)
         {
             _spriteRenderer.flipX = _reverseMirroring;
-            //scale.x = 1;
         }
         transform.localScale = scale;
     }
