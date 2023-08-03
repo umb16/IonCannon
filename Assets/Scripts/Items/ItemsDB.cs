@@ -1954,7 +1954,7 @@ public class ItemsDB
             Icon = Addresses.Ico_ElectricalLead,
             Perks = new IPerk[]
             {
-                //Раз в 6 с. выпускает в случайного врага молнию, бьющую 20 ед. [[Электричество]].
+                _perksFactory.Create<PerkElectricalLead>(6f)//Раз в 6 с. выпускает в случайного врага молнию, бьющую 20 ед. [[Электричество]].
                 //[[Минерал]].
             }
         };

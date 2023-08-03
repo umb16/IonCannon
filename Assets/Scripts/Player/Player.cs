@@ -62,7 +62,7 @@ public class Player : Mob
     private void Construct(AsyncReactiveProperty<Player> player,
         ItemsDB itemsDB, PerksFactory perksFactory, MiningDamageReceiver miningDamageReceiver)
     {
-        player.Value = this;
+        
 
         if (_playerType == PlayerType.Astro)
             StatsCollection = StatsCollectionsDB.StandartPlayer();
@@ -101,14 +101,15 @@ public class Player : Mob
         Inventory.AddSlot();
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        Inventory.Add(itemsDB.PoleOfCold());
+        //Inventory.Add(itemsDB.ElectricalLead());
         Inventory.Add(itemsDB.WhiteShroud());
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
         //Inventory.Add(itemsDB.StarSatellite());
         //Inventory.Add(itemsDB.StarDust());
-
         //Inventory.Add(itemsDB.Echo());
+
+        player.Value = this;
     }
 
     public void AddEnergy(float value)
