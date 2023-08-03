@@ -7,7 +7,7 @@ public class PerkFrostbiteEffect : PerkBase
     private IMob _mob;
     private IDisposable _loop;
     private StatModificator _slowdown;
-    
+    private Fx _slowDownFx = new Fx("Fx_SlowDown", FxPosition.SpriteMesh);
     public float Countdown { get; private set; }
 
     public PerkFrostbiteEffect()
@@ -29,11 +29,14 @@ public class PerkFrostbiteEffect : PerkBase
     {
         _mob = mob;
         _mob.StatsCollection.AddModificator(_slowdown);
+        mob.AddFx(_slowDownFx);
         _loop = UniTaskAsyncEnumerable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)).Subscribe(Update);
     }
 
     public override void Shutdown()
     {
+        _mob.RemoveFx(_slowDownFx);
+        _mob.StatsCollection.RemoveModificator(_slowdown);
         _loop.Dispose();
     }
 
@@ -43,7 +46,6 @@ public class PerkFrostbiteEffect : PerkBase
 
         if (Countdown <= 0)
         {
-            _mob.StatsCollection.RemoveModificator(_slowdown);
             _mob.RemovePerk(this);
         }           
     }

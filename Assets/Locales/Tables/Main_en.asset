@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 278701330427904
-    m_Localized: Move speed
+    m_Localized: Options
     m_Metadata:
       m_Items: []
   - m_Id: 278831106387968
@@ -700,7 +700,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 126131712163176448
-    m_Localized: Muve speed
+    m_Localized: Move speed
     m_Metadata:
       m_Items: []
   - m_Id: 126132698449567744

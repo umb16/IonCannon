@@ -37,13 +37,24 @@ public class ScoreGem : MonoBehaviour
     {
         if (_taken)
             return;
-        if (_player != null /*&& (_heal == 0 || _player.HP.Value<_player.StatsCollection.GetStat(StatType.MaxHP).Value)*/ && (_player.Position - transform.position).magnitude < _player.StatsCollection.GetStat(StatType.PickupRadius).Value)
+        if (_player == null)
+            return;
+        var pickupRadius = _player.StatsCollection.GetStat(StatType.PickupRadius).Value;
+        var direction = _player.Position - transform.position;
+        var distanceToPlayer = direction.magnitude;
+        if (distanceToPlayer <= pickupRadius)
         {
-            _taken = true;
-            _sound.Play();
-            _animator.SetBool("take", true);
-            _player.ScoreGemPickingUp(_score, _heal);                 
-            Destroy(gameObject, _destroyDelay);
+            var normalizedDistance = (pickupRadius - distanceToPlayer) / pickupRadius;
+            if (distanceToPlayer > 1)
+                transform.position += direction * Time.deltaTime * Mathf.Pow(normalizedDistance, 2.5f) * 5;
+            if (distanceToPlayer < 2)
+            {
+                _taken = true;
+                _sound.Play();
+                _animator.SetBool("take", true);
+                _player.ScoreGemPickingUp(_score, _heal);
+                Destroy(gameObject, _destroyDelay);
+            }
         }
     }
 }
