@@ -1055,7 +1055,7 @@ public class ItemsDB
             Icon = Addresses.Ico_WhiteShroud,
             Perks = new IPerk[]
             {
-                new PerkColdAOE(15),//При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
+                new PerkColdAOE(15),//При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 15 п.
                 new SimplePerk(PerkType.PlayerFireResist,
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.FireResist))//[[Огонь]] наносит персонажу на 50 % урона меньше.
             }

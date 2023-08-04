@@ -101,7 +101,7 @@ public class Player : Mob
         Inventory.AddSlot();
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        //Inventory.Add(itemsDB.ElectricalLead());
+        Inventory.Add(itemsDB.ElectricalLead());
         Inventory.Add(itemsDB.WhiteShroud());
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
