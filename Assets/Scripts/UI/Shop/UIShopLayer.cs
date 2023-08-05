@@ -49,14 +49,14 @@ public class UIShopLayer : MonoBehaviour
 
     private void OnItemPointerExit(PointerEventData obj)
     {
-        _playerInventory.HighlightItems(ItemType.None);
+        _playerInventory.HighlightItems(ItemId.None);
     }
 
     private void OnItemPointerEnter(PointerEventData obj, UIShopItem shopItem)
     {
         var item = shopItem.Item;
         if (item != null)
-            _playerInventory.HighlightItems(item.Type);
+            _playerInventory.HighlightItems(item.Id);
     }
 
     private async UniTask OnEnable()
@@ -75,7 +75,7 @@ public class UIShopLayer : MonoBehaviour
         for (int i = 0; i < _itemsCount; i++)
         {
             _items[i].gameObject.SetActive(true);
-            _items[i].Set(_itemsDB.GetRandomItem()).Forget();
+            _items[i].Set(_itemsDB.CreateRandomItem()).Forget();
         }
     }
 
@@ -85,7 +85,7 @@ public class UIShopLayer : MonoBehaviour
         {
             item.gameObject.SetActive(false);
             _player.Value.Gold.AddBaseValue(-item.Item.Cost);
-            _playerInventory.HighlightItems(ItemType.None);
+            _playerInventory.HighlightItems(ItemId.None);
         }
         else
         {

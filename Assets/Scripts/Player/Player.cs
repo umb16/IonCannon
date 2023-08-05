@@ -95,14 +95,14 @@ public class Player : Mob
         _stopped = false;
 
         if (_playerType == PlayerType.Astro)
-            Inventory.Add(itemsDB.ShiftSystem());
+            Inventory.Add(itemsDB.CreateItem(ItemId.ShiftSystem));
 
         Inventory.AddSlot();
         Inventory.AddSlot();
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
         //Inventory.Add(itemsDB.ElectricalLead());
-        Inventory.Add(itemsDB.WhiteShroud());
+        Inventory.Add(itemsDB.CreateItem(ItemId.WhiteShroud));
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
         //Inventory.Add(itemsDB.StarSatellite());

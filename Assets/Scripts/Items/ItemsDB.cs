@@ -7,7 +7,10 @@ using Random = UnityEngine.Random;
 
 public class ItemsDB
 {
-    private ItemType[] shop ={
+    private Dictionary<ItemId, ItemTemplate> _templates = new Dictionary<ItemId, ItemTemplate>();
+    private PerksFactory _perksFactory;
+
+    private ItemId[] _shopItems ={
          //ItemType.AdditionalDrives,
          //ItemType.ExoskeletonSpeedBooster,
          //ItemType.Battery,
@@ -19,1309 +22,899 @@ public class ItemsDB
          //ItemType.DivergingLens,
          //ItemType.MagneticManipulator,
          //ItemType.AtomicBattery
-         ItemType.Accelerator,
-         ItemType.ArmoredPlates,
-         ItemType.ExoskeletonModule,
-         ItemType.MagneticCore,
-         ItemType.OxygenCylinders,
-         ItemType.CoprocessorTwo,
-         ItemType.FreonCylinders,
-         ItemType.DeliveryDeviceTwo,
-         ItemType.AtomicCell,
-         ItemType.Accumulator,
-         ItemType.AdditionalDriveUnits,
-         ItemType.AdditionalLens,
+         ItemId.Accelerator,
+         ItemId.ArmoredPlates,
+         ItemId.ExoskeletonModule,
+         ItemId.MagneticCore,
+         ItemId.OxygenCylinders,
+         ItemId.CoprocessorTwo,
+         ItemId.FreonCylinders,
+         ItemId.DeliveryDeviceTwo,
+         ItemId.AtomicCell,
+         ItemId.Accumulator,
+         ItemId.AdditionalDriveUnits,
+         ItemId.AdditionalLens,
     };
-    private PerksFactory _perksFactory;
+
+    public Item CreateItem(ItemId itemId)
+    {
+        if (_templates.TryGetValue(itemId, out var value))
+            return value.CreateItem();
+        return null;
+    }
+    public Item CreateRandomItem()
+    {
+        var randomEnum = _shopItems[Random.Range(0, _shopItems.Length)];
+        return CreateItem(randomEnum);
+    }
+
+    private void AddItemTemplate(ItemTemplate itemTemplate)
+    {
+        if (_templates.ContainsKey(itemTemplate.Id))
+        {
+            Debug.LogError($"ItemTemplateID {itemTemplate.Id} duplicate");
+        }
+        _templates[itemTemplate.Id] = itemTemplate;
+    }
+
+
 
     private ItemsDB(PerksFactory perksFactory)
     {
         _perksFactory = perksFactory;
-    }
 
-    public Item GetRandomItem()
-    {
-        var randomEnum = shop[Random.Range(0, shop.Length)];
-        return CreateByType(randomEnum);
-    }
-
-    public Item CreateByType(ItemType type)
-    {
-        switch (type)
+        AddItemTemplate(
+        new ItemTemplate(LocaleKeys.Main.i_Accelerator)//Акселератор
         {
-            case ItemType.AdditionalDrives:
-                return AdditionalDrives();
-            case ItemType.ExoskeletonSpeedBooster:
-                return ExoskeletonSpeedBooster();
-            case ItemType.Battery:
-                return Battery();
-            case ItemType.Amplifier:
-                return Amplifier();
-            case ItemType.FocusLens:
-                return FocusLens();
-            case ItemType.IonizationUnit:
-                return IonizationUnit();
-            case ItemType.DeliveryDevice:
-                return DeliveryDevice();
-            case ItemType.Coprocessor:
-                return Coprocessor();
-            case ItemType.DivergingLens:
-                return DivergingLens();
-            case ItemType.PowerController:
-                return PowerController();
-            case ItemType.LensSystem:
-                return LensSystem();
-            case ItemType.MagneticManipulator:
-                return MagneticManipulator();
-            case ItemType.SpeedDrives:
-                return SpeedDrives();
-            case ItemType.CoprocessorPlus:
-                return CoprocessorPlus();
-            case ItemType.AmplifierPlus:
-                return AmplifierPlus();
-            case ItemType.AmplifierPlusPlus:
-                return AmplifierPlusPlus();
-            case ItemType.LensSystemPlus:
-                return LensSystemPlus();
-            case ItemType.BatteryPlus:
-                return BatteryPlus();
-            case ItemType.BatteryPlusPlus:
-                return BatteryPlusPlus();
-            case ItemType.DeliveryDevicePlus:
-                return DeliveryDevicePlus();
-            case ItemType.DeliveryDevicePlusPlus:
-                return DeliveryDevicePlusPlus();
-            case ItemType.CoprocessorPlusPlus:
-                return CoprocessorPlusPlus();
-            case ItemType.IonizationUnitPlus:
-                return IonizationUnitPlus();
-            case ItemType.IonizationUnitPlusPlus:
-                return IonizationUnitPlusPlus();
-            case ItemType.PowerControllerPlus:
-                return PowerControllerPlus();
-            case ItemType.PowerControllerPlusPlus:
-                return PowerControllerPlusPlus();
-            case ItemType.ShiftSystem:
-                return ShiftSystem();
-            case ItemType.ReverseSystem:
-                return ReverseSystem();
-            case ItemType.AtomicBattery:
-                return AtomicBattery();
-            case ItemType.AtomicBatteryPlus:
-                return AtomicBatteryPlus();
-            case ItemType.AtomicBatteryPlusPlus:
-                return AtomicBatteryPlusPlus();
-            case ItemType.EnergyAbsorber:
-                return EnergyAbsorber();
-            case ItemType.AnalyzingModule:
-                return AnalyzingModule();
-            case ItemType.FreonSprayer:
-                return FreonSprayer();
-            case ItemType.OxygenSupplyModule:
-                return OxygenSupplyModule();
-            case ItemType.PoisonGasCylinders:
-                return PoisonGasCylinders();
-            case ItemType.Accelerator:
-                return Accelerator();
-            case ItemType.ArmoredPlates:
-                return ArmoredPlates();
-            case ItemType.ExoskeletonModule:
-                return ExoskeletonModule();
-            case ItemType.MagneticCore:
-                return MagneticCore();
-            case ItemType.OxygenCylinders:
-                return OxygenCylinders();
-            case ItemType.CoprocessorTwo:
-                return CoprocessorTwo();
-            case ItemType.FreonCylinders:
-                return FreonCylinders();
-            case ItemType.DeliveryDeviceTwo:
-                return DeliveryDeviceTwo();
-            case ItemType.AtomicCell:
-                return AtomicCell();
-            case ItemType.Accumulator:
-                return Accumulator();
-            case ItemType.AdditionalDriveUnits:
-                return AdditionalDriveUnits();
-            case ItemType.AdditionalLens:
-                return AdditionalLens();
-            case ItemType.AdditionalArmorContour:
-                return AdditionalArmorContour();
-            case ItemType.StiffeningRibs:
-                return StiffeningRibs();
-            case ItemType.MovableMechanisms:
-                return MovableMechanisms();
-            case ItemType.ReinforcedMagneticCore:
-                return ReinforcedMagneticCore();
-            case ItemType.OxygenSprayer:
-                return OxygenSprayer();
-            case ItemType.ProcessingSlagDropping:
-                return ProcessingSlagDropping();
-            case ItemType.HighSpeedDriveUnits:
-                return HighSpeedDriveUnits();
-            case ItemType.DeliveryOfExplosives:
-                return DeliveryOfExplosives();
-            case ItemType.IonizingPlant:
-                return IonizingPlant();
-            case ItemType.StableAtomicCell:
-                return StableAtomicCell();
-            case ItemType.PowerControllerTwo:
-                return PowerControllerTwo();
-            case ItemType.DiffusionObjective:
-                return DiffusionObjective();
-            case ItemType.ErrorCalculator:
-                return ErrorCalculator();
-            case ItemType.FocusingObjective:
-                return FocusingObjective();
-            case ItemType.DistortionMirror:
-                return DistortionMirror();
-            case ItemType.PurpleCovering:
-                return PurpleCovering();
-            case ItemType.ExoskeletonProtection:
-                return ExoskeletonProtection();
-            case ItemType.ReinforcedCarcass:
-                return ReinforcedCarcass();
-            case ItemType.ExoskeletonBooster:
-                return ExoskeletonBooster();
-            case ItemType.MagneticManipulatorTwo:
-                return MagneticManipulatorTwo();
-            case ItemType.ElectromagneticFieldCore:
-                return ElectromagneticFieldCore();
-            case ItemType.StarDust:
-                return StarDust();
-            case ItemType.StarShard:
-                return StarShard();
-            case ItemType.OxidationSystem:
-                return OxidationSystem();
-            case ItemType.FireSystem:
-                return FireSystem();
-            case ItemType.DielectricGasSource:
-                return DielectricGasSource();
-            case ItemType.ConcentratedPoisonGasCylinders:
-                return ConcentratedPoisonGasCylinders();
-            case ItemType.OrganicDecompositionDevice:
-                return OrganicDecompositionDevice();
-            case ItemType.OxygenSaturationModule:
-                return OxygenSaturationModule();
-            case ItemType.TreatmentSystem:
-                return TreatmentSystem();
-            case ItemType.Echo:
-                return Echo();
-            case ItemType.HandmadeFlamethrower:
-                return HandmadeFlamethrower();
-            case ItemType.WhiteShroud:
-                return WhiteShroud();
-            case ItemType.IceSoul:
-                return IceSoul();
-            case ItemType.PoisonousSubstancesDropping:
-                return PoisonousSubstancesDropping();
-            case ItemType.NonConformingMaterialsDropping:
-                return NonConformingMaterialsDropping();
-            case ItemType.ExplosiveMixtureDropping:
-                return ExplosiveMixtureDropping();
-            case ItemType.BakedApplesDelivery:
-                return BakedApplesDelivery();
-            case ItemType.RadiationContour:
-                return RadiationContour();
-            case ItemType.IsotopeReactor:
-                return IsotopeReactor();
-            case ItemType.SmallNuclearReactor:
-                return SmallNuclearReactor();
-            case ItemType.AtmosphericIonizer:
-                return AtmosphericIonizer();
-            case ItemType.SelfChargingAccumulator:
-                return SelfChargingAccumulator();
-            case ItemType.RayOverloadController:
-                return RayOverloadController();
-            case ItemType.ElectricDriveUnits:
-                return ElectricDriveUnits();
-            case ItemType.MediumCapacityAccumulator:
-                return MediumCapacityAccumulator();
-            case ItemType.ErrorCorrector:
-                return ErrorCorrector();
-            case ItemType.CrystalHalo:
-                return CrystalHalo();
-            case ItemType.RayDiffusionSystem:
-                return RayDiffusionSystem();
-            case ItemType.RayFocusingSystem:
-                return RayFocusingSystem();
-            case ItemType.CrystalLens:
-                return CrystalLens();
-            case ItemType.FireFootprints:
-                return FireFootprints();
-            case ItemType.VeilOfDecay:
-                return VeilOfDecay();
-            case ItemType.WarriorExoskeleton:
-                return WarriorExoskeleton();
-            case ItemType.SpaceShiftSystem:
-                return SpaceShiftSystem();
-            case ItemType.PioneerExoskeleton:
-                return PioneerExoskeleton();
-            case ItemType.GravitationalExplosionDevice:
-                return GravitationalExplosionDevice();
-            case ItemType.PerpetualMotionMachine:
-                return PerpetualMotionMachine();
-            case ItemType.StarSatellite:
-                return StarSatellite();
-            case ItemType.HarvesterExoskeleton:
-                return HarvesterExoskeleton();
-            case ItemType.EnvironmentalControlSystem:
-                return EnvironmentalControlSystem();
-            case ItemType.EngineerExoskeleton:
-                return EngineerExoskeleton();
-            case ItemType.TissueRegenerationSystem:
-                return TissueRegenerationSystem();
-            case ItemType.CombatFlamethrower:
-                return CombatFlamethrower();
-            case ItemType.LifeSupportingSystem:
-                return LifeSupportingSystem();
-            case ItemType.GreatGlaciation:
-                return GreatGlaciation();
-            case ItemType.TacticExoskeleton:
-                return TacticExoskeleton();
-            case ItemType.FullUnloading:
-                return FullUnloading();
-            case ItemType.MeteorRain:
-                return MeteorRain();
-            case ItemType.Arsenal:
-                return Arsenal();
-            case ItemType.OrbitalSupportSystem:
-                return OrbitalSupportSystem();
-            case ItemType.AtomicRay:
-                return AtomicRay();
-            case ItemType.OverloadedRay:
-                return OverloadedRay();
-            case ItemType.ChemonuclearReactor:
-                return ChemonuclearReactor();
-            case ItemType.Lightning:
-                return Lightning();
-            case ItemType.HighCapacityAccumulator:
-                return HighCapacityAccumulator();
-            case ItemType.ExtraDriveUnits:
-                return ExtraDriveUnits();
-            case ItemType.ReverseSystemTwo:
-                return ReverseSystemTwo();
-            case ItemType.PillarOfLight:
-                return PillarOfLight();
-            case ItemType.RaySplitter:
-                return RaySplitter();
-            case ItemType.ArchimedesMirror:
-                return ArchimedesMirror();
-            case ItemType.FireRay:
-                return FireRay();
-            case ItemType.Empty:
-                return Empty();
-            case ItemType.FireGem:
-                return FireGem();
-            case ItemType.RadiantMineral:
-                return RadiantMineral();
-            case ItemType.DistortingCrystal:
-                return DistortingCrystal();
-            case ItemType.ElectricalLead:
-                return ElectricalLead();
-            case ItemType.GravityStone:
-                return GravityStone();
-            case ItemType.PoleOfCold:
-                return PoleOfCold();
-            case ItemType.StoneApple:
-                return StoneApple();
-            case ItemType.None:
-            default:
-                return Battery();
-        }
-    }
-    public Item Accelerator()//Акселератор
-    {
-        return new Item(LocaleKeys.Main.i_Accelerator)
-        {
-            Type = ItemType.Accelerator,
+            Id = ItemId.Accelerator,
             Cost = 40,
-            Icon = Addresses.Ico_Accelerator,
-            Perks = new IPerk[]
+            IconAddress = Addresses.Ico_Accelerator,
+            CreatePerksFunc = () => new IPerk[]
             {
                 new SimplePerk(PerkType.Speed,
                                new StatModificator(.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed))//+10% скорости
             }
-        };
-    }
-    public Item ArmoredPlates()//Бронированные пластины
-    {
-        return new Item(LocaleKeys.Main.i_ArmoredPlates)
-        {
-            Type = ItemType.ArmoredPlates,
-            Cost = 40,
-            Icon = Addresses.Ico_ArmoredPlates,
-            Perks = new IPerk[]
+        });
+
+        AddItemTemplate(//Бронированные пластины
+            new ItemTemplate(LocaleKeys.Main.i_ArmoredPlates)
             {
+                Id = ItemId.ArmoredPlates,
+                Cost = 40,
+                IconAddress = Addresses.Ico_ArmoredPlates,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerMaxHP,
                                new StatModificator(3f, StatModificatorType.Additive, StatType.MaxHP))//+3 к макс хп.
-            }
-        };
-    }
-    public Item ExoskeletonModule()//Модуль экзоскелета
-    {
-        return new Item(LocaleKeys.Main.i_ExoskeletonModule)
-        {
-            Type = ItemType.ExoskeletonModule,
-            Cost = 40,
-            Icon = Addresses.Ico_ExoskeletonModule,
-            Perks = new IPerk[]
-            {
+                }
+            });
+
+        AddItemTemplate(//Модуль экзоскелета
+             new ItemTemplate(LocaleKeys.Main.i_ExoskeletonModule)
+             {
+                 Id = ItemId.ExoskeletonModule,
+                 Cost = 40,
+                 IconAddress = Addresses.Ico_ExoskeletonModule,
+                 CreatePerksFunc = () => new IPerk[]
+                 {
                 new SimplePerk(PerkType.Speed,
                                new StatModificator(.5f, StatModificatorType.Additive, StatType.MovementSpeed))//+.5 скорости
-            }
-        };
-    }
-    public Item MagneticCore()//Магнитное ядро
-    {
-        return new Item(LocaleKeys.Main.i_MagneticCore)
-        {
-            Type = ItemType.MagneticCore,
-            Cost = 40,
-            Icon = Addresses.Ico_MagneticCore,
-            Perks = new IPerk[]
+                 }
+             });
+        AddItemTemplate(//Магнитное ядро
+            new ItemTemplate(LocaleKeys.Main.i_MagneticCore)
             {
+                Id = ItemId.MagneticCore,
+                Cost = 40,
+                IconAddress = Addresses.Ico_MagneticCore,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MagneticManipulator,
                                new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius))//+100% радиус подбора
-            }
-        };
-    }
-    public Item OxygenCylinders()//Кислородные баллоны
-    {
-        return new Item(LocaleKeys.Main.i_OxygenCylinders)
-        {
-            Type = ItemType.OxygenCylinders,
-            Cost = 40,
-            Icon = Addresses.Ico_OxygenCylinders,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(//Кислородные баллоны
+            new ItemTemplate(LocaleKeys.Main.i_OxygenCylinders)
             {
+                Id = ItemId.OxygenCylinders,
+                Cost = 40,
+                IconAddress = Addresses.Ico_OxygenCylinders,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerLifeSupport,
                                new StatModificator(3f, StatModificatorType.Additive, StatType.LifeSupport))//+3 c лайвсапорта
-            }
-        };
-    }
-    public Item CoprocessorTwo()//Сопроцессор
-    {
-        return new Item(LocaleKeys.Main.i_CoprocessorTwo)
-        {
-            Type = ItemType.CoprocessorTwo,
-            Cost = 40,
-            Icon = Addresses.Ico_CoprocessorTwo,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(//Сопроцессор
+            new ItemTemplate(LocaleKeys.Main.i_CoprocessorTwo)
             {
+                Id = ItemId.CoprocessorTwo,
+                Cost = 40,
+                IconAddress = Addresses.Ico_CoprocessorTwo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerDodge,
                                new StatModificator(.15f, StatModificatorType.Additive, StatType.Dodge))//+15% а шкансу клониться от урона
-            }
-        };
-    }
-    public Item FreonCylinders()//Баллоны хладона
-    {
-        return new Item(LocaleKeys.Main.i_FreonCylinders)
-        {
-            Type = ItemType.FreonCylinders,
-            Cost = 40,
-            Icon = Addresses.Ico_FreonCylinders,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Баллоны хладона
+            new ItemTemplate(LocaleKeys.Main.i_FreonCylinders)
             {
+                Id = ItemId.FreonCylinders,
+                Cost = 40,
+                IconAddress = Addresses.Ico_FreonCylinders,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerFireResist,
                                new StatModificator(2f, StatModificatorType.Additive, StatType.FireAbsorption))//+2 защиты от огня
-            }
-        };
-    }
-    public Item DeliveryDeviceTwo()//устройство доставки  
-    {
-        return new Item(LocaleKeys.Main.i_DeliveryDevice)
-        {
-            Type = ItemType.DeliveryDeviceTwo,
-            Cost = 40,
-            Icon = Addresses.Ico_DeliveryDevice,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //устройство доставки  
+            new ItemTemplate(LocaleKeys.Main.i_DeliveryDevice)
             {
+                Id = ItemId.DeliveryDeviceTwo,
+                Cost = 40,
+                IconAddress = Addresses.Ico_DeliveryDevice,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(24f),//раз в 24 с. сбрасывает ящик со взрывчаткой.
-            }
-        };
-    }
-    public Item AtomicCell()//Атомная ячейка
-    {
-        return new Item(LocaleKeys.Main.i_AtomicCell)
-        {
-            Type = ItemType.AtomicCell,
-            Cost = 40,
-            Icon = Addresses.Ico_AtomicCell,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Атомная ячейка
+            new ItemTemplate(LocaleKeys.Main.i_AtomicCell)
             {
+                Id = ItemId.AtomicCell,
+                Cost = 40,
+                IconAddress = Addresses.Ico_AtomicCell,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                                new StatModificator(2, StatModificatorType.Additive, StatType.EnergyRegen))//генерация энегрии +2 ед.
-            }
-        };
-    }
-    public Item Accumulator()//Аккумулятор
-    {
-        return new Item(LocaleKeys.Main.i_Accumulator)
-        {
-            Type = ItemType.Accumulator,
-            Cost = 40,
-            Icon = Addresses.Ico_Accumulator,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Аккумулятор
+            new ItemTemplate(LocaleKeys.Main.i_Accumulator)
             {
+                Id = ItemId.Accumulator,
+                Cost = 40,
+                IconAddress = Addresses.Ico_Accumulator,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyCapacity,
                                new StatModificator(.4f, StatModificatorType.Multiplicative, StatType.Capacity))//базовая емкость энергии +40%.
-            }
-        };
-    }
-    public Item AdditionalDriveUnits()//Дополнительные приводы
-    {
-        return new Item(LocaleKeys.Main.i_AdditionalDriveUnits)
-        {
-            Type = ItemType.AdditionalDriveUnits,
-            Cost = 40,
-            Icon = Addresses.Ico_AdditionalDriveUnits,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Дополнительные приводы
+            new ItemTemplate(LocaleKeys.Main.i_AdditionalDriveUnits)
             {
+                Id = ItemId.AdditionalDriveUnits,
+                Cost = 40,
+                IconAddress = Addresses.Ico_AdditionalDriveUnits,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                                new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RaySpeed))//базовая скорость луча +30%.
-            }
-        };
-    }
-    public Item AdditionalLens()//Дополнительная линза
-    {
-        return new Item(LocaleKeys.Main.i_AdditionalLens)
-        {
-            Type = ItemType.AdditionalLens,
-            Cost = 40,
-            Icon = Addresses.Ico_AdditionalLens,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Дополнительная линза
+            new ItemTemplate(LocaleKeys.Main.i_AdditionalLens)
             {
+                Id = ItemId.AdditionalLens,
+                Cost = 40,
+                IconAddress = Addresses.Ico_AdditionalLens,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage))//Базовый урон луча +20%.
-            }
-        };
-    }
-    /// <summary>
-    /// /////////////////////////////////////////////////////////////////////////////////////////желтые арты
-    /// </summary>
-    /// <returns></returns>
-    public Item AdditionalArmorContour()//Дополнительный контур брони
-    {
-        return new Item(LocaleKeys.Main.i_AdditionalArmorContour)
-        {
-            Type = ItemType.AdditionalArmorContour,
-            Cost = 80,
-            Icon = Addresses.Ico_AdditionalArmorContour,
-            Perks = new IPerk[]
+                }
+            });
+        /////////////////////////////////////////////////////////////////////////////////////////желтые арты
+        AddItemTemplate( //Дополнительный контур брони
+            new ItemTemplate(LocaleKeys.Main.i_AdditionalArmorContour)
             {
+                Id = ItemId.AdditionalArmorContour,
+                Cost = 80,
+                IconAddress = Addresses.Ico_AdditionalArmorContour,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerMaxHP,
                     new StatModificator(5f, StatModificatorType.Additive, StatType.MaxHP))//+5 к макс хп
-            }
-        };
-    }
-    public Item StiffeningRibs()//Ребра жесткости
-    {
-        return new Item(LocaleKeys.Main.i_StiffeningRibs)
-        {
-            Type = ItemType.StiffeningRibs,
-            Cost = 80,
-            Icon = Addresses.Ico_StiffeningRibs,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ребра жесткости
+            new ItemTemplate(LocaleKeys.Main.i_StiffeningRibs)
             {
+                Id = ItemId.StiffeningRibs,
+                Cost = 80,
+                IconAddress = Addresses.Ico_StiffeningRibs,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerStunResist,
                     new StatModificator(.5f, StatModificatorType.Additive, StatType.StunResist))//+50% защиты от оглушения
-            }
-        };
-    }
-    public Item MovableMechanisms()//Подвижные механизмы
-    {
-        return new Item(LocaleKeys.Main.i_MovableMechanisms)
-        {
-            Type = ItemType.MovableMechanisms,
-            Cost = 80,
-            Icon = Addresses.Ico_MovableMechanisms,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Подвижные механизмы
+            new ItemTemplate(LocaleKeys.Main.i_MovableMechanisms)
             {
+                Id = ItemId.MovableMechanisms,
+                Cost = 80,
+                IconAddress = Addresses.Ico_MovableMechanisms,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Speed,
                     new StatModificator(.8f, StatModificatorType.Additive, StatType.MovementSpeed))//+.8 скорости
-            }
-        };
-    }
-    public Item ReinforcedMagneticCore()//Усиленное магнитное ядро
-    {
-        return new Item(LocaleKeys.Main.i_ReinforcedMagneticCore)
-        {
-            Type = ItemType.ReinforcedMagneticCore,
-            Cost = 80,
-            Icon = Addresses.Ico_ReinforcedMagneticCore,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Усиленное магнитное ядро
+            new ItemTemplate(LocaleKeys.Main.i_ReinforcedMagneticCore)
             {
+                Id = ItemId.ReinforcedMagneticCore,
+                Cost = 80,
+                IconAddress = Addresses.Ico_ReinforcedMagneticCore,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MagneticManipulator,
                     new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.PickupRadius))//+150% радиус подбора
-            }
-        };
-    }
-    public Item OxygenSprayer()//Кислородный распылитель
-    {
-        return new Item(LocaleKeys.Main.i_OxygenSprayer)
-        {
-            Type = ItemType.OxygenSprayer,
-            Cost = 80,
-            Icon = Addresses.Ico_OxygenSprayer,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Кислородный распылитель
+            new ItemTemplate(LocaleKeys.Main.i_OxygenSprayer)
             {
+                Id = ItemId.OxygenSprayer,
+                Cost = 80,
+                IconAddress = Addresses.Ico_OxygenSprayer,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerSlowdownResist,
                     new StatModificator(.5f, StatModificatorType.Additive, StatType.SlowdownResist))//+50% защиты от замедления
-            }
-        };
-    }
-    public Item AnalyzingModule()//Анализирующий модуль
-    {
-        return new Item(LocaleKeys.Main.i_AnalyzingModule)
-        {
-            Type = ItemType.AnalyzingModule,
-            Cost = 80,
-            Icon = Addresses.Ico_AnalyzingModule,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Анализирующий модуль
+            new ItemTemplate(LocaleKeys.Main.i_AnalyzingModule)
             {
+                Id = ItemId.AnalyzingModule,
+                Cost = 80,
+                IconAddress = Addresses.Ico_AnalyzingModule,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerDodge,
                     new StatModificator(.2f, StatModificatorType.Additive, StatType.Dodge))//+20% а шкансу клониться от урона
-            }
-        };
-    }
-    public Item FreonSprayer()//Распылитель хладона
-    {
-        return new Item(LocaleKeys.Main.i_FreonSprayer)
-        {
-            Type = ItemType.FreonSprayer,
-            Cost = 80,
-            Icon = Addresses.Ico_FreonSprayer,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Распылитель хладона
+            new ItemTemplate(LocaleKeys.Main.i_FreonSprayer)
             {
+                Id = ItemId.FreonSprayer,
+                Cost = 80,
+                IconAddress = Addresses.Ico_FreonSprayer,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerFireResist,
                     new StatModificator(.3f, StatModificatorType.Additive, StatType.FireResist)),//+30% защиты от огня
                 new SimplePerk(PerkType.PlayerElectricityResist,
                     new StatModificator(.3f, StatModificatorType.Additive, StatType.ElectricityResist))//+30% уворота от электричества
-            }
-        };
-    }
-    public Item OxygenSupplyModule()//Модуль подачи кислорода
-    {
-        return new Item(LocaleKeys.Main.i_OxygenSupplyModule)
-        {
-            Type = ItemType.OxygenSupplyModule,
-            Cost = 80,
-            Icon = Addresses.Ico_OxygenSupplyModule,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Модуль подачи кислорода
+            new ItemTemplate(LocaleKeys.Main.i_OxygenSupplyModule)
             {
+                Id = ItemId.OxygenSupplyModule,
+                Cost = 80,
+                IconAddress = Addresses.Ico_OxygenSupplyModule,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerLifeSupport,
                     new StatModificator(4f, StatModificatorType.Additive, StatType.LifeSupport))//+4 c лайвсапорта
-            }
-        };
-    }
-    public Item PoisonGasCylinders()//Балоны отравляющего газа
-    {
-        return new Item(LocaleKeys.Main.i_PoisonGasCylinders)
-        {
-            Type = ItemType.PoisonGasCylinders,
-            Cost = 80,
-            Icon = Addresses.Ico_PoisonGasCylinders,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Балоны отравляющего газа
+            new ItemTemplate(LocaleKeys.Main.i_PoisonGasCylinders)
             {
-                //Оставляет за собой дымку [[Ядовитый газ]].
-            }
-        };
-    }
-    public Item ProcessingSlagDropping()//Сброс шлаков переработки
-    {
-        return new Item(LocaleKeys.Main.i_ProcessingSlagDropping)
-        {
-            Type = ItemType.ProcessingSlagDropping,
-            Cost = 80,
-            Icon = Addresses.Ico_ProcessingSlagDropping,
-            Perks = new IPerk[]
+                Id = ItemId.PoisonGasCylinders,
+                Cost = 80,
+                IconAddress = Addresses.Ico_PoisonGasCylinders,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Оставляет за собой дымку [[Ядовитый газ]].
+                }
+            });
+        AddItemTemplate( //Сброс шлаков переработки
+            new ItemTemplate(LocaleKeys.Main.i_ProcessingSlagDropping)
             {
-                //Раз в 16 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед.
-                //[[Физический урон]] в центре, и 20 ед. по бокам.
-                //Радиус поражения - 10 п.
-            }
-        };
-    }
-    public Item HighSpeedDriveUnits()//Скоростные приводы
-    {
-        return new Item(LocaleKeys.Main.i_HighSpeedDriveUnits)
-        {
-            Type = ItemType.HighSpeedDriveUnits,
-            Cost = 80,
-            Icon = Addresses.Ico_HighSpeedDriveUnits,
-            Perks = new IPerk[]
+                Id = ItemId.ProcessingSlagDropping,
+                Cost = 80,
+                IconAddress = Addresses.Ico_ProcessingSlagDropping,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 16 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед.
+                    //[[Физический урон]] в центре, и 20 ед. по бокам.
+                    //Радиус поражения - 10 п.
+                }
+            });
+        AddItemTemplate( //Скоростные приводы
+            new ItemTemplate(LocaleKeys.Main.i_HighSpeedDriveUnits)
             {
+                Id = ItemId.HighSpeedDriveUnits,
+                Cost = 80,
+                IconAddress = Addresses.Ico_HighSpeedDriveUnits,
+                CreatePerksFunc = () => new IPerk[]
+                {
                new SimplePerk(PerkType.RaySpeed,
                                new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayError)),//[[Базовая скорость луча]] +50 %.                             
                new SimplePerk(PerkType.RayError,
                               new StatModificator(1, StatModificatorType.Additive, StatType.RayError))//Погрешность + 1п.)
-            }
-        };
-    }
-    public Item DeliveryOfExplosives()//Доставка взрывоопасных веществ
-    {
-        return new Item(LocaleKeys.Main.i_DeliveryOfExplosives)
-        {
-            Type = ItemType.DeliveryOfExplosives,
-            Cost = 80,
-            Icon = Addresses.Ico_DeliveryOfExplosives,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Доставка взрывоопасных веществ
+            new ItemTemplate(LocaleKeys.Main.i_DeliveryOfExplosives)
             {
+                Id = ItemId.DeliveryOfExplosives,
+                Cost = 80,
+                IconAddress = Addresses.Ico_DeliveryOfExplosives,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(16f),//cooldown//Раз в 16 с. сбрасывает [[Ящик со взрывчаткой]].
-            }
-        };
-    }
-    public Item IonizingPlant()//Ионизирующая установка
-    {
-        return new Item(LocaleKeys.Main.i_IonizingPlant)
-        {
-            Type = ItemType.IonizingPlant,
-            Cost = 80,
-            Icon = Addresses.Ico_IonizingPlant,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ионизирующая установка
+            new ItemTemplate(LocaleKeys.Main.i_IonizingPlant)
             {
+                Id = ItemId.IonizingPlant,
+                Cost = 80,
+                IconAddress = Addresses.Ico_IonizingPlant,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPIonization>(4f, 4f)//Пораженные лучем враги получают статус [[Радиация]] с уроном в 4 единицы.
-            }
-        };
-    }
-    public Item StableAtomicCell()//Стабильная атомная ячейка
-    {
-        return new Item(LocaleKeys.Main.i_StableAtomicCell)
-        {
-            Type = ItemType.StableAtomicCell,
-            Cost = 80,
-            Icon = Addresses.Ico_StableAtomicCell,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Стабильная атомная ячейка
+            new ItemTemplate(LocaleKeys.Main.i_StableAtomicCell)
             {
+                Id = ItemId.StableAtomicCell,
+                Cost = 80,
+                IconAddress = Addresses.Ico_StableAtomicCell,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                                new StatModificator(3, StatModificatorType.Additive, StatType.EnergyRegen))//[[Генерация энергии]] +3 ед./с.
-            }
-        };
-    }
-    public Item AccumulatorBattery()//Аккумуляторная батарея
-    {
-        return new Item(LocaleKeys.Main.i_AccumulatorBattery)
-        {
-            Type = ItemType.AccumulatorBattery,
-            Cost = 80,
-            Icon = Addresses.Ico_AccumulatorBattery,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Аккумуляторная батарея
+            new ItemTemplate(LocaleKeys.Main.i_AccumulatorBattery)
             {
+                Id = ItemId.AccumulatorBattery,
+                Cost = 80,
+                IconAddress = Addresses.Ico_AccumulatorBattery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyCapacity,
                                new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity))//[[Базовая ёмкость энергии]] + 60%.
-            }
-        };
-    }
-    public Item PowerControllerTwo()//Контроллер питания
-    {
-        return new Item(LocaleKeys.Main.i_PowerControllerTwo)
-        {
-            Type = ItemType.PowerControllerTwo,
-            Cost = 80,
-            Icon = Addresses.Ico_PowerControllerTwo,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Контроллер питания
+            new ItemTemplate(LocaleKeys.Main.i_PowerControllerTwo)
             {
+                Id = ItemId.PowerControllerTwo,
+                Cost = 80,
+                IconAddress = Addresses.Ico_PowerControllerTwo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayCostReduction,
                                new StatModificator(1, StatModificatorType.Additive, StatType.RayCostReduction))//Уменьшает стоимсоть луча за пройденную длину луча.
-                
-            }
-        };
-    }
-    public Item DiffusionObjective()//рассеивающий объектив
-    {
-        return new Item(LocaleKeys.Main.i_DiffusionObjective)
-        {
-            Type = ItemType.DiffusionObjective,
-            Cost = 80,
-            Icon = Addresses.Ico_DiffusionObjective,
-            Perks = new IPerk[]
+
+                }
+            });
+        AddItemTemplate( //рассеивающий объектив
+            new ItemTemplate(LocaleKeys.Main.i_DiffusionObjective)
             {
+                Id = ItemId.DiffusionObjective,
+                Cost = 80,
+                IconAddress = Addresses.Ico_DiffusionObjective,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(-.4f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] -40 %.
                 new SimplePerk(PerkType.RayDamageAreaRadius,
                                new StatModificator(0.8f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))//[[Радиус поражения луча]] +80 %
-            }
-        };
-    }
-    public Item ErrorCalculator()//Вычислитель погрешностей
-    {
-        return new Item(LocaleKeys.Main.i_ErrorCalculator)
-        {
-            Type = ItemType.ErrorCalculator,
-            Cost = 80,
-            Icon = Addresses.Ico_ErrorCalculator,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Вычислитель погрешностей
+            new ItemTemplate(LocaleKeys.Main.i_ErrorCalculator)
             {
+                Id = ItemId.ErrorCalculator,
+                Cost = 80,
+                IconAddress = Addresses.Ico_ErrorCalculator,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(-3, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]] уменьшается на -3.
-            }
-        };
-    }
-    public Item FocusingObjective()//Фокусирующий объектив
-    {
-        return new Item(LocaleKeys.Main.i_FocusingObjective)
-        {
-            Type = ItemType.FocusingObjective,
-            Cost = 80,
-            Icon = Addresses.Ico_FocusingObjective,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Фокусирующий объектив
+            new ItemTemplate(LocaleKeys.Main.i_FocusingObjective)
             {
+                Id = ItemId.FocusingObjective,
+                Cost = 80,
+                IconAddress = Addresses.Ico_FocusingObjective,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(.4f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] +40 %.
                 new SimplePerk(PerkType.RayDamageAreaRadius,
                                new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius)),//[[Радиус поражения луча]] -40 %.
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(1, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]]Погрешность + 1п.
-            }
-        };
-    }
-    public Item PlasmaSupercharger()//Нагнетатель плазмы
-    {
-        return new Item(LocaleKeys.Main.i_PlasmaSupercharger)
-        {
-            Type = ItemType.PlasmaSupercharger,
-            Cost = 80,
-            Icon = Addresses.Ico_PlasmaSupercharger,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Нагнетатель плазмы
+            new ItemTemplate(LocaleKeys.Main.i_PlasmaSupercharger)
             {
-                //Накапливает заряд, следующий луч оставляет огненный след.
-            }
-        };
-    }
-    /// <summary>
-    /// //////////////////////////////////////////////////////////////////////////////////////////////оранживые арты
-    /// </summary>
-    /// <returns></returns>
-    public Item DistortionMirror()//Зеркало искажения
-    {
-        return new Item(LocaleKeys.Main.i_DistortionMirror)
-        {
-            Type = ItemType.DistortionMirror,
-            Cost = 160,
-            Icon = Addresses.Ico_DistortionMirror,
-            Perks = new IPerk[]
+                Id = ItemId.PlasmaSupercharger,
+                Cost = 80,
+                IconAddress = Addresses.Ico_PlasmaSupercharger,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Накапливает заряд, следующий луч оставляет огненный след.
+                }
+            });
+
+        //////////////////////////////////////////////////////////////////////////////////////////////оранживые арты
+        AddItemTemplate( //Зеркало искажения
+            new ItemTemplate(LocaleKeys.Main.i_DistortionMirror)
             {
-                //_perksFactory.Create<PerkPShiftSystem>(),//После получаения урона персонаж получает статус [[Имматериальный]] на 3 с.
-                //Наносимый персонажу урон увеличивается на 1.
-            }
-        };
-    }
-    public Item PurpleCovering()//Фиолетовый покров
-    {
-        return new Item(LocaleKeys.Main.i_PurpleCovering)
-        {
-            Type = ItemType.PurpleCovering,
-            Cost = 160,
-            Icon = Addresses.Ico_PurpleCovering,
-            Perks = new IPerk[]
+                Id = ItemId.DistortionMirror,
+                Cost = 160,
+                IconAddress = Addresses.Ico_DistortionMirror,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //_perksFactory.Create<PerkPShiftSystem>(),//После получаения урона персонаж получает статус [[Имматериальный]] на 3 с.
+                    //Наносимый персонажу урон увеличивается на 1.
+                }
+            });
+        AddItemTemplate( //Фиолетовый покров
+            new ItemTemplate(LocaleKeys.Main.i_PurpleCovering)
             {
+                Id = ItemId.PurpleCovering,
+                Cost = 160,
+                IconAddress = Addresses.Ico_PurpleCovering,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 //При получении урона выпускает волну [[Ядовитый газ]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerMaxHP,
                                new StatModificator(5f, StatModificatorType.Additive, StatType.MaxHP))//[[Мак хит поинтов]] +5 ед.
-            }
-        };
-    }
-    public Item ExoskeletonProtection()//Защита экзоскелета
-    {
-        return new Item(LocaleKeys.Main.i_ExoskeletonProtection)
-        {
-            Type = ItemType.ExoskeletonProtection,
-            Cost = 160,
-            Icon = Addresses.Ico_ExoskeletonProtection,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Защита экзоскелета
+            new ItemTemplate(LocaleKeys.Main.i_ExoskeletonProtection)
             {
+                Id = ItemId.ExoskeletonProtection,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ExoskeletonProtection,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerMaxHP,
                     new StatModificator(10f, StatModificatorType.Additive, StatType.MaxHP))//[[Мак хит поинтов]] + 10 ед.
-            }
-        };
-    }
-    public Item ReinforcedCarcass()//Усиленный каркас
-    {
-        return new Item(LocaleKeys.Main.i_ReinforcedCarcass)
-        {
-            Type = ItemType.ReinforcedCarcass,
-            Cost = 160,
-            Icon = Addresses.Ico_ReinforcedCarcass,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Усиленный каркас
+            new ItemTemplate(LocaleKeys.Main.i_ReinforcedCarcass)
             {
+                Id = ItemId.ReinforcedCarcass,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ReinforcedCarcass,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerStunResist,
                     new StatModificator(1f, StatModificatorType.Additive, StatType.StunResist))//[[Оглушение]] не действует на персонажа.
-            }
-        };
-    }
-    public Item ExoskeletonBooster()//Ускоритель экзоскелета
-    {
-        return new Item(LocaleKeys.Main.i_ExoskeletonBooster)
-        {
-            Type = ItemType.ExoskeletonBooster,
-            Cost = 160,
-            Icon = Addresses.Ico_ExoskeletonBooster,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ускоритель экзоскелета
+            new ItemTemplate(LocaleKeys.Main.i_ExoskeletonBooster)
             {
+                Id = ItemId.ExoskeletonBooster,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ExoskeletonBooster,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Speed,
                                new StatModificator(1.6f, StatModificatorType.Additive, StatType.MovementSpeed))//[[Скорость передвижения]] +1.6 п/с.
-            }
-        };
-    }
-    public Item MagneticManipulatorTwo()//Магнитный манипулятор
-    {
-        return new Item(LocaleKeys.Main.i_MagneticManipulatorTwo)
-        {
-            Type = ItemType.MagneticManipulatorTwo,
-            Cost = 160,
-            Icon = Addresses.Ico_MagneticManipulatorTwo,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Магнитный манипулятор
+            new ItemTemplate(LocaleKeys.Main.i_MagneticManipulatorTwo)
             {
+                Id = ItemId.MagneticManipulatorTwo,
+                Cost = 160,
+                IconAddress = Addresses.Ico_MagneticManipulatorTwo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MagneticManipulator,
                     new StatModificator(3f, StatModificatorType.Multiplicative, StatType.PickupRadius))//[[Радиус сбора]] + 300%.
-            }
-        };
-    }
-    public Item ElectromagneticFieldCore()//Ядро электромагнитного поля
-    {
-        return new Item(LocaleKeys.Main.i_ElectromagneticFieldCore)
-        {
-            Type = ItemType.ElectromagneticFieldCore,
-            Cost = 160,
-            Icon = Addresses.Ico_ElectromagneticFieldCore,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ядро электромагнитного поля
+            new ItemTemplate(LocaleKeys.Main.i_ElectromagneticFieldCore)
             {
+                Id = ItemId.ElectromagneticFieldCore,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ElectromagneticFieldCore,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerRadiationResist,
                     new StatModificator(.9f, StatModificatorType.Additive, StatType.RadiationResist))//Уменьшает на 90% урон от [[Радиация]].
-            }
-        };
-    }
-    public Item StarDust()//Звездная пыль
-    {
-        return new Item(LocaleKeys.Main.i_StarDust)
-        {
-            Type = ItemType.StarDust,
-            Cost = 160,
-            Icon = Addresses.Ico_StarDust,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Звездная пыль
+            new ItemTemplate(LocaleKeys.Main.i_StarDust)
             {
+                Id = ItemId.StarDust,
+                Cost = 160,
+                IconAddress = Addresses.Ico_StarDust,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new PerkStarDust(10, 2, 5, 0, .5f, 10, 6, PerkType.GravityMatter),
                 //При поднятии руды получаете малый осколок материи, который  вращается вокруг персонажа в радиусе 30 п., наносящий 5 ед.
                 //[[Физический урон]] в течение 20 с.
                 new SimplePerk(PerkType.MagneticManipulator,
                     new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.PickupRadius))//[[Радиус сбора]] +150 %.
-            }
-        };
-    }
-    public Item StarShard()//Звездный осколок
-    {
-        return new Item(LocaleKeys.Main.i_StarShard)
-        {
-            Type = ItemType.StarShard,
-            Cost = 160,
-            Icon = Addresses.Ico_StarShard,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Звездный осколок
+            new ItemTemplate(LocaleKeys.Main.i_StarShard)
             {
+                Id = ItemId.StarShard,
+                Cost = 160,
+                IconAddress = Addresses.Ico_StarShard,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new PerkGravityMatter(20, 1.5f, 20, 1, 1, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 15 п.
-                                                                           //Осколок наносит 20 ед.  [[Физический урон]] и оглушает на 1 секунды.
-            }
-        };
-    }
-    public Item OxidationSystem()//Система окисления
-    {
-        return new Item(LocaleKeys.Main.i_OxidationSystem)
-        {
-            Type = ItemType.OxidationSystem,
-            Cost = 160,
-            Icon = Addresses.Ico_OxidationSystem,
-            Perks = new IPerk[]
+                                                                                 //Осколок наносит 20 ед.  [[Физический урон]] и оглушает на 1 секунды.
+                }
+            });
+        AddItemTemplate( //Система окисления
+            new ItemTemplate(LocaleKeys.Main.i_OxidationSystem)
             {
+                Id = ItemId.OxidationSystem,
+                Cost = 160,
+                IconAddress = Addresses.Ico_OxidationSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerSlowdownResist,
                     new StatModificator(1f, StatModificatorType.Additive, StatType.SlowdownResist))//Жижа не замедляет.
-                //Жижа  растворяется.
-            }
-        };
-    }
-    public Item FireSystem()//Пожарная система
-    {
-        return new Item(LocaleKeys.Main.i_FireSystem)
-        {
-            Type = ItemType.FireSystem,
-            Cost = 160,
-            Icon = Addresses.Ico_FireSystem,
-            Perks = new IPerk[]
+                                                                                                   //Жижа  растворяется.
+                }
+            });
+        AddItemTemplate( //Пожарная система
+            new ItemTemplate(LocaleKeys.Main.i_FireSystem)
             {
+                Id = ItemId.FireSystem,
+                Cost = 160,
+                IconAddress = Addresses.Ico_FireSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerFireResist,
                     new StatModificator(.8f, StatModificatorType.Additive, StatType.FireResist))//[[Огонь]] наносит вам на 80% урона меньше.
-            }
-        };
-    }
-    public Item DielectricGasSource()//Источник элегаза
-    {
-        return new Item(LocaleKeys.Main.i_DielectricGasSource)
-        {
-            Type = ItemType.DielectricGasSource,
-            Cost = 160,
-            Icon = Addresses.Ico_DielectricGasSource,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Источник элегаза
+            new ItemTemplate(LocaleKeys.Main.i_DielectricGasSource)
             {
+                Id = ItemId.DielectricGasSource,
+                Cost = 160,
+                IconAddress = Addresses.Ico_DielectricGasSource,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerElectricityResist,
                     new StatModificator(.8f, StatModificatorType.Additive, StatType.ElectricityResist))//Дает 80% шанс уклониться от воздействия [[Электричество]].
-            }
-        };
-    }
-    public Item ConcentratedPoisonGasCylinders()//Балоны концентрированного отравляющего газа
-    {
-        return new Item(LocaleKeys.Main.i_ConcentratedPoisonGasCylinders)
-        {
-            Type = ItemType.ConcentratedPoisonGasCylinders,
-            Cost = 160,
-            Icon = Addresses.Ico_ConcentratedPoisonGasCylinders,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Балоны концентрированного отравляющего газа
+            new ItemTemplate(LocaleKeys.Main.i_ConcentratedPoisonGasCylinders)
             {
-                //Оставляет за собой  [[Ядовитый газ]].
-            }
-        };
-    }
-    public Item OrganicDecompositionDevice()//Устройство органического разложения
-    {
-        return new Item(LocaleKeys.Main.i_OrganicDecompositionDevice)
-        {
-            Type = ItemType.OrganicDecompositionDevice,
-            Cost = 160,
-            Icon = Addresses.Ico_OrganicDecompositionDevice,
-            Perks = new IPerk[]
+                Id = ItemId.ConcentratedPoisonGasCylinders,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ConcentratedPoisonGasCylinders,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Оставляет за собой  [[Ядовитый газ]].
+                }
+            });
+        AddItemTemplate( //Устройство органического разложения
+            new ItemTemplate(LocaleKeys.Main.i_OrganicDecompositionDevice)
             {
-                //Врывает ядовитым облаком все подобранные хилки.
-            }
-        };
-    }
-    public Item OxygenSaturationModule()//Модуль насыщения кислородом
-    {
-        return new Item(LocaleKeys.Main.i_OxygenSaturationModule)
-        {
-            Type = ItemType.OxygenSaturationModule,
-            Cost = 160,
-            Icon = Addresses.Ico_OxygenSaturationModule,
-            Perks = new IPerk[]
+                Id = ItemId.OrganicDecompositionDevice,
+                Cost = 160,
+                IconAddress = Addresses.Ico_OrganicDecompositionDevice,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Врывает ядовитым облаком все подобранные хилки.
+                }
+            });
+        AddItemTemplate( //Модуль насыщения кислородом
+            new ItemTemplate(LocaleKeys.Main.i_OxygenSaturationModule)
             {
+                Id = ItemId.OxygenSaturationModule,
+                Cost = 160,
+                IconAddress = Addresses.Ico_OxygenSaturationModule,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerLifeSupport,
                                new StatModificator(8f, StatModificatorType.Additive, StatType.LifeSupport))//[[Запас кислорода]] + 8 с.
-            }
-        };
-    }
-    public Item TreatmentSystem()//Система лечения
-    {
-        return new Item(LocaleKeys.Main.i_TreatmentSystem)
-        {
-            Type = ItemType.TreatmentSystem,
-            Cost = 160,
-            Icon = Addresses.Ico_TreatmentSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система лечения
+            new ItemTemplate(LocaleKeys.Main.i_TreatmentSystem)
             {
-                //[[Востановление хп]]  +1 раз в 16 с.
-            }
-        };
-    }
-    public Item Echo()//Эхо
-    {
-        return new Item(LocaleKeys.Main.i_Echo)
-        {
-            Type = ItemType.Echo,
-            Cost = 160,
-            Icon = Addresses.Ico_Echo,
-            Perks = new IPerk[]
+                Id = ItemId.TreatmentSystem,
+                Cost = 160,
+                IconAddress = Addresses.Ico_TreatmentSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //[[Востановление хп]]  +1 раз в 16 с.
+                }
+            });
+        AddItemTemplate( //Эхо
+            new ItemTemplate(LocaleKeys.Main.i_Echo)
             {
+                Id = ItemId.Echo,
+                Cost = 160,
+                IconAddress = Addresses.Ico_Echo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MineralEffect,
                                new StatModificator(1f, StatModificatorType.Additive, StatType.MineralEffect))//Удваевает эффекты минералов в ващем интвентаре.
-            }
-        };
-    }
-    public Item HandmadeFlamethrower()//Самодельный огнемет
-    {
-        return new Item(LocaleKeys.Main.i_HandmadeFlamethrower)
-        {
-            Type = ItemType.HandmadeFlamethrower,
-            Cost = 160,
-            Icon = Addresses.Ico_HandmadeFlamethrower,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Самодельный огнемет
+            new ItemTemplate(LocaleKeys.Main.i_HandmadeFlamethrower)
             {
+                Id = ItemId.HandmadeFlamethrower,
+                Cost = 160,
+                IconAddress = Addresses.Ico_HandmadeFlamethrower,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-            }
-        };
-    }
-    public Item WhiteShroud()//Белый саван
-    {
-        return new Item(LocaleKeys.Main.i_WhiteShroud)
-        {
-            Type = ItemType.WhiteShroud,
-            Cost = 40,
-            Icon = Addresses.Ico_WhiteShroud,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Белый саван
+            new ItemTemplate(LocaleKeys.Main.i_WhiteShroud)
             {
+                Id = ItemId.WhiteShroud,
+                Cost = 40,
+                IconAddress = Addresses.Ico_WhiteShroud,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new PerkColdAOE(15),//При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerFireResist,
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.FireResist))//[[Огонь]] наносит персонажу на 50 % урона меньше.
-            }
-        };
-    }
-    public Item IceSoul()//Ледяная душа
-    {
-        return new Item(LocaleKeys.Main.i_IceSoul)
-        {
-            Type = ItemType.IceSoul,
-            Cost = 160,
-            Icon = Addresses.Ico_IceSoul,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ледяная душа
+            new ItemTemplate(LocaleKeys.Main.i_IceSoul)
             {
-                //Накладывает [[Обморожение]] на 10 врагов в радиусе 40 п. раз в 10 с.
-            }
-        };
-    }
-    public Item PoisonousSubstancesDropping()//Сброс ядовитых веществ
-    {
-        return new Item(LocaleKeys.Main.i_PoisonousSubstancesDropping)
-        {
-            Type = ItemType.PoisonousSubstancesDropping,
-            Cost = 160,
-            Icon = Addresses.Ico_PoisonousSubstancesDropping,
-            Perks = new IPerk[]
+                Id = ItemId.IceSoul,
+                Cost = 160,
+                IconAddress = Addresses.Ico_IceSoul,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Накладывает [[Обморожение]] на 10 врагов в радиусе 40 п. раз в 10 с.
+                }
+            });
+        AddItemTemplate( //Сброс ядовитых веществ
+            new ItemTemplate(LocaleKeys.Main.i_PoisonousSubstancesDropping)
             {
-                //Раз в 8 с. в случайную точку [[Зона контроля]] падает снаряд, выпускает волну [[Ядовитый газ]] радиусом 15 п.
-            }
-        };
-    }
-    public Item NonConformingMaterialsDropping()//Сброс некондиционных материалов
-    {
-        return new Item(LocaleKeys.Main.i_NonConformingMaterialsDropping)
-        {
-            Type = ItemType.NonConformingMaterialsDropping,
-            Cost = 160,
-            Icon = Addresses.Ico_NonConformingMaterialsDropping,
-            Perks = new IPerk[]
+                Id = ItemId.PoisonousSubstancesDropping,
+                Cost = 160,
+                IconAddress = Addresses.Ico_PoisonousSubstancesDropping,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 8 с. в случайную точку [[Зона контроля]] падает снаряд, выпускает волну [[Ядовитый газ]] радиусом 15 п.
+                }
+            });
+        AddItemTemplate( //Сброс некондиционных материалов
+            new ItemTemplate(LocaleKeys.Main.i_NonConformingMaterialsDropping)
             {
-                //Раз в 8 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед.
-                //[[Физический урон]] в центре, и 20 ед. по бокам.
-                //Радиус поражения - 10 п.
-            }
-        };
-    }
-    public Item ExplosiveMixtureDropping()//Доставка взрывоопасной смеси
-    {
-        return new Item(LocaleKeys.Main.i_ExplosiveMixtureDropping)
-        {
-            Type = ItemType.ExplosiveMixtureDropping,
-            Cost = 160,
-            Icon = Addresses.Ico_ExplosiveMixtureDropping,
-            Perks = new IPerk[]
+                Id = ItemId.NonConformingMaterialsDropping,
+                Cost = 160,
+                IconAddress = Addresses.Ico_NonConformingMaterialsDropping,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 8 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед.
+                    //[[Физический урон]] в центре, и 20 ед. по бокам.
+                    //Радиус поражения - 10 п.
+                }
+            });
+        AddItemTemplate( //Доставка взрывоопасной смеси
+            new ItemTemplate(LocaleKeys.Main.i_ExplosiveMixtureDropping)
             {
+                Id = ItemId.ExplosiveMixtureDropping,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ExplosiveMixtureDropping,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(8f),//Раз в 8 с. сбрасывает [[Ящик со взрывчаткой]].
-            }
-        };
-    }
-    public Item BakedApplesDelivery()//Доставка печеных яблок
-    {
-        return new Item(LocaleKeys.Main.i_BakedApplesDelivery)
-        {
-            Type = ItemType.BakedApplesDelivery,
-            Cost = 160,
-            Icon = Addresses.Ico_BakedApplesDelivery,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Доставка печеных яблок
+            new ItemTemplate(LocaleKeys.Main.i_BakedApplesDelivery)
             {
-                //Раз в 14 с. сбрасывает [[Ящик со взрывчаткой]].
-                //После взрыва оставляет после себя хилку.
-                //[[Востановление хп]] 1 ед.
-            }
-        };
-    }
-    public Item RadiationContour()//Радиационный контур
-    {
-        return new Item(LocaleKeys.Main.i_RadiationContour)
-        {
-            Type = ItemType.RadiationContour,
-            Cost = 160,
-            Icon = Addresses.Ico_RadiationContour,
-            Perks = new IPerk[]
+                Id = ItemId.BakedApplesDelivery,
+                Cost = 160,
+                IconAddress = Addresses.Ico_BakedApplesDelivery,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 14 с. сбрасывает [[Ящик со взрывчаткой]].
+                    //После взрыва оставляет после себя хилку.
+                    //[[Востановление хп]] 1 ед.
+                }
+            });
+        AddItemTemplate( //Радиационный контур
+            new ItemTemplate(LocaleKeys.Main.i_RadiationContour)
             {
+                Id = ItemId.RadiationContour,
+                Cost = 160,
+                IconAddress = Addresses.Ico_RadiationContour,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPIonization>(8f, 4f)//Пораженные лучем враги получают статус [[Радиация]] с уроном в 8 единицы.
 
-            }
-        };
-    }
-    public Item IsotopeReactor()//Изотопный реактор
-    {
-        return new Item(LocaleKeys.Main.i_IsotopeReactor)
-        {
-            Type = ItemType.IsotopeReactor,
-            Cost = 160,
-            Icon = Addresses.Ico_IsotopeReactor,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Изотопный реактор
+            new ItemTemplate(LocaleKeys.Main.i_IsotopeReactor)
             {
+                Id = ItemId.IsotopeReactor,
+                Cost = 160,
+                IconAddress = Addresses.Ico_IsotopeReactor,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                                new StatModificator(6, StatModificatorType.Additive, StatType.EnergyRegen))//[[Генерация энергии]] +6 ед./с.
 
-            }
-        };
-    }
-    public Item SmallNuclearReactor()//Атомный реактор малой мощьности
-    {
-        return new Item(LocaleKeys.Main.i_SmallNuclearReactor)
-        {
-            Type = ItemType.SmallNuclearReactor,
-            Cost = 160,
-            Icon = Addresses.Ico_SmallNuclearReactor,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Атомный реактор малой мощьности
+            new ItemTemplate(LocaleKeys.Main.i_SmallNuclearReactor)
             {
-                //Генерация 5% от максимального заряда энергии в сек.
+                Id = ItemId.SmallNuclearReactor,
+                Cost = 160,
+                IconAddress = Addresses.Ico_SmallNuclearReactor,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Генерация 5% от максимального заряда энергии в сек.
 
-            }
-        };
-    }
-    public Item AtmosphericIonizer()//Ионизатор атмосферы
-    {
-        return new Item(LocaleKeys.Main.i_AtmosphericIonizer)
-        {
-            Type = ItemType.AtmosphericIonizer,
-            Cost = 160,
-            Icon = Addresses.Ico_AtmosphericIonizer,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Ионизатор атмосферы
+            new ItemTemplate(LocaleKeys.Main.i_AtmosphericIonizer)
             {
-                //С каждой пройденым п. увеличивает появление молнии.
+                Id = ItemId.AtmosphericIonizer,
+                Cost = 160,
+                IconAddress = Addresses.Ico_AtmosphericIonizer,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //С каждой пройденым п. увеличивает появление молнии.
 
-            }
-        };
-    }
-    public Item SelfChargingAccumulator()//Самозарядный аккумулятор
-    {
-        return new Item(LocaleKeys.Main.i_SelfChargingAccumulator)
-        {
-            Type = ItemType.SelfChargingAccumulator,
-            Cost = 160,
-            Icon = Addresses.Ico_SelfChargingAccumulator,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Самозарядный аккумулятор
+            new ItemTemplate(LocaleKeys.Main.i_SelfChargingAccumulator)
             {
+                Id = ItemId.SelfChargingAccumulator,
+                Cost = 160,
+                IconAddress = Addresses.Ico_SelfChargingAccumulator,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyCapacity,
                                new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity)),//[[Базовая ёмкость энергии]] + 60%.
                 new SimplePerk(PerkType.EnergyRegen,
                                new StatModificator(3, StatModificatorType.Additive, StatType.EnergyRegen))//[[Генерация энергии]] +3 ед./ с.
 
-            }
-        };
-    }
-    public Item RayOverloadController()//Контроллер перегрузки луча
-    {
-        return new Item(LocaleKeys.Main.i_RayOverloadController)
-        {
-            Type = ItemType.RayOverloadController,
-            Cost = 160,
-            Icon = Addresses.Ico_RayOverloadController,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Контроллер перегрузки луча
+            new ItemTemplate(LocaleKeys.Main.i_RayOverloadController)
             {
+                Id = ItemId.RayOverloadController,
+                Cost = 160,
+                IconAddress = Addresses.Ico_RayOverloadController,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] +50%.
                 new SimplePerk(PerkType.RayDelay,
                                new StatModificator(1f, StatModificatorType.Additive, StatType.RayDelay))//[[Задержка активации луча]] +1 секунды.
 
-            }
-        };
-    }
-    public Item ElectricDriveUnits()//Электроприводы
-    {
-        return new Item(LocaleKeys.Main.i_ElectricDriveUnits)
-        {
-            Type = ItemType.ElectricDriveUnits,
-            Cost = 160,
-            Icon = Addresses.Ico_ElectricDriveUnits,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Электроприводы
+            new ItemTemplate(LocaleKeys.Main.i_ElectricDriveUnits)
             {
+                Id = ItemId.ElectricDriveUnits,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ElectricDriveUnits,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                                new StatModificator(1, StatModificatorType.Additive, StatType.RaySpeed)),//[[Базовая скорость луча]] +100%.
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(2, StatModificatorType.Additive, StatType.RayError))//Погрешность +2п.
-            }
-        };
-    }
-    public Item MediumCapacityAccumulator()//Аккумулятор средней ёмкости
-    {
-        return new Item(LocaleKeys.Main.i_MediumCapacityAccumulator)
-        {
-            Type = ItemType.MediumCapacityAccumulator,
-            Cost = 160,
-            Icon = Addresses.Ico_MediumCapacityAccumulator,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Аккумулятор средней ёмкости
+            new ItemTemplate(LocaleKeys.Main.i_MediumCapacityAccumulator)
             {
+                Id = ItemId.MediumCapacityAccumulator,
+                Cost = 160,
+                IconAddress = Addresses.Ico_MediumCapacityAccumulator,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyCapacity,
                                new StatModificator(1.2f, StatModificatorType.Multiplicative, StatType.Capacity))//[[Базовая ёмкость энергии]] + 120%.
-            }
-        };
-    }
-    public Item ErrorCorrector()//Корректор погрешностей
-    {
-        return new Item(LocaleKeys.Main.i_ErrorCorrector)
-        {
-            Type = ItemType.ErrorCorrector,
-            Cost = 160,
-            Icon = Addresses.Ico_ErrorCorrector,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Корректор погрешностей
+            new ItemTemplate(LocaleKeys.Main.i_ErrorCorrector)
             {
+                Id = ItemId.ErrorCorrector,
+                Cost = 160,
+                IconAddress = Addresses.Ico_ErrorCorrector,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(-3, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]] уменьшается на -3.
-                //Уменьшает стоимсоть луча за пройденную длину луча.
+                                                                                                       //Уменьшает стоимсоть луча за пройденную длину луча.
 
-            }
-        };
-    }
-    public Item CrystalHalo()//Хрустальное хало
-    {
-        return new Item(LocaleKeys.Main.i_CrystalHalo)
-        {
-            Type = ItemType.CrystalHalo,
-            Cost = 160,
-            Icon = Addresses.Ico_CrystalHalo,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Хрустальное хало
+            new ItemTemplate(LocaleKeys.Main.i_CrystalHalo)
             {
+                Id = ItemId.CrystalHalo,
+                Cost = 160,
+                IconAddress = Addresses.Ico_CrystalHalo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(-.8f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] - 80%.
                 new SimplePerk(PerkType.RayDamageAreaRadius,
                                new StatModificator(1.6f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))//[[Радиус поражения луча]] +160 %.
 
-            }
-        };
-    }
-    public Item RayDiffusionSystem()//Система рассеивания луча
-    {
-        return new Item(LocaleKeys.Main.i_RayDiffusionSystem)
-        {
-            Type = ItemType.RayDiffusionSystem,
-            Cost = 160,
-            Icon = Addresses.Ico_RayDiffusionSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система рассеивания луча
+            new ItemTemplate(LocaleKeys.Main.i_RayDiffusionSystem)
             {
+                Id = ItemId.RayDiffusionSystem,
+                Cost = 160,
+                IconAddress = Addresses.Ico_RayDiffusionSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamageAreaRadius,
                                new StatModificator(0.8f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))//[[Радиус поражения луча]] + 80%.
-            }
-        };
-    }
-    public Item RayFocusingSystem()//Система фокусировки луча
-    {
-        return new Item(LocaleKeys.Main.i_RayFocusingSystem)
-        {
-            Type = ItemType.RayFocusingSystem,
-            Cost = 160,
-            Icon = Addresses.Ico_RayFocusingSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система фокусировки луча
+            new ItemTemplate(LocaleKeys.Main.i_RayFocusingSystem)
             {
+                Id = ItemId.RayFocusingSystem,
+                Cost = 160,
+                IconAddress = Addresses.Ico_RayFocusingSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(.4f, StatModificatorType.Multiplicative, StatType.RayDamage))//[[Базовый урон луча]] +40%.
 
-            }
-        };
-    }
-    public Item CrystalLens()//Хрустальная линза
-    {
-        return new Item(LocaleKeys.Main.i_CrystalLens)
-        {
-            Type = ItemType.CrystalLens,
-            Cost = 160,
-            Icon = Addresses.Ico_CrystalLens,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Хрустальная линза
+            new ItemTemplate(LocaleKeys.Main.i_CrystalLens)
             {
+                Id = ItemId.CrystalLens,
+                Cost = 160,
+                IconAddress = Addresses.Ico_CrystalLens,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(.8f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] +80%.
                 new SimplePerk(PerkType.RayDamageAreaRadius,
@@ -1329,75 +922,64 @@ public class ItemsDB
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(1, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]] +1п.
 
-            }
-        };
-    }
-    public Item FireFootprints()//Огненные следы
-    {
-        return new Item(LocaleKeys.Main.i_FireFootprints)
-        {
-            Type = ItemType.FireFootprints,
-            Cost = 160,
-            Icon = Addresses.Ico_FireFootprints,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Огненные следы
+            new ItemTemplate(LocaleKeys.Main.i_FireFootprints)
             {
-                //Накапливает заряд, следующий луч оставляет огненный след.
+                Id = ItemId.FireFootprints,
+                Cost = 160,
+                IconAddress = Addresses.Ico_FireFootprints,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Накапливает заряд, следующий луч оставляет огненный след.
 
 
-            }
-        };
-    }
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////////////////////////////////красные арты
-    /// </summary>
-    /// <returns></returns>
-    public Item VeilOfDecay()//Покров разложения
-    {
-        return new Item(LocaleKeys.Main.i_VeilOfDecay)
-        {
-            Type = ItemType.VeilOfDecay,
-            Cost = 320,
-            Icon = Addresses.Ico_VeilOfDecay,
-            Perks = new IPerk[]
+                }
+            });
+        ///////////////////////////////////////////////////////////////////////////////////////////красные арты
+        AddItemTemplate( //Покров разложения
+            new ItemTemplate(LocaleKeys.Main.i_VeilOfDecay)
             {
+                Id = ItemId.VeilOfDecay,
+                Cost = 320,
+                IconAddress = Addresses.Ico_VeilOfDecay,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 //Врывает ядовитым облаком все подобранные хилки.
                 //При получении урона выпускает волну [[Ядовитый газ]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerMaxHP,
                                new StatModificator(5f, StatModificatorType.Additive, StatType.MaxHP))//[[Мак хит поинтов]] + 5 ед.
 
 
-            }
-        };
-    }
-    public Item WarriorExoskeleton()//Экзоскелет война
-    {
-        return new Item(LocaleKeys.Main.i_WarriorExoskeleton)
-        {
-            Type = ItemType.WarriorExoskeleton,
-            Cost = 320,
-            Icon = Addresses.Ico_WarriorExoskeleton,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Экзоскелет война
+            new ItemTemplate(LocaleKeys.Main.i_WarriorExoskeleton)
             {
+                Id = ItemId.WarriorExoskeleton,
+                Cost = 320,
+                IconAddress = Addresses.Ico_WarriorExoskeleton,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerStunResist,
                                new StatModificator(1f, StatModificatorType.Additive, StatType.StunResist)),//[[Оглушение]] не действует на персонажа.
                 new SimplePerk(PerkType.PlayerMaxHP,
                                new StatModificator(10f, StatModificatorType.Additive, StatType.MaxHP))//Макс хп + 10.
-                //[[Экзоскелет]].
+                                                                                                      //[[Экзоскелет]].
 
 
 
-            }
-        };
-    }
-    public Item SpaceShiftSystem()//Система сдвига пространства
-    {
-        return new Item(LocaleKeys.Main.i_SpaceShiftSystem)
-        {
-            Type = ItemType.SpaceShiftSystem,
-            Cost = 320,
-            Icon = Addresses.Ico_SpaceShiftSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система сдвига пространства
+            new ItemTemplate(LocaleKeys.Main.i_SpaceShiftSystem)
             {
+                Id = ItemId.SpaceShiftSystem,
+                Cost = 320,
+                IconAddress = Addresses.Ico_SpaceShiftSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 //После получаения урона персонаж получает статус [[Имматериальный]] на 3 с.
                 //Наносимый персонажу урон увеличивается на 1.
                 new SimplePerk(PerkType.Speed,
@@ -1405,109 +987,97 @@ public class ItemsDB
 
 
 
-            }
-        };
-    }
-    public Item PioneerExoskeleton()//Экзоскелет пионера
-    {
-        return new Item(LocaleKeys.Main.i_PioneerExoskeleton)
-        {
-            Type = ItemType.PioneerExoskeleton,
-            Cost = 320,
-            Icon = Addresses.Ico_PioneerExoskeleton,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Экзоскелет пионера
+            new ItemTemplate(LocaleKeys.Main.i_PioneerExoskeleton)
             {
+                Id = ItemId.PioneerExoskeleton,
+                Cost = 320,
+                IconAddress = Addresses.Ico_PioneerExoskeleton,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Speed,
                                new StatModificator(1.6f, StatModificatorType.Additive, StatType.MovementSpeed)),//[[Скорость передвижения]] +1.6 п/с.
                 new SimplePerk(PerkType.PlayerLifeSupport,
                                new StatModificator(8f, StatModificatorType.Additive, StatType.LifeSupport))//[[Запас кислорода]] +8 с.
-                //[[Экзоскелет]].
+                                                                                                           //[[Экзоскелет]].
 
 
 
 
-            }
-        };
-    }
-    public Item GravitationalExplosionDevice()//Устройство гравитационного взрыва материи
-    {
-        return new Item(LocaleKeys.Main.i_GravitationalExplosionDevice)
-        {
-            Type = ItemType.GravitationalExplosionDevice,
-            Cost = 320,
-            Icon = Addresses.Ico_GravitationalExplosionDevice,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Устройство гравитационного взрыва материи
+            new ItemTemplate(LocaleKeys.Main.i_GravitationalExplosionDevice)
             {
-                //Подберая руду, она взрывается на 8 осколков, летящих на 30 п. и наносяших 40 ед.  [[Физический урон]].
+                Id = ItemId.GravitationalExplosionDevice,
+                Cost = 320,
+                IconAddress = Addresses.Ico_GravitationalExplosionDevice,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Подберая руду, она взрывается на 8 осколков, летящих на 30 п. и наносяших 40 ед.  [[Физический урон]].
 
 
 
-            }
-        };
-    }
-    public Item PerpetualMotionMachine()//Вечный двигатель
-    {
-        return new Item(LocaleKeys.Main.i_PerpetualMotionMachine)
-        {
-            Type = ItemType.PerpetualMotionMachine,
-            Cost = 320,
-            Icon = Addresses.Ico_PerpetualMotionMachine,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Вечный двигатель
+            new ItemTemplate(LocaleKeys.Main.i_PerpetualMotionMachine)
             {
-                //Раз в 3 с. выпускает в случайного врага молнию, бьющую 20 ед. [[Электричество]].
+                Id = ItemId.PerpetualMotionMachine,
+                Cost = 320,
+                IconAddress = Addresses.Ico_PerpetualMotionMachine,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 3 с. выпускает в случайного врага молнию, бьющую 20 ед. [[Электричество]].
 
 
 
-            }
-        };
-    }
-    public Item StarSatellite()//Звездный спутник
-    {
-        return new Item(LocaleKeys.Main.i_StarSatellite)
-        {
-            Type = ItemType.StarSatellite,
-            Cost = 320,
-            Icon = Addresses.Ico_StarSatellite,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Звездный спутник
+            new ItemTemplate(LocaleKeys.Main.i_StarSatellite)
             {
+                Id = ItemId.StarSatellite,
+                Cost = 320,
+                IconAddress = Addresses.Ico_StarSatellite,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new PerkGravityMatter(25, 1, 40, 2, 2, PerkType.GravityMatter)//Вращает осколок материи вокруг персонажа в радиусе 25 п.
-                                                                           //Осколок наносит 40 ед.  [[Физический урон]] и оглушает на 2 секунды.
+                                                                              //Осколок наносит 40 ед.  [[Физический урон]] и оглушает на 2 секунды.
 
 
 
-            }
-        };
-    }
-    public Item HarvesterExoskeleton()//Экзоскелет харвестера
-    {
-        return new Item(LocaleKeys.Main.i_HarvesterExoskeleton)
-        {
-            Type = ItemType.HarvesterExoskeleton,
-            Cost = 320,
-            Icon = Addresses.Ico_HarvesterExoskeleton,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Экзоскелет харвестера
+            new ItemTemplate(LocaleKeys.Main.i_HarvesterExoskeleton)
             {
+                Id = ItemId.HarvesterExoskeleton,
+                Cost = 320,
+                IconAddress = Addresses.Ico_HarvesterExoskeleton,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MagneticManipulator,
                     new StatModificator(3f, StatModificatorType.Multiplicative, StatType.PickupRadius)),//[[Радиус сбора]] + 300%.
                 new SimplePerk(PerkType.PlayerSlowdownResist,
                                new StatModificator(1, StatModificatorType.Additive, StatType.SlowdownResist))//Жижа не замедляет
-                //Жижа растворяется
-                //[[Экзоскелет]].
+                                                                                                             //Жижа растворяется
+                                                                                                             //[[Экзоскелет]].
 
 
 
-            }
-        };
-    }
-    public Item EnvironmentalControlSystem()//Система контроля окружающей среды
-    {
-        return new Item(LocaleKeys.Main.i_EnvironmentalControlSystem)
-        {
-            Type = ItemType.EnvironmentalControlSystem,
-            Cost = 320,
-            Icon = Addresses.Ico_EnvironmentalControlSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система контроля окружающей среды
+            new ItemTemplate(LocaleKeys.Main.i_EnvironmentalControlSystem)
             {
+                Id = ItemId.EnvironmentalControlSystem,
+                Cost = 320,
+                IconAddress = Addresses.Ico_EnvironmentalControlSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerSlowdownResist,
                                new StatModificator(1, StatModificatorType.Additive, StatType.SlowdownResist)),//Жижа не замедляет
                 //Жижа растворяется
@@ -1516,212 +1086,188 @@ public class ItemsDB
                                new StatModificator(1, StatModificatorType.Additive, StatType.FireAbsorption))//[[Огонь]] не наносит урона.
 
 
-               
-            }
-        };
-    }
-    public Item EngineerExoskeleton()//Экзоскелет инженера
-    {
-        return new Item(LocaleKeys.Main.i_EngineerExoskeleton)
-        {
-            Type = ItemType.EngineerExoskeleton,
-            Cost = 320,
-            Icon = Addresses.Ico_EngineerExoskeleton,
-            Perks = new IPerk[]
+
+                }
+            });
+        AddItemTemplate( //Экзоскелет инженера
+            new ItemTemplate(LocaleKeys.Main.i_EngineerExoskeleton)
             {
+                Id = ItemId.EngineerExoskeleton,
+                Cost = 320,
+                IconAddress = Addresses.Ico_EngineerExoskeleton,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PlayerElectricityResist,
                                new StatModificator(1, StatModificatorType.Additive, StatType.ElectricityResist)),//[[Электричество]] не воздействует на персонажа
                 new SimplePerk(PerkType.PlayerRadiationResist,
                                new StatModificator(1, StatModificatorType.Additive, StatType.RadiationResist))//[[Радиация]] не воздействует на персонажа.
-                //[[Экзоскелет]].
+                                                                                                              //[[Экзоскелет]].
 
 
-            }
-        };
-    }
-    public Item TissueRegenerationSystem()//Система регенерации тканей
-    {
-        return new Item(LocaleKeys.Main.i_TissueRegenerationSystem)
-        {
-            Type = ItemType.TissueRegenerationSystem,
-            Cost = 40,
-            Icon = Addresses.Ico_TissueRegenerationSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система регенерации тканей
+            new ItemTemplate(LocaleKeys.Main.i_TissueRegenerationSystem)
             {
-                //[[Востановление хп]]  +1 раз в 8 с.
+                Id = ItemId.TissueRegenerationSystem,
+                Cost = 40,
+                IconAddress = Addresses.Ico_TissueRegenerationSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //[[Востановление хп]]  +1 раз в 8 с.
 
 
 
-            }
-        };
-    }
-    public Item CombatFlamethrower()//Боевой огнемет
-    {
-        return new Item(LocaleKeys.Main.i_CombatFlamethrower)
-        {
-            Type = ItemType.CombatFlamethrower,
-            Cost = 320,
-            Icon = Addresses.Ico_CombatFlamethrower,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Боевой огнемет
+            new ItemTemplate(LocaleKeys.Main.i_CombatFlamethrower)
             {
+                Id = ItemId.CombatFlamethrower,
+                Cost = 320,
+                IconAddress = Addresses.Ico_CombatFlamethrower,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
 
 
 
-            }
-        };
-    }
-    public Item LifeSupportingSystem()//Система жизнеобеспечения
-    {
-        return new Item(LocaleKeys.Main.i_LifeSupportingSystem)
-        {
-            Type = ItemType.LifeSupportingSystem,
-            Cost = 320,
-            Icon = Addresses.Ico_LifeSupportingSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система жизнеобеспечения
+            new ItemTemplate(LocaleKeys.Main.i_LifeSupportingSystem)
             {
+                Id = ItemId.LifeSupportingSystem,
+                Cost = 320,
+                IconAddress = Addresses.Ico_LifeSupportingSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.PlayerLifeSupport,
                                new StatModificator(8f, StatModificatorType.Additive, StatType.LifeSupport))//[[Запас кислорода]] + 8 с.
-                //[[Востановление хп]]  +1 раз в 16 с.
+                                                                                                           //[[Востановление хп]]  +1 раз в 16 с.
 
 
-            }
-        };
-    }
-    public Item GreatGlaciation()//Великое оледенение
-    {
-        return new Item(LocaleKeys.Main.i_GreatGlaciation)
-        {
-            Type = ItemType.GreatGlaciation,
-            Cost = 320,
-            Icon = Addresses.Ico_GreatGlaciation,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Великое оледенение
+            new ItemTemplate(LocaleKeys.Main.i_GreatGlaciation)
             {
+                Id = ItemId.GreatGlaciation,
+                Cost = 320,
+                IconAddress = Addresses.Ico_GreatGlaciation,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Накладывает [[Обморожение]] на 20 врагов в радиусе 50 п. раз в 10 с.
+                    //Накладывает [[Обморожение]] на 20 врагов в радиусе 50 п. раз в 10 с.
 
 
-            }
-        };
-    }
-    public Item TacticExoskeleton()//Экзоскелет тактика
-    {
-        return new Item(LocaleKeys.Main.i_TacticExoskeleton)
-        {
-            Type = ItemType.TacticExoskeleton,
-            Cost = 320,
-            Icon = Addresses.Ico_TacticExoskeleton,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Экзоскелет тактика
+            new ItemTemplate(LocaleKeys.Main.i_TacticExoskeleton)
             {
+                Id = ItemId.TacticExoskeleton,
+                Cost = 320,
+                IconAddress = Addresses.Ico_TacticExoskeleton,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.PlayerMaxHP,
                     new StatModificator(10f, StatModificatorType.Additive, StatType.MaxHP)),//[[Мак хит поинтов]] + 10 ед.
                 //При получении урона по персонажу выпускает волну [[Обморожение]] радиусом 20 п.
                 new SimplePerk(PerkType.PlayerFireResist,
                                new StatModificator(.5f, StatModificatorType.Additive, StatType.FireAbsorption))//[[Огонь]] не наносит урона.//[[Огонь]] наносит персонажу на 50% урона меньше.
-                //[[Экзоскелет]].
+                                                                                                               //[[Экзоскелет]].
 
 
-            }
-        };
-    }
-    public Item FullUnloading()//Полная разгрузка
-    {
-        return new Item(LocaleKeys.Main.i_FullUnloading)
-        {
-            Type = ItemType.FullUnloading,
-            Cost = 320,
-            Icon = Addresses.Ico_FullUnloading,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Полная разгрузка
+            new ItemTemplate(LocaleKeys.Main.i_FullUnloading)
             {
+                Id = ItemId.FullUnloading,
+                Cost = 320,
+                IconAddress = Addresses.Ico_FullUnloading,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Раз в 4 с. в случайную точку [[Зона контроля]] падает снаряд, выпускает волну [[Ядовитый газ]] радиусом 15 п.
+                    //Раз в 4 с. в случайную точку [[Зона контроля]] падает снаряд, выпускает волну [[Ядовитый газ]] радиусом 15 п.
 
 
-            }
-        };
-    }
-    public Item MeteorRain()//Метеоритный дождь
-    {
-        return new Item(LocaleKeys.Main.i_MeteorRain)
-        {
-            Type = ItemType.MeteorRain,
-            Cost = 320,
-            Icon = Addresses.Ico_MeteorRain,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Метеоритный дождь
+            new ItemTemplate(LocaleKeys.Main.i_MeteorRain)
             {
+                Id = ItemId.MeteorRain,
+                Cost = 320,
+                IconAddress = Addresses.Ico_MeteorRain,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Раз в 4 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед. [[Физический урон]] в центре, и 20 ед. по бокам.
-                //Радиус поражения - 10 п.
+                    //Раз в 4 с. в случайную точку [[Зона контроля]] падает снаряд, наносящий 60 ед. [[Физический урон]] в центре, и 20 ед. по бокам.
+                    //Радиус поражения - 10 п.
 
 
-            }
-        };
-    }
-    public Item Arsenal()//Арсенал
-    {
-        return new Item(LocaleKeys.Main.i_Arsenal)
-        {
-            Type = ItemType.Arsenal,
-            Cost = 320,
-            Icon = Addresses.Ico_Arsenal,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Арсенал
+            new ItemTemplate(LocaleKeys.Main.i_Arsenal)
             {
+                Id = ItemId.Arsenal,
+                Cost = 320,
+                IconAddress = Addresses.Ico_Arsenal,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 _perksFactory.Create<PerkPBarrels>(4f),//Раз в 4 с. сбрасывает [[Ящик со взрывчаткой]].
 
 
-            }
-        };
-    }
-    public Item OrbitalSupportSystem()//Система орбитальной поддержки
-    {
-        return new Item(LocaleKeys.Main.i_OrbitalSupportSystem)
-        {
-            Type = ItemType.OrbitalSupportSystem,
-            Cost = 320,
-            Icon = Addresses.Ico_OrbitalSupportSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Система орбитальной поддержки
+            new ItemTemplate(LocaleKeys.Main.i_OrbitalSupportSystem)
             {
+                Id = ItemId.OrbitalSupportSystem,
+                Cost = 320,
+                IconAddress = Addresses.Ico_OrbitalSupportSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.RayError,
                               new StatModificator(-4, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]] уменьшается на -4.
-                //Уменьшает стоимсоть луча за пройденную длину луча.
-                //Раз в 14 с. сбрасывает [[Ящик со взрывчаткой]].
-                //После взрыва оставляет после себя хилку.
-                //[[Востановление хп]] 1 ед.
+                                                                                                       //Уменьшает стоимсоть луча за пройденную длину луча.
+                                                                                                       //Раз в 14 с. сбрасывает [[Ящик со взрывчаткой]].
+                                                                                                       //После взрыва оставляет после себя хилку.
+                                                                                                       //[[Востановление хп]] 1 ед.
 
 
-            }
-        };
-    }
-    public Item AtomicRay()//Атомный луч
-    {
-        return new Item(LocaleKeys.Main.i_AtomicRay)
-        {
-            Type = ItemType.AtomicRay,
-            Cost = 320,
-            Icon = Addresses.Ico_AtomicRay,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Атомный луч
+            new ItemTemplate(LocaleKeys.Main.i_AtomicRay)
             {
+                Id = ItemId.AtomicRay,
+                Cost = 320,
+                IconAddress = Addresses.Ico_AtomicRay,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Луч прекрощяет бить фотонным уроном.
-                //Он накладывает статус [[Радиация]] с уроном в 50% от [[Базовый урон луча]].
+                    //Луч прекрощяет бить фотонным уроном.
+                    //Он накладывает статус [[Радиация]] с уроном в 50% от [[Базовый урон луча]].
 
 
-            }
-        };
-    }
-    public Item OverloadedRay()//Перегруженный луч
-    {
-        return new Item(LocaleKeys.Main.i_OverloadedRay)
-        {
-            Type = ItemType.OverloadedRay,
-            Cost = 320,
-            Icon = Addresses.Ico_OverloadedRay,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Перегруженный луч
+            new ItemTemplate(LocaleKeys.Main.i_OverloadedRay)
             {
+                Id = ItemId.OverloadedRay,
+                Cost = 320,
+                IconAddress = Addresses.Ico_OverloadedRay,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] +100%.
@@ -1729,99 +1275,87 @@ public class ItemsDB
                                new StatModificator(2, StatModificatorType.Additive, StatType.RayDelay))//[[Задержка активации луча]] +2 секунды.
 
 
-            }
-        };
-    }
-    public Item ChemonuclearReactor()//Хемоядерный реактор
-    {
-        return new Item(LocaleKeys.Main.i_ChemonuclearReactor)
-        {
-            Type = ItemType.ChemonuclearReactor,
-            Cost = 320,
-            Icon = Addresses.Ico_ChemonuclearReactor,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Хемоядерный реактор
+            new ItemTemplate(LocaleKeys.Main.i_ChemonuclearReactor)
             {
+                Id = ItemId.ChemonuclearReactor,
+                Cost = 320,
+                IconAddress = Addresses.Ico_ChemonuclearReactor,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Генерация 10% от максимального заряда энергии в сек.
+                    //Генерация 10% от максимального заряда энергии в сек.
 
 
-            }
-        };
-    }
-    public Item Lightning()//Молния
-    {
-        return new Item(LocaleKeys.Main.i_Lightning)
-        {
-            Type = ItemType.Lightning,
-            Cost = 320,
-            Icon = Addresses.Ico_Lightning,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Молния
+            new ItemTemplate(LocaleKeys.Main.i_Lightning)
             {
+                Id = ItemId.Lightning,
+                Cost = 320,
+                IconAddress = Addresses.Ico_Lightning,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Луч прекрощяет бить фотонным уроном.
+                    //Луч прекрощяет бить фотонным уроном.
 
 
-            }
-        };
-    }
-    public Item HighCapacityAccumulator()//Аккумулятор большой ёмкости
-    {
-        return new Item(LocaleKeys.Main.i_HighCapacityAccumulator)
-        {
-            Type = ItemType.HighCapacityAccumulator,
-            Cost = 320,
-            Icon = Addresses.Ico_HighCapacityAccumulator,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Аккумулятор большой ёмкости
+            new ItemTemplate(LocaleKeys.Main.i_HighCapacityAccumulator)
             {
+                Id = ItemId.HighCapacityAccumulator,
+                Cost = 320,
+                IconAddress = Addresses.Ico_HighCapacityAccumulator,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.RayPathLenght,
                                new StatModificator(2f, StatModificatorType.Multiplicative, StatType.Capacity))//[[Базовая ёмкость энергии]] + 200%.
 
 
-            }
-        };
-    }
-    public Item ExtraDriveUnits()//Экстраприводы
-    {
-        return new Item(LocaleKeys.Main.i_ExtraDriveUnits)
-        {
-            Type = ItemType.ExtraDriveUnits,
-            Cost = 320,
-            Icon = Addresses.Ico_ExtraDriveUnits,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Экстраприводы
+            new ItemTemplate(LocaleKeys.Main.i_ExtraDriveUnits)
             {
+                Id = ItemId.ExtraDriveUnits,
+                Cost = 320,
+                IconAddress = Addresses.Ico_ExtraDriveUnits,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                                new StatModificator(2, StatModificatorType.Additive, StatType.RaySpeed),//[[Базовая скорость луча]] +200%.
                                new StatModificator(3, StatModificatorType.Additive, StatType.RayError)) //Погрешность +3п.
-               
-            }
-        };
-    }
-    public Item ReverseSystemTwo()//Система обратного хода
-    {
-        return new Item(LocaleKeys.Main.i_ReverseSystemTwo)
-        {
-            Type = ItemType.ReverseSystemTwo,
-            Cost = 320,
-            Icon = Addresses.Ico_ReverseSystemTwo,
-            Perks = new IPerk[]
+
+                }
+            });
+        AddItemTemplate( //Система обратного хода
+            new ItemTemplate(LocaleKeys.Main.i_ReverseSystemTwo)
             {
+                Id = ItemId.ReverseSystemTwo,
+                Cost = 320,
+                IconAddress = Addresses.Ico_ReverseSystemTwo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                                new StatModificator(1.3f, StatModificatorType.Additive, StatType.RayError)),//[[Базовая скорость луча]] +130%.
                 new SimplePerk(PerkType.RayReverse,
                                new StatModificator(1f, StatModificatorType.Additive, StatType.RayReverse))//Луч проходит свой путь дважды.
-            }
-        };
-    }
-    public Item PillarOfLight()//Столб света
-    {
-        return new Item(LocaleKeys.Main.i_PillarOfLight)
-        {
-            Type = ItemType.PillarOfLight,
-            Cost = 320,
-            Icon = Addresses.Ico_PillarOfLight,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Столб света
+            new ItemTemplate(LocaleKeys.Main.i_PillarOfLight)
             {
+                Id = ItemId.PillarOfLight,
+                Cost = 320,
+                IconAddress = Addresses.Ico_PillarOfLight,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(-.9f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] - 90%.
@@ -1829,35 +1363,31 @@ public class ItemsDB
                                new StatModificator(2.5f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))//[[Радиус поражения луча]] +250 %
 
 
-            }
-        };
-    }
-    public Item RaySplitter()//Расщепитель луча
-    {
-        return new Item(LocaleKeys.Main.i_RaySplitter)
-        {
-            Type = ItemType.RaySplitter,
-            Cost = 320,
-            Icon = Addresses.Ico_RaySplitter,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Расщепитель луча
+            new ItemTemplate(LocaleKeys.Main.i_RaySplitter)
             {
+                Id = ItemId.RaySplitter,
+                Cost = 320,
+                IconAddress = Addresses.Ico_RaySplitter,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Создает 3 луча вместо одного, [[Базовый урон луча]] которых равен 40%, а [[Радиус поражения луча]]  60%.
-                //Все дополнительные параметры применяются ко всем 3м лучам.
+                    //Создает 3 луча вместо одного, [[Базовый урон луча]] которых равен 40%, а [[Радиус поражения луча]]  60%.
+                    //Все дополнительные параметры применяются ко всем 3м лучам.
 
 
-            }
-        };
-    }
-    public Item ArchimedesMirror()//Зеркало Архимеда
-    {
-        return new Item(LocaleKeys.Main.i_ArchimedesMirror)
-        {
-            Type = ItemType.ArchimedesMirror,
-            Cost = 320,
-            Icon = Addresses.Ico_ArchimedesMirror,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Зеркало Архимеда
+            new ItemTemplate(LocaleKeys.Main.i_ArchimedesMirror)
             {
+                Id = ItemId.ArchimedesMirror,
+                Cost = 320,
+                IconAddress = Addresses.Ico_ArchimedesMirror,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
                 new SimplePerk(PerkType.RayDamage,
                                new StatModificator(1.2f, StatModificatorType.Multiplicative, StatType.RayDamage)),//[[Базовый урон луча]] +120%.
@@ -1867,637 +1397,550 @@ public class ItemsDB
                               new StatModificator(1, StatModificatorType.Additive, StatType.RayError))//[[Погрешность позиционирования луча]] +1п.
 
 
-            }
-        };
-    }
-    public Item FireRay()//Огненный луч
-    {
-        return new Item(LocaleKeys.Main.i_FireRay)
-        {
-            Type = ItemType.FireRay,
-            Cost = 320,
-            Icon = Addresses.Ico_FireRay,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate( //Огненный луч
+            new ItemTemplate(LocaleKeys.Main.i_FireRay)
             {
+                Id = ItemId.FireRay,
+                Cost = 320,
+                IconAddress = Addresses.Ico_FireRay,
+                CreatePerksFunc = () => new IPerk[]
+                {
 
-                //Луч прекрощяет бить фотонным уроном.
-                //Он бьет [[Огонь]] с уроном в 50% от [[Базовый урон луча]].
+                    //Луч прекрощяет бить фотонным уроном.
+                    //Он бьет [[Огонь]] с уроном в 50% от [[Базовый урон луча]].
 
 
-            }
-        };
-    }
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////////////////////////////белые арты
-    /// </summary>
-    /// <returns></returns>
-    public Item Empty()//Пустышка
-    {
-        return new Item(LocaleKeys.Main.i_Empty)
-        {
-            Type = ItemType.Empty,
-            Cost = 40,
-            Icon = Addresses.Ico_Empty,
-            Perks = new IPerk[]
+                }
+            });
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////белые арты
+
+
+        AddItemTemplate( //Пустышка
+            new ItemTemplate(LocaleKeys.Main.i_Empty)
             {
-                //Ничего не делает.
-            }
-        };
-    }
-    public Item FireGem()//Огненный самоцвет
-    {
-        return new Item(LocaleKeys.Main.i_FireGem)
-        {
-            Type = ItemType.FireGem,
-            Cost = 40,
-            Icon = Addresses.Ico_FireGem,
-            Perks = new IPerk[]
+                Id = ItemId.Empty,
+                Cost = 40,
+                IconAddress = Addresses.Ico_Empty,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Ничего не делает.
+                }
+            });
+        AddItemTemplate( //Огненный самоцвет
+            new ItemTemplate(LocaleKeys.Main.i_FireGem)
             {
-                //Раз в 10 секунды создает 5 искр, наносяжих 20 ед. урона [[Огонь]].
-                //Искры летят от персонажа на растояние в 40 п.
-            }
-        };
-    }
-    public Item RadiantMineral()//Лучистый минерал
-    {
-        return new Item(LocaleKeys.Main.i_RadiantMineral)
-        {
-            Type = ItemType.RadiantMineral,
-            Cost = 40,
-            Icon = Addresses.Ico_RadiantMineral,
-            Perks = new IPerk[]
+                Id = ItemId.FireGem,
+                Cost = 40,
+                IconAddress = Addresses.Ico_FireGem,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Раз в 10 секунды создает 5 искр, наносяжих 20 ед. урона [[Огонь]].
+                    //Искры летят от персонажа на растояние в 40 п.
+                }
+            });
+        AddItemTemplate( //Лучистый минерал
+            new ItemTemplate(LocaleKeys.Main.i_RadiantMineral)
             {
-                //Накладывает статус [[Радиация]] в радиусе 10 п. от персонажа с уроном в 4 единицы  раз в 2 с. в течение 8 с.
-            }
-        };
-    }
-    public Item DistortingCrystal()//Искажающий хрусталь
-    {
-        return new Item(LocaleKeys.Main.i_DistortingCrystal)
-        {
-            Type = ItemType.DistortingCrystal,
-            Cost = 40,
-            Icon = Addresses.Ico_DistortingCrystal,
-            Perks = new IPerk[]
+                Id = ItemId.RadiantMineral,
+                Cost = 40,
+                IconAddress = Addresses.Ico_RadiantMineral,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Накладывает статус [[Радиация]] в радиусе 10 п. от персонажа с уроном в 4 единицы  раз в 2 с. в течение 8 с.
+                }
+            });
+        AddItemTemplate( //Искажающий хрусталь
+            new ItemTemplate(LocaleKeys.Main.i_DistortingCrystal)
             {
-                //Наносимый персонажу урон увеличивается на 1.
-                //[[Минерал]].
-            }
-        };
-    }
-    public Item ElectricalLead()//Электрическая жила
-    {
-        return new Item(LocaleKeys.Main.i_ElectricalLead)
-        {
-            Type = ItemType.ElectricalLead,
-            Cost = 40,
-            Icon = Addresses.Ico_ElectricalLead,
-            Perks = new IPerk[]
+                Id = ItemId.DistortingCrystal,
+                Cost = 40,
+                IconAddress = Addresses.Ico_DistortingCrystal,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //Наносимый персонажу урон увеличивается на 1.
+                    //[[Минерал]].
+                }
+            });
+        AddItemTemplate( //Электрическая жила
+            new ItemTemplate(LocaleKeys.Main.i_ElectricalLead)
             {
+                Id = ItemId.ElectricalLead,
+                Cost = 40,
+                IconAddress = Addresses.Ico_ElectricalLead,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkElectricalLead>(6f)//Раз в 6 с. выпускает в случайного врага молнию, бьющую 20 ед. [[Электричество]].
-                //[[Минерал]].
-            }
-        };
-    }
-    public Item GravityStone()//Гравитационный камень
-    {
-        return new Item(LocaleKeys.Main.i_GravityStone)
-        {
-            Type = ItemType.GravityStone,
-            Cost = 40,
-            Icon = Addresses.Ico_GravityStone,
-            Perks = new IPerk[]
+                                                            //[[Минерал]].
+                }
+            });
+        AddItemTemplate( //Гравитационный камень
+            new ItemTemplate(LocaleKeys.Main.i_GravityStone)
             {
+                Id = ItemId.GravityStone,
+                Cost = 40,
+                IconAddress = Addresses.Ico_GravityStone,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new PerkGravityMatter(15, 2, 10, .5f, 1, PerkType.GravityMatter)
-                //Вращает осколок материи вокруг персонажа в радиусе 15 п. Осколок наносит 10 ед.урона [[Физический урон]] и оглушает на 0.5 секунды.
-                //[[Ксеноминерал]].
-            }
-        };
-    }
-    public Item PurpleTuber()//Фиолетовый клубешь
-    {
-        return new Item(LocaleKeys.Main.i_PurpleTuber)
-        {
-            Type = ItemType.PurpleTuber,
-            Cost = 40,
-            Icon = Addresses.Ico_PurpleTuber,
-            Perks = new IPerk[]
+                    //Вращает осколок материи вокруг персонажа в радиусе 15 п. Осколок наносит 10 ед.урона [[Физический урон]] и оглушает на 0.5 секунды.
+                    //[[Ксеноминерал]].
+                }
+            });
+        AddItemTemplate( //Фиолетовый клубешь
+            new ItemTemplate(LocaleKeys.Main.i_PurpleTuber)
             {
-                //При получении урона по персонажу выпускает волну [[Ядовитый газ]] радиусом 20 п.
-                //[[Минерал]].
-            }
-        };
-    }
-    public Item PoleOfCold()//Полюс холода
-    {
-        return new Item(LocaleKeys.Main.i_PoleOfCold)
-        {
-            Type = ItemType.PoleOfCold,
-            Cost = 40,
-            Icon = Addresses.Ico_PoleOfCold,
-            Perks = new IPerk[]
+                Id = ItemId.PurpleTuber,
+                Cost = 40,
+                IconAddress = Addresses.Ico_PurpleTuber,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //При получении урона по персонажу выпускает волну [[Ядовитый газ]] радиусом 20 п.
+                    //[[Минерал]].
+                }
+            });
+        AddItemTemplate( //Полюс холода
+            new ItemTemplate(LocaleKeys.Main.i_PoleOfCold)
             {
+                Id = ItemId.PoleOfCold,
+                Cost = 40,
+                IconAddress = Addresses.Ico_PoleOfCold,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkColdAOEWithCooldown>(5, 40f, 10f)
-                //new PerkColdAOE(5, 40, 10)
-                //Накладывает [[Обморожение]] на 5 врагов в радиусе 40 п. раз в 10 с.
-                //[[Минерал]].
-            }
-        };
-    }
-    public Item StoneApple()//Каменное яблоко
-    {
-        return new Item(LocaleKeys.Main.i_StoneApple)
-        {
-            Type = ItemType.StoneApple,
-            Cost = 40,
-            Icon = Addresses.Ico_StoneApple,
-            Perks = new IPerk[]
+                    //new PerkColdAOE(5, 40, 10)
+                    //Накладывает [[Обморожение]] на 5 врагов в радиусе 40 п. раз в 10 с.
+                    //[[Минерал]].
+                }
+            });
+        AddItemTemplate( //Каменное яблоко
+            new ItemTemplate(LocaleKeys.Main.i_StoneApple)
             {
-                //[[Востановление хп]]  +1 раз в 30 с.
-                //[[Минерал]].
-            }
-        };
-    }
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// </summary>
-    /// <returns></returns>
-    public Item Battery()
-    {
-        return new Item(LocaleKeys.Main.i_Battery)
-        {
-            Type = ItemType.Battery,
-            Cost = 30,
-            Icon = Addresses.Ico_Battery,
-            Perks = new IPerk[]
+                Id = ItemId.StoneApple,
+                Cost = 40,
+                IconAddress = Addresses.Ico_StoneApple,
+                CreatePerksFunc = () => new IPerk[]
+                {
+                    //[[Востановление хп]]  +1 раз в 30 с.
+                    //[[Минерал]].
+                }
+            });
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Battery)
             {
+                Id = ItemId.Battery,
+                Cost = 30,
+                IconAddress = Addresses.Ico_Battery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayPathLenght,
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.Capacity))
-            },
-        };
-    }
+                },
+            });
 
-    public Item AtomicBattery()
-    {
-        return new Item(LocaleKeys.Main.i_AtomicBattery)
-        {
-            Type = ItemType.AtomicBattery,
-            Cost = 50,
-            Icon = Addresses.Ico_AtomicBattery,
-            Perks = new IPerk[]
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_AtomicBattery)
             {
+                Id = ItemId.AtomicBattery,
+                Cost = 50,
+                IconAddress = Addresses.Ico_AtomicBattery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                     new StatModificator(2, StatModificatorType.Additive, StatType.EnergyRegen))
-            },
-        };
-    }
-    public Item AtomicBatteryPlus()
-    {
-        return new Item(LocaleKeys.Main.i_AtomicBattery)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.AtomicBatteryPlus,
-            Cost = 100,
-            Icon = Addresses.Ico_AtomicBattery,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_AtomicBattery)
             {
+                UpgradeCount = 1,
+                Id = ItemId.AtomicBatteryPlus,
+                Cost = 100,
+                IconAddress = Addresses.Ico_AtomicBattery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                     new StatModificator(4, StatModificatorType.Additive, StatType.EnergyRegen))
-            },
-        };
-    }
-    public Item AtomicBatteryPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_AtomicBattery)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.AtomicBatteryPlusPlus,
-            Cost = 250,
-            Icon = Addresses.Ico_AtomicBattery,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_AtomicBattery)
             {
+                UpgradeCount = 1,
+                Id = ItemId.AtomicBatteryPlusPlus,
+                Cost = 250,
+                IconAddress = Addresses.Ico_AtomicBattery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.EnergyRegen,
                     new StatModificator(8, StatModificatorType.Additive, StatType.EnergyRegen))
-            },
-        };
-    }
-    public Item BatteryPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Battery)
-        {
-            Type = ItemType.BatteryPlus,
-            UpgradeCount = 1,
-            Cost = 75,
-            Icon = Addresses.Ico_Battery,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Battery)
             {
+                Id = ItemId.BatteryPlus,
+                UpgradeCount = 1,
+                Cost = 75,
+                IconAddress = Addresses.Ico_Battery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayPathLenght,
                     new StatModificator(.75f, StatModificatorType.Multiplicative, StatType.Capacity))
-            },
-        };
-    }
-    public Item BatteryPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Battery)
-        {
-            Type = ItemType.BatteryPlusPlus,
-            UpgradeCount = 2,
-            Cost = 150,
-            Icon = Addresses.Ico_Battery,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Battery)
             {
+                Id = ItemId.BatteryPlusPlus,
+                UpgradeCount = 2,
+                Cost = 150,
+                IconAddress = Addresses.Ico_Battery,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayPathLenght,
                     new StatModificator(1.5f, StatModificatorType.Multiplicative, StatType.Capacity))
-            },
-        };
-    }
-    public Item AdditionalDrives()
-    {
-        return new Item(LocaleKeys.Main.i_AdditionalDrives)
-        {
-            Type = ItemType.AdditionalDrives,
-            Cost = 50,
-            Icon = Addresses.Ico_Servo,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_AdditionalDrives)
             {
+                Id = ItemId.AdditionalDrives,
+                Cost = 50,
+                IconAddress = Addresses.Ico_Servo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                     new StatModificator(.5f, StatModificatorType.Multiplicative, StatType.RaySpeed))
-            }
-        };
-    }
-    public Item ExoskeletonSpeedBooster()
-    {
-        return new Item(LocaleKeys.Main.i_ExoskeletonSpeedBooster)
-        {
-            Type = ItemType.ExoskeletonSpeedBooster,
-            Cost = 60,
-            Icon = Addresses.Ico_SpeedBoost,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_ExoskeletonSpeedBooster)
             {
+                Id = ItemId.ExoskeletonSpeedBooster,
+                Cost = 60,
+                IconAddress = Addresses.Ico_SpeedBoost,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Speed,
                     new StatModificator(0.1f, StatModificatorType.Multiplicative, StatType.MovementSpeed))
-            }
-        };
-    }
-    public Item Amplifier()
-    {
-        return new Item(LocaleKeys.Main.i_Amplifier)
-        {
-            Type = ItemType.Amplifier,
-            Cost = 50,
-            Icon = Addresses.Ico_Amplifier,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Amplifier)
             {
+                Id = ItemId.Amplifier,
+                Cost = 50,
+                IconAddress = Addresses.Ico_Amplifier,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.2f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(0.2f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            }
-        };
-    }
-    public Item AmplifierPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Amplifier)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.AmplifierPlus,
-            Cost = 150,
-            Icon = Addresses.Ico_Amplifier,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Amplifier)
             {
+                UpgradeCount = 1,
+                Id = ItemId.AmplifierPlus,
+                Cost = 150,
+                IconAddress = Addresses.Ico_Amplifier,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.3f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(0.4f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            }
-        };
-    }
-    public Item AmplifierPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Amplifier)
-        {
-            UpgradeCount = 2,
-            Type = ItemType.AmplifierPlusPlus,
-            Cost = 400,
-            Icon = Addresses.Ico_Amplifier,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Amplifier)
             {
+                UpgradeCount = 2,
+                Id = ItemId.AmplifierPlusPlus,
+                Cost = 400,
+                IconAddress = Addresses.Ico_Amplifier,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.Amplifier,
                     new StatModificator(-0.4f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            }
-        };
-    }
-    public Item FocusLens()
-    {
-        return new Item(LocaleKeys.Main.i_FocusLens)
-        {
-            Type = ItemType.FocusLens,
-            Unique = true,
-            Cost = 70,
-            Icon = Addresses.Ico_Lens,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_FocusLens)
             {
+                Id = ItemId.FocusLens,
+                Unique = true,
+                Cost = 70,
+                IconAddress = Addresses.Ico_Lens,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.FocusLens,
                     new StatModificator(-0.9f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
                     new StatModificator(0.5f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            }
-        };
-    }
-    public Item EnergyAbsorber()
-    {
-        return new Item(LocaleKeys.Main.i_EnergyAbsorber)
-        {
-            Type = ItemType.EnergyAbsorber,
-            Cost = 60,
-            Icon = Addresses.Ico_Laser,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_EnergyAbsorber)
             {
+                Id = ItemId.EnergyAbsorber,
+                Cost = 60,
+                IconAddress = Addresses.Ico_Laser,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPEnergyAbsorber>(5f)//урон, длительность
-            }
-        };
-    }
-    public Item IonizationUnit()
-    {
-        return new Item(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnit)
-        {
-            Type = ItemType.IonizationUnit,
-            Cost = 60,
-            Icon = Addresses.Ico_Radiation,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnit)
             {
+                Id = ItemId.IonizationUnit,
+                Cost = 60,
+                IconAddress = Addresses.Ico_Radiation,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPIonization>(4f, 10f)//урон, длительность
-            }
-        };
-    }
-    public Item IonizationUnitPlus()
-    {
-        return new Item(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnitP)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.IonizationUnitPlus,
-            Cost = 180,
-            Icon = Addresses.Ico_Radiation,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnitP)
             {
+                UpgradeCount = 1,
+                Id = ItemId.IonizationUnitPlus,
+                Cost = 180,
+                IconAddress = Addresses.Ico_Radiation,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPIonization>(6f, 15f)//урон, длительность
-            }
-        };
-    }
-    public Item IonizationUnitPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnitPP)
-        {
-            UpgradeCount = 2,
-            Type = ItemType.IonizationUnitPlusPlus,
-            Cost = 480,
-            Icon = Addresses.Ico_Radiation,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_IonizationUnit, LocaleKeys.Main.id_IonizationUnitPP)
             {
+                UpgradeCount = 2,
+                Id = ItemId.IonizationUnitPlusPlus,
+                Cost = 480,
+                IconAddress = Addresses.Ico_Radiation,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPIonization>(12f, 20f)//урон, длительность
-            }
-        };
-    }
-    public Item ShiftSystem()
-    {
-        return new Item(LocaleKeys.Main.i_ShiftSystem, LocaleKeys.Main.id_ShiftSystem)
-        {
-            Unique = true,
-            Type = ItemType.ShiftSystem,
-            Cost = 100,
-            Icon = Addresses.Ico_ShiftSystem,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_ShiftSystem, LocaleKeys.Main.id_ShiftSystem)
             {
+                Unique = true,
+                Id = ItemId.ShiftSystem,
+                Cost = 100,
+                IconAddress = Addresses.Ico_ShiftSystem,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPShiftSystem>(),
-            }
-        };
-    }
-    public Item DeliveryDevice()
-    {
-        return new Item(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDevice)
-        {
-            Type = ItemType.DeliveryDevice,
-            Cost = 50,
-            Icon = Addresses.Ico_Box,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDevice)
             {
+                Id = ItemId.DeliveryDevice,
+                Cost = 50,
+                IconAddress = Addresses.Ico_Box,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(20f),//cooldown
-            }
-        };
-    }
-    public Item DeliveryDevicePlus()
-    {
-        return new Item(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDeviceP)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.DeliveryDevicePlus,
-            Cost = 150,
-            Icon = Addresses.Ico_Box,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDeviceP)
             {
+                UpgradeCount = 1,
+                Id = ItemId.DeliveryDevicePlus,
+                Cost = 150,
+                IconAddress = Addresses.Ico_Box,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(15f),//cooldown
-            }
-        };
-    }
-    public Item DeliveryDevicePlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDevicePP)
-        {
-            UpgradeCount = 2,
-            Type = ItemType.DeliveryDevicePlusPlus,
-            Cost = 400,
-            Icon = Addresses.Ico_Box,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_DeliveryDevice, LocaleKeys.Main.id_DeliveryDevicePP)
             {
+                UpgradeCount = 2,
+                Id = ItemId.DeliveryDevicePlusPlus,
+                Cost = 400,
+                IconAddress = Addresses.Ico_Box,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 _perksFactory.Create<PerkPBarrels>(10f),//cooldown
-            }
-        };
-    }
-    public Item Coprocessor()
-    {
-        return new Item(LocaleKeys.Main.i_Coprocessor)
-        {
-            Type = ItemType.Coprocessor,
-            Cost = 50,
-            Icon = Addresses.Ico_Chip,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Coprocessor)
             {
+                Id = ItemId.Coprocessor,
+                Cost = 50,
+                IconAddress = Addresses.Ico_Chip,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDelay,
                     new StatModificator(-.3f, StatModificatorType.Multiplicative, StatType.RayDelay),
                     new StatModificator(-1f, StatModificatorType.Additive, StatType.RayError))
-            },
-        };
-    }
-    public Item CoprocessorPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Coprocessor)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.CoprocessorPlus,
-            Cost = 150,
-            Icon = Addresses.Ico_Chip,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Coprocessor)
             {
+                UpgradeCount = 1,
+                Id = ItemId.CoprocessorPlus,
+                Cost = 150,
+                IconAddress = Addresses.Ico_Chip,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDelay,
                     new StatModificator(-.5f, StatModificatorType.Multiplicative, StatType.RayDelay),
                     new StatModificator(-2f, StatModificatorType.Additive, StatType.RayError))
-            },
-        };
-    }
+                },
+            });
 
-    public Item CoprocessorPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_Coprocessor)
-        {
-            UpgradeCount = 2,
-            Type = ItemType.CoprocessorPlusPlus,
-            Cost = 400,
-            Icon = Addresses.Ico_Chip,
-            Perks = new IPerk[]
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_Coprocessor)
             {
+                UpgradeCount = 2,
+                Id = ItemId.CoprocessorPlusPlus,
+                Cost = 400,
+                IconAddress = Addresses.Ico_Chip,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayDelay,
                     new StatModificator(-1, StatModificatorType.Multiplicative, StatType.RayDelay),
                     new StatModificator(-4f, StatModificatorType.Additive, StatType.RayError))
-            },
-        };
-    }
+                },
+            });
 
-    public Item DivergingLens()
-    {
-        return new Item(LocaleKeys.Main.i_DivergingLens)
-        {
-            Type = ItemType.DivergingLens,
-            Unique = false,
-            Cost = 60,
-            Icon = Addresses.Ico_DivergingLens,
-            Perks = new IPerk[]
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_DivergingLens)
             {
+                Id = ItemId.DivergingLens,
+                Unique = false,
+                Cost = 60,
+                IconAddress = Addresses.Ico_DivergingLens,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.DivergingLens,
                     new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius),
                     new StatModificator(-0.5f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            }
-        };
-    }
-    public Item PowerController()
-    {
-        return new Item(LocaleKeys.Main.i_PowerController)
-        {
-            Type = ItemType.PowerController,
-            Cost = 100,
-            Icon = Addresses.Ico_PowerController,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_PowerController)
             {
+                Id = ItemId.PowerController,
+                Cost = 100,
+                IconAddress = Addresses.Ico_PowerController,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PowerController,
                     new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(.2f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            },
-        };
-    }
-    public Item PowerControllerPlus()
-    {
-        return new Item(LocaleKeys.Main.i_PowerController)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.PowerControllerPlus,
-            Cost = 200,
-            Icon = Addresses.Ico_PowerController,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_PowerController)
             {
+                UpgradeCount = 1,
+                Id = ItemId.PowerControllerPlus,
+                Cost = 200,
+                IconAddress = Addresses.Ico_PowerController,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PowerController,
                     new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.Capacity),
                     new StatModificator(.3f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            },
-        };
-    }
-    public Item PowerControllerPlusPlus()
-    {
-        return new Item(LocaleKeys.Main.i_PowerController)
-        {
-            UpgradeCount = 2,
-            Type = ItemType.PowerControllerPlusPlus,
-            Cost = 500,
-            Icon = Addresses.Ico_PowerController,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_PowerController)
             {
+                UpgradeCount = 2,
+                Id = ItemId.PowerControllerPlusPlus,
+                Cost = 500,
+                IconAddress = Addresses.Ico_PowerController,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.PowerController,
                     new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.Capacity),
                 new StatModificator(.6f, StatModificatorType.Multiplicative, StatType.RayDamage))
-            },
-        };
-    }
-    public Item LensSystem()
-    {
-        return new Item(LocaleKeys.Main.i_LensSystem)
-        {
-            Type = ItemType.LensSystem,
-            Unique = false,
-            Cost = 150,
-            Icon = Addresses.Ico_Lenses,
-            Perks = new IPerk[]
+                },
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_LensSystem)
             {
+                Id = ItemId.LensSystem,
+                Unique = false,
+                Cost = 150,
+                IconAddress = Addresses.Ico_Lenses,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.LensSystem,
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))
-            }
-        };
-    }
-    public Item LensSystemPlus()
-    {
-        return new Item(LocaleKeys.Main.i_LensSystem)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.LensSystemPlus,
-            Unique = false,
-            Cost = 400,
-            Icon = Addresses.Ico_Lenses,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_LensSystem)
             {
+                UpgradeCount = 1,
+                Id = ItemId.LensSystemPlus,
+                Unique = false,
+                Cost = 400,
+                IconAddress = Addresses.Ico_Lenses,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.LensSystem,
                     new StatModificator(2f, StatModificatorType.Multiplicative, StatType.RayDamageAreaRadius))
-            }
-        };
-    }
-    public Item MagneticManipulator()
-    {
-        return new Item(LocaleKeys.Main.i_MagneticManipulator)
-        {
-            Type = ItemType.MagneticManipulator,
-            Unique = false,
-            Cost = 40,
-            Icon = Addresses.Ico_Magnet,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_MagneticManipulator)
             {
+                Id = ItemId.MagneticManipulator,
+                Unique = false,
+                Cost = 40,
+                IconAddress = Addresses.Ico_Magnet,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.MagneticManipulator,
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.PickupRadius))
-            }
-        };
-    }
-    public Item ReverseSystem()
-    {
-        return new Item(LocaleKeys.Main.i_ReverseSystem, LocaleKeys.Main.id_ReverseSystem)
-        {
-            Type = ItemType.ReverseSystem,
-            Cost = 300,
-            Icon = Addresses.Ico_Reverse,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_ReverseSystem, LocaleKeys.Main.id_ReverseSystem)
             {
+                Id = ItemId.ReverseSystem,
+                Cost = 300,
+                IconAddress = Addresses.Ico_Reverse,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RayReverse,
                     new StatModificator(1f, StatModificatorType.Additive, StatType.RayReverse),
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed))
-            }
-        };
-    }
-    public Item SpeedDrives()
-    {
-        return new Item(LocaleKeys.Main.i_SpeedDrives)
-        {
-            UpgradeCount = 1,
-            Type = ItemType.SpeedDrives,
-            Cost = 100,
-            Icon = Addresses.Ico_Servo,
-            Perks = new IPerk[]
+                }
+            });
+        AddItemTemplate(
+            new ItemTemplate(LocaleKeys.Main.i_SpeedDrives)
             {
+                UpgradeCount = 1,
+                Id = ItemId.SpeedDrives,
+                Cost = 100,
+                IconAddress = Addresses.Ico_Servo,
+                CreatePerksFunc = () => new IPerk[]
+                {
                 new SimplePerk(PerkType.RaySpeed,
                     new StatModificator(1f, StatModificatorType.Multiplicative, StatType.RaySpeed),
                     new StatModificator(3, StatModificatorType.Additive, StatType.RayError))
-            }
-        };
+                }
+            });
     }
 }

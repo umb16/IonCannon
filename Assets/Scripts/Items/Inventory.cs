@@ -58,11 +58,11 @@ public class Inventory
     {
         if (!item.Unique)
             return false;
-        return ContainsByType(item.Type);
+        return ContainsByType(item.Id);
     }
 
-    public bool ContainsByType(ItemType type)
+    public bool ContainsByType(ItemId type)
     {
-        return _items.Any(x => x.Type == type);
+        return _items.Any(x => x.Id == type);
     }
 }

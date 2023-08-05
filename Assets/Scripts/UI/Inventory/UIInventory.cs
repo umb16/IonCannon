@@ -76,7 +76,7 @@ public class UIInventory : MonoBehaviour
     {
         TooltipController.Instance.UnassignTooltip();
         if (_dragingItem == null)
-            PlayerInventory.HighlightItems(ItemType.None);
+            PlayerInventory.HighlightItems(ItemId.None);
     }
 
     private void OnPointerEnter(PointerEventData eventData, UIInventorySlot slot)
@@ -87,10 +87,10 @@ public class UIInventory : MonoBehaviour
         {
             if (_dragingItem != slot)
             {
-                var result = Recipes.GetResult(slot.Item.Type, _dragingItem.Item.Type);
-                if (result != ItemType.None)
+                var result = Recipes.GetResult(slot.Item.Id, _dragingItem.Item.Id);
+                if (result != ItemId.None)
                 {
-                    ShowTooltip(_itemsDB.CreateByType(result), true);
+                    ShowTooltip(_itemsDB.CreateItem(result), true);
                 }
             }
         }
@@ -98,7 +98,7 @@ public class UIInventory : MonoBehaviour
         {
             SelectedItem = slot;
             ShowTooltip(slot.Item);
-            PlayerInventory.HighlightItems(slot.Item.Type, slot);
+            PlayerInventory.HighlightItems(slot.Item.Id, slot);
         }
     }
 
@@ -129,7 +129,7 @@ public class UIInventory : MonoBehaviour
         slot.ImageTransform.SetParent(slot.transform);
         //slot.ImageTransform.SetSiblingIndex(slot.ImageTransform.GetSiblingIndex()-1);
         slot.ImageTransform.localPosition = Vector3.zero;
-        PlayerInventory.HighlightItems(ItemType.None);
+        PlayerInventory.HighlightItems(ItemId.None);
         _dragingItem = null;
     }
 
@@ -137,7 +137,7 @@ public class UIInventory : MonoBehaviour
     {
         var inventory = result.gameObject?.GetComponentInParent<UIInventory>();
         if (inventory != null && this != inventory && !inventory.IsFull &&
-            (!inventory.IsActiveInventory || !slot.Item.Unique || !inventory.RealInventory.ContainsByType(slot.Item.Type)))
+            (!inventory.IsActiveInventory || !slot.Item.Unique || !inventory.RealInventory.ContainsByType(slot.Item.Id)))
         {
             inventory.RealInventory.Add(slot.Item);
             RealInventory.Remove(slot.Item);
@@ -165,10 +165,10 @@ public class UIInventory : MonoBehaviour
         var hoveredSlot = result.gameObject?.GetComponentInParent<UIInventorySlot>();
         if (hoveredSlot != null && slot != hoveredSlot && !hoveredSlot.IsEmpty)
         {
-            var resultType = Recipes.GetResult(slot.Item.Type, hoveredSlot.Item.Type);
-            if (resultType != ItemType.None)
+            var resultType = Recipes.GetResult(slot.Item.Id, hoveredSlot.Item.Id);
+            if (resultType != ItemId.None)
             {
-                var newItem = _itemsDB.CreateByType(resultType);
+                var newItem = _itemsDB.CreateItem(resultType);
                 hoveredSlot.RemoveFromInventory();
                 slot.RemoveFromInventory();
                 _player.Value.AddItemDirectly(newItem);
@@ -220,7 +220,7 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    public void HighlightItems(ItemType type, UIInventorySlot exception = null)
+    public void HighlightItems(ItemId type, UIInventorySlot exception = null)
     {
         var validComponents = Recipes.GetAllSecondComponents(type);
 
@@ -230,7 +230,7 @@ public class UIInventory : MonoBehaviour
             {
                 continue;
             }
-            if (exception == slot || type == ItemType.None)
+            if (exception == slot || type == ItemId.None)
             {
                 slot.Normal();
                 continue;
@@ -243,7 +243,7 @@ public class UIInventory : MonoBehaviour
             foreach (var component in validComponents)
             {
 
-                if (!slot.IsEmpty && slot.Item.Type == component)
+                if (!slot.IsEmpty && slot.Item.Id == component)
                 {
                     slot.Highlighted();
                 }

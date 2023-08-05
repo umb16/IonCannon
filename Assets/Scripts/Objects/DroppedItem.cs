@@ -9,7 +9,7 @@ public class DroppedItem : MonoBehaviour
 {
     [SerializeField] private AudioSource _sound;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private ItemType[] _itemTypes;
+    [SerializeField] private ItemId[] _itemTypes;
     private Player _player;
     private Item _item;
     private bool _taken;
@@ -20,8 +20,8 @@ public class DroppedItem : MonoBehaviour
         _player = player;
         var itemType = _itemTypes[Random.Range(0, _itemTypes.Length)];
         
-         _item   = itemsDB.CreateByType(itemType);
-        _renderer.sprite = await Addressables.LoadAssetAsync<Sprite>(_item.Icon).Task;
+         _item   = itemsDB.CreateItem(itemType);
+        _renderer.sprite = await Addressables.LoadAssetAsync<Sprite>(_item.IconAddress).Task;
         _renderer.size = new Vector2(1, 1); 
         Debug.Log("_renderer.sprite"+ _renderer.size);
 

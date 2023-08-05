@@ -38,7 +38,7 @@ public class UIShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         Item = item;
         SetText();
-        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(Item.Icon).Task;
+        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(Item.IconAddress).Task;
         _image.gameObject.SetActive(true);
         //CheckButtonStatus(_player.Value.Gold);
         CheckButtonStatus(_player.Value.Gold);

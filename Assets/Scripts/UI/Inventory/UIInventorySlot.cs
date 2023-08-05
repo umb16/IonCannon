@@ -62,7 +62,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Item = item;
         Normal();
         _costText.text = item.SellCost.ToString();
-        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.Icon).Task;
+        _image.sprite = await Addressables.LoadAssetAsync<Sprite>(item.IconAddress).Task;
         _image.SetNativeSize();
         _image.gameObject.SetActive(true);
         if (item.UpgradeCount > 0)

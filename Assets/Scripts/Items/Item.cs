@@ -1,49 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization;
 
-public class Item : WithId
+public class Item /*: WithId*/
 {
-    public ItemType Type;
-    public int UpgradeCount = 0;
-    public bool Unique = false;
-    public string Description => UpdateDescription();
-    public string Name => UpdateName();
-    public int Cost = 10;
+    public ItemId Id => _template.Id;
+    public int UpgradeCount => _template.UpgradeCount;
+    public bool Unique => _template.Unique;
+    public string Description => GetDescription();
+    public string Name => GetName();
+    public int Cost => _template.Cost;
 
-    public IPerk[] Perks = { };
-    public string Icon = Addresses.Ico_Battery;
+    public readonly IPerk[] Perks = { };
+    public string IconAddress => _template.IconAddress;
 
-    private LocalizedString _localizedName;
-    private LocalizedString _localizedDescription;
-    private string _description = null;
-
+    private ItemTemplate _template;
     public int SellCost => Cost / 2;
-    private string _name = null;
 
-    private string UpdateName()
+    private string GetName()
     {
-        _name = _localizedName.GetLocalizedString() + new string('+', UpgradeCount);
-        return _name;
+        if (_template.NameLocalizedString == null)
+            return "Error name";
+        return _template.NameLocalizedString.GetLocalizedString() + new string('+', UpgradeCount);
     }
-    private string UpdateDescription()
+    private string GetDescription()
     {
-        _description = "";
-        if (_localizedDescription != null)
-            _description = _localizedDescription.GetLocalizedString() + "\n";
+        var description = "";
+        if (_template.DescriptionLocalizedString != null)
+            description = _template.DescriptionLocalizedString.GetLocalizedString() + "\n";
         foreach (var perk in Perks)
         {
             string descr = perk.GetDescription();
             if (string.IsNullOrEmpty(descr))
                 continue;
-            _description += descr + "\n";
+            description += descr + "\n";
         }
-        return _description;
+        return description;
     }
-    public Item(LocalizedString name, LocalizedString description = null)
+    
+    public Item(ItemTemplate itemTemplate)
     {
-        _localizedName = name;
-        _localizedDescription = description;
+        _template = itemTemplate;
+        Perks = _template.CreatePerks();
     }
 }

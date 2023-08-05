@@ -60,9 +60,9 @@ public class ConsoleMethods : MonoBehaviour
 
     public void AddItem(string type)
     {
-        if (TryParseType<ItemType>(type, out var sType))
+        if (TryParseType<ItemId>(type, out var sType))
         {
-            var newItem = _itemsDB.CreateByType(sType);
+            var newItem = _itemsDB.CreateItem(sType);
             _player.Value.AddItemDirectly(newItem);
         }
     }

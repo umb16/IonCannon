@@ -36,7 +36,7 @@ public class UIPlayerInventory : MonoBehaviour
         uiInventory.SetRealInventory(inventory);
         uiInventory.PlayerInventory = this;
     }
-    public void HighlightItems(ItemType itemType, UIInventorySlot exception = null)
+    public void HighlightItems(ItemId itemType, UIInventorySlot exception = null)
     {
         _uiInventory.HighlightItems(itemType, exception);
         _uiStash.HighlightItems(itemType, exception);
