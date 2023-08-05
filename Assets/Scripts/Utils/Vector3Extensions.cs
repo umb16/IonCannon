@@ -54,40 +54,20 @@ namespace Umb16.Extensions
             return angle;
         }
 
-        public static float DiamondAngleXZSign2(this Vector3 v1, Vector3 v2)
+        public static float DiamondAngleXYSign2(this Vector3 v1, Vector3 v2)
         {
             float angle = DiamondAngleXY4(v1, v2);
             if (angle > 2)
                 angle = -(4 - angle);
             return angle;
         }
-
-        /// <summary>
-        /// Угол между векторами в диапозоне от 0 до 2
-        /// </summary>
-      /*public static float DiamondAngleXZ2(this Vector3 v1, Vector3 v2)
+        public static float DiamondAngleXY2(this Vector3 v1, Vector3 v2)
         {
-            var a = v1.DiamondAngleXZ4();
-            var b = v2.DiamondAngleXZ4();
-
-            float angle;
-            if (a < b)
-            {
-                angle = b - a;
-            }
-            else
-            {
-                angle = a - b;
-            }
-
+            float angle = DiamondAngleXY4(v1, v2);
             if (angle > 2)
-            {
-                angle = 4 - angle;
-            }
-
+                angle = (4 - angle);
             return angle;
-        }*/
-
+        }
         public static float SqrMagnetudeXZ(this Vector3 v)
         {
             return v.x * v.x + v.z * v.z;
