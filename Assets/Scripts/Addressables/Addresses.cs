@@ -165,6 +165,8 @@ public static class Addresses
    public static string Ico_RadiationResist = "Ico_RadiationResist";
    public static string Ico_MineralEffect = "Ico_MineralEffect";
    public static string Obj_GravityStone = "Obj_GravityStone";
+   public static string Fx_SlowDown = "Fx_SlowDown";
+   public static string Obj_Lightning = "Obj_Lightning";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }

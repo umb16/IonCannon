@@ -1,12 +1,8 @@
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Umb16.Extensions;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using UnityEngine.PlayerLoop;
 
 public class PerkElectricalLead : PerkBase
 {
@@ -61,24 +57,13 @@ public class PerkElectricalLead : PerkBase
     private void Update(AsyncUnit obj)
     {
         _lastSpawnTime = Time.time;
-        List<IMob> mobsAffectedBy = new();
 
-        for (int i = 0; i < _mobs.Count; i++)
-        {
-            var mob = _mobs[i];
-            if (mob == _mob)
-                continue;
-            if ((mob.Position - _mob.Position).SqrMagnetudeXY() < _radius * _radius)
-            {
-                mobsAffectedBy.Add(mob);
-            }
-        }
-
-        if (mobsAffectedBy.Count != 0)
-        {
-            PerkLightning lightning = new PerkLightning(_mob.Position, mobsAffectedBy[Random.Range(0, mobsAffectedBy.Count)]);
-            lightning.CreateLightning();
-}
-            
+        CreateLightning().Forget();
+    }
+    public virtual async UniTask CreateLightning()
+    {
+        var go = await PrefabCreator.Instantiate(Addresses.Obj_Lightning, Vector3.zero);
+        LightningBuilder lightning = go.GetComponent<LightningBuilder>();
+        lightning.Init(_mob);
     }
 }

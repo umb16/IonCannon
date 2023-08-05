@@ -14,4 +14,5 @@ public enum DamageSources
     Self = 64,
     God = 128,
     Physical = 11,
+    Electricity = 12
 }
