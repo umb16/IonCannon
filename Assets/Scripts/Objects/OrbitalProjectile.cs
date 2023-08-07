@@ -43,14 +43,14 @@ public class OrbitalProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        var mob = col.gameObject.GetComponent<IDamagable>();
+        var mob = col.gameObject.GetComponent<IDamageable>();
         if (mob != null)
         {
             OnTriggerEnter(mob);
         }
     }
 
-    private void OnTriggerEnter(IDamagable mob)
+    private void OnTriggerEnter(IDamageable mob)
     {      
         mob.ReceiveDamage(new DamageMessage(_mob, mob, _damage * (_perkType == PerkType.Xenomineral ? (1 + _mob.Player.MineralEffectBoost) : 1), DamageSources.Physical, _stunTime));
     }

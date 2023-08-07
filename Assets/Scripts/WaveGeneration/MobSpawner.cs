@@ -157,7 +157,7 @@ public class MobSpawner : MonoBehaviour
             foreach (var mob in Mobs)
             {
                 Vector3 dir = mob.Position - _player.Value.Position;
-                if ((dir).SqrMagnetudeXY() > 60 * 60)
+                if ((dir).SqrMagnitudeXY() > 60 * 60)
                 {
                     mob.SetPosition(_player.Value.Position + dir.NormalizedXY() * 25);
                 }

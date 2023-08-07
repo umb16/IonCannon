@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IMovable
 {
-    public void MoveTo(Vector3 target);
+    public void MoveTo(Vector2 target);
 }

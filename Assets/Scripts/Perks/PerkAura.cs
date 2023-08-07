@@ -73,7 +73,7 @@ public class PerkAura : WithTag, IPerk
             return;
         if (mob == _mob || mob.Type == MobType.Object)
             return;
-        if ((_mob.Position - mob.Position).SqrMagnetudeXY() < _distanceValue * _distanceValue)
+        if ((_mob.Position - mob.Position).SqrMagnitudeXY() < _distanceValue * _distanceValue)
         {
             if (!_mobsInRadius.Contains(mob) && !mob.ContainPerk(_effectType))
             {

@@ -11,13 +11,13 @@ public class RayCollider : MonoBehaviour
     private class RayTimer
     {
         public float NextTick;
-        public IDamagable Mob;
+        public IDamageable Mob;
     }
     [HideInInspector] public float DamageMultiplier = 1;
     private float tickTime = .5f;
     private AsyncReactiveProperty<Player> _player;
     private MiningDamageReceiver _miningDamageReceiver;
-    private Dictionary<IDamagable, RayTimer> _mobs = new Dictionary<IDamagable, RayTimer>();
+    private Dictionary<IDamageable, RayTimer> _mobs = new Dictionary<IDamageable, RayTimer>();
     private LayeredTile[] _oldTilesArray = { };
 
     [Inject]
@@ -29,14 +29,14 @@ public class RayCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        var mob = col.gameObject.GetComponent<IDamagable>();
+        var mob = col.gameObject.GetComponent<IDamageable>();
         if (mob != null)
         {
             OnTriggerEnter(mob);
         }
     }
 
-    private void OnTriggerEnter(IDamagable mob)
+    private void OnTriggerEnter(IDamageable mob)
     {
         _mobs.Add(mob, new RayTimer() { NextTick = Time.time + tickTime, Mob = mob });
         mob.ReceiveDamage(new DamageMessage(_player.Value, mob, _player.Value.RayDmg * DamageMultiplier, DamageSources.RayInitial, .5f));
@@ -45,14 +45,14 @@ public class RayCollider : MonoBehaviour
     private void OnTriggerExit(Collider col)
     {
 
-        var mob = col.gameObject.GetComponent<IDamagable>();
+        var mob = col.gameObject.GetComponent<IDamageable>();
         if (mob != null)
         {
             OnTriggerExit(mob);
         }
     }
 
-    private void OnTriggerExit(IDamagable mob)
+    private void OnTriggerExit(IDamageable mob)
     {
         _mobs.Remove(mob);
     }
@@ -80,7 +80,7 @@ public class RayCollider : MonoBehaviour
         for (int i = 0; i < LiquidTest.Instance.LiquidsList.Count; i++)
         {
             Liquid item = LiquidTest.Instance.LiquidsList[i];
-            if ((item.Position - transform.position).SqrMagnetudeXY() < Mathf.Pow(item._colliderRadius + transform.localScale.x * .5f, 2))
+            if ((item.Position - transform.position).SqrMagnitudeXY() < Mathf.Pow(item._colliderRadius + transform.localScale.x * .5f, 2))
             {
                 item.ReceiveDamage(new DamageMessage(_player.Value, item, _player.Value.RayDmg * DamageMultiplier, DamageSources.RayInitial));
                 i--;

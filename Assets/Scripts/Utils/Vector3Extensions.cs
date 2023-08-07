@@ -68,10 +68,6 @@ namespace Umb16.Extensions
                 angle = (4 - angle);
             return angle;
         }
-        public static float SqrMagnetudeXZ(this Vector3 v)
-        {
-            return v.x * v.x + v.z * v.z;
-        }
 
         public static float DotXY(this Vector3 v1, Vector3 v2)
         {
@@ -146,12 +142,15 @@ namespace Umb16.Extensions
             return v;
         }
 
-        public static float SqrMagnetudeXY(this Vector3 v)
+        public static float SqrMagnitudeXY(this Vector3 v)
         {
             return v.x * v.x + v.y * v.y;
         }
-
-        public static float MagnetudeXY(this Vector3 v)
+        public static bool InRadius(this Vector3 v, Vector3 center, float radius)
+        {
+            return (v - center).SqrMagnitudeXY() <= radius * radius;
+        }
+        public static float MagnitudeXY(this Vector3 v)
         {
             return Mathf.Sqrt(v.x * v.x + v.y * v.y);
         }

@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMob : IDamagable
+public interface IMob : IMovable, IHavePosition, IDamageable
 {
     int ID { get; }
     MobType Type { get; }
-    Vector3 Position { get; }
     Vector3 GroundCenterPosition { get; }
     DamageController DamageController { get; }
     GameData GameData { get; }
@@ -22,13 +21,10 @@ public interface IMob : IDamagable
     bool IsDead { get; }
     event Action PickedUpScoreGem;
 
-    void SetPosition(float x, float y);
-    void SetPosition(Vector3 vector);
     void AddPerk(IPerk perk);
     void RemovePerksByType(PerkType perkType);
     bool ContainPerk(PerkType perkType);
     void Die(DamageMessage message);
-    void MoveTo(Vector2 target);
     UniTask AddFx(Fx fx);
     void RemoveFx(Fx fx);
 

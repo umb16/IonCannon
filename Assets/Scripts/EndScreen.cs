@@ -56,7 +56,7 @@ public class EndScreen : MonoBehaviour
 
     private void CheckGameOver(DamageMessage msg)
     {
-        if ((IDamagable)_player.Value == msg.Target)
+        if ((IDamageable)_player.Value == msg.Target)
         {
             _gameData.SetState(GameState.GameOver);
         }

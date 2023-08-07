@@ -23,7 +23,7 @@ public class PerkEHunter : PerkEStandart
 
     private void Update(AsyncUnit arg)
     {
-        if (_mob.Player!=null && (_mob.Player.Position - _mob.Position).SqrMagnetudeXY() < _huntDistance * _huntDistance)
+        if (_mob.Player!=null && (_mob.Player.Position - _mob.Position).SqrMagnitudeXY() < _huntDistance * _huntDistance)
         {
             if (!_inRadius)
             {

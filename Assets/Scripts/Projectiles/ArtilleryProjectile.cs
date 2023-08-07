@@ -42,7 +42,7 @@ public class ArtilleryProjectile : MonoBehaviour
                 .SetEnd(() =>
                 {
                     Instantiate(_explosion, landingPosition.Get2D(), Quaternion.identity, transform.parent);
-                    if ((_player.Position - landingPosition).MagnetudeXY() < _splashRadius)
+                    if ((_player.Position - landingPosition).MagnitudeXY() < _splashRadius)
                     {
                         _player.ReceiveDamage(new DamageMessage(null, _player, _damage, DamageSources.Explosion, .1f));
                     }

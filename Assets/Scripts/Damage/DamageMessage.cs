@@ -5,12 +5,12 @@ using UnityEngine;
 public struct DamageMessage
 {
     public IMob Attacker;
-    public IDamagable Target;
+    public IDamageable Target;
     public float Damage;
     public float StunTime;
     public DamageSources DamageSource;
 
-    public DamageMessage(IMob attacker, IDamagable target, float damage, DamageSources damageSource, float stun = 0)
+    public DamageMessage(IMob attacker, IDamageable target, float damage, DamageSources damageSource, float stun = 0)
     {
         Attacker = attacker;
         Target = target;

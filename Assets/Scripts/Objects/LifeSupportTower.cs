@@ -279,7 +279,7 @@ namespace SPVD.LifeSupport
         {
             if (_player.Value == null)
                 return;
-            if (_circles.Any(x => (_player.Value.Position - (Vector3)x.pos).SqrMagnetudeXY() < x.radius * x.radius))
+            if (_circles.Any(x => (_player.Value.Position - (Vector3)x.pos).SqrMagnitudeXY() < x.radius * x.radius))
             {
                 _stat.AddBaseValue(_supportDrainSpeed * Time.deltaTime * .1f);
             }

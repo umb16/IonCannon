@@ -66,7 +66,7 @@ public class PerkColdAOEWithCooldown : PerkCommonBase
             var mob = _mobs[i];
             if (mob == _mob)
                 continue;
-            if ((mob.Position - _mob.Position).SqrMagnetudeXY() < _radius * _radius)
+            if ((mob.Position - _mob.Position).SqrMagnitudeXY() < _radius * _radius)
             {
                 mobsAffectedBy.Add(mob);
             }

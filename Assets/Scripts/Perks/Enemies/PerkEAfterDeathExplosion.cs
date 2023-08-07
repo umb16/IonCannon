@@ -41,10 +41,10 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                     var mob = mobs[i];
                     if (mob == _mob)
                         continue;
-                    if ((mob.Position - _mob.Position).SqrMagnetudeXY() < Radius * Radius)
+                    if ((mob.Position - _mob.Position).SqrMagnitudeXY() < Radius * Radius)
                     {
                         Vector3 dir = (mob.Position - _mob.Position).NormalizedXY();
-                        float force = Mathf.Sqrt(1 - (mob.Position - _mob.Position).MagnetudeXY() / Radius);
+                        float force = Mathf.Sqrt(1 - (mob.Position - _mob.Position).MagnitudeXY() / Radius);
                         mob.AddForce(force * dir * 500, ForceMode.Impulse);
                         mob.ReceiveDamage(new DamageMessage(_mob, mob, 100 * force, _source, .1f));
                     }
@@ -56,7 +56,7 @@ public class PerkEAfterDeathExplosion : PerkEStandart
                 for (int i = 0; i < LiquidTest.Instance.LiquidsList.Count; i++)
                 {
                     Liquid item = LiquidTest.Instance.LiquidsList[i];
-                    if ((item.Position - _mob.Position).SqrMagnetudeXY() < Mathf.Pow(item._colliderRadius + Radius * .5f, 2))
+                    if ((item.Position - _mob.Position).SqrMagnitudeXY() < Mathf.Pow(item._colliderRadius + Radius * .5f, 2))
                     {
                         item.ReceiveDamage(new DamageMessage(_mob, item, 50, DamageSources.Explosion));
                         i--;

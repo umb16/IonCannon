@@ -59,7 +59,7 @@ public class LightningBuilder : MonoBehaviour
             var mob = targets[i];
             if (mob == source.Target)
                 continue;
-            if ((mob.Position - source.Target.Position).SqrMagnetudeXY() < _lightningEffects[source.LightningLvl] * _lightningEffects[source.LightningLvl])
+            if ((mob.Position - source.Target.Position).SqrMagnitudeXY() < _lightningEffects[source.LightningLvl] * _lightningEffects[source.LightningLvl])
             {
                 mobsAffectedBy.Add(mob);
             }

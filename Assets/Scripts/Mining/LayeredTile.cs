@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-public class LayeredTile : IDamagable
+public class LayeredTile : IDamageable
 {
     public bool IsEmpty => Layers.All(x => x.HP <= 0);
     public TileType TileType => GetCurrentTile()?.Type ?? TileType.Layer4;
