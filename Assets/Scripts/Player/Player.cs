@@ -101,7 +101,7 @@ public class Player : Mob
         Inventory.AddSlot();
 
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        //Inventory.Add(itemsDB.ElectricalLead());
+        Inventory.Add(itemsDB.CreateItem(ItemId.ElectricalLead));
         Inventory.Add(itemsDB.CreateItem(ItemId.WhiteShroud));
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());
@@ -111,7 +111,7 @@ public class Player : Mob
 
         player.Value = this;
     }
-
+    
     public void AddEnergy(float value)
     {
         _energy.AddBaseValue(value);

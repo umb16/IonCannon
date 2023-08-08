@@ -63,7 +63,7 @@ public class PerkElectricalLead : PerkBase
     public virtual async UniTask CreateLightning()
     {
         var go = await PrefabCreator.Instantiate(Addresses.Obj_Lightning, Vector3.zero);
-        LightningBuilder lightning = go.GetComponent<LightningBuilder>();
+        Lightning lightning = go.GetComponent<Lightning>();
         lightning.Init(_mob);
     }
 }
