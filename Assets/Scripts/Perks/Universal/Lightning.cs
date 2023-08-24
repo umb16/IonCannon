@@ -20,8 +20,10 @@ public class Lightning : MonoBehaviour
         public Vector3 FinishPoint;
         public float TimeToDisappear;
     }
+
     private IMob _attacker;
     private float _nextSegmentTime;
+    private LightningTarget _lightSource;
     List<LightningTarget> _nextTargets = new();
     List<IMob> _formerTargets = new();
     private float[] _lightningEffects = new float[] { 25, 20, 15 };
@@ -44,8 +46,15 @@ public class Lightning : MonoBehaviour
 
     public void Update()
     {
-        if (_nextSegmentTime <= Time.time && _nextTargets.Count != 0)
+        if (_nextSegmentTime <= Time.time)
         {
+            if (_nextTargets.Count == 0)
+            {
+                Debug.Log("Destroy1");
+                Destroy(this.gameObject);
+                return;
+            }
+
             List<LightningTarget> _curTargets = new(_nextTargets);
             _nextTargets = new();
 
@@ -82,71 +91,77 @@ public class Lightning : MonoBehaviour
 
     private void FindNewTargets(LightningTarget source)
     {
-        int lvl = 0;
-        float radius = _lightningEffects[source.LightningLvl];
-        IMob newTarget = null;
+        _lightSource = source;
+
+        float radius = _lightningEffects[_lightSource.LightningLvl];
         Vector3 sourcePos = source.Mob.Position;
         List<IMob> mobsAffectedBy = new(_attacker.AllMobs.Where<IMob>(x => (x != _attacker) || (x != source.Mob)));
 
         if (source.Mob == source.Source)//первый посчет отрезка молнии от кастера к первой жертве.
         {
             mobsAffectedBy = mobsAffectedBy.GetInRadius<IMob>(sourcePos, radius);
-            newTarget = FindTheNearestTarget(sourcePos, radius, mobsAffectedBy);
+            IMob newTarget = FindTheNearestTarget(sourcePos, radius, mobsAffectedBy);
             _formerTargets.Add(newTarget);
+            Debug.Log("source.Mob == source.Source");
+
+            if (newTarget != null)
+            {
+                _nextTargets.Add(new LightningTarget()
+                {
+                    Mob = newTarget,
+                    LightningLvl = 0,
+                    Source = source.Mob,
+                    SourceDirection = newTarget.Position - sourcePos
+                });
+            }
         }
         else
         {
-            lvl = source.LightningLvl + 1;
-            List<IMob>[] mobsByDirections = mobsAffectedBy.GetInCone<IMob>(source.Mob.Position,
-                                                            radius,
-                                                            source.SourceDirection,
-                                                            new float[] { 90, 180 });
-        
+            FindNextTargets(radius, sourcePos, mobsAffectedBy);
+        }
+    }
+    private void FindNextTargets(float radius, Vector3 sourcePos, List<IMob> mobsAffectedBy)
+    {
+        int lvl = _lightSource.LightningLvl + 1;
+        List<IMob>[] mobsByDirections = mobsAffectedBy.GetInCone<IMob>(sourcePos,
+                                                        radius,
+                                                        _lightSource.SourceDirection,
+                                                        new float[] { 90, 180 });
 
-            for (int i = 0; i < mobsByDirections.Length; i++)
+        for (int i = 0; i < mobsByDirections.Length; i++)
+        {
+            bool targetFound = false;
+            int targetsCount = i == 0 ? 2 : 1;
+
+            for (int j = 0; j < targetsCount; j++)
             {
-                if (mobsByDirections[i].Count != 0)
+                if (mobsByDirections[i].Count == 0)
+                    break;         
+
+                    //IMob newTarget = FindTheNearestTarget(sourcePos, radius, mobsByDirections[i]);
+                    IMob newTarget = mobsByDirections[i][Random.Range(0, mobsByDirections[i].Count)];
+
+                if (newTarget != null)
                 {
-                    bool targetFound = false;
-                    int targetsCount = i == 0 ? 2 : 1;
+                    _formerTargets.Add(newTarget);
+                    mobsByDirections[i].Remove(newTarget);
+                    targetFound = true;
+                    if (newTarget.ContainPerk(PerkType.FrostbiteEffect))
+                        lvl--;
 
-                    for (int j = 0; j < targetsCount; j++)
+                    _nextTargets.Add(new LightningTarget()
                     {
-                        newTarget = FindTheNearestTarget(sourcePos, radius, mobsByDirections[i]);
-                        
-                        if (newTarget != null)
-                        {
-                            _formerTargets.Add(newTarget);
-                            mobsByDirections[i].Remove(newTarget);
-                            targetFound = true;
-                            if (newTarget.ContainPerk(PerkType.FrostbiteEffect))
-                                lvl--;
-
-                            _nextTargets.Add(new LightningTarget()
-                            {
-                                Mob = newTarget,
-                                LightningLvl = lvl,
-                                Source = source.Mob,
-                                SourceDirection = newTarget.Position - sourcePos
-                            });                           
-                        }
-                    }
-
-                    if (targetFound)
-                        break;
+                        Mob = newTarget,
+                        LightningLvl = lvl,
+                        Source = _lightSource.Mob,
+                        SourceDirection = newTarget.Position - sourcePos
+                    });
                 }
             }
-        }
 
-        if (newTarget != null)
-        {
-            _nextTargets.Add(new LightningTarget()
-            {
-                Mob = newTarget,
-                LightningLvl = lvl,
-                Source = source.Mob,
-                SourceDirection = newTarget.Position - sourcePos
-            });
+            if (targetFound)
+                break;
+
         }
     }
 
