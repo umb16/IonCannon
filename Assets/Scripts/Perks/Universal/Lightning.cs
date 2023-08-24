@@ -24,9 +24,10 @@ public class Lightning : MonoBehaviour
     private IMob _attacker;
     private float _nextSegmentTime;
     private LightningTarget _lightSource;
-    List<LightningTarget> _nextTargets = new();
-    List<IMob> _formerTargets = new();
-    private float[] _lightningEffects = new float[] { 25, 20, 15 };
+    private List<LightningTarget> _nextTargets = new();
+    private List<IMob> _formerTargets = new();
+    private float[] _lightningRadius = new float[] { 25, 15, 15 };
+    private float[] _lightningDamage = new float[] { 40, 20, 10 };
     List<LightningSegment> _lightningSegments = new();
 
     private void OnDrawGizmos()
@@ -50,7 +51,7 @@ public class Lightning : MonoBehaviour
         {
             if (_nextTargets.Count == 0)
             {
-                Debug.Log("Destroy1");
+                Debug.Log("Destroy");
                 Destroy(this.gameObject);
                 return;
             }
@@ -60,7 +61,7 @@ public class Lightning : MonoBehaviour
 
             foreach (var target in _curTargets)
             {
-                if (target.LightningLvl < _lightningEffects.Length - 1)
+                if (target.LightningLvl < _lightningRadius.Length - 1)
                     FindNewTargets(target);
 
                 _lightningSegments.Add(new LightningSegment()
@@ -70,7 +71,7 @@ public class Lightning : MonoBehaviour
                     TimeToDisappear = Time.time + 0.5f
                 });
 
-                target.Mob.ReceiveDamage(new DamageMessage(_attacker, target.Mob, _lightningEffects[target.LightningLvl], DamageSources.Electricity, 2f));
+                target.Mob.ReceiveDamage(new DamageMessage(_attacker, target.Mob, _lightningDamage[target.LightningLvl], DamageSources.Electricity, 2f));
             }
 
             _nextSegmentTime += 0.2f;
@@ -93,7 +94,7 @@ public class Lightning : MonoBehaviour
     {
         _lightSource = source;
 
-        float radius = _lightningEffects[_lightSource.LightningLvl];
+        float radius = _lightningRadius[_lightSource.LightningLvl];
         Vector3 sourcePos = source.Mob.Position;
         List<IMob> mobsAffectedBy = new(_attacker.AllMobs.Where<IMob>(x => (x != _attacker) || (x != source.Mob)));
 
@@ -101,11 +102,11 @@ public class Lightning : MonoBehaviour
         {
             mobsAffectedBy = mobsAffectedBy.GetInRadius<IMob>(sourcePos, radius);
             IMob newTarget = FindTheNearestTarget(sourcePos, radius, mobsAffectedBy);
-            _formerTargets.Add(newTarget);
-            Debug.Log("source.Mob == source.Source");
-
+            
             if (newTarget != null)
             {
+                _formerTargets.Add(newTarget);
+
                 _nextTargets.Add(new LightningTarget()
                 {
                     Mob = newTarget,
@@ -173,7 +174,7 @@ public class Lightning : MonoBehaviour
         {
             float distance = bigestRadius;
 
-            for (int i = 1; i < mobs.Count; i++)
+            for (int i = 0; i < mobs.Count; i++)
             {
                 float iDistance = Vector2.Distance(center, mobs[i].Position);
 
