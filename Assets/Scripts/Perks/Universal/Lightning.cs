@@ -51,7 +51,6 @@ public class Lightning : MonoBehaviour
         {
             if (_nextTargets.Count == 0)
             {
-                Debug.Log("Destroy");
                 Destroy(this.gameObject);
                 return;
             }

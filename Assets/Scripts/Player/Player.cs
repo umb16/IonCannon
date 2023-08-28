@@ -103,8 +103,7 @@ public class Player : Mob
         //Inventory.Add(itemsDB.CreateItem(ItemId.DeliveryDevice));
         //Inventory.Add(itemsDB.CreateItem(ItemId.DeliveryDevice));
         //Inventory.Add(itemsDB.CoprocessorPlusPlus());
-        //Inventory.Add(itemsDB.CreateItem(ItemId.ElectricalLead));
-        //Inventory.Add(itemsDB.CreateItem(ItemId.ElectricalLead));
+        Inventory.Add(itemsDB.CreateItem(ItemId.ElectricalLead));
         //Inventory.Add(itemsDB.CreateItem(ItemId.WhiteShroud));
         //Inventory.Add(itemsDB.GravityStone());
         //Inventory.Add(itemsDB.StarShard());

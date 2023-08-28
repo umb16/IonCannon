@@ -115,7 +115,7 @@ public class Mob : MonoBehaviour, IMob
         }
         else
         {
-            perk.Init(this);
+            perk.Init(this);          
             _perks.Add(perk.Type, new List<IPerk>(new[] { perk }));
         }
     }

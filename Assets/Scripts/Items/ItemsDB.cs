@@ -1437,6 +1437,7 @@ public class ItemsDB
                 IconAddress = Addresses.Ico_FireGem,
                 CreatePerksFunc = () => new IPerk[]
                 {
+                    _perksFactory.Create<PerkFireGem>(4f)
                     //Раз в 10 секунды создает 5 искр, наносяжих 20 ед. урона [[Огонь]].
                     //Искры летят от персонажа на растояние в 40 п.
                 }

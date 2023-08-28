@@ -167,6 +167,7 @@ public static class Addresses
    public static string Obj_GravityStone = "Obj_GravityStone";
    public static string Fx_SlowDown = "Fx_SlowDown";
    public static string Obj_Lightning = "Obj_Lightning";
+   public static string Obj_FireSpark = "Obj_FireSpark";
    public static string Main_en = "Main_en";
    public static string Main_ru = "Main_ru";
 }
